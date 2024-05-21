@@ -3,6 +3,12 @@ type: docs
 bookToc: True
 weight: 1
 ---
+\begin{Bmatrix}
+   a & b \\
+   c & d
+\end{Bmatrix}
+
+
 # Larimar: Large Language Models with Episodic Memory Control
 *Posted by: Sunggyu Jang, Hyeonwoo Park*
 
