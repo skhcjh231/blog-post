@@ -4,6 +4,7 @@ bookToc: True
 weight: 1
 ---
 
+inline example: $\sum_{i=0}^N 2i = y$
 edit: \begin{equation **X**=\{x_{1}, ..., x_{N}\}}
 
 # Larimar: Large Language Models with Episodic Memory Control
