@@ -4,9 +4,7 @@ bookToc: True
 weight: 1
 ---
 # **Evolutionary Optimization of Model Merging Recipes**
-*arXiv 2024*
-
-*Authors: Takuya Akiba, Makoto Shing, Yujin Tang, Qi Sun, David Ha*
+*Authors: Takuya Akiba, Makoto Shing, Yujin Tang, Qi Sun, David Ha.,**arXiv 2024*
 
 *Posted by Jaehyeon Park, Youngkil Song*
 
