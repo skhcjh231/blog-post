@@ -40,7 +40,6 @@ These days, most language models are based on Transformers, and we stack these b
   MoE is an model which consists of parallel expert models which is fitted to certain domains. Like MoD, token-level routing decisions are made across the network depth. Difference between MoD is, MoD chooses path to transformer or to residual connection, MoE chooses path to transformer(Expert) or to transformer(Expert) or both.
   
 ## **Overview to Mixture-of-Depths (MoD)**
-
 Self-attention + MLP, Residual Connection 중 고른다는 내용. MoE는 넓이를 줄였지만, MoD는 깊이에 해당한다는 내용.
 
 <p align="center">
@@ -52,32 +51,28 @@ Like MoD, token-level routing decisions are made across the network depth.
 Difference between MoD is, MoD chooses path to transformer or to residual connection, MoE chooses path to transformer(Expert) or to transformer(Expert) or both.
 
 ## **Routing schemes**
-Routing implementation is the most crucial part of MoD. The authors compare three routing strategies, demonstrating that MoD is an efficient approach.
+Routing implementation is the most crucial part of MoD. The authors compare three routing schemes, demonstrating that MoD is an efficient approach.
 
 <p align="center">
     <img src=./Routing_Schemes.png> 
 </p>
 
 ### Token-choice routing
-
 Token-choice routing is a method where each tokens select the path it will follow. The router produces probability distributions for each token across the computational paths. Based on this distribution, each token chooses its preferred path at each layer.
   
 In token-choice routing, tokens have the flexibility to select their path, allowing for dynamic processing. However, this can lead to path balancing issues as all tokens might preger on the same path. It causes potential overloads on specific paths. To mitigate it, auxility loss is used to ensure that most tokens do not prefer on a single path.
   
 ### Expert-choice routing
-
 Expert-choice routing is the reverse of token-choice routing. Similar to token-choice routing, the router produces a probability distribution for each token. In expert-choice routing, instead of tokens selecting their paths, each path selects the top-k tokwns based on the tokens' preferences.
 
 Using this method ensures that each paths receives k tokens, maintauing balance among the paths. However, some tokens may not be selected beacuse there might be common tokens that multiple paths prefer.
 
 ### Expert-choice MoD
-
 This method applies expert-choice routing but uses only a single expert. Since only a single path is utilized, if $k$ is less than the sequence length, not all tokens need to undergo self-attention and MLP computation.
 
 이러이러한 이유로 expert-choice routing을  사용한다~~
 
 ## **Implementation detail**
-
 capacity에 관한 설명.
 
 ### 1. Calculate routing weight
@@ -89,13 +84,10 @@ x^{l+1}_i=\begin{cases}r^{l}_i f_i(\tilde{X}^l)+x^{l}_i, &    \text{if } r^{l}_i
 논문 요약
 
 ## **Open source MoD**
-
 https://github.com/astramind-ai/Mixture-of-depths
 
 ## **Conclusion and discussion**
-
 논문 요약 + 내 생각
 
 ## **Some resources**
-
 참고문헌 정리
