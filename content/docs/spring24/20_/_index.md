@@ -38,6 +38,8 @@ CMA-ES finds the global optimum effectively even in high-dimensional problems by
 
 ## Method
 ### Explanation of overall method
+The goal of this paper is to develop a unified framework that can automatically generate a merged model from a set of foundation models, ensuring that the merged model outperforms an any single model in the collection. In this paper, an evolutionary algorithm was applied to reduce the complexity of the model merge process. The model merge was applied independently and also sequentially in both parameter space and the data flow space.
+ 
 ### Merging in the Parameter Space (PS)
 ### Merging in the Data Flow Space (DFS)
 ### Merging in Both Spaces
