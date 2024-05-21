@@ -3,6 +3,9 @@ type: docs
 bookToc: True
 weight: 1
 ---
+Here is some inline example: {{< katex >}}\pi(x){{< /katex >}}, rendered in the same line.
+
+
 # Larimar: Large Language Models with Episodic Memory Control
 *Posted by: Sunggyu Jang, Hyeonwoo Park*
 
