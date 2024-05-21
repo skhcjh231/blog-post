@@ -104,7 +104,30 @@ __Mergekit__ is a toolkit that provides various popular recipes for merging lang
 ### Merging in Both Spaces
 
 ## Experiments
+The experiments in the paper focus on applying the proposed evolutionary model merging approach to create advanced models in two primary areas: Japanese LLMs with Math reasoning capabilities and culturally-aware Japanese Vision-Language Models (VLMs).
 ### Evolving Japanese Math LLM
+### Setup
+- **Source Models**: 
+  - Japanese LLM: shisa-gamma-7b-v1
+  - Math LLMs: WizardMath-7B-V1.1, Abel-7B-002
+- **Dataset**: 
+  - Training: 1069 translated samples from GSM8k test set
+  - Testing: 250 samples from the Japanese test set of MGSM
+- **Evaluation**: 
+  - Accuracy measured by the correctness of the numerical value and reasoning text in Japanese.
+  - Used fasttext for language detection and greedy sampling for generation.
+- **Optimization**: 
+  - Parameter Space (PS): Used CMA-ES algorithm implemented in Optuna for optimization.
+  - Data Flow Space (DFS): Limited to two models with a budget of T = 192 steps, using CMA-ES in EvoJAX for optimization.
+
+### Results
+- **Performance**: 
+  - Merged models in PS and DFS showed substantial performance improvements, with the hybrid model (PS+DFS) achieving the highest accuracy.
+  - The PS merged model (Model 4) scored 52.0 on MGSM-JA, while the hybrid model (Model 6) scored 55.2.
+- **Analysis**: 
+  - The models exhibited emergent capabilities, successfully tackling problems that individual source models could not solve.
+
+
 ### Evolving Japanese VLM
 
 ## Conclusion
