@@ -101,15 +101,29 @@ left: When evaluated on a subset of datasets, there were significant differences
 </details> 
 
 ### Training
-
+**Gating Balacing Loss**
 <p align="center">
     <img src=./training1.png width="400">
 </p>
-As shown in Figure 5 (a), the average entropy of the distribution probabilities from the gating functions gradually decreases as training progresses. In Figure 5 (b), we can see a gating probability of 64% for LoRA β among the three LoRAs, indicating that the gating function tends to converge to a state where it assigns large weights to well-performing LoRAs in the early stages. This can result in a significantly larger impact from a few specific LoRAs compared to others, potentially leading to biased outcomes.
-
+As shown in Figure 5 (a), the average entropy of the distribution probabilities from the gating functions gradually decreases as training progresses. In Figure 5 (b), we can see a gating probability of 64% for LoRA β among the three LoRAs, indicating that the gating function tends to converge to a state where it assigns large weights to well-performing LoRAs in the early stages. This can result in a significantly larger impact from a few specific LoRAs compared to others, potentially leading to biased outcomes. <br/>
+<br/>
 To avoid this, the author created a gating balancing loss.<br/>
+The gating balancing loss helps prevent bias by ensuring that the loss value decreases as the model becomes less biased. <br/>
+<br/>
+<p align="left">
+    <img src=./training2.png width="200">
+</p>
+<details>
+    <summary>See related Symbols</summary>
+    M: the nu of blocks where gating functions are placed <br/>
+    N: num of LoRAs
+</details>     
+<br/>
+**Domain-specific Loss**
+In V&L, Using a loss in CLIP(Radford et al,20221b) <br/>
 
 
+In NLP, Using a loss in FLAN-T5(Chung et al,2022)
 ## Results
 
 ## Analyisis and Limitations
