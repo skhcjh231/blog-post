@@ -67,11 +67,12 @@ left: When evaluated on a subset of datasets, there were significant differences
 ### Method
 
 <p align="center">
-    <img src=./Method1.png width=400>
+    <img src=./Method1.png align="center" width="400">
 </p>
 
 <details>
     <summary>See related formulas</summary>
+        <b>Symbols</b> <br/>
         input $x \in \mathbb{R} ^ {L \times d}$ <br/>
         L: sequence length <br/>
         d: dim of $x$ <br/>
