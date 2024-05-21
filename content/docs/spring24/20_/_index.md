@@ -56,7 +56,8 @@ Figure 1 illustrates an example of model merging. This approach involves pair-wi
 ### Merging Language Models
 Research on applying model merging to language models is actively progressing, with a large number of capable merged models being developed by the community. As a result, most of the top models on the Open LLM Leaderboard are increasingly dominated by merged models produced by language model enthusiasts.
 
-**[Mergekit](https://github.com/arcee-ai/mergekit)**
+**Mergekit**
+[github](https://github.com/arcee-ai/mergekit)
 
 
 
