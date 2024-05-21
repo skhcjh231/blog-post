@@ -21,11 +21,11 @@ In the rapidly evolving field of artificial intelligence and machine learning, k
     Figure 1. A diagrammatic representation of the preservation-memorization objective.
 </p>
 Step 1: Find Keys to Preserve
-- Identify key vectors {{< katex >}}k_0{{< /katex >}} representing existing knowledge, ensuring they remain intact by processing with the weight matrix {{< katex >}}W_0{{< /katex >}} to produce output vectors {{< katex >}}v_0{{< /katex >}}.
+    - Identify key vectors {{< katex >}}k_0{{< /katex >}} representing existing knowledge, ensuring they remain intact by processing with the weight matrix {{< katex >}}W_0{{< /katex >}} to produce output vectors {{< katex >}}v_0{{< /katex >}}.
 Step 2: Find a Fact to Memorize
-- Locate new information to be added, represented by key vector {{< katex >}}k_e{{< /katex >}} and output vector {{< katex >}}v_e{{< /katex >}}, ensuring the model generates the correct new fact.
+    - Locate new information to be added, represented by key vector {{< katex >}}k_e{{< /katex >}} and output vector {{< katex >}}v_e{{< /katex >}}, ensuring the model generates the correct new fact.
 Step 3: Update Weight Matrix
-- Modify {{< katex >}}W_0{{< /katex >}} to {{< katex >}}\hat{W}{{< /katex >}}, preserving existing key vectors {{< katex >}}k_0{{< /katex >}} while ensuring {{< katex >}}k_e{{< /katex >}} produces {{< katex >}}v_e{{< /katex >}}, thus integrating the new information accurately.
+    - Modify {{< katex >}}W_0{{< /katex >}} to {{< katex >}}\hat{W}{{< /katex >}}, preserving existing key vectors {{< katex >}}k_0{{< /katex >}} while ensuring {{< katex >}}k_e{{< /katex >}} produces {{< katex >}}v_e{{< /katex >}}, thus integrating the new information accurately.
 
 
 
@@ -47,13 +47,13 @@ The success of model editing is measured using standard metrics.
     Figure 2: Figure shows a diagrammatic representation of a transformer layer. The layer being edited by ROME, MEMIT and EMMET is the projection weight matrix inside the MLP layer ({{< katex >}}W_{proj}{{< /katex >}}).
 </p>
 To further understand how model editing techniques like ROME, MEMIT, and EMMET work, it's essential to look at how they interact with the layers of a transformer model.
-1. Input Representation ({{< katex >}}h_{l-1}{{< /katex >}}): The input to the transformer layer, {{< katex >}}h_{l-1}{{< /katex >}}, is either the output from the previous layer or the initial input embedding.
-2. Attention Mechanism (Attn): The input {{< katex >}}h_{l-1}{{< /katex >}} passes through the attention mechanism, which calculates attention scores and generates a context vector by attending to different parts of the input sequence.
-3. Feed-Forward Layer: The transformed input then goes through the feed-forward layer, consisting of a fully connected layer ({{< katex >}}W_{fc}{{< /katex >}}) producing an intermediate representation, followed by a non-linear activation ({{< katex >}}\sigma{{< /katex >}}) like ReLU or GELU.
-4. Key Vector Generation ({{< katex >}}k{{< /katex >}}): After the non-linearity, the intermediate representation is used to generate key vectors {{< katex >}}k{{< /katex >}}, crucial for storing and retrieving the model's knowledge.
-5. Projection Weight Matrix ({{< katex >}}W_{proj}{{< /katex >}}): The projection weight matrix {{< katex >}}W_{proj}{{< /katex >}} projects the key vectors into the final output space and is the focus of edits in ROME, MEMIT, and EMMET.
-6. Output Vector Generation ({{< katex >}}v{{< /katex >}}): The projection weight matrix {{< katex >}}W_{proj}{{< /katex >}} transforms the key vectors {{< katex >}}k{{< /katex >}} into output vectors {{< katex >}}v{{< /katex >}}, integrating the edits made to the model.
-7. Layer Output ({{< katex >}}h_{l}{{< /katex >}}): The final output of the transformer layer, {{< katex >}}h_{l}{{< /katex >}}, serves as the input for the next layer or as the model's final output if it is the last layer.
+    1. Input Representation ({{< katex >}}h_{l-1}{{< /katex >}}): The input to the transformer layer, {{< katex >}}h_{l-1}{{< /katex >}}, is either the output from the previous layer or the initial input embedding.
+    2. Attention Mechanism (Attn): The input {{< katex >}}h_{l-1}{{< /katex >}} passes through the attention mechanism, which calculates attention scores and generates a context vector by attending to different parts of the input sequence.
+    3. Feed-Forward Layer: The transformed input then goes through the feed-forward layer, consisting of a fully connected layer ({{< katex >}}W_{fc}{{< /katex >}}) producing an intermediate representation, followed by a non-linear activation ({{< katex >}}\sigma{{< /katex >}}) like ReLU or GELU.
+    4. Key Vector Generation ({{< katex >}}k{{< /katex >}}): After the non-linearity, the intermediate representation is used to generate key vectors {{< katex >}}k{{< /katex >}}, crucial for storing and retrieving the model's knowledge.
+    5. Projection Weight Matrix ({{< katex >}}W_{proj}{{< /katex >}}): The projection weight matrix {{< katex >}}W_{proj}{{< /katex >}} projects the key vectors into the final output space and is the focus of edits in ROME, MEMIT, and EMMET.
+    6. Output Vector Generation ({{< katex >}}v{{< /katex >}}): The projection weight matrix {{< katex >}}W_{proj}{{< /katex >}} transforms the key vectors {{< katex >}}k{{< /katex >}} into output vectors {{< katex >}}v{{< /katex >}}, integrating the edits made to the model.
+    7. Layer Output ({{< katex >}}h_{l}{{< /katex >}}): The final output of the transformer layer, {{< katex >}}h_{l}{{< /katex >}}, serves as the input for the next layer or as the model's final output if it is the last layer.
 
 
 ### ROME (Rank-One Model Editing)
