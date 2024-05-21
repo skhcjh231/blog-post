@@ -93,24 +93,24 @@ In our opinion, Grid Attention appears to add an inductive bias similar to Convo
 ### Result of Image Classification Task
 
 <p align="center">
-  <img src="./result_image_classification.png" alt="." width="500" height="300" > 
+  <img src="./result_image_classification.png" alt="." width="500" height="500" > 
 </p>
 
 ### Result of Object Detection Task
 
 <p align="center">
-  <img src="./result_FLOPs.png" alt="." width="500" height="300" > 
+  <img src="./result_FLOPs.png" alt="." width="300" height="150" > 
 </p>
 
 ### Effect of Adaptive Token Merger (ATM) Module
 <p align="center">
-  <img src="./result_ATM.png" alt="." width="500" height="300" > 
+  <img src="./result_ATM.png" alt="." width="300" height="100" > 
 </p>
 
 ### Effect of Fuzzy Positional Encoding (FPE)
 
 <p align="center">
-  <img src="./result_FPE.png" alt="." width="500" height="300" > 
+  <img src="./result_FPE.png" alt="." width="300" height="200" > 
 </p>
 
 
