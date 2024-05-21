@@ -93,7 +93,7 @@ x^{l+1}_i=\begin{cases}r^{l}_i f_i(\tilde{X}^l)+x^{l}_i, &    \text{if } r^{l}_i
 
 
 ## **Implementation detail**
-### **Capcity**
+### **Capacity**
 ### **Autoregressively sampling**
 - Simple auxiliary loss
 - Small auxiliary MLP predictor
