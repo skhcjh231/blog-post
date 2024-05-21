@@ -92,6 +92,8 @@ In our opinion, Grid Attention appears to add an inductive bias similar to Convo
 
 ### Result of Image Classification Task
 
+ViTAR is trained on ImageNet-1K form scratch and it demonstrates excellent classification accuracy across a considerable range of resolutions. Especially, when the resolution of the input image exceeds 2240, ViTAR is capable of inference at lower computational cost. In contrast, traditional ViT architectures (DeiT and ResFormer) cannot perform high resolution inference due to computational resource limitations.
+
 <p align="center">
   <img src="./result_image_classification.png" alt="." width="500" height="500" > 
 </p>
