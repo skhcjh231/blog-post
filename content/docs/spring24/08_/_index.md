@@ -66,42 +66,41 @@ left: When evaluated on a subset of datasets, there were significant differences
 **So, The conjecture is that adjusting the characteristics by varying the layer-specific weights according to the desired domain objective will result in a more effective composition of trained LORAs.**
 ### Method
 <p align="center">
-    <img src=./Method1.png width="40%">
-    <details>
-        <summary>See related formulas</summary>
-        input $x \in \mathbb{R} ^ {L \times d}$ <br/>
-        L: sequence length <br/>
-        d: dim of $x$ <br/>
-        Multi attention layer : $$\mathcal{f}_{Attn} (\centerdot)$$ <br/>
-        Feed forward neural network layer: $$\mathcal{f}_{FFN} (\centerdot)$$   <br/>
-        LN: layer normalization <br/>
-        Trained LORAs $$\Omega = \left\{ \Delta \Theta \right\}^N_{i=0}$$ <br/>
-        learnable gating function $$\mathcal{G} (\centerdot)$$ <br/>
-        The weight of the $i^{th}$ trained LorA $$\mathcal{G}_i (\centerdot)$$ <br/>
-        Concatenation operation: $$\oplus$$ <br/>
-        Learnable parameter $e \in \mathbb{R} ^ {N^2 \times L \times d}$ <br/>
-        Learnable temperature scalar $\tau$ <br/>
-        <br/>
-        <b>Freezing part</b>
-        $$x^\prime_{\theta} = x + \mathcal{f}_{Attn} (LN(x)|\theta)$$ <br/>
-        $$\mathbf{F}_\theta (x) = x^\prime_{\theta} + \mathcal{f}_{Attn} (LN(x^\prime_{\theta})|\theta)$$ <br/>
-        <br/>
-        <b>LoRA part</b>
-        $$x^\prime_{\Delta \Theta_i} = x + \mathcal{f}_{Attn} (LN(x)|\Delta \Theta_i)$$ <br/>
-        The output of each LoRA $$\mathbf{E} _{\Delta \Theta_i} (x) = x^\prime_{\Delta \Theta_i} + \mathcal{f}_{FFN} (LN(x^\prime_{\Delta \Theta_i})|\Delta \Theta_i)$$ <br/>
-        The output of all LoRA $$\mathbf{E}_\Omega (x) = Normalization(\mathbf{E}_{\Delta \Theta_0} (x) \oplus \ldots \oplus \mathbf{E}_{\Delta \Theta_{N-1}} (x)) \in \mathbb{R} ^ {N \times L \times d}$$ <br/>
-        Flatten and dot product operation $$\epsilon = Flatten(\mathbf{E}_\Omega (x))^T \centerdot e,  \epsilon \in \mathbb{R} ^ N$$ <br/>
-        Gate value for each LoRA $$\mathcal{G} (\epsilon_i) = \frac {exp(^{\epsilon_i} /_ \tau)} {\displaystyle\sum_{j=1}^N {exp(^{\epsilon_j} /_ \tau)}} $$ <br/>
-        Final output of the gating function $${\tilde{\mathbf{E}}_\Omega (x)} = \displaystyle\sum_{i=0}^N {\mathcal{G} (\epsilon_i) \centerdot \mathbf{E} _{\Delta \Theta_i} (x)} , {\tilde{\mathbf{E}}_\Omega (x)} \in \mathbb{R} ^ {L \times d} $$ <br/>
-        <b>Final output of Transformer block</b>
-        $$\mathcal{O}(x) = {\mathbf{F}_\theta (x)} + {\tilde{\mathbf{E}}_\Omega(x)} $$ 
-    </details> 
+    <img src=./Method1.png>
 </p>
 
+<details>
+    <summary>See related formulas</summary>
+    input $x \in \mathbb{R} ^ {L \times d}$ <br/>
+    L: sequence length <br/>
+    d: dim of $x$ <br/>
+    Multi attention layer : $$\mathcal{f}_{Attn} (\centerdot)$$ <br/>
+    Feed forward neural network layer: $$\mathcal{f}_{FFN} (\centerdot)$$   <br/>
+    LN: layer normalization <br/>
+    Trained LORAs $$\Omega = \left\{ \Delta \Theta \right\}^N_{i=0}$$ <br/>
+    learnable gating function $$\mathcal{G} (\centerdot)$$ <br/>
+    The weight of the $i^{th}$ trained LorA $$\mathcal{G}_i (\centerdot)$$ <br/>
+    Concatenation operation: $$\oplus$$ <br/>
+    Learnable parameter $e \in \mathbb{R} ^ {N^2 \times L \times d}$ <br/>
+    Learnable temperature scalar $\tau$ <br/>
+    <br/>
+    <b>Freezing part</b>
+    $$x^\prime_{\theta} = x + \mathcal{f}_{Attn} (LN(x)|\theta)$$ <br/>
+    $$\mathbf{F}_\theta (x) = x^\prime_{\theta} + \mathcal{f}_{Attn} (LN(x^\prime_{\theta})|\theta)$$ <br/>
+    <br/>
+    <b>LoRA part</b>
+    $$x^\prime_{\Delta \Theta_i} = x + \mathcal{f}_{Attn} (LN(x)|\Delta \Theta_i)$$ <br/>
+    The output of each LoRA $$\mathbf{E} _{\Delta \Theta_i} (x) = x^\prime_{\Delta \Theta_i} + \mathcal{f}_{FFN} (LN(x^\prime_{\Delta \Theta_i})|\Delta \Theta_i)$$ <br/>
+    The output of all LoRA $$\mathbf{E}_\Omega (x) = Normalization(\mathbf{E}_{\Delta \Theta_0} (x) \oplus \ldots \oplus \mathbf{E}_{\Delta \Theta_{N-1}} (x)) \in \mathbb{R} ^ {N \times L \times d}$$ <br/>
+    Flatten and dot product operation $$\epsilon = Flatten(\mathbf{E}_\Omega (x))^T \centerdot e,  \epsilon \in \mathbb{R} ^ N$$ <br/>
+    Gate value for each LoRA $$\mathcal{G} (\epsilon_i) = \frac {exp(^{\epsilon_i} /_ \tau)} {\displaystyle\sum_{j=1}^N {exp(^{\epsilon_j} /_ \tau)}} $$ <br/>
+    Final output of the gating function $${\tilde{\mathbf{E}}_\Omega (x)} = \displaystyle\sum_{i=0}^N {\mathcal{G} (\epsilon_i) \centerdot \mathbf{E} _{\Delta \Theta_i} (x)} , {\tilde{\mathbf{E}}_\Omega (x)} \in \mathbb{R} ^ {L \times d} $$ <br/>
+    <b>Final output of Transformer block</b>
+    $$\mathcal{O}(x) = {\mathbf{F}_\theta (x)} + {\tilde{\mathbf{E}}_\Omega(x)} $$ 
+</details> 
 
-    
 ### Training
-**Gating Balancing Loss**
+
 
 
 
