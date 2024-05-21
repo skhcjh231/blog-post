@@ -3,6 +3,9 @@ type: docs
 bookToc: True
 weight: 1
 ---
+
+**X**=\{$x_{1}, ..., x_{N}$\}
+
 # Larimar: Large Language Models with Episodic Memory Control
 *Posted by: Sunggyu Jang, Hyeonwoo Park*
 
