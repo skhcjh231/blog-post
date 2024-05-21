@@ -143,6 +143,9 @@ Experimental settings
     <img src="BlogPost/Untitled 3.png" alt="." > 
 </p>
 
+<p align="center">
+  Fig 5. Various metric results (PS, NS, ES, S) after a batch edit (16, 64, 256, 1024, 4096) on MEMIT and EMMET respectively.
+</p>
 
 For both MEMIT & EMMET editing, metrics are seen to consistently fall with larger batches, with **NS** being the most pronounced to fall. **ES** is most resilient metric to edits. **PS**, only metric to do so, seen to increase dramatically between batch sizes of 16 and 64.
 The similar trend between two editing techniques reflect the similarity in their optimization objectives.
@@ -159,6 +162,10 @@ This work proposes optimal way to scale model editing that strikes a balance bet
 <p align="center">
     <img src="BlogPost/Untitled 4.png" alt="." > 
     <img src="BlogPost/Untitled 5.png" alt="." > 
+</p>
+
+<p align="center">
+  Fig 6.  Single layer sequential editing performance for various batch sizes on MEMIT and EMMET respectively.
 </p>
 
 Experimental results according to figures above showed that **larger batch sizes are actually worse for model performance than sequential edits with smaller batches**. In contrast, larger batch sizes seem to be better for metrics in NS : while batch edits are less successful in general, it is better in preserving locality of edits. This results were concluded to optimal batch size of 1024 for both MEMIT and EMMET. Increasing batch-size beyond that lead to larger model degradation and better editing results can be achieved by sequential-batched editing with smaller batch sizes. 
