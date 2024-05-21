@@ -65,14 +65,12 @@ left: When evaluated on a subset of datasets, there were significant differences
 
 **So, The conjecture is that adjusting the characteristics by varying the layer-specific weights according to the desired domain objective will result in a more effective composition of trained LORAs.**
 ### Method
-
-<div style="display: flex; align-items: right;">
-    <div style="flex: 1;">
-        <img src=./Method1.png width: "46%">
-      <div style="flex: 3; padding-left: 10;">
-        apple is the best.
-      <figcaption align="center">    
-</div>
+<p align="left">
+  <img src="./Method1.png" width="200"/>
+</p>
+<p align="right">
+  apple is the best.
+</p>
     
 ### Training
 
