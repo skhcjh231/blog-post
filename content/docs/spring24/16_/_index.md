@@ -6,6 +6,8 @@ weight: 1
 # **Accelerating Transformers via Conditional Computation: As Aspect of Mixture of Depths**
 *Posted by: Inkwan Hwang, Minjae Park*
 
+---
+
 <p align="center">
     <img src=./Pondering_Transformer.jpg> 
 </p>
