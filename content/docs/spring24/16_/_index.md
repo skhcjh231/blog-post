@@ -51,7 +51,7 @@ MoE is an model which consists of parallel expert models which is fitted to cert
 Like MoD, token-level routing decisions are made across the network depth.
 Difference between MoD is, MoD chooses path to transformer or to residual connection, MoE chooses path to transformer(Expert) or to transformer(Expert) or both.
 
-## **Capacity based routing schemes**
+## **Routing schemes**
 Routing implementation is the most crucial part of MoD. The authors compare three routing strategies, demonstrating that MoD is an efficient approach.
 
 <p align="center">
@@ -74,7 +74,12 @@ Using this method ensures that each paths receives k tokens, maintauing balance 
 
 This method applies expert-choice routing but uses only a single expert. Since only a single path is utilized, if $k$ is less than the sequence length, not all tokens need to undergo self-attention and MLP computation.
 
+이러이러한 이유로 expert-choice routing을  사용한다~~
+
 ## **Implementation detail**
+
+capacity에 관한 설명.
+
 ### 1. Calculate routing weight
 {{< katex display=true >}}
 x^{l+1}_i=\begin{cases}r^{l}_i f_i(\tilde{X}^l)+x^{l}_i, &    \text{if } r^{l}_i >  P_\beta(R^l)\\x^{l}_i, & \text{if }r^{l}_i <  P_\beta(R^l)\end{cases}
