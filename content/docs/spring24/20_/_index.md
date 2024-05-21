@@ -11,7 +11,12 @@ weight: 1
 ## Background
 ### Model Merging
 ### Merging Language Models
-### Evaluationary Neural Architecture Search
+### Evoluationary Neural Architecture Search
+
+For successful deep learning, both the optimal architecture and the optimal weights associated with that architecture are necessary. However, unlike weights, the architecture cannot be updated through gradient-based methods. Neural Architecture Search (NAS) is an attempt to automate designing the network architecture, which has traditionally been done manually. The goal of NAS is to find the architecture with the smallest loss from the set of all possible architectures, denoted as A.
+
+
+
 
 ## Contributions
 
