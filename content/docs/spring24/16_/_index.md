@@ -95,7 +95,10 @@ x^{l+1}_i=\begin{cases}r^{l}_i f_i(\tilde{X}^l)+x^{l}_i, &    \text{if } r^{l}_i
 ## **More details**
 ### **Capacity**
 ### **Autoregressively sampling**
+The issue with autoregressively sampling is that it lacks information about future tokens, which means it cannot determine whether a token will be in the top-k when it passes through the router. Therefore, to solve this problem, the paper proposes two methods.
 - Simple auxiliary loss
+  The first method is introducing an auxiliary loss. By designing an additional binary cross-entropy loss function at the router's output, the value of tokens in the top-$k$ is guided to be greater than 0.5, while the value of tokens are not in the top-$k$ is guided to be less than 0.5. Through its process, when the token passes through the router, it is considered to be in the top-$k$ if its value is higher than 0.5, then it passes through the self-attention and MLP layer. Otherwise, it passses through the residual path. Designing such a function impacts the primary language modeling objective about 0.2-0.3%. We believe this likely refers to the extent to which performance and inference time are affected.
+  
 - Small auxiliary MLP predictor
 
 With these methods, authors can sample autoregressively by choosing to route tokens to or around a block based on the router's outer which is not depends on the future tokens. They provide empirical result that auxiliary task achieved 99% accuracy.
