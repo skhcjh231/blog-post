@@ -23,14 +23,15 @@ Evolutionary algorithms are typically composed of the following elements:
 - **Selection**: The process of selecting individuals to be passed on to the next generation. Individuals with higher fitness are more likely to be selected.
 - **Termination Condition**: The criteria for ending the algorithm. This is usually based on a maximum number of generations, achieving a target fitness level, time limits, or other benchmarks.
 
-##### Simple Gaussian Evolutionary Strategy (ES)
-1. Sample a set of solutions from a Gaussian distribution with mean 𝜇 and a fixed standard deviation 𝜎.
+##### Simple Evolutionary Strategy (Simple ES)
+1. Sample a set of solutions from a Normal distribution with mean 𝜇 and a fixed standard deviation 𝜎.
 2. Evaluate the fitness of each solution using the fitness function.
 3. Set 𝜇 to the best solution in the population, and sample the next generation of solutions around this new mean.
 4. Repeat the above processes.
 
 ##### Covariance-Matrix Adaptation Evolution Strategy (CMA-ES)
-
+CMA-ES is an evolutionary strategy that can dynamically adjust the search range for solutions.
+CMA-ES finds the global optimum effectively even in high-dimensional problems by adaptively updating the covariance matrix of the multivariate normal distribution used for sampling a set of solutions, thereby adjusting the search direction and range.
 
 
 ## Contributions
