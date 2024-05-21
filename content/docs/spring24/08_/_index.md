@@ -67,7 +67,6 @@ left: When evaluated on a subset of datasets, there were significant differences
 ### Method
 <p align="left">
   <img src="./Method1.png" width="200"/>
-</p>
 <p align="right">
   apple is the best.
 </p>
