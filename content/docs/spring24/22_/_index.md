@@ -110,7 +110,7 @@ Let's see how it works in two stages.
 
 #### 3-1. Training
 ##### (1) Writing
-The memory **M** in Fig7 has to be trained so as to approximate the distribution of **X** (**X** is an exchangeable-order invariant episode: **X** = { $x_{1}$, ..., $x_{N}$ }, a subset of the input data consisting of **N** samples). To do so, the model is trained to maximize the conditional log-likelihood of ln*p* (**X**|**M**). In this way, the model learns to compress **X** in a memory **M**, which then becomes a distributed associative memory. This process is similar to that of encoder in VAE. 
+The memory **M** in Fig7 has to be trained so as to approximate the distribution of **X** (**X** is an exchangeable-order invariant episode: **X** = { $x_{1}$, ..., $x_{N}$ }, a subset of the input data consisting of **N** samples). To do so, the model is trained to maximize the conditional log-likelihood of ln*p* (**X**|**M**). In this way, the model learns to compress **X** in a memory **M**, which then becomes a distributed associative memory. This process is similar to that of encoder in VAE. (Look at the green arrows in Fig7)
 ##### (2) Reading
 The reading weight matrix, **W**, is a random variable for generative ability of the model. In this paper, authors set a standard Gaussian prior _p_(**W**) ~ _N_(0, $I_{N \times K}$ ) and posterior _q_(**W**) ~ _N_($\bar{W}$, $\sigma^2_{W} \cdot I_{N \times K}$), where the mean $\bar{W}$ is estimated from each episode and $\sigma_{W}$ is learnable. Memory readouts are obtained as **Z**$_{readout}$ = **WM**.
 ##### (3) Summary
@@ -120,13 +120,11 @@ Three main components - encoder(_e_), associative memory(**M**), and decoder(_d_
 </p>
 
 #### 3-2. Inference
-Once **M**$_{0}$ is trained via backpropagation, the posterior memory **M** is updated in one-shot by solving a minimization problem below.
+Once **M**$_{0}$ is trained via backpropagation, the posterior memory **M** is updated in one-shot by solving a minimization problem below. This problem can be efficiently done with the preudo-inverse of matrix. For more details, please refer to [8].
 <p align="center">
     <img src='minimization problem.png' width="200">
 </p>
 
-
-First of all, let's consider the write operation (green arrows in Fig7). Data episode of length N is transformed into a latent vector through an encoder. Then, the posterior memory M given the data Z and the writing weight W0 is calculated [8]. 
 
 
 ## 4. Memory Operations
