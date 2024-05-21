@@ -18,6 +18,7 @@ This image was produced using DALL·E 3.
 
 In this post, We will explain conditional computation strategies for Transformers, focusing on a technology announced this year called **Mixture-of-Texture.**
 
+paper:  [<U>Mixture-of-Depths: Dynamically allocating compute in transformer-based language models</U>](https://arxiv.org/abs/2404.02258){:target="_blank"}
 
 paper: <a href="https://arxiv.org/abs/2404.02258" target="_blank"> Mixture-of-Depths: Dynamically allocating compute in transformer-based language models </a>
 
