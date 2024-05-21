@@ -31,6 +31,7 @@ The common solution to further improve the performance of LoRA is to compose mul
 <p align="center">
     <img src=./linear_com.png> 
 </p>
+adfas
 
 
 **Reference tuning-based composition.**
