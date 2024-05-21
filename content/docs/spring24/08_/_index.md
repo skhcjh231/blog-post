@@ -101,6 +101,13 @@ left: When evaluated on a subset of datasets, there were significant differences
 </details> 
 
 ### Training
+The final loss function used in MoLE is as follows:
+<p align="left">
+    <img src=./training5.png width="200">
+</p>
+Alpha is a coefficient for weight balancing. 
+<br/>
+
 **Gating Balacing Loss**
 <p align="center">
     <img src=./training1.png width="400">
@@ -119,11 +126,19 @@ The gating balancing loss helps prevent bias by ensuring that the loss value dec
     N: num of LoRAs
 </details>     
 <br/>
-**Domain-specific Loss**
-In V&L, Using a loss in CLIP(Radford et al,20221b) <br/>
 
+**Domain-specific Loss**
+<br/>
+In V&L, Using a loss in CLIP(Radford et al,20221b) <br/>
+<p align="left">
+    <img src=./training3.png width="300">
+</p>
 
 In NLP, Using a loss in FLAN-T5(Chung et al,2022)
+<p align="left">
+    <img src=./training4.png width="200">
+</p>
+
 ## Results
 
 ## Analyisis and Limitations
