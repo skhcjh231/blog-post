@@ -71,7 +71,7 @@ Using this method ensures that each paths receives k tokens, maintauing balance 
 ## **Implementation detail**
 ### 1. Calculate routing weight
 {{< katex display=true >}}
-x^{l+1}_i=\begin{cases}r^{l}_i f_i(\tilde{X}^l)+x^{l}_i, & r^{l}_i >  P_\beta(R^l)\\x^{l}_i, & r^{l}_i <  P_\beta(R^l)\end{cases}
+x^{l+1}_i=\begin{cases}r^{l}_i f_i(\tilde{X}^l)+x^{l}_i, &    \text{if } r^{l}_i >  P_\beta(R^l)\\x^{l}_i, & \text{if }r^{l}_i <  P_\beta(R^l)\end{cases}
 {{< /katex >}}
 ### 2. Select top-k tokens
 
