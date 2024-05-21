@@ -104,12 +104,15 @@ LINK: https://github.com/astramind-ai/Mixture-of-depths
 
 The code operates in the following steps:
 1. Token Weight Calculation
+   
    The **TokenRouter** module caculates weights for each token based on its embedding. This is done using a lnear layer appleid to the embeddingsm resulting in a weight value for each token.
-2. Selective Processing
+3. Selective Processing
+   
    The processing occurs in the **MoD** module's forward pass
    - First token weights are calculated using **TokenRouter**
    - By a capacity paratmter, the number of tokens are determined. They undergo self-attention and MLP computation.
-3. Application to Hugging Face Models
+5. Application to Hugging Face Models
+   
    **apply_mod_to_hf** function applies the MoD mechanism to an existing Hugging Face model.
 
 More detail explanations are HERE. 개인 페이지에 더 자세한 코드 분석 작성.
