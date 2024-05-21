@@ -33,6 +33,11 @@ weight: 1
 ## ViTAR: Vision Transformer with Any Resolution
 In this section, we introduces two key innovations to address this issue. Firstly, we propose a novel module for dynamic resolution adjustment, designed with a single Transformer block, specifically to achieve highly efficient incremental token integration. Secondly, we introduce fuzzy positional encoding in the Vision Transformer to provide consistent positional awareness across multiple resolutions, thereby preventing overfitting to any single training resolution.
 
+<p align="center">
+  <img src="./ResFormer_pe.png" alt="." width="500" height="300" > 
+</p>
+
+
 ### 1. Adaptive Token Merger (ATM Module)
 
 <p align="center">
