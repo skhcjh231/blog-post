@@ -9,7 +9,7 @@ weight: 1
 *Posted by Jaehyeon Park, Youngkil Song*
 
 ## Background
-### Leverage the Strengths of Multiple Pre-trained Models
+### How to leverage the strengths of multiple pre-trained models
 ### Fine-Tuning
 
 __Fine-tuning__ involves taking a pre-trained model and further training it on a specific dataset to optimize its performance for a particular task.
