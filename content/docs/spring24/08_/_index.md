@@ -70,7 +70,7 @@ left: When evaluated on a subset of datasets, there were significant differences
 </p>
 
 <details>
-    <summary>관련 수식 보기</summary>
+    <summary>See related formulas</summary>
     input $x \in \mathbb{R} ^ {L \times d}$ <br/>
     L: sequence length <br/>
     d: dim of $x$ <br/>
@@ -100,8 +100,8 @@ left: When evaluated on a subset of datasets, there were significant differences
     
 ### Training
 **Gating Balancing Loss**
-<br/>
-$$ \mathcal{L} _{balance} = -log (\prod_{i=0}^N {q^i}) $$ 
+
+
 
 
 
