@@ -4,7 +4,7 @@ bookToc: True
 weight: 1
 ---
 
-edit: $$**X**=\{x_{1}, ..., x_{N}\}$$
+edit: '$$**X**=\{x_{1}, ..., x_{N}\}$$'
 
 # Larimar: Large Language Models with Episodic Memory Control
 *Posted by: Sunggyu Jang, Hyeonwoo Park*
