@@ -29,7 +29,7 @@ The common solution to further improve the performance of LoRA is to compose mul
 **Linear arithmetic composition.** It is a method of adding multiple LoRAs. This approach is simple and has been effective in the NLP and vision-language domains, but it can result in the loss of the individual characteristics of each LoRA.
 
 <p align="center">
-    <img src=./linear_com.png> 
+    <img src=./lora_comp.png> 
 </p>
 
 
