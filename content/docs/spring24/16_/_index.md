@@ -25,12 +25,11 @@ paper:  [<U>Mixture-of-Depths: Dynamically allocating compute in transformer-bas
 Let's dive in!
 
 ## **Understanding the problem: Uniform computation in Transformers**
-
 These days, most language models are based on Transformers, and we stack these blocks to make big models. When given an input sequence, tokens pass through these blocks to predict the next token. The problem is that the models spread computations uniformly across input sequences. Transformers use the same amount of computation for essential tokens as for non-essential ones. For instance, predicting a token within a sentence is cheaper than predicting the first token of the next sentence. Researchers want to address this issue by making Transformers focus on important tokens by allocating less computing resources.
 
 ## **Conditional Computation for transformers**
 - Early exiting
-  
+  early exiting
   Early Exit method is a method when the model decides to end computation on a given token, allowing it skips the remaining layers. Difference between MoD is, MoD can choose whether skip middle layer or not, but Early Exit method can't.
   
 - CoLT5
@@ -41,6 +40,8 @@ These days, most language models are based on Transformers, and we stack these b
   
 ## **Overview to Mixture-of-Depths (MoD)**
 
+Self-attention + MLP, Residual Connection 중 고른다는 내용. MoE는 넓이를 줄였지만, MoD는 깊이에 해당한다는 내용.
+
 <p align="center">
     <img src=./Mixture-of-Depths.png> 
 </p>
@@ -50,13 +51,22 @@ Like MoD, token-level routing decisions are made across the network depth.
 Difference between MoD is, MoD chooses path to transformer or to residual connection, MoE chooses path to transformer(Expert) or to transformer(Expert) or both.
 
 ## **Capacity based routing schemes**
+라우팅 구현은 MoD의 가장 핵심적인 부분이다.저자들은 세 가지 라우팅 전략을 비교하며 MoD가 효율적인 전략임을 보이고 있다.
+
 - Token-choice routing
+  Token-choice routing is a method where each tokens select the path it will follow. The router produces probability distributions for each token across the computational paths. Based on this distribution, each token chooses its preferred path at each layer.
+
+  In token-choice routing, tokens have the flexibility to select their path, allowing for dynamic processing. However, this can lead to path balancing issues as all tokens might preger on the same path. It causes potential overloads on specific paths. To mitigate it, auxility loss is used to ensure that most tokens do not prefer on a single path.
   
 - Expert-choice routing
 - Expert-choice MoD
 
-## **Implementation detail**
+이러한 라우팅 구현 다음 내용을 핵심적으로 고혀해야 한다.
 
+
+## **Implementation detail**
+1. Calculate routing weight
+2. Select top-k tokens
 {{< katex display=true >}}
 x^{l+1}_i=\begin{cases}r^{l}_i f_i(\tilde{X}^l)+x^{l}_i, & r^{l}_i >  P_\beta(R^l)\\x^{l}_i, & r^{l}_i <  P_\beta(R^l)\end{cases}
 {{< /katex >}}
