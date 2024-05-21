@@ -97,11 +97,21 @@ __Mergekit__ is a toolkit that provides various popular recipes for merging lang
 - **State-of-the-Art Performance**: Achieved state-of-the-art results with automatically generated models, including a Japanese LLM with Math reasoning capability and a culturally-aware Japanese VLM.
 - **High Efficiency and Surprising Generalizability**: Showed that a 7B parameter model outperformed some 70B parameter models, highlighting efficiency and generalization capabilities.
 - **Culturally-Aware VLM**: Produced a Japanese VLM that excels in handling Japanese culture-specific content, achieving top results on relevant benchmarks.
+
 ## Method
 ### Explanation of overall method
+The goal of this paper is to develop a unified framework that can automatically generate a merged model from a set of foundation models, ensuring that the merged model outperforms an any single model in the collection. In this paper, an evolutionary algorithm was applied to reduce the complexity of the model merge process. The model merge was applied independently and also sequentially in both parameter space and the data flow space.
+ 
 ### Merging in the Parameter Space (PS)
+The model merge in the parameter space can be summarized as a weighted average of the model parameters. In this paper, the fitness of each foundation model for a specific task is determined using the task vector of each foundation model, and then merging configuration parameters for combining the parameters of the candidate models are estimated based on those fitness values. Specifically, this paper enhances TIES-Merging with DARE, allowing for more granular, layer-wise (input/output embedding layers or transformer blocks) merging.
+
 ### Merging in the Data Flow Space (DFS)
+In DFS, the proposed framework discovers the best combinations of the layers of different models to form a new model, without changing the model parameters. In other words, the goal of merging in the DFS is to find the optimal inference path across the multiple models. For example, after the i-th layer in model A, a token may be directed to the j-th layer in model B. Please note that the search space in the data flow space (DFS) is very large. Assuming the total number of layers across all models is $M$ and the lengh of the inference path is $T$, then the size of the search space is $M^T$. This astronomically large search space leads to a challenge for a evolutionary search algorithm, even with a modest configuration of $M=64$ and $T=60$.
+To address this issue, this paper exploits the result of preliminary studies that certain layer arrangements, particularly repetitive or permuted sequences from earlier in the model, can adversely affect performance. Specifically, this paper layout all the layers only in sequential order (i.e., all layers in the $i$-th model followed by those in the $i+1$-th model) and repeat them $r$ times, therefore the size of the search space can be reduced to $2^{M \times r}$. The authors use indicator array $\mathcal{I} \in \mathbb{R}^{M \times r}$ to represent which layers are included and excluded.
+However, in the above setting, a layer may face an input whose distribution is different from what it is used to (from its original model), leading to unexpected outputs. They just apply scaling the input based on the scaling matrix $W \in \mathbb{R}^{M \times M}$, which is also optimized by the evolutionary search together with the indicator array $\mathcal{I}$.
+
 ### Merging in Both Spaces
+Model merging in the parameter space (PS) and data flow space (DFS) can be applied orthogonally to boost the performance of the merged model. Specifically, in this paper, model merging is first applied in the PS to generate several merged models, which are then put back to the collection of models. The expanded collection is subsequently used for merging in the DFS.
 
 ## Experiments
 The experiments in the paper focus on applying the proposed evolutionary model merging approach to create advanced models in two primary areas: Japanese LLMs with Math reasoning capabilities and culturally-aware Japanese Vision-Language Models (VLMs).
