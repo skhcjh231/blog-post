@@ -83,12 +83,13 @@ Routing scheme에는 다음과 같은 고려해야할 사항이 있다:
 
 ## **Implementation**
 MoD Transformers는 다음과 같은 방식으로 작동한다.
-1. Calculate routing weight
+1. Calculate routing weights
    {{< katex display=true >}}
 x^{l+1}_i=\begin{cases}r^{l}_i f_i(\tilde{X}^l)+x^{l}_i, &    \text{if } r^{l}_i >  P_\beta(R^l)\\x^{l}_i, & \text{if }r^{l}_i <  P_\beta(R^l)\end{cases}
 {{< /katex >}}
-3. 각 path에 따라 forward path
-4. backward path 및 오차보정
+3. ssss
+4. 
+5. backward path 및 오차보정
 
 
 ## **Implementation detail**
@@ -96,8 +97,22 @@ capacity에 관한 설명.
 
 sampling에 관한 설명.
 
-## **Open source MoD**
-https://github.com/astramind-ai/Mixture-of-depths (not official)
+## **Open source MoD** (not official)
+The followuing is an implementation of MoD that supports various LM such as Mixtral, LLama3 and BLOOM. It implements MoD using PyTorch and Hugging Face Transformers library.
+
+LINK: https://github.com/astramind-ai/Mixture-of-depths
+
+The code operates in the following steps:
+1. Token Weight Calculation
+   The **TokenRouter** module caculates weights for each token based on its embedding. This is done using a lnear layer appleid to the embeddingsm resulting in a weight value for each token.
+2. Selective Processing
+   The processing occurs in the **MoD** module's forward pass
+   - First token weights are calculated using **TokenRouter**
+   - By a capacity paratmter, the number of tokens are determined. They undergo self-attention and MLP computation.
+3. Application to Hugging Face Models
+   **apply_mod_to_hf** function applies the MoD mechanism to an existing Hugging Face model.
+
+More detail explanations are HERE. 개인 페이지에 더 자세한 코드 분석 작성.
 
 ## **Conclusion and discussion**
 결론론 + 내 생각
