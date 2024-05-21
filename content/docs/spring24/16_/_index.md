@@ -51,17 +51,16 @@ Like MoD, token-level routing decisions are made across the network depth.
 Difference between MoD is, MoD chooses path to transformer or to residual connection, MoE chooses path to transformer(Expert) or to transformer(Expert) or both.
 
 ## **Capacity based routing schemes**
-라우팅 구현은 MoD의 가장 핵심적인 부분이다.저자들은 세 가지 라우팅 전략을 비교하며 MoD가 효율적인 전략임을 보이고 있다.
+Routing implementation is the most crucial part of MoD. The authors compare three routing strategies, demonstrating that MoD is an efficient approach.
 
 - Token-choice routing
+
   Token-choice routing is a method where each tokens select the path it will follow. The router produces probability distributions for each token across the computational paths. Based on this distribution, each token chooses its preferred path at each layer.
 
   In token-choice routing, tokens have the flexibility to select their path, allowing for dynamic processing. However, this can lead to path balancing issues as all tokens might preger on the same path. It causes potential overloads on specific paths. To mitigate it, auxility loss is used to ensure that most tokens do not prefer on a single path.
   
 - Expert-choice routing
 - Expert-choice MoD
-
-이러한 라우팅 구현 다음 내용을 핵심적으로 고혀해야 한다.
 
 
 ## **Implementation detail**
