@@ -14,11 +14,23 @@ weight: 1
 </p>
 
 ## Challenge: Multi-Resolution ViT Modeling
+ ViT Models generally use learnable positional encoding or sin-cos positional encoding. However, these methods are highly sensitive to changes in input resolution, and they fail to provide effective resolution adaptability. 
+ 
+ The most common method used to address this problem is to apply interpolation to positional encoding before feeding it into the ViT. This approach allows for some compensation of positional information even when the input resolution changes. However, this method has shown significant performance degradation in image classification tasks.
+ 
+ Recently, ResFormer proposed adding depth-wise convolution to the existing positional encoding method when performing global-local positional embedding, enabling it to work well even with unseen resolutions. (Chu et al., 2023; Tian et al., 2023).
 
+<p align="center">
+  <img src="./ResFormer_pe.png" alt="." width="400" height="200" > 
+</p>
 
+ However, ResFormer has three drawbacks.
+ - Shows high performance only in a relatively small range of resolutions (Degradation significantly when resolution is greater than 892)
+ - It cannot be used with self-supervised learning methods like masked auto-encoding (MAE).
+ - Computation cost increases as input resolution increases, which has a negative impact on the training and inference process.
 
-## Method: ViTAR
-
+## ViTAR: Vision Transformer with Any Resolution
+In this section, we introduces two key innovations to address this issue. Firstly, we propose a novel module for dynamic resolution adjustment, designed with a single Transformer block, specifically to achieve highly efficient incremental token integration. Secondly, we introduce fuzzy positional encoding in the Vision Transformer to provide consistent positional awareness across multiple resolutions, thereby preventing overfitting to any single training resolution.
 
 ### 1. Adaptive Token Merger (ATM Module)
 
@@ -27,10 +39,6 @@ weight: 1
 </p>
 
 ### 2. Fuzzy Positional Encoding (FPE)
- Vision Transformer Models generally use learnable positional encoding or sin-cos positional encoding. However, these methods are highly sensitive to changes in input resolution, and they fail to provide effective resolution adaptability. To improve this, ResFormer proposed adding depth-wise convolution to the existing positional encoding method when performing global-local positional embedding, enabling it to work well even with unseen resolutions. (Chu et al., 2023; Tian et al., 2023).
-
- However, convolution-based positional embedding requires adjacent patches to fully extract and utilize spatial features. Therefore, it is not suitable for self-supervised learning methods like masked auto-encoding (MAE), which require masking parts of image patches. This limitation poses challenges for large-scale training.
-
  Fuzzy Positional Encoding(FPE) differs from the previously mentioned methods. It enhances the model's resolution robustness without introducing specific spatial structures like convolutions. Therefore, it can be applied to self-supervised learning frameworks. This property enables ViTAR to be applied to large-scale, unlabeled training sets for training, aiming to obtain a more powerful vision foundation model.
 
 <p align="center">
