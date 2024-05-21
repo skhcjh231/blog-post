@@ -28,6 +28,10 @@ The common solution to further improve the performance of LoRA is to compose mul
 
 **Linear arithmetic composition.**
 
+<p align="center">
+    <img src=./linear_com.png> 
+</p>
+
 
 **Reference tuning-based composition.**
 
