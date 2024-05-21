@@ -97,7 +97,7 @@ capacity에 관한 설명.
 sampling에 관한 설명.
 
 ## **Open source MoD**
-https://github.com/astramind-ai/Mixture-of-depths
+https://github.com/astramind-ai/Mixture-of-depths (not official)
 
 ## **Conclusion and discussion**
 결론론 + 내 생각
