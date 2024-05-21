@@ -10,6 +10,8 @@ weight: 1
 
 ## Background
 ### Model Merging
+Model Merging is a method that integrates multiple pre-trained models into a single architecture to create a new model. This approach is cost-effective because it can produce powerful models capable of handling various tasks without requiring additional training.
+
 ### Merging Language Models
 ### Evaluationary Neural Architecture Search
 
