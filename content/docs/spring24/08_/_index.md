@@ -47,22 +47,26 @@ The common solution to further improve the performance of LoRA is to compose mul
 ### Motivations
 1. Direct linear arithmetic composition reduced the generative power of the model, while normalized linear arithmetic composition retained the generative power of the model but lost its LORA character.
 <p align="center">
-    <img src=./motiv1_1.png align="center" width="48%">
-    <img src=./motiv1_2.png align="center" width="48%">
+    <img src=./motiv1_1.png align="center" width="40%">
+    <img src=./motiv1_2.png align="center" width="40%">
     <figcaption align="center">
 <p align="center">
-    <img src=./motiv1_3.png>
+    <img src=./motiv1_3.png width="700">
 </p>
+In the V&L domain, directly composing multiple trained LoRAs into the original embedding caused significant parameter variations and meaningless output, while normalization compromised their original characteristics. 
+<br/>
+In the NLP domain, composing four or more LoRAs within the FLAN-T5 model resulted in disordered output, and weight normalization across five datasets decreased the performance, suggesting adverse effects on the intrinsic qualities of the trained LoRAs.
+<br/>
+<br/>
 2. Each layer of the trained LoRA represented a unique characteristic, which cumulatively defined the overall properties of the LoRA.
 <p align="center">
-    <img src=./motiv2_1.png align="center" width="48%">
-    <img src=./motiv2_2.png align="center" width="48%">
+    <img src=./motiv2_1.png align="center" width="40%">
+    <img src=./motiv2_2.png align="center" width="53%">
     <figcaption align="center">
 </p>
-Right: Observed that different layers of LoRA encode distinct features, such as dog coat color and facial features.
-
-left: When evaluated on a subset of datasets, there were significant differences in performance across the different layers of LoRA. 
-
+(Right: Observed that different layers of LoRA encode distinct features, such as dog coat color and facial features.,<br/>
+left: When evaluated on a subset of datasets, there were significant differences in performance across the different layers of LoRA.) 
+        
 **So, The conjecture is that adjusting the characteristics by varying the layer-specific weights according to the desired domain objective will result in a more effective composition of trained LORAs.**
 ### Method
 
