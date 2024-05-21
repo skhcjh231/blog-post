@@ -11,9 +11,19 @@ weight: 1
 ## Background
 ### Model Merging
 ### Merging Language Models
-### Evoluationary Neural Architecture Search
+### Evolutionary Neural Architecture Search
+#### Neural Architecture Search (NAS)
+For successful deep learning, both the optimal architecture and the optimal weights associated with that architecture are necessary. However, unlike weights, the architecture cannot be updated through gradient-based methods. Neural Architecture Search (NAS) is an attempt to automate designing the network architecture, which has traditionally been done manually. The goal of NAS is to find the architecture with the smallest loss from the set of all possible architectures, denoted as $\mathcal{A}$.
 
-For successful deep learning, both the optimal architecture and the optimal weights associated with that architecture are necessary. However, unlike weights, the architecture cannot be updated through gradient-based methods. Neural Architecture Search (NAS) is an attempt to automate designing the network architecture, which has traditionally been done manually. The goal of NAS is to find the architecture with the smallest loss from the set of all possible architectures, denoted as A.
+#### Evolutionary Neural Architecture Search (ENAS)
+The evolution algorithm is a type of black box optimization that can achieve the desired optimization without directly computing the gradient ▽f(x) or the Hessian ▽²f(x) of the function.
+Evolutionary algorithms are typically composed of the following elements:
+- **Population**: A set of possible solutions to the problem, where each individual represents a candidate solution.
+- **Fitness Function**: A function that evaluates the quality of each individual. The fitness function reflects the objective of the problem, with higher values indicating better solutions.
+- **Selection**: The process of selecting individuals to be passed on to the next generation. Individuals with higher fitness are more likely to be selected.
+- **Crossover**: The process of combining the genes of two individuals to create a new individual. Through this process, offspring inherit characteristics from their parents.
+- **Mutation**: The process of randomly altering the genes of an individual to maintain diversity and explore new solutions.
+- **Termination Condition**: The criteria for ending the algorithm. This is usually based on a maximum number of generations, achieving a target fitness level, time limits, or other benchmarks.
 
 
 
