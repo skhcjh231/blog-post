@@ -17,7 +17,7 @@ weight: 1
 <p align="center">
     Fig. 1. Comparison of 3D Gaussian Splatting to previous NeRF technologies.
 </p>  
- One of the recent hot topics in the NeRF field, 3D Gaussian Splatting (3DGS), demonstrates high quality and **particularly fast, near real-time rendering speeds** (about 100FPS).
+ One of the recent hot topics in the NeRF field, 3D Gaussian Splatting (3DGS), demonstrates high quality and  **particularly fast, near real-time rendering speeds** (about 100FPS).
 
 - Pros: Superior **rendering speed** and **quality**  
 - Cons: **High memory consumption**  
