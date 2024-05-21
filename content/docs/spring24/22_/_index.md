@@ -3,10 +3,6 @@ type: docs
 bookToc: True
 weight: 1
 ---
-
-inline example: $\sum_{i=0}^N 2i = y$
-
-
 # Larimar: Large Language Models with Episodic Memory Control
 *Posted by: Sunggyu Jang, Hyeonwoo Park*
 
@@ -112,11 +108,10 @@ Fig7 below shows the overall architecture of Larimar. Basic idea is to implement
 
 Let's see how it works with details.
 
-First of all, the memory **M** in Fig7 has to be trained so as to approximate the distribution of **X** (**X** is an exchangeable-order invariant episode: $**X**=\{x_1, ..., x_{N}\}$, a subset of the input data consisting of **N** samples. To do so, the model maximize the conditional log-likelihood of ln*p* (**X**|**M**). 
+First of all, the memory **M** in Fig7 has to be trained so as to approximate the distribution of **X** (**X** is an exchangeable-order invariant episode: **X**=\{x_1, ..., x_N\}, a subset of the input data consisting of **N** samples). To do so, the model maximize the conditional log-likelihood of ln*p* (**X**|**M**). In this way, the model learns to compress **X** in a memory **M**, which then becomes a distributed associative memory.
 
-
-
-Our goal is to understand how to determine the writing weight and reading weight. 
+Next, writing weight and reading weight 
+consider how to determine the writing weight and reading weight. 
 
 
 
