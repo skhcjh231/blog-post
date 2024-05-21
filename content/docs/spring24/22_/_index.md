@@ -115,8 +115,7 @@ The memory **M** in Fig7 has to be trained so as to approximate the distribution
 The reading weight matrix, **W**, is a random variable to enforce generative ability of the model. Memory readouts are obtained as **Z**$_{readout}$ = **WM**.
 ##### Summary
 Three main components - encoder(_e_), associative memory(**M**), and decoder(_d_) - are jointly trained and optimized for an episode **X**, using the following loss:
-$$L=E_{**X**~data}(E_{q(**W**)}ln_p_(**X**|**W**,**M**) $$
-$L=E_{X~data}$
+
 
 
 Next, writing weight and reading weight 
