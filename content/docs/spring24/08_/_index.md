@@ -66,10 +66,10 @@ left: When evaluated on a subset of datasets, there were significant differences
 **So, The conjecture is that adjusting the characteristics by varying the layer-specific weights according to the desired domain objective will result in a more effective composition of trained LORAs.**
 ### Method
 <div class=pull-left>
-    <img src=./method1.png>
+https://github.com/effml-postech/blog-post/blob/main/content/docs/spring24/08_/Method1.png
 </div>
 <div class=pull-right>
-    ajlsafakflaj
+ajlsafakflaj
     
 ### Training
 
