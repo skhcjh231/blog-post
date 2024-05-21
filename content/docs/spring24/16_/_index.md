@@ -72,6 +72,7 @@ Using this method ensures that each paths receives k tokens, maintauing balance 
 
 ### Expert-choice MoD
 
+This method applies expert-choice routing but uses only a single expert. Since only a single path is utilized, if $k$ is less than the sequence length, not all tokens need to undergo self-attention and MLP computation.
 
 ## **Implementation detail**
 ### 1. Calculate routing weight
