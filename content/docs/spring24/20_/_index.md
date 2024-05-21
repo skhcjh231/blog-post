@@ -71,10 +71,11 @@ __Mergekit__ is a toolkit that provides various popular recipes for merging lang
 ### Evaluationary Neural Architecture Search
 
 ## Contributions
-- **Automated Model Composition**: Introduction of an evolutionary method to automatically discover optimal combinations of diverse open-source models for creating new foundation models with user-specified capabilities. This approach leverages the collective intelligence of existing open models, enabling the creation of powerful models without the need for extensive training data or compute resources.
-- **Cross-Domain Merging**: Demonstration that the method can discover novel ways to merge models from disparate domains (e.g., non-English language and Math, non-English language and Vision), potentially achieving capabilities beyond conventional human design strategies.
-- **State-of-the-Art Performance**: Showcasing the effectiveness of the method by automatically generating a Japanese LLM with Math reasoning capability and a Japanese VLM. Both models achieved state-of-the-art performance on various benchmarks, even without explicit optimization for those tasks.
-- **High Efficiency and Surprising Generalizability**: Observation that a 7B parameter LLM surpassed the performance of some previous 70B parameter Japanese LLMs on benchmark datasets, highlighting the high efficiency and surprising generalization capability of the approach. This model can serve as a strong general-purpose Japanese LLM.
+- **Automated Model Composition**: Developed an evolutionary method to automatically discover optimal combinations of diverse open-source models, creating powerful models without extensive training data or compute resources.
+- **Cross-Domain Merging**: Demonstrated the ability to merge models from different domains (e.g., language and Math, language and Vision) to achieve enhanced capabilities beyond conventional design.
+- **State-of-the-Art Performance**: Achieved state-of-the-art results with automatically generated models, including a Japanese LLM with Math reasoning capability and a culturally-aware Japanese VLM.
+- **High Efficiency and Surprising Generalizability**: Showed that a 7B parameter model outperformed some 70B parameter models, highlighting efficiency and generalization capabilities.
+- **Culturally-Aware VLM**: Produced a Japanese VLM that excels in handling Japanese culture-specific content, achieving top results on relevant benchmarks.
 ## Method
 ### Explanation of overall method
 ### Merging in the Parameter Space (PS)
