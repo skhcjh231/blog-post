@@ -29,6 +29,7 @@ weight: 1
  - It cannot be used with self-supervised learning methods like masked auto-encoding (MAE).
  - Computation cost increases as input resolution increases, which has a negative impact on the training and inference process.
 
+
 ## ViTAR: Vision Transformer with Any Resolution
 In this section, we introduces two key innovations to address this issue. Firstly, we propose a novel module for dynamic resolution adjustment, designed with a single Transformer block, specifically to achieve highly efficient incremental token integration. Secondly, we introduce fuzzy positional encoding in the Vision Transformer to provide consistent positional awareness across multiple resolutions, thereby preventing overfitting to any single training resolution.
 
