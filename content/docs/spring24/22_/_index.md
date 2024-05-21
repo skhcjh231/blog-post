@@ -106,10 +106,14 @@ Fig7 below shows the overall architecture of Larimar. Basic idea is to implement
     Fig7. Larimar architecture
 </p>
 
-Let's see how it works with details.
+Let's see how it works in two stages.
 
-First of all, the memory **M** in Fig7 has to be trained so as to approximate the distribution of **X** (**X** is an exchangeable-order invariant episode: **X**=\{x_1, ..., x_N\}, a subset of the input data consisting of **N** samples). To do so, the model maximize the conditional log-likelihood of ln*p* (**X**|**M**). In this way, the model learns to compress **X** in a memory **M**, which then becomes a distributed associative memory.
+3-1. Training
+3-1-1. Writing
+The memory **M** in Fig7 has to be trained so as to approximate the distribution of **X** (**X** is an exchangeable-order invariant episode: **X**=\{x_1, ..., x_N\}, a subset of the input data consisting of **N** samples). To do so, the model is trained to maximize the conditional log-likelihood of ln*p* (**X**|**M**). In this way, the model learns to compress **X** in a memory **M**, which then becomes a distributed associative memory.
 
+3-1-2. Reading
+The reading weight matrix, **W**, is a random variable to enforce generative ability of the model. Memory readouts are obtained as **Z**_{readout} = **WM**.
 
 
 Next, writing weight and reading weight 
