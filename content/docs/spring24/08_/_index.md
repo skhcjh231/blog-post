@@ -24,6 +24,8 @@ In the above figure, only the matrices A and B are trained, with dimensions (d x
 
 ### LoRAs Composistion
 
+The common solution to further improve the performance of LoRA is to compose various trained LoRAs. Research on LoRA composition can be broadly categorized into the following two methodologies.
+
 ### Mixture-of-Experts
 
 ## Mixture of LoRA experts
