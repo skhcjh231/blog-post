@@ -22,15 +22,15 @@ In the rapidly evolving field of artificial intelligence and machine learning, k
 </p>
 Step 1: Find Keys to Preserve
 
-    - Identify key vectors {{< katex >}}k_0{{< /katex >}} representing existing knowledge, ensuring they remain intact by processing with the weight matrix {{< katex >}}W_0{{< /katex >}} to produce output vectors {{< katex >}}v_0{{< /katex >}}.
+- Identify key vectors {{< katex >}}k_0{{< /katex >}} representing existing knowledge, ensuring they remain intact by processing with the weight matrix {{< katex >}}W_0{{< /katex >}} to produce output vectors {{< katex >}}v_0{{< /katex >}}.
     
 Step 2: Find a Fact to Memorize
 
-    - Locate new information to be added, represented by key vector {{< katex >}}k_e{{< /katex >}} and output vector {{< katex >}}v_e{{< /katex >}}, ensuring the model generates the correct new fact.
+- Locate new information to be added, represented by key vector {{< katex >}}k_e{{< /katex >}} and output vector {{< katex >}}v_e{{< /katex >}}, ensuring the model generates the correct new fact.
     
 Step 3: Update Weight Matrix
 
-    - Modify {{< katex >}}W_0{{< /katex >}} to {{< katex >}}\hat{W}{{< /katex >}}, preserving existing key vectors {{< katex >}}k_0{{< /katex >}} while ensuring {{< katex >}}k_e{{< /katex >}} produces {{< katex >}}v_e{{< /katex >}}, thus integrating the new information accurately.
+- Modify {{< katex >}}W_0{{< /katex >}} to {{< katex >}}\hat{W}{{< /katex >}}, preserving existing key vectors {{< katex >}}k_0{{< /katex >}} while ensuring {{< katex >}}k_e{{< /katex >}} produces {{< katex >}}v_e{{< /katex >}}, thus integrating the new information accurately.
 
 
 
