@@ -93,9 +93,12 @@ x^{l+1}_i=\begin{cases}r^{l}_i f_i(\tilde{X}^l)+x^{l}_i, &    \text{if } r^{l}_i
 
 
 ## **Implementation detail**
-capacity에 관한 설명.
+### **Capcity**
+### **Autoregressively sampling**
+- Simple auxiliary loss
+- Small auxiliary MLP predictor
 
-sampling에 관한 설명.
+With these methods, authors can sample autoregressively by choosing to route tokens to or around a block based on the router's outer which is not depends on the future tokens. They provide empirical result that auxiliary task achieved 99% accuracy.
 
 ## **Open source MoD** (not official)
 The followuing is an implementation of MoD that supports various LM such as Mixtral, LLama3 and BLOOM. It implements MoD using PyTorch and Hugging Face Transformers library.
