@@ -53,22 +53,22 @@ Difference between MoD is, MoD chooses path to transformer or to residual connec
 ## **Capacity based routing schemes**
 Routing implementation is the most crucial part of MoD. The authors compare three routing strategies, demonstrating that MoD is an efficient approach.
 
-# Token-choice routing
+### Token-choice routing
 
   Token-choice routing is a method where each tokens select the path it will follow. The router produces probability distributions for each token across the computational paths. Based on this distribution, each token chooses its preferred path at each layer.
   
   In token-choice routing, tokens have the flexibility to select their path, allowing for dynamic processing. However, this can lead to path balancing issues as all tokens might preger on the same path. It causes potential overloads on specific paths. To mitigate it, auxility loss is used to ensure that most tokens do not prefer on a single path.
   
-# Expert-choice routing
-# Expert-choice MoD
+### Expert-choice routing
+### Expert-choice MoD
 
 
 ## **Implementation detail**
-# 1. Calculate routing weight
+### 1. Calculate routing weight
 {{< katex display=true >}}
 x^{l+1}_i=\begin{cases}r^{l}_i f_i(\tilde{X}^l)+x^{l}_i, & r^{l}_i >  P_\beta(R^l)\\x^{l}_i, & r^{l}_i <  P_\beta(R^l)\end{cases}
 {{< /katex >}}
-# 2. Select top-k tokens
+### 2. Select top-k tokens
 
 논문 요약
 
