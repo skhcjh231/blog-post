@@ -92,7 +92,7 @@ x^{l+1}_i=\begin{cases}r^{l}_i f_i(\tilde{X}^l)+x^{l}_i, &    \text{if } r^{l}_i
 5. backward path 및 오차보정
 
 
-## **Implementation detail**
+## **More details**
 ### **Capacity**
 ### **Autoregressively sampling**
 - Simple auxiliary loss
