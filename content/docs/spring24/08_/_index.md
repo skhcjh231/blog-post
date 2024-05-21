@@ -54,7 +54,13 @@ The common solution to further improve the performance of LoRA is to compose mul
     <img src=./motiv1_3.png>
 </p>
 2. Each layer of the trained LoRA represented a unique characteristic, which cumulatively defined the overall properties of the LoRA.
-
+<p align="center">
+    <img src=./motiv1_1.png align="center" width="48%">
+    <img src=./motiv1_2.png align="center" width="48%">
+    <figcaption align="center">
+</p>
+Right: Observed that different layers of LoRA encode distinct features, such as dog coat color and facial features.
+left: When evaluated on a subset of datasets, there were significant differences in performance across the different layers of LoRA.        
 ### Method
 
 ### Training
