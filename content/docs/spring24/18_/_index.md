@@ -99,7 +99,7 @@ In our opinion, Grid Attention appears to add an inductive bias similar to Convo
 ### Result of Object Detection Task
 
 <p align="center">
-  <img src="./result_FLOPs.png" alt="." width="300" height="150" > 
+  <img src="./result_object_detection.png" alt="." width="300" height="150" > 
 </p>
 
 ### Effect of Adaptive Token Merger (ATM) Module
