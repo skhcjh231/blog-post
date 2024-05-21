@@ -15,7 +15,7 @@ weight: 1
 #### Neural Architecture Search (NAS)
 For successful deep learning, both the optimal architecture and the optimal weights associated with that architecture are necessary. However, unlike weights, the architecture cannot be updated through gradient-based methods. Neural Architecture Search (NAS) is an attempt to automate designing the network architecture, which has traditionally been done manually. The goal of NAS is to find the architecture with the smallest loss from the set of all possible architectures, denoted as $\mathcal{A}$.
 
-#### Evolutionary Neural Architecture Search (ENAS)
+#### Evolutionary Algorithm
 The evolutionary algorithm is a type of black box optimization that can achieve the desired optimization without directly computing the gradient ▽f(x) or the Hessian ▽²f(x) of the function.
 Evolutionary algorithms are typically composed of the following elements:
 - **Population**: A set of possible solutions to the problem, where each individual represents a candidate solution.
