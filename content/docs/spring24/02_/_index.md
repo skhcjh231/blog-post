@@ -4,9 +4,10 @@ bookToc: True
 weight: 1
 ---
 # Spectrally Pruned Gaussian Fields with Neural Compensation (SUNDAE)
-*Team: Donggeon Lee, Chiho yoon
-*Authors: Yang, Runyi, et al
-
+*Authors: Yang, Runyi, et al  
+  
+*Team: Donggeon Lee, Chiho Yoon
+  
 ## Summary
  3D representation, which is the basis for many VR/AR and robotics applications, has long been an area of interest in computer vision and graphics. With the advent of neural radiation fields (NeRFs) [Link](https://dl.acm.org/doi/abs/10.1145/3503250), several methods have emerged to improve the quality and efficiency of NeRFs.
  
