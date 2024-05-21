@@ -48,10 +48,15 @@ Difference between MoD is, MoD chooses path to transformer or to residual connec
 
 ## **Capacity based routing schemes**
 - Token-choice routing
+  
 - Expert-choice routing
 - Expert-choice MoD
 
 ## **Implementation detail**
+
+{{< katex display=true >}}
+x^{l+1}_i=\begin{cases}r^{l}_i f_i(\tilde{X}^l)+x^{l}_i, & r^{l}_i >  P_\beta(R^l)\\x^{l}_i, & r^{l}_i <  P_\beta(R^l)\end{cases}
+{{< /katex >}}
 
 논문 요약
 
