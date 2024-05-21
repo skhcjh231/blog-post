@@ -116,13 +116,13 @@ The reading weight matrix, **W**, is a random variable for generative ability of
 ##### (3) Summary
 Three main components - encoder(_e_), associative memory(**M**), and decoder(_d_) - are jointly trained and optimized for an episode **X**, using the following loss:
 <p align="center">
-    <img src='loss.png' width="600">
+    <img src='loss.png' width="400">
 </p>
 
 #### 3-2. Inference
 Once **M**$_{0}$ is trained via backpropagation, the posterior memory **M** is updated in one-shot by solving a minimization problem below.
 <p align="center">
-    <img src='minimization problem.png' width="600">
+    <img src='minimization problem.png' width="400">
 </p>
 
 
