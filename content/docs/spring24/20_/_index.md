@@ -128,15 +128,39 @@ The experiments in the paper focus on applying the proposed evolutionary model m
   Table 1. Performance Comparison of the LLMs on both MGSM-JA and JP-LMEH benchmarks.
 </p>
 
+<p align="center">
+  <img src="./figures/4_1 experiment table2.png" alt="." width="800" height="400" > 
+</p>
+
+<p align="center">
+  Table 2. Breakdown of JP-LMEH Scores for Japanese Language Proficiency.
+</p>
+
 ### Results
 - **Performance**: 
   - Merged models in PS and DFS showed substantial performance improvements, with the hybrid model (PS+DFS) achieving the highest accuracy.
-  - The PS merged model (Model 4) scored 52.0 on MGSM-JA, while the hybrid model (Model 6) scored 55.2.
-  - The PS merged model (Model 4) scored 70.5 on JP-LMEH, while the hybrid model (Model 6) scored 66.2.
+  - The PS merged model (Model 4) scored 52.0 on MGSM-JA, while the hybrid model (Model 6) scored 55.2 in Table 1.
+  - The PS merged model (Model 4) scored 70.5 on JP-LMEH, while the hybrid model (Model 6) scored 66.2 in Table 1.
 - **Analysis**:
-  - While they validate the effectiveness of the evolutionary model merging approach, it is challenging to determine the superiority of the PS, DFS, and merged model methods. Notably, the PS method exhibits the highest accuracy on the JP-LMEH benchmark.
+  - While they validate the effectiveness of the evolutionary model merging approach, it is challenging to determine the superiority of the PS, DFS, and merged model methods. Notably, as shown in Table 2, the PS method exhibits the highest accuracy on the JP-LMEH benchmark.
 
 ### Evolving Japanese VLM
+### Setup
+- **Source Models**: 
+  - Japanese LLM: shisa-gamma-7b-v1
+  - VLM: LLaVA-1.6-Mistral-7B
+- **Dataset**: 
+  - JA-VG-VQA-500: 500 samples from the Japanese Visual Genome VQA dataset.
+  - JA-VLM-Bench-In-the-Wild: 42 images with 50 questions, focusing on Japanese cultural elements.
+- **Evaluation**: 
+  - Baselines: LLaVA-1.6-Mistral-7B and Japanese Stable VLM.
+  - ROUGE-L score used for evaluation, with non-Japanese responses replaced by empty texts.
+
+### Results
+- **Performance**: 
+  - The merged VLM outperformed baselines on both benchmarks, scoring 19.7 on JA-VG-VQA-500 and 51.2 on JA-VLM-Bench-In-the-Wild.
+- **Qualitative Analysis**: 
+  - The merged VLM demonstrated superior handling of Japanese cultural content, providing more detailed and accurate responses compared to baseline models.
 
 ## Conclusion
 ### Discussion and limitation
