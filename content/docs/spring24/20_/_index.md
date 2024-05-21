@@ -9,8 +9,40 @@ weight: 1
 *Posted by Jaehyeon Park, Youngkil Song*
 
 ## Background
+### Leverage the Strengths of Multiple Pre-trained Models
+### Fine-Tuning
+
+__Fine-tuning__ involves taking a pre-trained model and further training it on a specific dataset to optimize its performance for a particular task.
+
+- **Base Model** → **Task-Specific Model**
+  - Example: Fine-tuning a general language model on a medical dataset to create a medical chatbot.
+
+**Advantages**
+- **Specialized Performance**: Highly effective for optimizing models for specific tasks.
+- **Efficiency**: Requires less computational power and time compared to training from scratch.
+- **Flexibility**: Can be applied to any pre-trained model to fine-tune it for different tasks.
+
+**Disadvantages**
+- **Overfitting**: Risk of overfitting to the small dataset used for fine-tuning.
+- **Limited Generalization**: May not perform well on tasks outside the fine-tuned domain.
+- **Dependent on Pre-trained Model**: The performance heavily relies on the quality of the pre-trained model.
+
 ### Model Merging
-Model Merging is a method that integrates multiple pre-trained models into a single architecture to create a new model. This approach is cost-effective because it can produce powerful models capable of handling various tasks without requiring additional training.
+__Model merging__ involves combining multiple pre-trained models into a single model by integrating their weights and architectures to leverage their collective strengths.
+
+- **Model A** (e.g., Japanese LLM) + **Model B** (e.g., Math LLM) → **Merged Model**
+  - Example: Combining a Japanese language model with a mathematical reasoning model to create a Japanese math reasoning model.
+
+**Advantages**
+- **Cost-Effective**: Does not require additional training, making it computationally efficient.
+- **Enhanced Capabilities**: Can combine strengths from different models, potentially handling a broader range of tasks.
+- **Cross-Domain Application**: Effective in creating models that perform well across different domains (e.g., language and vision).
+
+**Disadvantages**
+- **Complexity**: The merging process can be complex and requires careful selection and comparison of models.
+- **Black-Box Nature**: May be seen as less interpretable since it relies on heuristic methods for weight integration.
+- **Potential for Suboptimal Performance**: If not done correctly, merged models may not achieve the desired performance improvements.
+
 
 ### Merging Language Models
 ### Evaluationary Neural Architecture Search
