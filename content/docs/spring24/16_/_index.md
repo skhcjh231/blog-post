@@ -54,6 +54,10 @@ Difference between MoD is, MoD chooses path to transformer or to residual connec
 ## **Capacity based routing schemes**
 Routing implementation is the most crucial part of MoD. The authors compare three routing strategies, demonstrating that MoD is an efficient approach.
 
+<p align="center">
+    <img src=./Routing_Schemes.png> 
+</p>
+
 ### Token-choice routing
 
 Token-choice routing is a method where each tokens select the path it will follow. The router produces probability distributions for each token across the computational paths. Based on this distribution, each token chooses its preferred path at each layer.
