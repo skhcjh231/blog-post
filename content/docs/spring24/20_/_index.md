@@ -59,6 +59,13 @@ Research on applying model merging to language models is actively progressing, w
 **Mergekit**
 [github](https://github.com/arcee-ai/mergekit)
 
+__Mergekit__ is a toolkit that provides various popular recipes for merging language models. It includes both simple methods like linear and spherical interpolation as well as more advanced techniques.
+
+**Advanced Merging Methods**
+
+- **Task Arithmetic**: Involves creating task vectors by subtracting the weights of a pre-trained model from a fine-tuned model and then manipulating these vectors to steer the merged model’s behavior.
+- **TIES-Merging**: Addresses parameter interference by resetting minimal parameter changes, resolving sign conflicts, and merging only aligned parameters. This approach aims to mitigate information loss during the merging process.
+- **DARE (Differentiable Adaptation and Regularization of Ensembles)**: Amplifies significant differences between models while zeroing out small differences. Often used in conjunction with Task Arithmetic or TIES-Merging to improve merging performance.
 
 
 ### Evaluationary Neural Architecture Search
