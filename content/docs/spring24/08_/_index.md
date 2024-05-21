@@ -68,7 +68,7 @@ left: When evaluated on a subset of datasets, there were significant differences
 <p>
     <div class=pull-left>
         <img src=./Method1.png>
-    </div>
+    <div class=pull-left>
     apple is the best.
     whatatsi isdf
 </p>
