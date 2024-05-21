@@ -3,7 +3,7 @@ type: docs
 bookToc: True
 weight: 1
 ---
-test: x_{11}
+test: $x_{11}$
 
 # Larimar: Large Language Models with Episodic Memory Control
 *Posted by: Sunggyu Jang, Hyeonwoo Park*
