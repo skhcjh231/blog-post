@@ -122,7 +122,7 @@ Three main components - encoder(_e_), associative memory(**M**), and decoder(_d_
 #### 3-2. Inference
 Once **M**$_{0}$ is trained via backpropagation, the posterior memory **M** is updated in one-shot by solving a minimization problem below.
 <p align="center">
-    <img src='minimization problem.png' width="400">
+    <img src='minimization problem.png' width="200">
 </p>
 
 
