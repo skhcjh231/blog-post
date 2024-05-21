@@ -10,114 +10,63 @@ weight: 1
 
 
 
-
 ## Introduction
-In the rapidly evolving field of artificial intelligence and machine learning, keeping large language models (LLMs) up-to-date with the latest information is crucial. This blog post shows two model editing techniques (ROME and MEMIT) and introduces EMMET, a new framework that aims to integrate these methods under a single objective.
+In the rapidly evolving field of artificial intelligence and machine learning, keeping large language models (LLMs) up-to-date with the latest information is crucial. This paper presents a comprehensive framework, Equality-constrained Mass Model Editing for Transformers (EMMET), that integrates two major model editing techniques: Rank-One Model Editing (ROME) and Mass Editing Memory in Transformer (MEMIT). The proposed framework focuses on the retention-memory objective, which aims to inject new knowledge into the model while maintaining the fidelity of existing information.
 
 <p align="center">
-    <img src='./figure1.png' width="600">
+    <img src='./figure1.png' width="700">
 </p>
 <p align="center">
     Figure 1: A diagrammatic representation of the preservation-memorization objective.
 </p>
-
-The diagram illustrates the preservation-memorization objective through three key steps:
-
-Step 1: Find Keys to Preserve:
-Identification of {{< katex >}}\k_0{{< /katex >}}:
-- This step involves identifying the key vectors {{< katex >}}\k_0{{< /katex >}} that represent the existing knowledge we want to preserve in the model. These vectors are crucial as they ensure that important previously learned information remains intact after the editing process.
-- {{< katex >}}\W_0k_0→v_0{{< /katex >}}: The existing weight matrix {{< katex >}}\W_0{{< /katex >}} processes these key vectors to produce corresponding output vectors {{< katex >}}\v_0{{< /katex >}}, which represent the preserved knowledge.
-
-Step 2: Find a Fact ({{< katex >}}\k_e,v_e{{< /katex >}}) to be Memorized:
-Locating New Information:
-In this step, we identify the new fact that needs to be memorized by the model. For example, the fact could be "The president of the USA is John Cena."
-Components of the Fact:
-{{< katex >}}\k_e{{< /katex >}}: The key vector representing the query phrase "The president of the USA is."
-{{< katex >}}\v_e{{< /katex >}}: The vector such that when the model processes {{< katex >}}\k_e{{< /katex >}}, it outputs "John Cena." This vector {{< katex >}}\v_e{{< /katex >}}​ ensures that the model generates the correct new information after editing.
-
-Step 3: Change {{< katex >}}\W_0{{< /katex >}} to {{< katex >}}\hat{W}{{< /katex >}}:
-Updating the Weight Matrix:
-The final step involves modifying the original weight matrix {{< katex >}}\W_0{{< /katex >}} to a new weight matrix {{< katex >}}\hat{W}{{< /katex >}}. This update is performed such that the representations of the preserved key vectors {{< katex >}}\k_0{{< /katex >}} remain largely unchanged, ensuring the preservation of old knowledge.
-Simultaneously, the update ensures that the new key vector {< katex >}}\k_e{{< /katex >}} produces the desired output vector {< katex >}}\v_e{{< /katex >}}, thereby accurately memorizing the new fact.
-Representation Preservation:
-The transformation from {{< katex >}}\W_0{{< /katex >}} to {{< katex >}}\hat{W}{{< /katex >}} ensures that {{< katex >}}\k_0{{< /katex >}} still maps to {{< katex >}}\v_0{{< /katex >}}, thereby preserving the original knowledge.
-Representation Memorization:
-It also ensures that {{< katex >}}\k_e{{< /katex >}} now maps to {{< katex >}}\v_e{{< /katex >}}, successfully incorporating the new information into the model.
-
-By following these steps, the preservation-memorization objective ensures that the model retains its existing knowledge while accurately integrating new facts. This dual focus on preservation and memorization is crucial for maintaining the model's overall integrity and effectiveness.
+Step 1: Find Keys to Preserve
+- Identify key vectors {{< katex >}}\k_0{{< /katex >}} representing existing knowledge, ensuring they remain intact by processing with the weight matrix {{< katex >}}\W_0{{< /katex >}} to produce output vectors {{< katex >}}\v_0{{< /katex >}}.
+Step 2: Find a Fact to Memorize
+- Locate new information to be added, represented by key vector {{< katex >}}\k_e{{< /katex >}} and output vector {{< katex >}}\v_e{{< /katex >}}, ensuring the model generates the correct new fact.
+Step 3: Update Weight Matrix
+- Modify {{< katex >}}\W_0{{< /katex >}} to {{< katex >}}\hat{W}{{< /katex >}}, preserving existing key vectors {{< katex >}}\k_0{{< /katex >}} while ensuring {{< katex >}}\k_e{{< /katex >}} produces {{< katex >}}\v_e{{< /katex >}}, thus integrating the new information accurately.
 
 
 
 ## Model Editing Evaluation Metrics
-The success of model editing is measured using standard metrics. Here are the key evaluation metrics:
+The success of model editing is measured using standard metrics.
+1. Efficacy Score (ES): Indicates if an edit has been successfully made to a model. It is measured as the percentage of edits where the probability of the new fact is greater than the probability of the old fact for a given query prompt.
+2. Paraphrase Score (PS): Represents the generalization ability of the model under an edit. It measures the percentage of edits where the probability of the new fact is greater than the probability of the old fact for paraphrases of the query prompt.
+3. Neighborhood Score (NS): Represents the locality of model editing. It measures whether editing a fact affects other facts stored inside a model. NS indicates the percentage of facts in the neighborhood of the edited fact that remain unaltered post-edit.
+4. Generation Entropy (GE): Represents the fluency of a model post-edit. It is calculated by measuring the weighted average of bi-gram and tri-gram entropies of text generated by an edited model. This value drops if the generated text is repetitive, a common failure case of model editing.
+5. Score (S): A composite metric defined to represent a combination of edit success, generalization, and locality. It is the harmonic mean of ES, PS, and NS.
 
-Efficacy Score (ES): Indicates if an edit has been successfully made to a model. It is measured as the percentage of edits where the probability of the new fact is greater than the probability of the old fact for a given query prompt.
-
-Paraphrase Score (PS): Represents the generalization ability of the model under an edit. It measures the percentage of edits where the probability of the new fact is greater than the probability of the old fact for paraphrases of the query prompt.
-
-Neighborhood Score (NS): Represents the locality of model editing. It measures whether editing a fact affects other facts stored inside a model. NS indicates the percentage of facts in the neighborhood of the edited fact that remain unaltered post-edit.
-
-Generation Entropy (GE): Represents the fluency of a model post-edit. It is calculated by measuring the weighted average of bi-gram and tri-gram entropies of text generated by an edited model. This value drops if the generated text is repetitive, a common failure case of model editing.
-
-Score (S): A composite metric defined to represent a combination of edit success, generalization, and locality. It is the harmonic mean of ES, PS, and NS.
 
 
 ## ROME and MEMIT: Overview
 <p align="center">
-    <img src='./figure2.png' width="600">
+    <img src='./figure2.png' width="700">
 </p>
 <p align="center">
     Figure 2: Figure shows a diagrammatic representation of a transformer layer. The layer being edited by ROME, MEMIT and EMMET is the projection weight matrix inside the MLP layer ({{< katex >}}\W_{proj}{{< /katex >}}).
 </p>
+To further understand how model editing techniques like ROME, MEMIT, and EMMET work, it's essential to look at how they interact with the layers of a transformer model.
 
+1. Input Representation ({{< katex >}}\h_{l-1}{{< /katex >}}): The input to the transformer layer, {{< katex >}}\h_{l-1}{{< /katex >}}, is either the output from the previous layer or the initial input embedding.
 
-To further understand how model editing techniques like ROME, MEMIT, and EMMET work, it's essential to look at how they interact with the layers of a transformer model. The following diagram provides a clear representation of a transformer layer and highlights the specific components that are edited by these techniques.
+2. Attention Mechanism (Attn): The input {{< katex >}}\h_{l-1}{{< /katex >}} passes through the attention mechanism, which calculates attention scores and generates a context vector by attending to different parts of the input sequence.
 
-Figure 2: Explanation
-This diagram illustrates the process within a transformer layer, focusing on the parts that are modified during model editing:
+3. Feed-Forward Layer: The transformed input then goes through the feed-forward layer, consisting of a fully connected layer ({{< katex >}}\W_{fc}{{< /katex >}}) producing an intermediate representation, followed by a non-linear activation ({{< katex >}}\sigma{{< /katex >}}) like ReLU or GELU.
 
-Input Representation ({{< katex >}}\h_{l-1}{{< /katex >}}):
-The input to the transformer layer is denoted by {{< katex >}}\h_{l-1}{{< /katex >}}. This is the output from the previous layer or the initial input embedding.
+4. Key Vector Generation ({{< katex >}}\k{{< /katex >}}): After the non-linearity, the intermediate representation is used to generate key vectors {{< katex >}}\k{{< /katex >}}, crucial for storing and retrieving the model's knowledge.
 
-Attention Mechanism (Attn):
-The input {{< katex >}}\h_{l-1}{{< /katex >}} first passes through the attention mechanism, represented as "Attn". This component calculates the attention scores and generates a context vector by attending to different parts of the input sequence.
+5. Projection Weight Matrix ({{< katex >}}\W_{proj}{{< /katex >}}): The projection weight matrix {{< katex >}}\W_{proj}{{< /katex >}} projects the key vectors into the final output space and is the focus of edits in ROME, MEMIT, and EMMET.
 
-Feed-Forward Layer:
-After the attention mechanism, the transformed input is passed through a feed-forward layer. This layer consists of two main parts:
-Fully Connected Layer ({{< katex >}}\W_{fc}{{< /katex >}}): This is the first linear transformation applied to the input, producing an intermediate representation.
-Non-Linearity ({{< katex >}}\sigma{{< /katex >}}): Typically, a non-linear activation function like ReLU or GELU is applied to the output of the fully connected layer.
+6. Output Vector Generation ({{< katex >}}\v{{< /katex >}}): The projection weight matrix {{< katex >}}\W_{proj}{{< /katex >}} transforms the key vectors {{< katex >}}\k{{< /katex >}} into output vectors {{< katex >}}\v{{< /katex >}}, integrating the edits made to the model.
 
-Key Vector Generation ({{< katex >}}\k{{< /katex >}}):
-The intermediate representation after the non-linearity is used to generate the key vectors {{< katex >}}\k{{< /katex >}}. These key vectors play a crucial role in determining how the model's knowledge is stored and retrieved.
+7. Layer Output ({{< katex >}}\h_{l}{{< /katex >}}): The final output of the transformer layer, {{< katex >}}\h_{l}{{< /katex >}}, serves as the input for the next layer or as the model's final output if it is the last layer.
 
-Projection Weight Matrix ({{< katex >}}\W_{proj}{{< /katex >}}):
-The projection weight matrix {{< katex >}}\W_{proj}{{< /katex >}} is the part of the model that is directly edited by ROME, MEMIT, and EMMET. This matrix projects the intermediate representations (keys) into the final output space.
-Editing Focus: Model editing techniques target this matrix to insert new information (memorization) while ensuring that the existing information is preserved (preservation).
-
-Output Vector Generation ({{< katex >}}\v{{< /katex >}}):
-The projection weight matrix {{< katex >}}\W_{proj}{{< /katex >}} transforms the key vectors {{< katex >}}\k{{< /katex >}} into the output vectors {{< katex >}}\v{{< /katex >}}. This transformation integrates the edits made to the model.
-The output {{< katex >}}\v{{< /katex >}} is the updated information that the model will produce, ensuring that new facts are correctly incorporated.
-
-Layer Output ({{< katex >}}\h_{l}{{< /katex >}}):
-The final output of the transformer layer is denoted by {{< katex >}}\h_{l}{{< /katex >}}. This output serves as the input for the next layer or as the final output of the model if this is the last layer.
-
-
-
-
-As new facts constantly emerge, it's essential to update models with the latest knowledge. Model editing allows us to modify facts stored inside a model or update incorrect information. This paper focuses on two popular parameter-modifying model editing methods: ROME (Rank-One Model Editing) and MEMIT (Mass Editing Memory in Transformer). Both methods can infuse knowledge within models without needing additional hypernetworks and can be applied to any transformer-based large language model (LLM).
 
 ### ROME (Rank-One Model Editing)
-ROME modifies a single fact at a time by performing edits with an equality constraint. It ensures that the new fact precisely replaces the old fact while preserving other parts of the model's knowledge.
+ROME is a method that facilitates direct modification of model parameters to incorporate new factual knowledge or modify existing information. ROME works by enforcing equality constraints that ensure precise alignment between the output of the updated model and the intended new knowledge. This method uses first-order updates to model parameters. This is expressed mathematically as adding a single outer product of the two vectors to the existing weight matrix. This approach is highly targeted, modifying the weights in a way that exactly matches the new facts with minimal changes elsewhere, making it ideal for precision-critical applications. ROME is effective for single edits or small batches, but because the method strictly adheres to equality constraints, it does not scale well for large edits, potentially leading to inefficiencies or long computation times in batch scenarios.
 
 ### MEMIT (Mass Editing Memory in Transformer)
-MEMIT, on the other hand, uses a least-square constraint, allowing for more flexible, batched edits. This method distributes edits across multiple layers, which enhances its ability to handle large batch sizes effectively.
-
-The Preservation-Memorization Objective
-Both ROME and MEMIT optimize the same goal: the preservation-memorization objective. This objective balances two aspects:
-
-Preservation: Ensuring that the model retains its existing knowledge.
-Memorization: Accurately integrating new information into the model.
-In simpler terms, imagine the model's knowledge as a bookshelf. When adding a new book, you want to place it correctly without disturbing the existing books. ROME adds one book at a time with precision, while MEMIT places several books simultaneously, ensuring they all fit well.
+MEMIT is designed for batch updates and is known for its flexibility and scalability in model editing tasks. Unlike ROME, MEMIT uses a least-squares constraint that provides more flexibility in how edits are implemented. This method optimizes a relaxed objective where the goal is to minimize the overall error across a batch of edits rather than achieving exact matches for each individual update. MEMIT’s strength lies in its ability to handle large batches of edits simultaneously, making it particularly useful for applications that require frequent and extensive updates to the stored knowledge. The algorithm adjusts the model's parameters by calculating a closed-form solution that distributes the edits across the parameters in a way that balances the introduction of new facts with the preservation of existing knowledge.
 
 
 <p align="center">
@@ -126,134 +75,50 @@ In simpler terms, imagine the model's knowledge as a bookshelf. When adding a ne
 <p align="center">
     Table 1: Comparison between ROME and MEMIT when editing only a single layer for CounterFact dataset.
 </p>
-The comparison between ROME and MEMIT reveals that both techniques are highly effective at model editing, with each having its strengths. ROME generally excels in generalization and efficacy, while MEMIT performs slightly better in maintaining locality and fluency, especially for larger models like Llama-2. Both techniques provide robust solutions for updating model knowledge, with their specific advantages making them suitable for different scenarios and requirements.
+The comparison between ROME and MEMIT reveals that both techniques are highly effective at model editing, with each having its strengths. ROME generally excels in generalization and efficacy, while MEMIT performs slightly better in maintaining locality and fluency, especially for larger models like Llama-2.
 
 
 
-
-
-## EMMET: Unifying ROME and MEMIT
+## EMMET (Unifying ROME and MEMIT)
 ### Introducing EMMET
-EMMET (Equality-constrained Mass Model Editing in Transformer) unifies ROME and MEMIT under the preservation-memorization objective. EMMET uses an equality constraint for batched edits, providing a balanced approach that leverages the strengths of both ROME and MEMIT.
+EMMET unifies ROME and MEMIT under the preservation-memorization objective. EMMET uses an equality constraint for batched edits, providing a balanced approach that leverages the strengths of both ROME and MEMIT.
 
 ### EMMET's Closed-Form Solution
+EMMET uses a closed-form solution to implement the equality constraints across batch edits. This solution involves modifying the weight matrix of a transformer model in such a way that the edits are distributed across the parameters efficiently, ensuring that each targeted update is reflected accurately in the model's output. The key formula for EMMET’s update is given by:
+{{< katex display=true >}}
+f(x) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi
+{{< /katex >}}
+Here V_E represents the vector of desired outputs, W_0 is the original weight matrix, K_E is the key vector representing the input associated with each fact, and C_0 is the covariance matrix derived from the existing model parameters. 
+EMMET operates under the preservation-memorization objective, which aims to preserve the integrity of the model’s existing knowledge while accurately incorporating new information. The algorithm is carefully designed to balance these objectives, ensuring that the updates enhance the model's utility without introducing errors or biases.
+EMMET is designed to incorporate batch edits under equality constraints. This approach is similar to ROME's method of applying precise updates but is scaled to handle multiple edits simultaneously. EMMET ensures that each edit precisely matches the desired update without adversely affecting the existing knowledge encoded in the model. One of the features of EMMET is its ability to perform large-scale batch edits, which can include up to 10,000 edits in a single batch. This is a significant enhancement over traditional methods that typically handle edits one at a time or in smaller batches. EMMET’s batch processing capability makes it particularly valuable for applications requiring frequent and extensive updates to model data.
+
+
 
 ### Experiments and Results
-Single Edits and Batch Edits
-Experiments comparing ROME and MEMIT, with and without edit distribution, showed that both methods perform equally well for single edits. However, MEMIT's ability to distribute edits across layers gives it an edge for large batch sizes.
-
-Performance Comparison
-When editing single layers, both EMMET and MEMIT exhibit similar performance across different models and metrics. Applying MEMIT's edit-distribution algorithm to EMMET shows that EMMET can slightly outperform MEMIT in some cases, particularly for large batch sizes.
-
 <p align="center">
-    <img src='./table1.png' width="600">
+    <img src='./figure4.png' width="600">
 </p>
 <p align="center">
     Figure 4: Single layer editing performance of EMMET as a function of batch size when compared to MEMIT on the CounterFact dataset.
 </p>
 figures compare the performance of EMMET and MEMIT across various metrics as a function of batch size for different models (Llama, GPT2-XL, and GPT-J). Each subfigure evaluates a specific aspect of model editing.
 
-Figure Explanation
-(a) Efficacy Score (ES)
-
-Definition: Efficacy Score (ES) measures the percentage of successful edits, where the probability of the new fact is greater than the old fact for a given query.
-Observation:
-For all models, both EMMET and MEMIT maintain high efficacy scores at smaller batch sizes.
-As the batch size increases, the efficacy score generally decreases, indicating that making more edits at once becomes more challenging.
-Llama models show a sharper decline in efficacy score compared to GPT2-XL and GPT-J.
-(b) Paraphrase Score (PS)
-
-Definition: Paraphrase Score (PS) measures the generalization ability of the model under an edit, i.e., how well the model retains the new fact under paraphrased queries.
-Observation:
-EMMET and MEMIT show similar trends, with high PS at smaller batch sizes.
-Llama models have a noticeable drop in PS as batch size increases, indicating reduced generalization capability for larger batches.
-GPT2-XL and GPT-J show relatively stable PS until very large batch sizes are reached.
-(c) Neighborhood Score (NS)
-
-Definition: Neighborhood Score (NS) measures the locality of model editing, ensuring that edits do not affect nearby stored facts.
-Observation:
-Both EMMET and MEMIT maintain high NS at smaller batch sizes.
-As batch size increases, NS decreases, especially for Llama models, indicating more interference with neighboring facts.
-GPT2-XL and GPT-J models have a more gradual decline in NS.
-(d) Generation Entropy (GE)
-
-Definition: Generation Entropy (GE) evaluates the fluency of the model post-edit by measuring the diversity of generated text.
-Observation:
-Both EMMET and MEMIT show high GE scores, indicating fluent text generation.
-The GE score remains relatively stable across different batch sizes, suggesting that batch size has less impact on fluency.
-Llama models exhibit a slight decline in GE at larger batch sizes compared to GPT2-XL and GPT-J.
-(e) Score (S)
-
-Definition: The overall Score (S) is a composite metric combining efficacy, generalization, and locality scores.
-Observation:
-EMMET and MEMIT perform similarly at smaller batch sizes across all models.
-As batch size increases, the overall score decreases, reflecting the cumulative challenges in maintaining efficacy, generalization, and locality.
-Llama models show a more pronounced decline, while GPT2-XL and GPT-J maintain better performance at larger batch sizes.
-Summary
-The comparison of EMMET and MEMIT across various metrics highlights the trade-offs involved in batch editing. Smaller batch sizes generally yield better efficacy, generalization, and locality scores, but as batch sizes increase, maintaining these metrics becomes more challenging. Both techniques show robust performance, but model-specific differences indicate that Llama models are more sensitive to large batch edits compared to GPT2-XL and GPT-J.
-
-
-
-
-
 <p align="center">
-    <img src='./table1.png' width="600">
+    <img src='./figure5.png' width="600">
 </p>
 <p align="center">
     Figure 5: Performance comparison of EMMET and MEMIT when distributing the edit over multiple layers using the MEMIT edit-distribution algorithm on the CounterFact dataset.
 </p>
 figures compare the performance of EMMET and MEMIT across various metrics as a function of batch size for different models (Llama, GPT2-XL, and GPT-J). Each subfigure evaluates a specific aspect of model editing.
 
-Figure Explanation
-(a) Efficacy Score (ES)
 
-Definition: Efficacy Score (ES) measures the percentage of successful edits, where the probability of the new fact is greater than the old fact for a given query.
-Observation:
-For all models, both EMMET and MEMIT maintain high efficacy scores at smaller batch sizes.
-As the batch size increases, the efficacy score generally decreases, indicating that making more edits at once becomes more challenging.
-Llama models show a sharper decline in efficacy score compared to GPT2-XL and GPT-J.
-(b) Paraphrase Score (PS)
-
-Definition: Paraphrase Score (PS) measures the generalization ability of the model under an edit, i.e., how well the model retains the new fact under paraphrased queries.
-Observation:
-EMMET and MEMIT show similar trends, with high PS at smaller batch sizes.
-Llama models have a noticeable drop in PS as batch size increases, indicating reduced generalization capability for larger batches.
-GPT2-XL and GPT-J show relatively stable PS until very large batch sizes are reached.
-(c) Neighborhood Score (NS)
-
-Definition: Neighborhood Score (NS) measures the locality of model editing, ensuring that edits do not affect nearby stored facts.
-Observation:
-Both EMMET and MEMIT maintain high NS at smaller batch sizes.
-As batch size increases, NS decreases, especially for Llama models, indicating more interference with neighboring facts.
-GPT2-XL and GPT-J models have a more gradual decline in NS.
-(d) Generation Entropy (GE)
-
-Definition: Generation Entropy (GE) evaluates the fluency of the model post-edit by measuring the diversity of generated text.
-Observation:
-Both EMMET and MEMIT show high GE scores, indicating fluent text generation.
-The GE score remains relatively stable across different batch sizes, suggesting that batch size has less impact on fluency.
-Llama models exhibit a slight decline in GE at larger batch sizes compared to GPT2-XL and GPT-J.
-(e) Score (S)
-
-Definition: The overall Score (S) is a composite metric combining efficacy, generalization, and locality scores.
-Observation:
-EMMET and MEMIT perform similarly at smaller batch sizes across all models.
-As batch size increases, the overall score decreases, reflecting the cumulative challenges in maintaining efficacy, generalization, and locality.
-Llama models show a more pronounced decline, while GPT2-XL and GPT-J maintain better performance at larger batch sizes.
-Summary
-The comparison of EMMET and MEMIT across various metrics highlights the trade-offs involved in batch editing. Smaller batch sizes generally yield better efficacy, generalization, and locality scores, but as batch sizes increase, maintaining these metrics becomes more challenging. Both techniques show robust performance, but model-specific differences indicate that Llama models are more sensitive to large batch edits compared to GPT2-XL and GPT-J.
+The effectiveness of EMMET has been validated through extensive testing on standard model compilation datasets, including evaluations on various models such as GPT2-XL, GPT-J, and Llama-2-7b. These experiments demonstrated that EMMET matches and sometimes exceeds the performance of MEMIT in terms of editing success rate, maintaining data integrity, and generalization ability across multiple datasets and model architectures.
 
 
 
-## Limitations and Future Directions
-While EMMET streamlines the model editing process, it does not address deeper structural issues within models. The effectiveness of EMMET varies depending on model complexity and the nature of the edited knowledge. Furthermore, although EMMET imposes a theoretically stronger memorization constraint, it does not always outperform MEMIT, suggesting that we might be reaching the limits of model editing capabilities with current techniques.
 
 
 ## Conclusion
-- EMMET successfully unifies ROME and MEMIT under the preservation-memorization framework, offering a robust solution for model editing. By balancing efficiency and accuracy, EMMET represents a significant advancement in updating large language models. However, recognizing the limitations and ethical implications is essential to ensure responsible use of these powerful tools. Future research should focus on improving edit distribution algorithms and understanding their impact on model performance.
+This unified approach allows for a comprehensive comparison of the two methods, showing they can optimize similar objectives through different constraints. The introduction of EMMET, a new algorithm for batch editing under equality constraints, demonstrates the ability to handle large updates efficiently, maintaining performance on par with existing methods. The paper confirms the robustness of these techniques through extensive empirical testing and establishes a solid theoretical foundation for understanding model editing dynamics.
 
 
-
-{{< katex display=true >}}
-f(x) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi
-{{< /katex >}}
