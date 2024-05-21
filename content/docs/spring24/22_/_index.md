@@ -112,7 +112,7 @@ Let's see how it works in two stages.
 ##### (1) Writing
 The memory **M** in Fig7 has to be trained so as to approximate the distribution of **X** (**X** is an exchangeable-order invariant episode: **X** = { $x_{1}$, ..., $x_{N}$ }, a subset of the input data consisting of **N** samples). To do so, the model is trained to maximize the conditional log-likelihood of ln*p* (**X**|**M**). In this way, the model learns to compress **X** in a memory **M**, which then becomes a distributed associative memory. This process is similar to that of encoder in VAE. 
 ##### (2) Reading
-The reading weight matrix, **W**, is a random variable for generative ability of the model. In this paper, authors set a standard Gaussian prior _p_(**W**) ~ _N_(0,$I_{NxK}$ )
+The reading weight matrix, **W**, is a random variable for generative ability of the model. In this paper, authors set a standard Gaussian prior _p_(**W**) ~ _N_(0, $I_{NxK}$ )
 Memory readouts are obtained as **Z**$_{readout}$ = **WM**.
 ##### Summary
 Three main components - encoder(_e_), associative memory(**M**), and decoder(_d_) - are jointly trained and optimized for an episode **X**, using the following loss:
