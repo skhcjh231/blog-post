@@ -113,7 +113,7 @@ Let's see how it works in two stages.
 The memory **M** in Fig7 has to be trained so as to approximate the distribution of **X** (**X** is an exchangeable-order invariant episode: **X** = { $x_{1}$, ..., $x_{N}$ }, a subset of the input data consisting of **N** samples). To do so, the model is trained to maximize the conditional log-likelihood of ln*p* (**X**|**M**). In this way, the model learns to compress **X** in a memory **M**, which then becomes a distributed associative memory.
 
 ##### (2) Reading
-The reading weight matrix, **W**, is a random variable to enforce generative ability of the model. Memory readouts are obtained as $\bold{Z}_{readout}$ = **WM**.
+The reading weight matrix, **W**, is a random variable to enforce generative ability of the model. Memory readouts are obtained as $(**Z**)_{readout}$ = **WM**.
 
 
 Next, writing weight and reading weight 
