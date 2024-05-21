@@ -43,6 +43,8 @@ The common solution to further improve the performance of LoRA is to compose mul
 ### Mixture-of-Experts
 
 ## Mixture of LoRA experts
+
+### Motivations
 1. Direct linear arithmetic composition reduced the generative power of the model, while normalized linear arithmetic composition retained the generative power of the model but lost its LORA character.
    <p align="center">
     <img src=./motiv1_1.png align="center" width="32%">
@@ -51,7 +53,6 @@ The common solution to further improve the performance of LoRA is to compose mul
     <figcaption align="center">
 </p>
 2. Each layer of the trained LoRA represented a unique characteristic, which cumulatively defined the overall properties of the LoRA.
-### Motivations
 
 ### Method
 
