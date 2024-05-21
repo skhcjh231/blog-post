@@ -67,7 +67,7 @@ left: When evaluated on a subset of datasets, there were significant differences
 ### Method
 
 <p align="center">
-    <img src=./Method1.png>
+    <img src=./Method1.png width=400>
 </p>
 
 <details>
@@ -102,9 +102,13 @@ left: When evaluated on a subset of datasets, there were significant differences
 
 ### Training
 
+<p align="center">
+    <img src=./training1.png width="400">
+</p>
+As shown in Figure 5 (a), the average entropy of the distribution probabilities from the gating functions gradually decreases as training progresses. In Figure 5 (b), we can see a gating probability of 64% for LoRA β among the three LoRAs, indicating that the gating function tends to converge to a state where it assigns large weights to well-performing LoRAs in the early stages. This can result in a significantly larger impact from a few specific LoRAs compared to others, potentially leading to biased outcomes.
 
-
-
+To avoid this, the author created a gating balancing loss.<br/>
+$$ \mathcal{L}_{balance} = - log(\prod_{i=0} ^N q^{i}), q^{i} = \frac {1} {M} \sum_{k=1} ^M \frac {exp(^{{\epsilon_i}^k} /_ \tau)} {\sum_{j=1}^N exp(^{{\epsilon_i}^k} /_ \tau)} $$
 
 
 ## Results
