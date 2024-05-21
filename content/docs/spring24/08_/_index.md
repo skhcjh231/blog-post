@@ -60,6 +60,7 @@ The common solution to further improve the performance of LoRA is to compose mul
     <figcaption align="center">
 </p>
 Right: Observed that different layers of LoRA encode distinct features, such as dog coat color and facial features.
+
 left: When evaluated on a subset of datasets, there were significant differences in performance across the different layers of LoRA. 
         
 ### Method
