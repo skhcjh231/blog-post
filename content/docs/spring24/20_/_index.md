@@ -10,7 +10,7 @@ weight: 1
 
 ## Background
 ### How to leverage the strengths of multiple pre-trained models?
-**Fine-Tuning**
+#### Fine-Tuning
 
 __Fine-tuning__ involves taking a pre-trained model and further training it on a specific dataset to optimize its performance for a particular task.
 
@@ -27,7 +27,8 @@ __Fine-tuning__ involves taking a pre-trained model and further training it on a
 - **Limited Generalization**: May not perform well on tasks outside the fine-tuned domain.
 - **Dependent on Pre-trained Model**: The performance heavily relies on the quality of the pre-trained model.
 
-**Model Merging**
+
+#### Model Merging
 
 __Model merging__ involves combining multiple pre-trained models into a single model by integrating their weights and architectures to leverage their collective strengths.
 
