@@ -54,6 +54,12 @@ __Model merging__ involves combining multiple pre-trained models into a single m
 Figure 1 illustrates an example of model merging. This approach involves pair-wise comparison of weights from two pre-trained models and merging the most similar weights together.
 
 ### Merging Language Models
+Research on applying model merging to language models is actively progressing, with a large number of capable merged models being developed by the community. As a result, most of the top models on the Open LLM Leaderboard are increasingly dominated by merged models produced by language model enthusiasts.
+
+**[Mergekit](https://github.com/arcee-ai/mergekit)**
+
+
+
 ### Evaluationary Neural Architecture Search
 
 ## Contributions
