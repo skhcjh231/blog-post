@@ -28,7 +28,7 @@ Let's dive in!
 ## **Understanding the problem: Uniform computation in Transformers**
 These days, most language models are based on Transformers, and we stack these blocks to make big models. When given an input sequence, tokens pass through these blocks to predict the next token. The problem is that the models spread computations uniformly across input sequences. Transformers use the same amount of computation for essential tokens as for non-essential ones. For instance, predicting a token within a sentence is cheaper than predicting the first token of the next sentence. Researchers want to address this issue by making Transformers focus on important tokens by allocating less computing resources.
 
-## **Conditional Computation for transformers**
+## **Conditional computation for Transformers**
 - Early exiting
 
   Early Exit method is a method when the model decides to end computation on a given token, allowing it skips the remaining layers. Difference between MoD is, MoD can choose whether skip middle layer or not, but Early Exit method can't.
@@ -57,37 +57,50 @@ Routing implementation is the most crucial part of MoD. The authors compare thre
     <img src=./Routing_Schemes.png> 
 </p>
 
-### Token-choice routing
+### **Token-choice routing**
 Token-choice routing is a method where each tokens select the path it will follow. The router produces probability distributions for each token across the computational paths. Based on this distribution, each token chooses its preferred path at each layer.
   
 In token-choice routing, tokens have the flexibility to select their path, allowing for dynamic processing. However, this can lead to path balancing issues as all tokens might preger on the same path. It causes potential overloads on specific paths. To mitigate it, auxility loss is used to ensure that most tokens do not prefer on a single path.
   
-### Expert-choice routing
+### **Expert-choice routing**
 Expert-choice routing is the reverse of token-choice routing. Similar to token-choice routing, the router produces a probability distribution for each token. In expert-choice routing, instead of tokens selecting their paths, each path selects the top-k tokwns based on the tokens' preferences.
 
 Using this method ensures that each paths receives k tokens, maintauing balance among the paths. However, some tokens may not be selected beacuse there might be common tokens that multiple paths prefer.
 
-### Expert-choice MoD
+### **Expert-choice MoD**
 This method applies expert-choice routing but uses only a single expert. Since only a single path is utilized, if $k$ is less than the sequence length, not all tokens need to undergo self-attention and MLP computation.
 
-이러이러한 이유로 expert-choice routing을  사용한다~~
+Routing scheme에는 다음과 같은 고려해야할 사항이 있다:
+- 연산 효율성
+  Auxiliary balancing loss가 필요 없다
+- 구현의 단순함
+  Router의 weight 순서대로 가장 큰 것을 고르면 된다.
+- 명확한 기준
+  top-k 연산이 router weight의 magnitude에 depend하기 때문에 가장 중요한 토큰이 연산되는 것을 보장할 수 있다.
+  토큰에게 주어진 경우가 두 가지이므로(slef-attention + MLP, residual connection) top-k는 명확하게 token을 두 set으로 나눌 수 있다.
+
+다음과 같은 이유로 저자들은 Expert-choice routing을 사용하기로 하였고, single path만을 사용하기로 하였다.
+
+## **Implementation**
+MoD Transformers는 다음과 같은 방식으로 작동한다.
+1. Calculate routing weight
+   {{< katex display=true >}}
+x^{l+1}_i=\begin{cases}r^{l}_i f_i(\tilde{X}^l)+x^{l}_i, &    \text{if } r^{l}_i >  P_\beta(R^l)\\x^{l}_i, & \text{if }r^{l}_i <  P_\beta(R^l)\end{cases}
+{{< /katex >}}
+3. 각 path에 따라 forward path
+4. backward path 및 오차보정
+
 
 ## **Implementation detail**
 capacity에 관한 설명.
 
-### 1. Calculate routing weight
-{{< katex display=true >}}
-x^{l+1}_i=\begin{cases}r^{l}_i f_i(\tilde{X}^l)+x^{l}_i, &    \text{if } r^{l}_i >  P_\beta(R^l)\\x^{l}_i, & \text{if }r^{l}_i <  P_\beta(R^l)\end{cases}
-{{< /katex >}}
-### 2. Select top-k tokens
-
-논문 요약
+sampling에 관한 설명.
 
 ## **Open source MoD**
 https://github.com/astramind-ai/Mixture-of-depths
 
 ## **Conclusion and discussion**
-논문 요약 + 내 생각
+결론론 + 내 생각
 
 ## **Some resources**
 참고문헌 정리
