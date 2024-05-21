@@ -55,11 +55,16 @@ Routing implementation is the most crucial part of MoD. The authors compare thre
 
 ### Token-choice routing
 
-  Token-choice routing is a method where each tokens select the path it will follow. The router produces probability distributions for each token across the computational paths. Based on this distribution, each token chooses its preferred path at each layer.
+Token-choice routing is a method where each tokens select the path it will follow. The router produces probability distributions for each token across the computational paths. Based on this distribution, each token chooses its preferred path at each layer.
   
-  In token-choice routing, tokens have the flexibility to select their path, allowing for dynamic processing. However, this can lead to path balancing issues as all tokens might preger on the same path. It causes potential overloads on specific paths. To mitigate it, auxility loss is used to ensure that most tokens do not prefer on a single path.
+In token-choice routing, tokens have the flexibility to select their path, allowing for dynamic processing. However, this can lead to path balancing issues as all tokens might preger on the same path. It causes potential overloads on specific paths. To mitigate it, auxility loss is used to ensure that most tokens do not prefer on a single path.
   
 ### Expert-choice routing
+
+Expert-choice routing is the reverse of token-choice routing. Similar to token-choice routing, the router produces a probability distribution for each token. In expert-choice routing, instead of tokens selecting their paths, each path selects the top-k tokwns based on the tokens' preferences.
+
+Using this method ensures that each paths receives k tokens, maintauing balance among the paths. However, some tokens may not be selected beacuse there might be common tokens that multiple paths prefer.
+
 ### Expert-choice MoD
 
 
