@@ -6,6 +6,7 @@ weight: 1
 
 # **A Unified Framework for Model Editing**
 *Authors: Akshat Gupta, Dev Sajnani, Gopala Anumanchipalli*
+
 *Posted by Donggeun An, Jonghyun Chae*
 
 
@@ -14,17 +15,17 @@ weight: 1
 In the rapidly evolving field of artificial intelligence and machine learning, keeping large language models (LLMs) up-to-date with the latest information is crucial. This paper presents a comprehensive framework, Equality-constrained Mass Model Editing for Transformers (EMMET), that integrates two major model editing techniques: Rank-One Model Editing (ROME) and Mass Editing Memory in Transformer (MEMIT). The proposed framework focuses on the retention-memory objective, which aims to inject new knowledge into the model while maintaining the fidelity of existing information.
 
 <p align="center">
-    <img src='./figure1.png' width="700">
+    <img src='./figure1.png' width="600">
 </p>
 <p align="center">
-    Figure 1: A diagrammatic representation of the preservation-memorization objective.
+    Figure 1. A diagrammatic representation of the preservation-memorization objective.
 </p>
 Step 1: Find Keys to Preserve
-- Identify key vectors {{< katex >}}\k_0{{< /katex >}} representing existing knowledge, ensuring they remain intact by processing with the weight matrix {{< katex >}}\W_0{{< /katex >}} to produce output vectors {{< katex >}}\v_0{{< /katex >}}.
+- Identify key vectors {{< katex >}}k_0{{< /katex >}} representing existing knowledge, ensuring they remain intact by processing with the weight matrix {{< katex >}}W_0{{< /katex >}} to produce output vectors {{< katex >}}v_0{{< /katex >}}.
 Step 2: Find a Fact to Memorize
-- Locate new information to be added, represented by key vector {{< katex >}}\k_e{{< /katex >}} and output vector {{< katex >}}\v_e{{< /katex >}}, ensuring the model generates the correct new fact.
+- Locate new information to be added, represented by key vector {{< katex >}}k_e{{< /katex >}} and output vector {{< katex >}}v_e{{< /katex >}}, ensuring the model generates the correct new fact.
 Step 3: Update Weight Matrix
-- Modify {{< katex >}}\W_0{{< /katex >}} to {{< katex >}}\hat{W}{{< /katex >}}, preserving existing key vectors {{< katex >}}\k_0{{< /katex >}} while ensuring {{< katex >}}\k_e{{< /katex >}} produces {{< katex >}}\v_e{{< /katex >}}, thus integrating the new information accurately.
+- Modify {{< katex >}}W_0{{< /katex >}} to {{< katex >}}\hat{W}{{< /katex >}}, preserving existing key vectors {{< katex >}}k_0{{< /katex >}} while ensuring {{< katex >}}k_e{{< /katex >}} produces {{< katex >}}v_e{{< /katex >}}, thus integrating the new information accurately.
 
 
 
@@ -43,16 +44,16 @@ The success of model editing is measured using standard metrics.
     <img src='./figure2.png' width="700">
 </p>
 <p align="center">
-    Figure 2: Figure shows a diagrammatic representation of a transformer layer. The layer being edited by ROME, MEMIT and EMMET is the projection weight matrix inside the MLP layer ({{< katex >}}\W_{proj}{{< /katex >}}).
+    Figure 2: Figure shows a diagrammatic representation of a transformer layer. The layer being edited by ROME, MEMIT and EMMET is the projection weight matrix inside the MLP layer ({{< katex >}}W_{proj}{{< /katex >}}).
 </p>
 To further understand how model editing techniques like ROME, MEMIT, and EMMET work, it's essential to look at how they interact with the layers of a transformer model.
-1. Input Representation ({{< katex >}}\h_{l-1}{{< /katex >}}): The input to the transformer layer, {{< katex >}}\h_{l-1}{{< /katex >}}, is either the output from the previous layer or the initial input embedding.
-2. Attention Mechanism (Attn): The input {{< katex >}}\h_{l-1}{{< /katex >}} passes through the attention mechanism, which calculates attention scores and generates a context vector by attending to different parts of the input sequence.
-3. Feed-Forward Layer: The transformed input then goes through the feed-forward layer, consisting of a fully connected layer ({{< katex >}}\W_{fc}{{< /katex >}}) producing an intermediate representation, followed by a non-linear activation ({{< katex >}}\sigma{{< /katex >}}) like ReLU or GELU.
-4. Key Vector Generation ({{< katex >}}\k{{< /katex >}}): After the non-linearity, the intermediate representation is used to generate key vectors {{< katex >}}\k{{< /katex >}}, crucial for storing and retrieving the model's knowledge.
-5. Projection Weight Matrix ({{< katex >}}\W_{proj}{{< /katex >}}): The projection weight matrix {{< katex >}}\W_{proj}{{< /katex >}} projects the key vectors into the final output space and is the focus of edits in ROME, MEMIT, and EMMET.
-6. Output Vector Generation ({{< katex >}}\v{{< /katex >}}): The projection weight matrix {{< katex >}}\W_{proj}{{< /katex >}} transforms the key vectors {{< katex >}}\k{{< /katex >}} into output vectors {{< katex >}}\v{{< /katex >}}, integrating the edits made to the model.
-7. Layer Output ({{< katex >}}\h_{l}{{< /katex >}}): The final output of the transformer layer, {{< katex >}}\h_{l}{{< /katex >}}, serves as the input for the next layer or as the model's final output if it is the last layer.
+1. Input Representation ({{< katex >}}h_{l-1}{{< /katex >}}): The input to the transformer layer, {{< katex >}}h_{l-1}{{< /katex >}}, is either the output from the previous layer or the initial input embedding.
+2. Attention Mechanism (Attn): The input {{< katex >}}h_{l-1}{{< /katex >}} passes through the attention mechanism, which calculates attention scores and generates a context vector by attending to different parts of the input sequence.
+3. Feed-Forward Layer: The transformed input then goes through the feed-forward layer, consisting of a fully connected layer ({{< katex >}}W_{fc}{{< /katex >}}) producing an intermediate representation, followed by a non-linear activation ({{< katex >}}\sigma{{< /katex >}}) like ReLU or GELU.
+4. Key Vector Generation ({{< katex >}}k{{< /katex >}}): After the non-linearity, the intermediate representation is used to generate key vectors {{< katex >}}k{{< /katex >}}, crucial for storing and retrieving the model's knowledge.
+5. Projection Weight Matrix ({{< katex >}}W_{proj}{{< /katex >}}): The projection weight matrix {{< katex >}}W_{proj}{{< /katex >}} projects the key vectors into the final output space and is the focus of edits in ROME, MEMIT, and EMMET.
+6. Output Vector Generation ({{< katex >}}v{{< /katex >}}): The projection weight matrix {{< katex >}}W_{proj}{{< /katex >}} transforms the key vectors {{< katex >}}k{{< /katex >}} into output vectors {{< katex >}}v{{< /katex >}}, integrating the edits made to the model.
+7. Layer Output ({{< katex >}}h_{l}{{< /katex >}}): The final output of the transformer layer, {{< katex >}}h_{l}{{< /katex >}}, serves as the input for the next layer or as the model's final output if it is the last layer.
 
 
 ### ROME (Rank-One Model Editing)
@@ -66,7 +67,7 @@ MEMIT is designed for batch updates and is known for its flexibility and scalabi
     <img src='./table1.png' width="600">
 </p>
 <p align="center">
-    Table 1: Comparison between ROME and MEMIT when editing only a single layer for CounterFact dataset.
+    Table 1. Comparison between ROME and MEMIT when editing only a single layer for CounterFact dataset.
 </p>
 The comparison between ROME and MEMIT reveals that both techniques are highly effective at model editing, with each having its strengths. ROME generally excels in generalization and efficacy, while MEMIT performs slightly better in maintaining locality and fluency, especially for larger models like Llama-2.
 
@@ -81,24 +82,24 @@ EMMET uses a closed-form solution to implement the equality constraints across b
 {{< katex display=true >}}
 \Delta = (V_E-W_0K_E)(K_E^TC_0^{-1}K_E)^{-1}K_E^TC_0^{-1}
 {{< /katex >}}
-Here V_E represents the vector of desired outputs, {{< katex >}}\W_0{{< /katex >}} is the original weight matrix, {{< katex >}}\K_E{{< /katex >}} is the key vector representing the input associated with each fact, and {{< katex >}}\C_0{{< /katex >}} is the covariance matrix derived from the existing model parameters. 
+Here V_E represents the vector of desired outputs, {{< katex >}}W_0{{< /katex >}} is the original weight matrix, {{< katex >}}K_E{{< /katex >}} is the key vector representing the input associated with each fact, and {{< katex >}}C_0{{< /katex >}} is the covariance matrix derived from the existing model parameters. 
 EMMET operates under the preservation-memorization objective, which aims to preserve the integrity of the model’s existing knowledge while accurately incorporating new information. The algorithm is carefully designed to balance these objectives, ensuring that the updates enhance the model's utility without introducing errors or biases.
 EMMET is designed to incorporate batch edits under equality constraints. This approach is similar to ROME's method of applying precise updates but is scaled to handle multiple edits simultaneously. EMMET ensures that each edit precisely matches the desired update without adversely affecting the existing knowledge encoded in the model. One of the features of EMMET is its ability to perform large-scale batch edits, which can include up to 10,000 edits in a single batch. This is a significant enhancement over traditional methods that typically handle edits one at a time or in smaller batches. EMMET’s batch processing capability makes it particularly valuable for applications requiring frequent and extensive updates to model data.
 
 
 ### Experiments and Results
 <p align="center">
-    <img src='./figure4.png' width="600">
+    <img src='./figure3.png' width="1000">
 </p>
 <p align="center">
-    Figure 4: Single layer editing performance of EMMET as a function of batch size when compared to MEMIT on the CounterFact dataset.
+    Figure 3. Single layer editing performance of EMMET as a function of batch size when compared to MEMIT on the CounterFact dataset.
 </p>
 
 <p align="center">
-    <img src='./figure5.png' width="600">
+    <img src='./figure4.png' width="1000">
 </p>
 <p align="center">
-    Figure 5: Performance comparison of EMMET and MEMIT when distributing the edit over multiple layers using the MEMIT edit-distribution algorithm on the CounterFact dataset.
+    Figure 4. Performance comparison of EMMET and MEMIT when distributing the edit over multiple layers using the MEMIT edit-distribution algorithm on the CounterFact dataset.
 </p>
 The effectiveness of EMMET has been validated through extensive testing on standard model compilation datasets, including evaluations on various models such as GPT2-XL, GPT-J, and Llama-2-7b. These experiments demonstrated that EMMET matches and sometimes exceeds the performance of MEMIT in terms of editing success rate, maintaining data integrity, and generalization ability across multiple datasets and model architectures.
 
