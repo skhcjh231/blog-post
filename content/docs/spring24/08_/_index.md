@@ -66,8 +66,9 @@ left: When evaluated on a subset of datasets, there were significant differences
 **So, The conjecture is that adjusting the characteristics by varying the layer-specific weights according to the desired domain objective will result in a more effective composition of trained LORAs.**
 ### Method
 <p align="left">
-  <img src=./Method1.png width="500" style="float: left; margin-right: 10;">
-  input x \in \mathbb^(Lxd)
+    <img src=./Method1.png align="left" width="40%">
+    input $x \in \mathbb{R} ^ {L \times d}$라고 하자. 
+
 </p>
     
 ### Training
