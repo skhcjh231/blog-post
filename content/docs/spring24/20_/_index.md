@@ -41,6 +41,8 @@ CMA-ES finds the global optimum effectively even in high-dimensional problems by
 The goal of this paper is to develop a unified framework that can automatically generate a merged model from a set of foundation models, ensuring that the merged model outperforms an any single model in the collection. In this paper, an evolutionary algorithm was applied to reduce the complexity of the model merge process. The model merge was applied independently and also sequentially in both parameter space and the data flow space.
  
 ### Merging in the Parameter Space (PS)
+The model merge in the parameter space can be summarized as a weighted average of the model parameters. In this paper, the fitness of each foundation model for a specific task is determined using the task vector of each foundation model, and then the model parameters are combined based on those fitness values. Specifically, this paper enhances TIES-Merging with DARE, allowing for more granular, layer-wise (input/output embedding layers or transformer blocks) merging.  
+
 ### Merging in the Data Flow Space (DFS)
 ### Merging in Both Spaces
 
