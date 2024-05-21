@@ -68,9 +68,9 @@ left: When evaluated on a subset of datasets, there were significant differences
 
 <div style="display: flex; align-items: right;">
   <div style="flex: 1;">
-    <img src=./Method1.png width: "96%">
+    <img src=./Method1.png width: "46%">
   </div>
-  <div style="flex: 3; padding-left: 20;">
+  <div style="flex: 3; padding-left: 10;">
     <p>apple.</p>
   </div>
 </div>
