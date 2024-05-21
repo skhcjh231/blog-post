@@ -67,7 +67,7 @@ left: When evaluated on a subset of datasets, there were significant differences
 ### Method
 <p align="left">
   <img src=./Method1.png width="500" style="float: left; margin-right: 10;">
-  여기에 원하는 문구를 입력하세요.
+  input x \in \mathbb^(Lxd)
 </p>
     
 ### Training
