@@ -71,7 +71,10 @@ __Mergekit__ is a toolkit that provides various popular recipes for merging lang
 ### Evaluationary Neural Architecture Search
 
 ## Contributions
-
+- **Automated Model Composition**: Introduction of an evolutionary method to automatically discover optimal combinations of diverse open-source models for creating new foundation models with user-specified capabilities. This approach leverages the collective intelligence of existing open models, enabling the creation of powerful models without the need for extensive training data or compute resources.
+- **Cross-Domain Merging**: Demonstration that the method can discover novel ways to merge models from disparate domains (e.g., non-English language and Math, non-English language and Vision), potentially achieving capabilities beyond conventional human design strategies.
+- **State-of-the-Art Performance**: Showcasing the effectiveness of the method by automatically generating a Japanese LLM with Math reasoning capability and a Japanese VLM. Both models achieved state-of-the-art performance on various benchmarks, even without explicit optimization for those tasks.
+- **High Efficiency and Surprising Generalizability**: Observation that a 7B parameter LLM surpassed the performance of some previous 70B parameter Japanese LLMs on benchmark datasets, highlighting the high efficiency and surprising generalization capability of the approach. This model can serve as a strong general-purpose Japanese LLM.
 ## Method
 ### Explanation of overall method
 ### Merging in the Parameter Space (PS)
