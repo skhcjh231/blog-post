@@ -43,6 +43,15 @@ __Model merging__ involves combining multiple pre-trained models into a single m
 - **Black-Box Nature**: May be seen as less interpretable since it relies on heuristic methods for weight integration.
 - **Potential for Suboptimal Performance**: If not done correctly, merged models may not achieve the desired performance improvements.
 
+<p align="center">
+  <img src="./figures/merging model figure.png" alt="." width="500" height="300" > 
+</p>
+
+<p align="center">
+  Fig 1. Example of Model Merging.
+</p>
+
+Figure 1 illustrates an example of model merging. This approach involves pair-wise comparison of weights from two pre-trained models and merging the most similar weights together.
 
 ### Merging Language Models
 ### Evaluationary Neural Architecture Search
