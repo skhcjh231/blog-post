@@ -17,7 +17,7 @@ The significant advances in deep learning over the past decade have largely reli
   Traditionally, floating-point numbers are defined by the IEEE 754 standard, which specifies the number of exponent bits (E) and mantissa bits (M). Common floating-point formats used in machine learning include FP32, TF32, BFLOAT16, and FP16. Recently, two types of FP8 formats (E4 and E5) have been proposed.
 
   <p align="center">
-    <img src='./TableA.PNG' width="400">
+    <img src='./TableA.png' width="400">
   </p>
   
   <p align="center">
