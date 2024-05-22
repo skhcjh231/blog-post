@@ -20,7 +20,8 @@ To address this issue, speculative decoding has been introduced as a promising a
 1) many tokens can be predicted with minimal computational overhead. 
 2) LLM inference is predominantly constrained by memory bandwidth rather than arithmetic computations. 
 
-Consequently, speculative decoding can tolerate additional computational costs without significant penalties.
+However, existing speculative decoding still face limitations, such as high inference latency and suboptimal token acceptance rates. 
+This papaer proposed Kangaroo to address this challenge.
 
 
 ## Backgrounds
