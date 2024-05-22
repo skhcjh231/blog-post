@@ -203,11 +203,13 @@ The experiments in the paper focus on applying the proposed evolutionary model m
 
 
 ## Conclusion
-The evolutionary model merging method, which operates in both parameter space (PS) and data flow space (DFS), challenges the conventional paradigm of expensive model development, offering a more efficient alternative that can produce competitive models without relying on gradient-based training. 
+The evolutionary model merging method, which operates in both parameter space (PS) and data flow space (DFS), challenges the conventional paradigm of expensive model development, offering a more efficient alternative that can produce competitive models without relying on gradient-based training. This paper is significant in that it attempts to automate the merging of LLM foudation models based on an evolutionary algorithm, which previously relied on human intuition.
 
 __However__, There are limitations to discuss.
 ### Limitation
 - **Contradiction in Automation**: Although the method aims to automate the merging process by removing prior information and heuristic components, it still relies on experimental experience for design and learning methods, which is contradictory to the initial motivation.
+- **Complexity and Efficiency of the Model**: By applying the PS merging and the DFS merging orthogonally and sequentially, the temporal and spatial complexity for model merging seems to have increased significantly.
+- **Effectiveness of applying both merging methods**: We also observe in the experiments that the performance of the merged model is better when PS merging is applied alone than when both PS merging and DFS merging are applied, which raises the question of whether applying both merging methods together is worth the increased complexity of merging.
 - **Limited Language Scope**: The paper presents experimental results only for Japanese (JP), which is not convincing for demonstrating the method's superiority in non-English languages.
 - **Lack of Comparative Experiments**: There is a lack of experimental comparison with various other methods that use pre-trained models for multiple tasks such as fine-tuning.
 
@@ -245,10 +247,12 @@ Kevin Meng, Arnab Sen Sharma, Alex Andonian, Yonatan Belinkov, and David Bau. 20
 
 Akshat Gupta, Dev Sajnani, and Gopala Anumanchipalli. 2024. [A unified framework for model editin](https://arxiv.org/pdf/2401.07453). arXiv preprint arXiv:2403.14236.
 
-Figure : https://blog.otoro.net/2017/10/29/visual-evolution-strategies
+Figure 1: Ha, David. [A Visual Guide to Evolution Strategies](https://blog.otoro.net/2017/10/29/visual-evolution-strategies/). 2017.
 
-Figure : https://sakana.ai/evolutionary-model-merge/
+Figure 2: Zhengqi Xu, Ke Yuan, Huiqiong Wang, Yong Wang, Mingli Song, Jie Song. [Training-Free Pretrained Model Merging](https://arxiv.org/abs/2403.01753). In *Proceedings of the IEEE conference on computer vision and pattern recognition*, 2024.
 
-Figure : https://sakana.ai/evolutionary-model-merge/
+Figure 3: Sakai.ai. [Evolving New Foundation Models: Unleashing the Power of Automating Model Development](https://sakana.ai/evolutionary-model-merge/). 2024.
 
-Figure : https://sakana.ai/evolutionary-model-merge/
+Figure 4: Sakai.ai. [Evolving New Foundation Models: Unleashing the Power of Automating Model Development](https://sakana.ai/evolutionary-model-merge/). 2024.
+
+Figure 5: Sakai.ai. [Evolving New Foundation Models: Unleashing the Power of Automating Model Development](https://sakana.ai/evolutionary-model-merge/). 2024.
