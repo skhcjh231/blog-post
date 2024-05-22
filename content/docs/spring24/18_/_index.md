@@ -61,6 +61,8 @@ Attention Output = softmax(\frac{Q \dot K^T}{\sqrt{d_k}}V)
 - Each self-attention layer is followed by a feedforward neural network that further processes the information.
 These networks consist of fully connected layers and typically include activation functions and normalization.
 
+If interested in more details about ViT, please refer to the following paper. "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale"
+
 ----------
 
 ## Challenge: Multi-Resolution ViT Modeling
@@ -71,7 +73,7 @@ These networks consist of fully connected layers and typically include activatio
  Recently, ResFormer proposed adding depth-wise convolution to the existing positional encoding method when performing global-local positional embedding, enabling it to work well even with unseen resolutions. (Chu et al., 2023; Tian et al., 2023).
 
 <p align="center">
-  <img src="./ResFormer_pe.png" alt="." width="500" height="300" > 
+  <img src="./ResFormer_pe.png" alt="." width="600" height="350" > 
 </p>
 
  However, ResFormer has three drawbacks.
@@ -105,7 +107,8 @@ Adaptive Token Merger (ATM) module is designed to efficiently process and merge 
   <img src="./grid_attention.png" alt="." width="600" height="300" > 
 </p>
 
-The detailed process for ATM is as follows: 
+The detailed process for ATM is as follows:  
+
  First, ATM divides the tokens of shape {{< katex >}}(H\ times W){{< /katex >}} into a grid of size {{< katex >}}G_{th} \times G_{tw}{{< /katex >}}. 
  
  For simplicity, we'll use above Figure as an example. 
