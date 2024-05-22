@@ -85,18 +85,25 @@ For the following reasons, the authors decided to use Expert-choice routing and 
 - **Clear criteria**
   Can guarantee that the most important token is calculated since the top-{{< katex >}}k{{< /katex >}} tokens are independent on magnitude of router weights. Top-{{< katex >}}k{{< /katex >}} can divide clearly tokens into two mutually sets.
 
-## **Implementation**
-MoD Transformers는 다음과 같은 방식으로 작동한다.
-1. Calculate routing weights
+## **Running MoD Transformers**
+MoD Transformers operate in the following manner:
+1. **Calculate routing weights**
+   
    {{< katex display=true >}}
-x^{l+1}_i=\begin{cases}r^{l}_i f_i(\tilde{X}^l)+x^{l}_i, &    \text{if } r^{l}_i >  P_\beta(R^l)\\x^{l}_i, & \text{if }r^{l}_i <  P_\beta(R^l)\end{cases}
-{{< /katex >}}
-3. ssss
-4. 
-5. backward path 및 오차보정
+   x^{l+1}_i=\begin{cases}r^{l}_i f_i(\tilde{X}^l)+x^{l}_i, &    \text{if } r^{l}_i >  P_\beta(R^l)\\x^{l}_i, & \text{if }r^{l}_i <  P_\beta(R^l)\end{cases}
+   {{< /katex >}}
+   
+   Find the {{< katex >}}\beta{{< /katex >}}-th percentile ({{< katex >}}P_\beta(R^l){{< /katex >}}) of the set of router weights {{< katex >}}R^l{{< /katex >}}. If the router weight {{< katex >}}r^l{{< /katex >}} is greater than {{< katex >}}P_\beta(R^l){{< /katex >}}, perform self-attention and subsequent MLP operations. If it is less than {{< katex >}}P_\beta(R^l){{< /katex >}}, pass through the token residual connection.
+   
+3. **Select top-k tokens**
+
+   Determine the top-k tokens to process at the layer based on capacity. For example, if there are 1000 tokens and the capacity is 12.5%, the 125 tokens with the highest router weights are selected.
+5. **Forward pass**
+   
+6. **backward path 및 오차보정**
 
 
-## **More details**
+## **Implementation**
 ### **Capacity**
 In this paper, capacity-based routing is employed. Token *capacity* is the total proportion of tokens composing the input for a given operation. For instance, if the input sequence length is 100 and the capacity is 20%, each layer operates on the top-20 tokens determined by router weights.
 
