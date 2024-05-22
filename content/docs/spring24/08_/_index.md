@@ -66,8 +66,9 @@ O = h + \sum_{i=0}^{N} \alpha(E_i) \cdot E_i(h)
 
 <p align="center">
     <img src=./moe.png> 
+    <br>
+    <em>Figure 3: Illustration of a Swith Transformer block.</em>
 </p>
-
 
 ## Mixture of LoRA experts
 
