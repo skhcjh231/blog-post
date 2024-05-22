@@ -56,7 +56,7 @@ Results showed that for smaller datasets (e.g., 25M), increasing epochs did not 
 <div align="center">
   <strong>Figure 2.</strong> Data Quantity: Few-Shot Performances on ImageNet
 </div>
-
+</p>
 
 We also observed that the few-shot performance also showed a similar trend to the zero-shot performance.
 
@@ -66,7 +66,7 @@ We also observed that the few-shot performance also showed a similar trend to th
 <div align="center">
   <strong>Figure 3.</strong> Retrieval Performances on MSCOCO
 </div>
-
+</p>
 
 In Retrieval Performances, a slightly different trend emerged. Specifically, we found that there was little to no improvement in both image retrieval and text retrieval performance when the number of epochs exceeded eight.
 
@@ -74,25 +74,27 @@ In Retrieval Performances, a slightly different trend emerged. Specifically, we 
 We also examined the impact of data quality by creating subsets of the 3.4B dataset based on image-text similarity, selecting the top 20%, 40%, 60%, and 80% highest-quality data.
 
 <p align="center">
-    <img src="./Figure 5.png" width="300"> 
+    <img src="./Figure 5.png" width="800"> 
 </p>
-<p style="text-align:center; font-style: italic;">
-Figure 4: Data Quality: Zero-Shot Performances on ImageNet. (a) trained for one epoch. (b) trained for the same number of sampled data.
+<div align="center">
+  <strong>Figure 4.</strong> Data Quality: Zero-Shot Performances on ImageNet. (a) trained for one epoch. (b) trained for the same number of sampled data.
+</div>
 </p>
 
 Models trained on these subsets for a single epoch demonstrated that higher quality data subsets yielded superior zero-shot performance on ImageNet. Specifically, the Top40% subset outperformed the entire dataset despite fewer iterations. When comparing datasets with an equal number of samples, the Top40% dataset achieved the best performance, highlighting the importance of data quality in training CLIP models.
 
 <p align="center">
-    <img src="./Figure 6.png" width="300"> 
+    <img src="./Figure 6.png" width="1100"> 
 </p>
-<p style="text-align:center; font-style: italic;">
-Figure 5: Data Quality: Few-Shot Performances on ImageNet. (a) one epoch. (b) the same number of sampled data.
+<div align="center">
+  <strong>Figure 5.</strong> Data Quality: Few-Shot Performances on ImageNet. (a) one epoch. (b) the same number of sampled data.
+</div>
 </p>
 
 Additionally, when the number of sample data points is the same, higher quality datasets have superior 5-shot and 10-shot performance.
 
 <p align="center">
-    <img src="./Figure 7.png" width="300"> 
+    <img src="./Figure 7.png" width="1100"> 
 </p>
 <p style="text-align:center; font-style: italic;">
 Figure 6: Data Quality: Retrieval Performances on MSCOCO. (a) one epoch. (b) the same number of sampled data.
