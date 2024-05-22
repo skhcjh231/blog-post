@@ -179,6 +179,22 @@ Beyond MobileNetV4, many CNNs are integrating multi-head attention layers, while
 
 ## Similar Works - MobileFormer
 
+<p align="center">
+    <img src='./Fig5.png' width="900">
+</p>
+    
+<p align="center">
+    Fig. 5. MobileFormer Network
+</p>
+
+<p align="center">
+    <img src='./Table7.png' width="900">
+</p>
+    
+<p align="center">
+    Table. 7. Performance comparison of MobileFormer with other works
+</p>
+
 ## References
 [1] MobileNetV4 Implementation: [[Link](https://github.com/scalable-model-editing/unified-model-editing).](https://github.com/jiaowoguanren0615/MobileNetV4/tree/main)
 
