@@ -108,7 +108,7 @@ GridAttn(\{x_{ij}\}) = x_{avg} + Attn(x_{avg}, \{x_{ij}\}, \{x_{ij}\})
 
  After passing through GridAttention, the fused token is fed into a standard Feed-Forward Network to complete channel fusion, thereby completing one iteration of merging token. GridAttention and FFN undergo multiple iterations and all iterations share the same weights. 
  
-  During these iterations, we gradually decrease the value of $(G_{th} , G_{tw})$, until $G_{th} = G_{h}$ and $G_{tw} = G_{w}$. (typically set $Gh = Gw = 14$, in standard ViT)
+  During these iterations, we gradually decrease the value of {{< katex >}}(G_{th} , G_{tw}){{< /katex >}}, until {{< katex >}}G_{th} = G_{h}{{< /katex >}} and {{< katex >}}G_{tw} = G_{w}{{< /katex >}}. (typically set {{< katex >}}Gh = Gw = 14{{< /katex >}}, in standard ViT)
 
  This iteration process effectively reduces the number of tokens even when the resolution of the image is large, and with enough iterations, this size can be reduced effectively. This has the advantage of being computationally efficient because when performing subsequent MHSA calculations, we always use the same size tokens as input, regardless of resolution.
 
