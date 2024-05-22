@@ -12,7 +12,7 @@ Written by Nayoung Kwon and Jiwoong Im
 ## Introduction
 
 The growing demand for rapid and efficient inference in large language models (LLMs) faces a significant bottleneck
-* Decoding {{< katex >}}K{{< \katex >}} tokens requires {{< katex >}}K{{< \katex >}} sequential runs of the model. 
+* Decoding {{< katex >}}K{{< /katex >}} tokens requires {{< katex >}}K{{< /katex >}} sequential runs of the model. 
 
 ⇒ LLM inference is slow.
 
@@ -72,32 +72,32 @@ The author has proposed a novel self-speculative decoding framework, named Kanga
 
 ### Evaluation Metrics
 
-Speculative decoding is often evaluated using two primary metrics: walltime speedup ratio and compression rate. Given a speculative decoding algorithm, we assume that {{< katex >}}N{{< \katex >}} tokens should be generated via the drafting model. As the drafting model predicts multiple tokens in each decoding step and multiple tokens can be accepted by the large model in a step, we record the number of accepted tokens per step as a list {{< katex >}} S = \[s_1, s_2, \dots, s_{|S|}\] {{< \katex >}}, where {{< katex >}} \sum_k s_k = N {{< \katex >}} and {{< katex >}} |S| {{< \katex >}} denotes the number of steps. Then, the compression rate (CR) is defined as:
+Speculative decoding is often evaluated using two primary metrics: walltime speedup ratio and compression rate. Given a speculative decoding algorithm, we assume that {{< katex >}}N{{< /katex >}} tokens should be generated via the drafting model. As the drafting model predicts multiple tokens in each decoding step and multiple tokens can be accepted by the large model in a step, we record the number of accepted tokens per step as a list {{< katex >}} S = \[s_1, s_2, \dots, s_{|S|}\] {{< /katex >}}, where {{< katex >}} \sum_k s_k = N {{< /katex >}} and {{< katex >}} |S| {{< /katex >}} denotes the number of steps. Then, the compression rate (CR) is defined as:
 {{< katex display = true >}}
 \text{CR} = \frac{1}{|S|} \sum_k s_k.
-{{< \katex >}}
+{{< /katex >}}
 However, once a draft token is rejected during the verification, all subsequent tokens sampled from the drafting model will be discarded. Therefore, CR does not accurately reflect the acceptance levels for tokens at varying distances, and the author has proposed a new evaluation metric named _consistent token acceptance rate_.
 
-The consistent token acceptance rate {{< katex >}} \text{CTAR}(w) {{< \katex >}} is calculated as:
+The consistent token acceptance rate {{< katex >}} \text{CTAR}(w) {{< /katex >}} is calculated as:
 {{< katex display = true >}}
 \text{CTAR}(w) = \frac{1}{|S|} \sum_k \mathbb{I} (s_k - w > 0),
-{{< \katex >}}
-where {{< katex >}}\mathbb{I}(\cdot){{< \katex >}} denotes an indicator function and {{< katex >}} w {{< \katex >}} denotes a window size. CTAR can be interpreted as a rate of the number of steps to accept over {{< katex >}} w {{< \katex >}} tokens.
+{{< /katex >}}
+where {{< katex >}}\mathbb{I}(\cdot){{< /katex >}} denotes an indicator function and {{< katex >}} w {{< /katex >}} denotes a window size. CTAR can be interpreted as a rate of the number of steps to accept over {{< katex >}} w {{< /katex >}} tokens.
 
 {{< figure src="./CTAR.png" alt="." width="600" height="600" >}}
 
-Figure 1 represents the empirical CTARs for {{< katex >}}w = 1,2,\dots,6 {{< \katex >}} of self-drafting speculative decoding frameworks including Kangaroo on the mathematical reasoning subtask of Spec-Bench [1].
+Figure 1 represents the empirical CTARs for {{< katex >}}w = 1,2,\dots,6 {{< /katex >}} of self-drafting speculative decoding frameworks including Kangaroo on the mathematical reasoning subtask of Spec-Bench [1].
 
 [1] Heming Xia, Zhe Yang, Qingxiu Dong, Peiyi Wang, Yongqi Li, Tao Ge, Tianyu Liu, Wenjie Li, and Zhifang Sui. Unlocking efficiency in large language model inference: A comprehensive survey of speculative decoding. _arXiv preprint arXiv:2401.07851_, 2024.
 
 ### Adapter Network as Self-Drafting Model
 
 
-We assume the target LLM has {{<katex>}} L {{<\katex>}} layers and the self-draft model {{<katex>}} \mathcal{M}^s {{<\katex>}} consists of shallow sub-network {{<katex>}} \mathcal{M}^b[:l] {{<\katex>}}, which is first {{<katex>}} l {{<\katex>}} layers of the target LLM {{<katex>}}\mathcal{M}^b{{<\katex>}}, and a adapter network {{<katex>}} \mathcal{A} {{<\katex>}}. The drafting model reuses the LM head of the target LLM, and the overall parameters of the target LLM, such as shallow sub-network, remaining layers of LLM, and LM head, are frozen during the training of the adapter network. In Kangaroo, the adapter {{<katex>}} \mathcal{A} {{<\katex>}} only encompasses one multi-head attention and two normalization layers. The author emphasizes the feed-forward network (FFN) of the transformer block is too heavy in parameters but redundant, which is presented in the ablation study of the adapter architecture in the Experiments Section.
+We assume the target LLM has {{<katex>}} L {{</katex>}} layers and the self-draft model {{<katex>}} \mathcal{M}^s {{</katex>}} consists of shallow sub-network {{<katex>}} \mathcal{M}^b[:l] {{</katex>}}, which is first {{<katex>}} l {{</katex>}} layers of the target LLM {{<katex>}}\mathcal{M}^b{{</katex>}}, and a adapter network {{<katex>}} \mathcal{A} {{</katex>}}. The drafting model reuses the LM head of the target LLM, and the overall parameters of the target LLM, such as shallow sub-network, remaining layers of LLM, and LM head, are frozen during the training of the adapter network. In Kangaroo, the adapter {{<katex>}} \mathcal{A} {{</katex>}} only encompasses one multi-head attention and two normalization layers. The author emphasizes the feed-forward network (FFN) of the transformer block is too heavy in parameters but redundant, which is presented in the ablation study of the adapter architecture in the Experiments Section.
 
 {{< figure src="./Kangaroo.png" alt="." width="600" height="600" >}}
 
-Figure 2 illustrates the framework of Kangaroo. The lightweight drafting model {{<katex>}} \mathcal{M}^s {{<\katex>}}, including shallow sub-network and adapter network, predicts the draft tokens autoregressively until draft early exiting occurs. The strategy of draft early exiting will be explained later in the Draft Early Exiting Section. Then, the hidden states, computed in shallow sub-network, are processed in the remaining layers of LLM to generate prediction results. The draft tokens and the original prediction results are now compared for verification, and 
+Figure 2 illustrates the framework of Kangaroo. The lightweight drafting model {{<katex>}} \mathcal{M}^s {{</katex>}}, including shallow sub-network and adapter network, predicts the draft tokens autoregressively until draft early exiting occurs. The strategy of draft early exiting will be explained later in the Draft Early Exiting Section. Then, the hidden states, computed in shallow sub-network, are processed in the remaining layers of LLM to generate prediction results. The draft tokens and the original prediction results are now compared for verification, and 
 
 
 ## Draft Early Exiting

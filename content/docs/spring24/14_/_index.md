@@ -120,7 +120,7 @@ Since computation of transformation matrix {{< katex >}}E_i{{< /katex >}} is exp
 </p>
 
 ### **Progressive binarization**
-Despite the enhanced methodology, training process remains slow and unstable. To further stabilize convergence, authors additionally apply progressive binarization strategy. {{< katex >}}\lfloor \frac{M}{2} \rfloor{{< \katex >}}-th time stepping module is quantized in first iteration and {{< katex >}}\lfloor \frac{M}{2} \rfloor - i{{< \katex >}}-th and {{< katex >}}\lfloor \frac{M}{2} \rfloor + i{{< \katex >}}-th modules are quantized in next i-th iteration. As show in the figure, benefit coming from progressive binarization is significant compared to baseline traning process.  
+Despite the enhanced methodology, training process remains slow and unstable. To further stabilize convergence, authors additionally apply progressive binarization strategy. {{< katex >}}\lfloor \frac{M}{2} \rfloor{{< /katex >}}-th time stepping module is quantized in first iteration and {{< katex >}}\lfloor \frac{M}{2} \rfloor - i{{< /katex >}}-th and {{< katex >}}\lfloor \frac{M}{2} \rfloor + i{{< /katex >}}-th modules are quantized in next i-th iteration. As show in the figure, benefit coming from progressive binarization is significant compared to baseline traning process.  
 <p align="center">
   <img src="./progressive.png" alt="." width="500" height="300" > 
 </p>
