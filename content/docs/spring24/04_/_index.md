@@ -59,7 +59,11 @@ To show using multi-token prediction loss helps to capture global pattern than u
 
 ### Coding Benchmarks
 
-Pretrained model with multi-token prediction loss maintains an edge on that with next-token prediction loss. At the beginning, they pretrain the 7B parameter models with multi-token prediction loss or next-token prediction loss. (Use the pretrained model on byte level training on MBPP, HumanEval and APPS) Then, they finetune the models with CodeContests dataset (Li  et al., 2022) with multi-token head or next-token head. 
+Pretrained model with multi-token prediction loss maintains an edge on that with next-token prediction loss. At the beginning, they pretrain the 7B parameter models with multi-token prediction loss or next-token prediction loss. (Use the pretrained model on MBPP, HumanEval and APPS) Then, they finetune the models with CodeContests dataset (Li  et al., 2022) with multi-token head or next-token head. 
+
+<p align="center">
+    <img src='./global_pattern_table.png' width="800">
+</p>
 
 # Why does it work?
 
