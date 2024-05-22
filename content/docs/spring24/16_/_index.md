@@ -36,7 +36,14 @@ These days, most language models are based on Transformers, and we stack these b
   Instead of passing through all layers, the model can stop early if it is confident enough about its prediction. This saves computation time and resources. Large pre-trained models like BERT can use early exiting ot maintain performance while reducing computational load.
   
 - CoLT5
-
+  <p align="center">
+    <img src=./colt1.png>
+  </p>
+  COLT5’s architecture is almost same as MoD’s with difference is that using Light Attention & Light MLP in COLT5 than residual path in MoD. Light Attention refers to a local attention layer which just calculates attention value between just few nearby tokens. Heavy Attention refers to a global attention layer which calculates some chosen token(chosen by router) calculates attention values with all input tokens. Same as MoD, router mechanism is top-k routing mechanism which performs well (will be discuss in later section). MoD’s policy is to reduce Router into single one and avoid attention & MLP calculation.
+  <p align="center">
+    <img src=./colt2.png>
+  </p>
+  The figure above is the attention map in COLT5. Light colored ones are for light attention(local attention) and bold ones are for heavy attention. In COLT5, they choose 1/16 of query tokens and 1/8 of key value tokens for heavy attention calculation.
 - Mixture of Experts (MoE)
 
   MoE is an model which consists of parallel expert models which is fitted to certain domains. Like MoD, token-level routing decisions are made across the network depth. Difference between MoD is, MoD chooses path to transformer or to residual connection, MoE chooses path to transformer(Expert) or to transformer(Expert) or both.
