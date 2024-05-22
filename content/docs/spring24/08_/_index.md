@@ -192,6 +192,36 @@ In NLP, Using a loss in FLAN-T5(Chung et al,2022)
   - SVDiff (Han et al., 2023)
 - Results)
   <br/>
+<p align="center">
+    <img src=./result1.png width="500">
+</p>
+  It demonstrates better performance compared to other models and shows outstanding results in other tasks as well.
+<p align="center">
+    <img src=./result2.png align="center" width="32%">
+    <img src=./result3.png align="center" width="32%">
+    <img src=./result4.png align="center" width="32%">
+    <figcaption align="center">
+<p align="center">
+When viewing the generated images, it is evident that all specified subjects are accurately represented and maintained.
+
+**On NLP Domain**
+<br/>
+- Setup)
+  <br/>
+  Base Model: Flan-T5 (Chung et al., 2022)
+  <br/>
+  LoRA: Several LoRAs based on FLAN datasets
+  <br/>
+  learning rate: 1e-5
+  <br/>
+  Train 800 iterations for each required composition with batch size 12 and α as 0.5.
+  <br/>
+- Compared Baselines)
+  <br/>
+  -  LoRAhub
+  -  PEMs
+- Results)
+
   
 ## Analyisis and Limitations
 
