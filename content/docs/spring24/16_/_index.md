@@ -106,13 +106,12 @@ We're looking to implement expert-choice routing, but there is one distinct prob
   <p align="center">
     <img src=./Routing_Analysis.png> 
 </p>
-  The first method is introducing an auxiliary loss. By designing an additional binary cross-entropy loss function at the router's output, the value of tokens in the top-{{< katex >}}k{{< /katex >}} is guided to be greater than 0.5, while the value of tokens are not in the top-{{< katex >}}k{{< /katex >}} is guided to be less than 0.5. Through its process, when the token passes through the router, it is considered to be in the top-{{< katex >}}k{{< /katex >}} if its value is higher than 0.5, and it passes through the self-attention and MLP layer. Otherwise, it passses through the residual path. Designing such a function impacts the primary language modeling objective about 0.2-0.3%. We believe this likely refers to the extent to which performance and inference time are affected.
+  Designing an additional binary cross-entropy loss function at the router's output can resolve this issue. By incorporating this, the value of tokens in the top-k is guided to be greater than 0.5, while the value of tokens are not in the top-k is guided to be less than 0.5. As token passes through the router, they are categorized into top-k set if their value exceeds 0.5. Then it passes through the self-attention and subsequent MLP. Conversely, tokens with values below 0.5 passs through the residual connection. Integrating such a function impacts the primary language modeling objective approximately 0.2-0.3%. We believe this likely refers to the extent to which performance and inference time are affected.
     
 - Small auxiliary MLP predictor
+  The second method does not affect the primary language modeling objective at all. The authors design a new MLP layer that functions as a binary classifier to determine wheather a token is in top-k during the training process. This classifer is trained to make these demterminations, and it is used in real-time during the autoregressive sampling process.
 
-  The second method does not affect the primary language modeling objective at all. The authors design a new MLP layer that functions as a binary classifier to determine wheather a token is in top-{{< katex >}}k{{< /katex >}} during the training process. This classifer is trained to make these demterminations, and it is used in real-time during the autoregressive sampling process.
-
-With these methods, authors can sample autoregressively by choosing to route tokens to or around a block based on the router's outer which is not depends on the future tokens. They provide empirical result that auxiliary task achieved 99% accuracy.
+With these methods, authors could sample autoregressively by choosing to route tokens to or around a block based on the router's outer which is not depends on the future tokens. They provide empirical result that auxiliary task achieved 99% accuracy.
 
 ## **Open source MoD** (not official)
 The followuing is an implementation of MoD that supports various LM such as Mixtral, LLama3 and BLOOM. It implements MoD using PyTorch and Hugging Face Transformers library.
