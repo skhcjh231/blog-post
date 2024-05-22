@@ -228,3 +228,8 @@ Kevin Meng, David Bau, Alex Andonian, and Yonatan Belinkov. 2022a. [Locating and
 Kevin Meng, Arnab Sen Sharma, Alex Andonian, Yonatan Belinkov, and David Bau. 2022b. [Massediting memory in a transformer](https://arxiv.org/pdf/2210.07229). arXiv preprint arXiv:2210.07229.
 
 Akshat Gupta, Dev Sajnani, and Gopala Anumanchipalli. 2024. [A unified framework for model editin](https://arxiv.org/pdf/2401.07453). arXiv preprint arXiv:2403.14236.
+
+Figure : https://blog.otoro.net/2017/10/29/visual-evolution-strategies
+Figure : https://sakana.ai/evolutionary-model-merge/
+Figure : https://sakana.ai/evolutionary-model-merge/
+Figure : https://sakana.ai/evolutionary-model-merge/
