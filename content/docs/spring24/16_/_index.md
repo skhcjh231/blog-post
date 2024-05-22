@@ -73,16 +73,15 @@ Using this method ensures that each paths receives k tokens, maintauing balance 
 ### **Expert-choice MoD**
 This method applies expert-choice routing but uses only a single expert. Since only a single path is utilized, if {{< katex >}}k{{< /katex >}} is less than the sequence length, not all tokens need to undergo self-attention and MLP computation.
 
-Routing scheme에는 다음과 같은 고려해야할 사항이 있다:
-- 연산 효율성
-  Auxiliary balancing loss가 필요 없다
-- 구현의 단순함
-  Router의 weight 순서대로 가장 큰 것을 고르면 된다.
-- 명확한 기준
-  top-k 연산이 router weight의 magnitude에 depend하기 때문에 가장 중요한 토큰이 연산되는 것을 보장할 수 있다.
-  토큰에게 주어진 경우가 두 가지이므로(slef-attention + MLP, residual connection) top-k는 명확하게 token을 두 set으로 나눌 수 있다.
+For the following reasons, the authors decided to use Expert-choice routing and utilize only single paths:
+- Efficiency of computation
+  Don't need for an auxiliary balancing loss
+- Simplicity of implementation
+  Simply can choose the tokens with the highest weight in order
+- Clear criteria
+  Can guarantee that the most important token is calculated since the top-{{< katex >}}k{{< /katex >}} tokens are independent on magnitude of router weights
 
-다음과 같은 이유로 저자들은 Expert-choice routing을 사용하기로 하였고, single path만을 사용하기로 하였다.
+  Top-{{< katex >}}k{{< /katex >}} can divide clearly tokens into two mutually sets
 
 ## **Implementation**
 MoD Transformers는 다음과 같은 방식으로 작동한다.
