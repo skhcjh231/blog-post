@@ -222,7 +222,12 @@ When viewing the generated images, it is evident that all specified subjects are
   -  LoRAhub
   -  PEMs
 - Results)
-
+<p align="center">
+    <img src=./result7.png align="center" width="48%">
+    <img src=./result8.png align="center" width="48%">
+    <figcaption align="center">
+<p align="center">
+  It can be observed that MoLE demonstrates better performance in most tasks.
   
 ## Analyisis and Limitations
 
