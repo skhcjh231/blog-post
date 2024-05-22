@@ -1,3 +1,9 @@
+---
+type: docs
+bookToc: True
+weight: 1
+---
+
 # BinaryDM: Towards Accurate Binarization of Diffusion Model
 ## Preliminary
 ### Diffusion
