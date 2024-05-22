@@ -9,7 +9,7 @@ weight: 1
 
 *Posted by Jungwon Lee, Minsang Seok*
 
-## Vision Transformers (ViTs)
+## What are Vision Transformers (ViTs)
 
 Vision Transformers (ViT) has recently emerged as a competitive alternative to Convolutional Neural Networks (CNNs) that are currently state-of-the-art in different image recognition computer vision tasks.
 
