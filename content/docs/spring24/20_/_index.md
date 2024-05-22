@@ -25,7 +25,7 @@ Evolutionary algorithms are typically composed of the following elements:
 
 #### Covariance-Matrix Adaptation Evolution Strategy (CMA-ES)
 CMA-ES is an evolutionary strategy that can dynamically adjust the search range for solutions.
-CMA-ES finds the global optimum effectively even in high-dimensional problems by adaptively updating the covariance matrix of the multivariate normal distribution used for sampling a set of solutions, thereby adjusting the search direction and range. Fig. 1 from this [article](https://blog.otoro.net/2017/10/29/visual-evolution-strategies) shows a simple CMA-ES simulation in a 2D space.
+CMA-ES finds the global optimum effectively even in high-dimensional problems by adaptively updating the covariance matrix of the multivariate normal distribution used for sampling a set of solutions, thereby adjusting the search direction and range. Fig. 1 from [article](https://blog.otoro.net/2017/10/29/visual-evolution-strategies) shows a simple CMA-ES simulation in a 2D space.
 
 <p align="center">
   <img src="./figures/CMA-ES.gif" alt="." width="500" height="300"></br>
@@ -73,10 +73,10 @@ __Model merging__ involves combining multiple pre-trained models into a single m
 </p>
 
 <p align="center">
-  Figure 1. Example of Model Merging.
+  Figure 2. Example of Model Merging.
 </p>
 
-Fig. 1 in ([Xu et al., CVPR 2024](https://arxiv.org/abs/2403.01753)) illustrates an example of model merging. This approach involves pair-wise comparison of weights from two pre-trained models and merging the most similar weights together.
+Fig. 2 from ([Xu et al., CVPR 2024](https://arxiv.org/abs/2403.01753)) illustrates an example of model merging. This approach involves pair-wise comparison of weights from two pre-trained models and merging the most similar weights together.
 
 ### Merging Language Models
 Research on applying model merging to language models is actively progressing, with a large number of capable merged models being developed by the community. As a result, most of the top models on [the Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard) are increasingly dominated by merged models produced by language model enthusiasts.
@@ -107,19 +107,19 @@ __Mergekit__ is a toolkit that provides various popular recipes for merging lang
 The goal of this paper is to develop a unified framework that can automatically generate a merged model from a set of foundation models, ensuring that the merged model outperforms an any single model in the collection. In this paper, an evolutionary algorithm was applied to reduce the complexity of the model merge process. The model merge was applied independently and also sequentially in both parameter space and the data flow space.
  
 ### Merging in the Parameter Space (PS)
-The model merge in the parameter space can be summarized as a weighted average of the model parameters. In this paper, the fitness of each foundation model for a specific task is determined using the task vector of each foundation model, and then merging configuration parameters for combining the parameters of the candidate models are estimated based on those fitness values. Specifically, this paper enhances TIES-Merging with DARE, allowing for more granular, layer-wise (input/output embedding layers or transformer blocks) merging. Fig. from the official [Sakai.ai](https://sakana.ai/evolutionary-model-merge/) website shows an overview of the PS merging.
+The model merge in the parameter space can be summarized as a weighted average of the model parameters. In this paper, the fitness of each foundation model for a specific task is determined using the task vector of each foundation model, and then merging configuration parameters for combining the parameters of the candidate models are estimated based on those fitness values. Specifically, this paper enhances TIES-Merging with DARE, allowing for more granular, layer-wise (input/output embedding layers or transformer blocks) merging. Fig. 3 of [Sakai.ai](https://sakana.ai/evolutionary-model-merge/) shows an overview of the PS merging.
 
 <p align="center">
   <img src="./figures/PS.gif" alt="." width="500" height="300"></br>
-  Figure . Model Merging in the Parameter Space.  
+  Figure 3. Model Merging in the Parameter Space.  
 </p>
 
 ### Merging in the Data Flow Space (DFS)
-In DFS, the proposed framework discovers the best combinations of the layers of different models to form a new model, without changing the model parameters. In other words, the goal of merging in the DFS is to find the optimal inference path across the multiple models. For example, after the i-th layer in model A, a token may be directed to the j-th layer in model B. Fig. from the official [Sakai.ai](https://sakana.ai/evolutionary-model-merge/) website shows an overview of the DFS merging.
+In DFS, the proposed framework discovers the best combinations of the layers of different models to form a new model, without changing the model parameters. In other words, the goal of merging in the DFS is to find the optimal inference path across the multiple models. For example, after the i-th layer in model A, a token may be directed to the j-th layer in model B. Fig. 4 of [Sakai.ai](https://sakana.ai/evolutionary-model-merge/) shows an overview of the DFS merging.
 
 <p align="center">
   <img src="./figures/DFS.gif" alt="." width="500" height="300"></br>
-  Figure . Model Merging in the Data Flow Space.  
+  Figure 4. Model Merging in the Data Flow Space.  
 </p>
 
 Please note that the search space in the data flow space (DFS) is very large. Assuming the total number of layers across all models is $M$ and the lengh of the inference path is $T$, then the size of the search space is $M^T$. This astronomically large search space leads to a challenge for a evolutionary search algorithm, even with a modest configuration of $M=64$ and $T=60$. </br>
@@ -127,11 +127,11 @@ To address this issue, this paper exploits the result of preliminary studies tha
 However, in the above setting, a layer may face an input whose distribution is different from what it is used to (from its original model), leading to unexpected outputs. They just apply scaling the input based on the scaling matrix $W \in \mathbb{R}^{M \times M}$, which is also optimized by the evolutionary search together with the indicator array $\mathcal{I}$.
 
 ### Merging in Both Spaces
-Model merging in the parameter space (PS) and data flow space (DFS) can be applied orthogonally to boost the performance of the merged model. Specifically, in this paper, model merging is first applied in the PS to generate several merged models, which are then put back to the collection of models. The expanded collection is subsequently used for merging in the DFS. Fig. from the official [Sakai.ai](https://sakana.ai/evolutionary-model-merge/) website shows an overview of the overall method.
+Model merging in the parameter space (PS) and data flow space (DFS) can be applied orthogonally to boost the performance of the merged model. Specifically, in this paper, model merging is first applied in the PS to generate several merged models, which are then put back to the collection of models. The expanded collection is subsequently used for merging in the DFS. Fig. 5 of [Sakai.ai](https://sakana.ai/evolutionary-model-merge/) shows an overview of the overall method.
 
 <p align="center">
   <img src="./figures/Overall.gif" alt="." width="500" height="300"></br>
-  Figure . Overall Method.  
+  Figure 5. Overall Method.  
 </p>
 
 ## Experiments
@@ -201,6 +201,27 @@ The experiments in the paper focus on applying the proposed evolutionary model m
 - **Qualitative Analysis**: 
   - The merged VLM demonstrated superior handling of Japanese cultural content, providing more detailed and accurate responses compared to baseline models.
 
+
+## Conclusion
+The evolutionary model merging method, which operates in both parameter space (PS) and data flow space (DFS), challenges the conventional paradigm of expensive model development, offering a more efficient alternative that can produce competitive models without relying on gradient-based training. 
+
+__However__, There are limitations to discuss.
+### Limitation
+- **Contradiction in Automation**: Although the method aims to automate the merging process by removing prior information and heuristic components, it still relies on experimental experience for design and learning methods, which is contradictory to the initial motivation.
+- **Limited Language Scope**: The paper presents experimental results only for Japanese (JP), which is not convincing for demonstrating the method's superiority in non-English languages.
+- **Lack of Comparative Experiments**: There is a lack of experimental comparison with various other methods that use pre-trained models for multiple tasks such as fine-tuning.
+
+### Future Work
+
+<p align="center">
+  <img src="./figures/post dfs merging.png" alt="." width="400" height="300" > 
+</p>
+<p align="center">
+  Figure 6. Evolved Configurations for DFS Merging of models.
+</p>
+
+Fig. 6 shows that the initial inference steps are not used in the model merging process. This indicates that DFS relies heavily on prior knowledge to enhance the performance of the merged model. Furthermore, the experimental results demonstrate that DFS has less impact on performance improvement compared to PS and is not fully optimized. Therefore, research focusing on automating and optimizing DFS could make it a powerful tool for model merging.
+
 ## Qualitative Results
 - ### Case Study of EvoLLM-JP-v1-7B
 <p align="center">
@@ -212,11 +233,6 @@ The experiments in the paper focus on applying the proposed evolutionary model m
 <p align="center">
   <img src="./figures/case study of evovlm-jp.png" alt="." width="500" height="600" > 
 </p>
-
-
-## Conclusion
-### Discussion and limitation
-
 
 ## References
 Yunzhi Yao, Peng Wang, Bozhong Tian, Siyuan Cheng, Zhoubo Li, Shumin Deng, Huajun Chen, Ningyu Zhang. 2023. [Editing large language models: Problems, methods, and opportunities](https://arxiv.org/pdf/2305.13172). arXiv preprint arXiv:2305.13172.
