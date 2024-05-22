@@ -206,15 +206,17 @@ In NLP, Using a loss in FLAN-T5(Chung et al,2022)
 <p align="center">
     <img src=./result1.png width="500">
 </p>
-  It demonstrates better performance compared to other models and shows outstanding results in other tasks as well.
+        It demonstrates better performance compared to other models and shows outstanding results in other tasks as well.
 <p align="center">
     <img src=./result2.png align="center" width="32%">
     <img src=./result3.png align="center" width="32%">
     <img src=./result4.png align="center" width="32%">
     <figcaption align="center">
-<p align="center">
+</p>
   When viewing the generated images, it is evident that all specified subjects are accurately represented and maintained.
-
+  <br/>
+   <br/>
+        
 **On NLP Domain**
 <br/>
 - Setup)
@@ -236,7 +238,7 @@ In NLP, Using a loss in FLAN-T5(Chung et al,2022)
     <img src=./result7.png align="center" width="48%">
     <img src=./result8.png align="center" width="48%">
     <figcaption align="center">
-<p align="center">
+</p>
   It can be observed that MoLE demonstrates better performance in most tasks.
   
 ## Analyisis and Limitations
