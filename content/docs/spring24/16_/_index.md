@@ -164,6 +164,7 @@ In this figure, the top-left graph shows the performance degradation in auto-reg
     <img src=./result4.png>
 </p>
 This figure shows the performance of MoDE and its two proposed structures. The top-left graph demonstrates that the performance of MoDE is better than both the Baseline and MoE. The right side explains the structures of Staged MoDE and Integrated MoDE. In Staged MoDE, two routers are deployed to first for determine the depth(MoD) and second for the expert(MoE). In Integrated MoDE, as the name implies, the MoD Router and MoE Router are integrated to one single Router that can simultaneously decide whether to select an expert or the residual path (depth). The paper mentions that the former is computationally efficient as it can skip self-attention operations through the MoD router, and the latter has better performance as the router mechanism is unified and self-attention operations are always performed.
+
 ## **Conclusion and discussion**
 결론 + 내 생각
 
