@@ -70,7 +70,7 @@ Expert-choice routing is the reverse of token-choice routing. Similar to token-c
 Using this method ensures that each paths receives k tokens, maintauing balance among the paths. However, some tokens may not be selected beacuse there might be common tokens that multiple paths prefer.
 
 ### **Expert-choice MoD**
-This method applies expert-choice routing but uses only a single expert. Since only a single path is utilized, if $k$ is less than the sequence length, not all tokens need to undergo self-attention and MLP computation.
+This method applies expert-choice routing but uses only a single expert. Since only a single path is utilized, if {{< katex >}}k{{< /katex >}} is less than the sequence length, not all tokens need to undergo self-attention and MLP computation.
 
 Routing scheme에는 다음과 같은 고려해야할 사항이 있다:
 - 연산 효율성
@@ -106,7 +106,7 @@ The issue with autoregressively sampling is that it lacks information about futu
     
 - Small auxiliary MLP predictor
 
-  The second method does not affect the primary language modeling objective at all. The authors design a new MLP layer that functions as a binary classifier to determine wheather a token is in top-$k$ during the training process. This classifer is trained to make these demterminations, and it is used in real-time during the autoregressive sampling process.
+  The second method does not affect the primary language modeling objective at all. The authors design a new MLP layer that functions as a binary classifier to determine wheather a token is in top-{{< katex >}}k{{< /katex >}} during the training process. This classifer is trained to make these demterminations, and it is used in real-time during the autoregressive sampling process.
 
 With these methods, authors can sample autoregressively by choosing to route tokens to or around a block based on the router's outer which is not depends on the future tokens. They provide empirical result that auxiliary task achieved 99% accuracy.
 
