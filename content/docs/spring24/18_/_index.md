@@ -80,6 +80,13 @@ GridAttn(\{x_{ij}\}) = x_{avg} + Attn(x_{avg}, \{x_{ij}\}, \{x_{ij}\})
 
 In our opinion, Grid Attention appears to add an inductive bias similar to Convolution. It appears that Tokens in adjacent locations in the actual image should be contained within the same Grid. The order of grid patching may have an effect.
 
+### Effect of Adaptive Token Merger (ATM) Module
+<p align="center">
+  <img src="./result_ATM.png" alt="." width="300" height="100" > 
+</p>
+
+
+
 ### 2. Fuzzy Positional Encoding (FPE)
  Existing ViT Models generally use learnable positional encoding or sin-cos positional encoding. However, they do not have the ability to handle various input resolutions because these methods are sensitive to input resolution. In response to this, ResFormer attempted to solve this problem through convolution-based positional embedding.
 
@@ -97,6 +104,13 @@ In our opinion, Grid Attention appears to add an inductive bias similar to Convo
 
  In case of inference, precise positional encoding is used instead of FPE. When there is a change in input resolution, interpolation is performed on learnable positional embedding. This has strong positional resilience because it was somehow seen and used in the FPE used in the training phase.
  
+
+### Effect of Fuzzy Positional Encoding (FPE)
+
+<p align="center">
+  <img src="./result_FPE.png" alt="." width="300" height="200" > 
+</p>
+
 
 ## Experiments
 
@@ -118,16 +132,4 @@ ViTAR is trained on ImageNet-1K form scratch and it demonstrates excellent class
 <p align="center">
   <img src="./result_object_detection.png" alt="." width="300" height="150" > 
 </p>
-
-### Effect of Adaptive Token Merger (ATM) Module
-<p align="center">
-  <img src="./result_ATM.png" alt="." width="300" height="100" > 
-</p>
-
-### Effect of Fuzzy Positional Encoding (FPE)
-
-<p align="center">
-  <img src="./result_FPE.png" alt="." width="300" height="200" > 
-</p>
-
 
