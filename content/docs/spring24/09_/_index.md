@@ -141,7 +141,17 @@ The effectiveness of MobileNetV4 as backbone networks are tested on the COCO obj
 - Additionally, using the latest distillation techniques, it demonstrates cutting-edge performance in mobile computer vision by achieving 87% ImageNet-1K accuracy with a latency of 3.8ms on the Pixel 8 EdgeTPU.
 - The paper also presents a theoretical framework and analysis for understanding the model's universality across heterogeneous devices, providing guidance for future design.
 
-  ## References
+## Perspectives, Discussions and Future Research Directions
+
+MobileNetV4 was desined with awareness to its hardware performance, especially mobile devices such as mobile CPUs, GPUs, and DSPs. It utilzied the NAS technique to design its UIB and distillation techniques to improve performance. Also MQA was used to make the model to have transformer-like operations and improve the performance even more. It seems that the authors try to involve as much SOTA techniques into this research to improve the neural net's performance in the mobile environment. Since this paper was written recently, it is likely to be the SOTA convolution-based neural net for mobile platforms. 
+
+The novelty of this works seems to be the neural architecture search involving the UIB, which involves the expansion and projection blocks with inverted residuals previously proposed in MobileNetV2. Since the performance is proved over various mobile platforms, MobileNetV4 should be an attractive solution for industry to use in mobile systems. However, it seems that this work uses previosly proposed methods, techniques and modules into on big experiment to produce the optimal MobileNet model. The optimization was performed in a logical and practical manner, but it would have been helpful if the authors could have provided analysis on their finalized MobileNetV4, on why the NAS has designed the UIB in that way, and how features are extracted in each layers. 
+
+We are aware of the fact that many labs in academia are designing mobile-level transformers like MobileViT or FastViT. In this paper, the results show that these transformer-based models have similiar performance with MobileNetV4, but with a much larger inference latency. The parameter numbers are similiar, and the number of MAC operations are not so differnet. We wonder whether it is practical to develop mobile-level transformers (in the field of vision) because the authors of this papers showed that MobileNetV4 has produced SOTA performance. Although MQA blocks were used, it seems that it is beneficial to take the bottleneck modules as the main feature extractors. 
+
+Besides MobielNetV4, many CNNs try to incorporate mutli-head attention layers and transformers try to take convolutions into their model. The convolutions provide local feature relationships while the attention modules provide global features in the case of computer vision. Combining these two characteristics improve the performance for neural networks universally. In the future, it should be practical to design NPUs and domain-specific accelerators that provide fast and efficient computation for both convolutions and attentions at the same time. 
+
+## References
 MobileNetV4 Implementation: [[Link](https://github.com/scalable-model-editing/unified-model-editing).](https://github.com/jiaowoguanren0615/MobileNetV4/tree/main)
 
 Qin, Danfeng and Leichner, Chas and Delakis, Manolis and Fornoni, Marco and Luo, Shixin and Yang, Fan and Wang, Weijun and Banbury, Colby and Ye, Chengxi and Akin, Berkin and others. 2024. [[Editing large language models: Problems, methods, and opportunities](https://arxiv.org/pdf/2305.13172)](https://arxiv.org/pdf/2404.10518). arXiv preprint arXiv:2404.10518.
