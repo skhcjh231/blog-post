@@ -6,7 +6,8 @@ weight: 1
 
 # **ViTAR: Vision Transformer with Any Resolution**
 *Authors: Qihang Fan, Quanzeng You, Xiaotian Han, Yongfei Liu, Yunzhe Tao, Huaibo Huang, Ran He, Hongxia Yang*
-*Posted by Jungwon Lee, Minsang Seok"
+
+*Posted by Jungwon Lee, Minsang Seok*
 
 ## Vision Transformers (ViTs)
 
@@ -102,7 +103,7 @@ GridAttn(\{x_{ij}\}) = x_{avg} + Attn(x_{avg}, \{x_{ij}\}, \{x_{ij}\})
 ----------
 
 <p align="center">
-  <img src="./result_ATM.png" alt="." width="500" height="200" > 
+  <img src="./result_ATM.png" alt="." width="600" height="250" > 
 </p>
 
 For Ablation study, ViTAR-S Model is used to compare with AvgPool which is another token fusion method. The results of the comparison demonstrate that ATM significantly improves the model's performance and resolution adaptability. Specifically, at a resolution of 4032, our proposed ATM achieves a 7.6\% increase in accuracy compared with the baseline.
@@ -130,7 +131,7 @@ For Ablation study, ViTAR-S Model is used to compare with AvgPool which is anoth
 
  To compare the impact of different positional encodings on the model’s resolution generalization ability, several positional encoding methods were used. This includes commonly used sin-cos absolute position encoding (APE), conditional position encoding (CPE), global-local positional encoding (GLPE) in ResFormer, Relative Positional Bias (RPB) in Swin, and FPE. Note that only APE and FPE are compatible with the MAE framework.ViTAR-S is used for experiments without MAE, and ViTAR-M is used for experiments with MAE. As a result, FPE exhibits a significantly pronounced advantage in resolution generalization capability. Additionally, under the MAE self-supervised learning framework, FPE also demonstrates superior performance relative to APE.
 <p align="center">
-  <img src="./result_FPE.png" alt="." width="300" height="200" > 
+  <img src="./result_FPE.png" alt="." width="400" height="300" > 
 </p>
 
 ----------
@@ -147,14 +148,14 @@ For Ablation study, ViTAR-S Model is used to compare with AvgPool which is anoth
 ViTAR is trained on ImageNet-1K form scratch and it demonstrates excellent classification accuracy across a considerable range of resolutions. Especially, when the resolution of the input image exceeds 2240, ViTAR is capable of inference at lower computational cost. In contrast, traditional ViT architectures (DeiT and ResFormer) cannot perform high resolution inference due to computational resource limitations.
 
 <p align="center">
-  <img src="./result_image_classification.png" alt="." width="500" height="500" > 
+  <img src="./result_image_classification.png" alt="." width="600" height="600" > 
 </p>
 
 ### Object Detection
 For object detection, COCO dataset is used ATM iterates only once because it does not utilize the multi-resolution training strategy in this experiment. If $\frac{H}{G_th}$ and $\frac{W}{G_tw}$ in ATM are fixed to 1, the results indicate that ViTAR achieves performance in both object detection and instance segmentation. And if setting $\frac{H}{G_th}$ and $\frac{W}{G_tw}$ to 2 in ATM, ATM module reduces approximately 50\% of the computational cost while maintaining high precision in dense predictions, demonstrating its effectiveness.
 
 <p align="center">
-  <img src="./result_object_detection.png" alt="." width="300" height="150" > 
+  <img src="./result_object_detection.png" alt="." width="800" height="350" > 
 </p>
 
 
