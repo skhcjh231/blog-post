@@ -203,7 +203,7 @@ In NLP, Using a loss in FLAN-T5(Chung et al,2022)
     <img src=./result4.png align="center" width="32%">
     <figcaption align="center">
 <p align="center">
-When viewing the generated images, it is evident that all specified subjects are accurately represented and maintained.
+  When viewing the generated images, it is evident that all specified subjects are accurately represented and maintained.
 
 **On NLP Domain**
 <br/>
