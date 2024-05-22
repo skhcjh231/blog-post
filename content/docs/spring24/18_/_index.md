@@ -156,3 +156,15 @@ For object detection, COCO dataset is used ATM iterates only once because it doe
   <img src="./result_object_detection.png" alt="." width="300" height="150" > 
 </p>
 
+
+## Discussion
+
+### Applicability to Diffusion Models
+ It is currently challenging to generate images of various resolutions with generative models like Diffusion Models. Additionally, many diffusion models with ViT structures have been proposed recently (e.g. DiT, PixArt-α, Sora). Can the proposed method be applied to Diffusion Models as well? However, one consideration for applying it to diffusion models is how to effectively upscale the reduced size obtained through Grid Attention to ensure that the input and output sizes are the same.
+
+### Applicability to Large Language Models (LLMs)
+In LLMs, when receiving long context as input, positional embeddings are sometimes added using interpolation like this case. Would applying Fuzzy Positional Embedding (FPE) help handle long context inputs better? Or, just like training a network on low-resolution images to perform well on high-resolution images, can a network trained on short context in LLM maintain good performance on long context input?
+
+### Can Grid Attention Replace Convolution?
+The operation of Grid Attention is quite similar to the process performed by kernels in Convolution when calculating each grid. However, ATM maintains parameter efficiency by sharing weights. Would applying Grid Attention to existing CNN structures (e.g., VGG, ResNet) be more efficient?
+
