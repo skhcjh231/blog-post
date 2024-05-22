@@ -3,9 +3,6 @@ type: docs
 bookToc: True
 weight: 1
 ---
-Test: $\alpha$
-
-
 # Larimar: Large Language Models with Episodic Memory Control
 *Posted by: Sunggyu Jang, Hyeonwoo Park*
 
