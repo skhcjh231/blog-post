@@ -116,13 +116,13 @@ Compare with others:
 Kangaroo's performance surpasses other speculative decoding methods, such as Medusa and Lookahead, particularly in terms of end-to-end speedup and token acceptance rates (see Fig.2 in introduction). The double early-exit mechanism plays a crucial role in maintaining this balance by efficiently handling easier tokens and exiting early when confidence is lower than predefined threshold, thus minimizing latency.
 
 ### Limitations and future work:
-1. **Enhanced Confidence Metrics**: 
-    1. Although Kangaroo introduces a confidence-based mechanism, it retains the original issue of discarding generated tokens that do not meet the confidence threshold. 
-    2. Currently, confidence is measured only on the top-1 prediction. Future work could explore alternative metrics such as entropy or other measures to provide a more robust assessment of token validity.
-2. **Alternative Networks for Verification**: 
-    1. The use of an adapter network in Kangaroo shows promising results. However, experimenting with different network architectures could yield even better performance. Future research could investigate various types of networks to replace the adapter, potentially improving both the efficiency and accuracy of the speculative decoding process.
-3. **Expanding Beyond Self-Speculative Decoding**: 
-    1. While Kangaroo leverages the target LLM for self-speculative decoding, exploring independent drafting models from the same series might offer additional insights. Balancing the computational trade-offs between these approaches could lead to more optimized frameworks.
-4. **Adaptive Early-Exit Mechanisms**: 
-    1. The current implementation of early exits in Kangaroo could be refined by dynamically adjusting the confidence thresholds based on the context or specific tasks. This adaptation could further reduce unnecessary computations and improve the overall efficiency of the model.
+- **Enhanced Confidence Metrics**: 
+    - Although Kangaroo introduces a confidence-based mechanism, it retains the original issue of discarding generated tokens that do not meet the confidence threshold. 
+    - Currently, confidence is measured only on the top-1 prediction. Future work could explore alternative metrics such as entropy or other measures to provide a more robust assessment of token validity.
+- **Alternative Networks for Verification**: 
+    - The use of an adapter network in Kangaroo shows promising results. However, experimenting with different network architectures could yield even better performance. Future research could investigate various types of networks to replace the adapter, potentially improving both the efficiency and accuracy of the speculative decoding process.
+- **Expanding Beyond Self-Speculative Decoding**: 
+    - While Kangaroo leverages the target LLM for self-speculative decoding, exploring independent drafting models from the same series might offer additional insights. Balancing the computational trade-offs between these approaches could lead to more optimized frameworks.
+- **Adaptive Early-Exit Mechanisms**: 
+    - The current implementation of early exits in Kangaroo could be refined by dynamically adjusting the confidence thresholds based on the context or specific tasks. This adaptation could further reduce unnecessary computations and improve the overall efficiency of the model.
 
