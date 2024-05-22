@@ -13,7 +13,7 @@ In recent years, there has been a growing interest in image-and-language represe
 
 The study explores the impact of different training data sizes, showing that smaller, high-quality datasets can outperform larger, lower-quality ones. This is critical for practical applications where data quality and computational limits are significant considerations. The research also compares various architectures, highlighting that larger vision transformers (ViTs) do not always guarantee better performance and that CNNs may be more effective when data is limited. Additionally, the paper evaluates different training strategies, including SLIP, FLIP, CLIP, and CLIP+Data Augmentation, revealing that data augmentation can enhance performance without significant computational costs. These findings provide valuable insights for efficiently training and deploying CLIP models, making advanced image-and-language learning more accessible and affordable.
 
-# What is CLIP?
+## What is CLIP?
 [CLIP](https://arxiv.org/abs/2103.00020) effectively merges the capabilities of natural language processing (NLP) and computer vision. By learning from images and their textual descriptions, CLIP unifies text and image understanding, allowing it to perform various tasks without task-specific training.
 
 ## Related Works
