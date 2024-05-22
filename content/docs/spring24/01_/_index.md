@@ -94,7 +94,7 @@ __S__ represents the overall performance. It combines aspect of edit success, ge
 
 ### What is the Optimal Layer for Model Editing?
 
-Investigating the effectiveness of hidden states in LLMS for recalling facts using causal tracing showed thjat subject’s last token within the feed-forward networks at intermediate layer plays a significant role. [(Meng et al., 2022b)](https://arxiv.org/pdf/2210.07229)
+Investigating the effectiveness of hidden states in LLMS for recalling facts using causal tracing showed that subject’s last token within the feed-forward networks at intermediate layer plays a significant role. [(Meng et al., 2022b)](https://arxiv.org/pdf/2210.07229)
 
 **Motivation** : Later work showed that layers deemed important during causal tracing did not always translate to model editing performance. Therefore, this work focused on finding the optimal layer for model editing layer empirically.
 
