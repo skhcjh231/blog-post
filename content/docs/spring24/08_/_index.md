@@ -159,6 +159,37 @@ In NLP, Using a loss in FLAN-T5(Chung et al,2022)
 
 ## Results
 
+**On V&L Domain**
+<br/>
+- Setup)
+  <br/>
+  Base generator: DeamBooth(Ruiz et al., 2023) (built on Stable Diffusion V2.1)
+  <br/>
+  LoRA: combination of three separately trained LoRAs
+  <br/>
+  Image resolution: 512x512
+  <br/>
+  learning rate: 1e-5
+  <br/>
+  DDPM sampler (Ho et al., 2020) with 50 steps in each case
+  <br/>
+  Train 400 iterations for each required composition with batch size 2 and α as 0.5
+  <br/>
+- Metrics)
+  <br/>
+  Image alignment: Evaluate the visual similarity of generated images with individual composed concepts in the CLIP image feature space.
+  <br/>
+  Text alignment: Evaluate the text-image similarity of generated images with given text prompts in the CLIP feature space.
+  <br/>
+  For each composition, calculated the average scores among 200 generated images per prompt using 5 text prompts.
+  <br/>
+- Compared Baselines)
+  <br/>
+  - Normalized linear arithmetic composition
+  - SVDiff (Han et al., 2023)
+- Results)
+  <br/>
+  
 ## Analyisis and Limitations
 
 
