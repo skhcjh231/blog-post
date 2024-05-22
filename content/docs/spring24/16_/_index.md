@@ -30,8 +30,7 @@ These days, most language models are based on Transformers, and we stack these b
 
 ## **Conditional computation for Transformers**
 - Early exiting
-
-  Early Exit method is a method when the model decides to end computation on a given token, allowing it skips the remaining layers. Difference between MoD is, MoD can choose whether skip middle layer or not, but Early Exit method can't.
+  Instead of passing through all layers, the model can stop early if it is confident enough about its prediction. This saves computation time and resources. Large pre-trained models like BERT can use early exiting ot maintain performance while reducing computational load.
   
 - CoLT5
 
