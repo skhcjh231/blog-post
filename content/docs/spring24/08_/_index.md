@@ -12,6 +12,9 @@ LoRA is a methodology for effective fine-tuning large-scale pretrained models. L
 
 2. **Reference tuning-based composition is limited in adaptability and incurs substantial computational costs, as it necessitates retraining a large model.**
 
+So, we can ask following question:
+
+_How can multiple trained LoRAs be composed dynamically and efficiently, while preserving all their individual characteristics?_
 
 
 Mixture of LoRA Experts (MoLE) presents a new method for achieving the optimal combination of LoRAs for specific tasks. MoLE considers each LoRA as an expert and determines the weights applied to each LoRA at each layer through a gate function.
