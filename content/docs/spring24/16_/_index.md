@@ -42,11 +42,11 @@ These days, most language models are based on Transformers, and we stack these b
   MoE is an model which consists of parallel expert models which is fitted to certain domains. Like MoD, token-level routing decisions are made across the network depth. Difference between MoD is, MoD chooses path to transformer or to residual connection, MoE chooses path to transformer(Expert) or to transformer(Expert) or both.
   
 ## **Overview to Mixture-of-Depths (MoD)**
-Self-attention + MLP, Residual Connection 중 고른다는 내용. MoE는 넓이를 줄였지만, MoD는 깊이에 해당한다는 내용.
-
+Our goal is to reduce the overall FLOPs by focusing on essential tokens and relatively fewer on non-essential tokens. The router is responsible for determining the path each token should take. A trained router evaluates whether a token is necessary. If the token is deemed essential, it passes through self-attention and the subsequent MLP (requiring FLOPs). Otherwise, it bypasses these stages via a residual connection (saving FLOPs).
 <p align="center">
     <img src=./Mixture-of-Depths.png> 
 </p>
+ Above image depicts the path of a MoD (Model of Decoding) with an input sequence length of 64. The purple color shows the computation performed by that layer and the orange color shows the path taken by the residual connection.
 
 MoE is an model which consists of parallel expert models which is fitted to certain domains.
 Like MoD, token-level routing decisions are made across the network depth.
