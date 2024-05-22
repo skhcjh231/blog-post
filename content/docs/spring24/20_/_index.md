@@ -11,11 +11,7 @@ weight: 1
 ## Background
 ### Model Merging
 ### Merging Language Models
-### Evolutionary Neural Architecture Search
-#### Neural Architecture Search (NAS)
-For successful deep learning, both the optimal architecture and the optimal weights associated with that architecture are necessary. However, unlike weights, the architecture cannot be updated through gradient-based methods. Neural Architecture Search (NAS) is an attempt to automate designing the network architecture, which has traditionally been done manually. The goal of NAS is to find the architecture with the smallest loss from the set of all possible architectures, denoted as $\mathcal{A}$.
-
-#### Evolutionary Algorithm
+### Evolutionary Algorithm
 The evolutionary algorithm is a type of black box optimization that can achieve the desired optimization without directly computing the gradient ▽f(x) or the Hessian ▽²f(x) of the function.
 Evolutionary algorithms are typically composed of the following elements:
 - **Population**: A set of possible solutions to the problem, where each individual represents a candidate solution.
@@ -23,16 +19,23 @@ Evolutionary algorithms are typically composed of the following elements:
 - **Selection**: The process of selecting individuals to be passed on to the next generation. Individuals with higher fitness are more likely to be selected.
 - **Termination Condition**: The criteria for ending the algorithm. This is usually based on a maximum number of generations, achieving a target fitness level, time limits, or other benchmarks.
 
-##### Simple Evolutionary Strategy (Simple ES)
+#### Simple Evolutionary Strategy (Simple ES)
 1. Sample a set of solutions from a Normal distribution with mean 𝜇 and a fixed standard deviation 𝜎.
 2. Evaluate the fitness of each solution using the fitness function.
 3. Set 𝜇 to the best solution in the population, and sample the next generation of solutions around this new mean.
 4. Repeat the above processes.
 
-##### Covariance-Matrix Adaptation Evolution Strategy (CMA-ES)
+#### Covariance-Matrix Adaptation Evolution Strategy (CMA-ES)
 CMA-ES is an evolutionary strategy that can dynamically adjust the search range for solutions.
-CMA-ES finds the global optimum effectively even in high-dimensional problems by adaptively updating the covariance matrix of the multivariate normal distribution used for sampling a set of solutions, thereby adjusting the search direction and range.
+CMA-ES finds the global optimum effectively even in high-dimensional problems by adaptively updating the covariance matrix of the multivariate normal distribution used for sampling a set of solutions, thereby adjusting the search direction and range. Fig. 1 from this [website](https://blog.otoro.net/2017/10/29/visual-evolution-strategies) shows a simple CMA-ES simulation in a 2D space.
 
+<p align="center">
+  <img src="./CMA-ES.gif" alt="." width="500" height="300" > 
+</p>
+
+<p align="center">
+  Figure 1. A 2D simulation of CMA-ES algorithm.
+</p>
 
 ## Contributions
 
