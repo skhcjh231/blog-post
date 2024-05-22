@@ -96,7 +96,7 @@ Binarization of weights makes the training hard and hiders convergence. Since fu
 
 Authors propose Low-rank Representation Mimicking(LRM) to handle these problems. LRM utilize principal component analysis(PCA) to project representations to low-rank space. Then representaiton aligning is done in low-rank space by minimizing mean squared error (MSE)  
 
-First, covariance matrix of ith module {{< katex >}}C_i{{< /katex >}} is computed with representation of full-precision diffusion model, {{< katex >}}\hat{\epsilon}_{\theta_{i}}^{FP}(x_t, t) \in \mathbb{R}^{h\times w\times c}{{< /katex >}} . Then eigenvector matrix {{< katex >}}E_i{{< /katex >}} can be obtained and first {{< katex >}}\lfloor\frac{c}{k}\rceil{{< /katex >}} column eighenvectors are used to compute projected representations, {{< katex >}}\mathcal{R}_i^{FP}{{< /katex >}} and {{< katex >}}\mathcal{R}_i^{bi}{{< /katex >}}.  
+First, covariance matrix of {{< katex >}}i{{< /katex >}}-th module {{< katex >}}C_i{{< /katex >}} is computed with representation of full-precision diffusion model, {{< katex >}}\hat{\epsilon}_{\theta_{i}}^{FP}(x_t, t) \in \mathbb{R}^{h\times w\times c}{{< /katex >}} . Then eigenvector matrix {{< katex >}}E_i{{< /katex >}} can be obtained and first {{< katex >}}\lfloor\frac{c}{k}\rceil{{< /katex >}} column eighenvectors are used to compute projected representations, {{< katex >}}\mathcal{R}_i^{FP}{{< /katex >}} and {{< katex >}}\mathcal{R}_i^{bi}{{< /katex >}}.  
 <p align="center">
   {{< katex >}}
     C_{i} = \frac{1}{{(h \times w)}^2}\hat{\epsilon}_{\theta_{i}}^{FP}(x_t, t) \hat{\epsilon}_{\theta_{i}}^{FP^T}(x_t, t), \\
@@ -114,7 +114,7 @@ LRM loss and total loss can be expressed as follows:
 </p>  
 where {{< katex >}}M{{< /katex >}} denotes the number of timestep embedding modules and {{< katex >}}\lambda{{< /katex >}} is a hyperparmater coefficient to balance loss temrs.
 
-Since computation of transformation matrix {{< katex >}}E_i{{< /katex >}} is expensive, it is computed with the first batch of input and fixed during entire traning. As shown in the figure below, LRM stabilize training process, accelerating convergence.  
+Since computation of transformation matrix {{< katex >}}E_i{{< /katex >}} is expensive, it is computed with the first batch of input and fixed during entire traning. As shown in the figure below, LRM stabilizes training process, accelerating convergence.  
 <p align="center">
   <img src="./lrm.png" alt="." width="500" height="300" > 
 </p>
