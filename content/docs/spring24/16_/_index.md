@@ -30,6 +30,7 @@ These days, most language models are based on Transformers, and we stack these b
 
 ## **Conditional computation for Transformers**
 - Early exiting
+  
   Instead of passing through all layers, the model can stop early if it is confident enough about its prediction. This saves computation time and resources. Large pre-trained models like BERT can use early exiting ot maintain performance while reducing computational load.
   
 - CoLT5
