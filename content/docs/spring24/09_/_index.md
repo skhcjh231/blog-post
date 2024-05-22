@@ -6,12 +6,22 @@ weight: 1
 
 ## MobileNetV4 - Universal Models for the Mobile Ecosystem
 
+
 ## Main Contributions
 1. Universal Inverted Bottleneck (UIB) seach block - Unifies the Inverted Bottleneck (IB), ConvNext, Feed Forward Netowork (FFN), and Extra Depthwise variant
 2. Mobile MQA - Attention block tailored for mobile accelerators
 3. NAS technique to improve performance
 4. Achieves Pareto optimal acorss various devices such as CPUs, DSPs, GPUs, and TPUs
-5. Novel distillation technique to boost accuracy
+5. Novel distillation technique to boost accuracy. Achieves 87% accuracy on ImageNet-1k and 39x smaller model size
+
+## Hardware-Independent Pareto Efficiency
+<p align="center">
+    <img src='./Fig2.PNG' width="900">
+</p>
+    
+<p align="center">
+    Fig. 2. Ridge Points and Latency/Accuracy Tradeoffs
+</p>
 
 
 
