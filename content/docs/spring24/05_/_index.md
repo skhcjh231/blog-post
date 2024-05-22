@@ -12,9 +12,9 @@ Written by Nayoung Kwon and Jiwoong Im
 ## Introduction
 
 The growing demand for rapid and efficient inference in large language models (LLMs) faces a significant bottleneck
-* Decoding K tokens requires K sequential runs of the model. 
+* Decoding {{< katex >}}K{{< \katex >}} tokens requires {{< katex >}}K{{< \katex >}} sequential runs of the model. 
 
-⇒ LLM inference is slow
+⇒ LLM inference is slow.
 
 To address this issue, speculative decoding has been introduced as a promising approach to accelerate LLM inference without altering the output quality. This method leverages two key observations about LLM inference: 
 * Many tokens can be predicted with minimal computational overhead. 
@@ -38,6 +38,7 @@ Speculative decoding is an apporach to accelerate LLM inference.
 <p align="center">
     Fig. 1 Contrast to autoregressive decoding and speculative decoding
 </p>
+
 **Left model**: The target LLM generates K tokens in K forward steps, which is a "serial" process.
 
 **Right model**: The drafter generates tokens in parallel. Each generated token is then verified with a verification step.
