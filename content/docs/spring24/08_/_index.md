@@ -6,6 +6,9 @@ weight: 1
 
 # MIXTURE OF LORA EXPERTS
 
+LoRA is a methodology for effective fine-tuning large-scale pretrained models. 
+
+
 <p align="center">
     <img src="./mole.png">
     <br>
