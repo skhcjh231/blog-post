@@ -4,6 +4,71 @@ bookToc: True
 weight: 1
 ---
 
+#### 1. Introduction
+
+The significant advances in deep learning over the past decade have largely relied on the development of algorithms that efficiently leverage available hardware. As the size of state-of-the-art models increases, hardware efficiency becomes crucial for reducing training costs, which have grown substantially in terms of money, time, and environmental impact. However, with the end of Moore's Law and Dennard scaling, increased transistor density alone cannot provide a straightforward path to greater efficiency. The use of low-precision number formats is a promising alternative. These formats offer substantial gains in compute, memory, and bandwidth efficiency, making them valuable in the context of modern deep learning.
+
+---
+
+#### 2. Background
+
+##### 2.1 Floating-Point Formats for Deep Learning
+
+Traditionally, floating-point numbers are defined by the IEEE 754 standard, which specifies the number of exponent bits (E) and mantissa bits (M). Common floating-point formats used in machine learning include FP32, TF32, BFLOAT16, and FP16. Recently, two types of FP8 formats (E4 and E5) have been proposed.
+
+**Suggested Image:** "Table A.1. Common floating point formats for deep learning."
+
+##### 2.2 Advantages and Disadvantages of Low-Precision Training
+
+- **Disadvantages:** FP16 and BFLOAT16 offer different trade-offs. FP16 has higher precision, but BFLOAT16 has a wider range. FP8 formats reduce both range and precision. The use of low-precision formats can introduce quantization noise and other issues.
+- **Advantages:** Using low-precision formats can significantly improve efficiency in terms of memory usage, bandwidth usage, compute performance, and cross-device communication costs.
+
+**Suggested Image:** "Figure 2. The signal to noise ratio (SNR) of samples from a normal distribution, quantised in FP16 and FP8, as a function of the distribution’s scale." 【3†source】
+
+##### 2.3 Techniques for Low-Precision Training
+
+- **Mixed Precision:** This technique uses multiple number formats with different bit-widths, placing most activations, weights, and gradients in FP16 without loss of accuracy.
+- **Loss Scaling:** To overcome the limited range of FP16 and FP8, the loss can be multiplied by a scalar to increase the scale of gradients. This method requires empirically finding a suitable loss scale:
+
+  $$ \text{scaled\_loss} = \text{loss} \times \text{scale\_factor} $$
+
+  $$ \text{scaled\_gradients} = \text{gradients} \times \text{scale\_factor} $$
+
+- **Automatic Loss Scaling:** This dynamically adjusts the loss scale during training, removing the need to sweep for an initial loss scale.
+- **Per-Tensor Scaling:** This system locally rescales based on runtime statistics to address scaling difficulties in FP8 training.
+
+**Suggested Image:** "Table 1. A comparison of techniques for low precision training."
+
+---
+
+#### 3. Analysis
+
+##### Ideal Scaling
+
+The ability to predict the scale of tensors at the start of training is crucial. We argue that unit variance ($\sigma = 1$) is an optimal balance among various competing factors. This approach helps concentrate values within the representable range, reducing clipping errors during training.
+
+- In floating-point formats, values are represented as:
+
+  $$ \text{value} = (-1)^{b_{\text{sign}}} \times 2^{\text{exponent}} \times \left(1 + \frac{b_{\text{mantissa}}}{2^M}\right) $$
+
+  where $b_{\text{sign}}$, $b_{\text{exponent}}$, and $b_{\text{mantissa}}$ represent the sign, exponent, and mantissa bits, respectively.
+
+**Suggested Image:** "Figure 1. Above: Unit scaling of an FFN layer. We multiply each tensor by a fixed scalar to achieve consistent scale, no longer requiring a loss scale to control the scale of gradients. Below: A histogram of exponent values at initialisation for the above FFN."
+
+##### Predictable Scaling
+
+If we can predict the scale of tensors in a deep learning model, we can effectively address clipping errors. At initialization, parameters are drawn from known distributions, allowing us to analytically or empirically derive the scale of each tensor.
+
+- For example, by considering the scaling factors for each operation in the neural network, we can perform scaled operations:
+
+  $$ y = \alpha \cdot f(x) $$
+
+  where $\alpha$ is the scaling factor and $f$ represents the operation.
+
+**Suggested Image:** "Figure 3. PyTorch examples. Left: Scaled projection op, which implicitly constrains $\beta_X$. Center vs Right: Unscaled vs scaled Transformer FFN layers. Changes: a) initialise weights with unit scale, b) replace unscaled with scaled ops, c) replace residual add with interpolation according to $\tau$, moving the backward pass scale."
+
+---
+
 ## Unit Scaling
 
 Unit scaling is proposed to address the limitations of existing methods for managing scale in typical models. A model is considered unit-scaled if its activations, weights, and gradients have approximately unit variance at initialization. This is achieved by inserting scaling factors into the forward and backward passes. Unlike loss scaling, which requires an empirically determined hyperparameter or an adaptive algorithm, unit scaling determines these scales based on a set of rules for each operation, approximately preserving the variance of the inputs. This leads to global unit scaling throughout the model, ensuring tensor values are centered within the exponent range at initialization, providing headroom during training to avoid going out of range.
