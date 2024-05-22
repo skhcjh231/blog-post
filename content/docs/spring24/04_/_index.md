@@ -52,6 +52,10 @@ For speed up in inference time, authors utilize self-speculative decoding (Stern
 
 To show using multi-token prediction loss helps to capture global pattern than using next-token prediction loss, they include experiment using extreme case of byte-levle tokenization. Notably, as shown in the table 1, multi-token prediction (8-byte prediction) models significantly solve more problem in the case of trained on small number of data.
 
+<p align="center">
+    <img src='./global_pattern_table.png' width="800">
+</p>
+
 
 ### Coding Benchmarks
 
