@@ -6,6 +6,7 @@ weight: 1
 
 # Megalodon: Efficient LLM Pretraining and Inference with Unlimited Context Length
 Authors: Xuezhe Ma, Xiaomeng Yang, Wenhan Xiong, Beidi Chen, Lili Yu, Hao Zhang, Jonathan May, Luke Zettlemoyer, Omer Levy, Chunting Zhou
+
 Reviewer: Hyunho Kook
 
 ![Megalodon](./Megalodon.jpg)
@@ -32,13 +33,22 @@ By employing these methods, the authors have created a transformer architecture 
 
 ## 4. Experiments
 
-## 5. Related Works
-Mamba
+## 5. Comparison with related works
+
+Here is the cleaned-up English translation:
+
+There have been several similar related studies:
+
+1. Efficient Attention: FlashAttention optimized the GPU computation of Attention, showing advantages in speed without changing the existing mechanism. Additionally, there have been attempts to increase the Context Length by converting the Attention Mechanism to a linear one or compressing the KV cache.
+
+2. Structured State Space Model: A notable study in this area is Mamba, which added mechanisms like Selective Scan to a State Space model with linear time complexity, enabling it to process Long Context.
+
+However, these studies have limitations. Even if we accept that Flash Attention did not change the Attention Mechanism itself, Linear Attention, KV cache compression, and State Space Models have shown significantly lower performance on general benchmarks, although they may perform better than standard Transformers in long contexts.
 
 ## 6. Discussion
 In my opinion, there are a few potential limitations that are not extensively discussed in the paper:
 
-1. **Reliance on CEMA for Out-of-Chunk Context**: The self-attention mechanism in MEGALODON is applied within each chunk. For data that falls completely outside the chunk boundaries, the model relies solely on CEMA for processing. However, CEMA is a causal mechanism, which means it may struggle to adequately capture the influence of distant future content on earlier parts of the sequence. This limitation could potentially hinder the model's ability to handle long-range dependencies that span across multiple chunks.
+1. **Reliance on CEMA for Out-of-Chunk Context**: The self-attention mechanism in MEGALODON is applied within each chunk. For data that falls completely outside the chunk boundaries, the model relies solely on CEMA for processing. This limitation could potentially hinder the model's ability to handle long-range dependencies that span across multiple chunks.
 
 2. **Complexity of the Architecture**: Compared to the traditional Transformer layer, the MEGALODON architecture is considerably more complex. It requires the computation of EMA, including the complex domain, for each token. Additionally, several normalization and attention components have been introduced, such as Timestep Normalization, which further increases the complexity of the model compared to the previous works.
 
