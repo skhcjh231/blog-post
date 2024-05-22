@@ -106,6 +106,13 @@ First, covariance matrix of ith module {{< /katex >}}C_i{{< /katex >}} is comput
   {{< /katex >}} 
 </p>  
 LRM loss and total loss can be expressed as follows:  
+<p align="center">
+  {{< katex >}}
+    {\mathcal{L}_{LRM}}_{i} = \left\| \mathcal{R}_i^{FP} - \mathcal{R}_{i}^{bi}  \right\| \\
+    \mathcal{L}_{total} = \mathcal{L}_{simple} + \lambda\frac{1}{M}\sum_{i=1}^{M}{\mathcal{L}_{LRM}}_{i},
+  {{< /katex >}} 
+</p>  
+where {{< katex >}}M{{< katex >}} denotes the number of timestep embedding modules and {{< katex >}}\lambda{{< katex >}} is a hyperparmater coefficient to balance loss temrs.
 
 Since computation of transformation matrix {{< katex >}}E_i{{< katex >}} is expensive, it is computed with the first batch of input and fixed during entire traning. As shown in the figure below, LRM stabilize training process, accelerating convergence.  
 <p align="center">
