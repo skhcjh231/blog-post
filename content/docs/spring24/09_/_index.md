@@ -20,6 +20,14 @@ Algorithm running on hardware is composed of two parts - memory access and compu
 {{< katex display=true >}}
 runtime_computation = {Number of Operatins}/{FLOPS}
 {{< /katex >}}
+Algorithm runtime can be limited by the memory access bottleneck or communication overhead
+{{< katex display=true >}}
+runtime_communication = {Number of IO Bytes}/{Bandwidth}
+{{< /katex >}}
+Hardware performance is determined by the upper bound of the computation time or memory access latency
+{{< katex display=true >}}
+performance = max(runtime_computation, runtime_communication)
+{{< /katex >}}
 
 
 ## Hardware-Independent Pareto Efficiency
