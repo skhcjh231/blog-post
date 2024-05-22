@@ -237,22 +237,13 @@ Fig. 6 shows that the initial inference steps are not used in the model merging 
 </p>
 
 ## References
-Yunzhi Yao, Peng Wang, Bozhong Tian, Siyuan Cheng, Zhoubo Li, Shumin Deng, Huajun Chen, Ningyu Zhang. 2023. [Editing large language models: Problems, methods, and opportunities](https://arxiv.org/pdf/2305.13172). arXiv preprint arXiv:2305.13172.
 
-Anton Sinitsin, Vsevolod Plokhotnyuk, Dmitriy Pyrkin, Sergei Popov, Artem Babenko. 2020. [Editable neural networks](https://arxiv.org/pdf/2004.00345). arXiv preprint arXiv:2004.00345.
+The Open LLM Leaderboard [https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard)
 
-Kevin Meng, David Bau, Alex Andonian, and Yonatan Belinkov. 2022a. [Locating and editing factual associations in gpt](https://arxiv.org/pdf/2202.05262). Advances in Neural Information Processing Systems, 35:17359–17372.
+Mergekit [https://github.com/arcee-ai/mergekit](https://github.com/arcee-ai/mergekit)
 
-Kevin Meng, Arnab Sen Sharma, Alex Andonian, Yonatan Belinkov, and David Bau. 2022b. [Massediting memory in a transformer](https://arxiv.org/pdf/2210.07229). arXiv preprint arXiv:2210.07229.
+Ha, David., [A Visual Guide to Evolution Strategies](https://blog.otoro.net/2017/10/29/visual-evolution-strategies/). 2017.
 
-Akshat Gupta, Dev Sajnani, and Gopala Anumanchipalli. 2024. [A unified framework for model editin](https://arxiv.org/pdf/2401.07453). arXiv preprint arXiv:2403.14236.
+Zhengqi Xu, Ke Yuan, Huiqiong Wang, Yong Wang, Mingli Song, Jie Song., [Training-Free Pretrained Model Merging](https://arxiv.org/abs/2403.01753). CVPR., 2024.
 
-Figure 1: Ha, David. [A Visual Guide to Evolution Strategies](https://blog.otoro.net/2017/10/29/visual-evolution-strategies/). 2017.
-
-Figure 2: Zhengqi Xu, Ke Yuan, Huiqiong Wang, Yong Wang, Mingli Song, Jie Song. [Training-Free Pretrained Model Merging](https://arxiv.org/abs/2403.01753). In *Proceedings of the IEEE conference on computer vision and pattern recognition*, 2024.
-
-Figure 3: Sakai.ai. [Evolving New Foundation Models: Unleashing the Power of Automating Model Development](https://sakana.ai/evolutionary-model-merge/). 2024.
-
-Figure 4: Sakai.ai. [Evolving New Foundation Models: Unleashing the Power of Automating Model Development](https://sakana.ai/evolutionary-model-merge/). 2024.
-
-Figure 5: Sakai.ai. [Evolving New Foundation Models: Unleashing the Power of Automating Model Development](https://sakana.ai/evolutionary-model-merge/). 2024.
+Figure 5: Sakai.ai., [Evolving New Foundation Models: Unleashing the Power of Automating Model Development](https://sakana.ai/evolutionary-model-merge/)., 2024.
