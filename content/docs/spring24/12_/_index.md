@@ -41,7 +41,7 @@ In this paper, they adopted the identical training approach as [CLIP](https://ar
 To evaluate the effect of data quantity on CLIP's performance, they conducted experiments with datasets of different sizes: 10M, 25M, 100M, 200M, and 400M. Using ViT-B/32 as the vision encoder, models were trained for 2 to 32 epochs.
 
 <p align="center">
-    <img src="./Figure 2.png" width="600"> 
+    <img src="./Figure 2.png" width="800"> 
 </p>
 <div align="center">
   <strong>Figure 1.</strong> Zero-shot performance with the various training strategies
@@ -150,10 +150,11 @@ Retrieval tasks showed ViT-L/16 performed poorly with less than 100M samples but
 To effectively choose the best network architectures, they performed a comparison among the various architectures. Previous studies have explored various vision encoders for CLIP, such as ResNet, MLP-Mixer, and ViT, but some architectures like Swin-Transformer and ConvNext haven't been investigated. Here, they compared CNN and vision transformer architectures with similar computational costs, including ViT-B/32, ResNet-50, ConvNext-T, Swin-T, and Mixer-B/32. In Zero-shot, when considering limited data samples, ResNet-50 performs better initially, but ViT-B/32 achieves superior performance with more samples due to its stronger ability to capture global information (see Figure 1(a)). In linear probing, MLP-Mixer outperforms others with fewer samples, but ViT-B/32 excels with larger datasets. ViT and MLP-Mixer show better robustness, likely due to their lower inductive bias, leading to improved generalization (Figure 1(b)). For retrieval tasks, ResNet-50 is better with smaller sample sizes, but ViT-B/32 surpasses it as sample sizes increase. Mixer-B/32 performs poorly in retrieval tasks, making ViT the preferred choice for CLIP's vision encoder across various tasks. 
 
 <p align="center">
-    <img src="./Figure 12.png" width="300"> 
+    <img src="./Figure 12.png" width="800"> 
 </p>
-<p style="text-align:center; font-style: italic;">
-Figure 11: Performances of the various network architectures
+<div align="center">
+  <strong>Figure 11.</strong> Performances of the various network architectures
+</div>
 </p>
 
 ## Training Strategies
@@ -161,10 +162,11 @@ In this section, the various training strategies for CLIP are explored, includin
 However, CLIP+Data Augmentation aimed to enhance CLIP's vision encoder while mitigating the computational demands associated with previous self-supervised learning approaches. By applying data augmentation directly to input images, they offered a cost-effective alternative, validated across four subsets with 30 epochs of training using techniques like crop&flip, RandAugment, and Stacked RandAugment. The results in Figure 2 demonstrated consistent performance improvements of all three methods over raw CLIP, with no additional computational burden incurred, even enabling comparable performance to larger datasets, exemplified by the Stacked RA model trained on a dataset half the size achieving similar results.
 
 <p align="center">
-    <img src="./Figure 13.png" width="300"> 
+    <img src="./Figure 13.png" width="400"> 
 </p>
-<p style="text-align:center; font-style: italic;">
-Figure 12: Comparison between various data augmentation for CLIP
+<div align="center">
+  <strong>Figure 12.</strong> Comparison between various data augmentation for CLIP
+</div>
 </p>
 
 ## Performance Evaluation
@@ -173,30 +175,33 @@ Figure 12: Comparison between various data augmentation for CLIP
 Their experiments on the ImageNet dataset show that SLIP outperforms CLIP and FLIP when training samples are under one billion, indicating the benefit of self-supervised learning for limited data. However, as sample size increases, CLIP and FLIP surpass SLIP, suggesting that enhancing vision encoders isn't necessary for large datasets. Additionally, SLIP is twice as computationally expensive as CLIP and performs worst in zero-shot tasks when costs are equal. Data augmentation, particularly CLIP + Data Aug, improves performance and generalization on ImageNet and its variants without extra computational costs, especially for larger datasets and multiple epochs of training as presented in Figure 3.
 
 <p align="center">
-    <img src="./Figure 14.png" width="300"> 
+    <img src="./Figure 14.png" width="800"> 
 </p>
-<p style="text-align:center; font-style: italic;">
-Figure 13: : Zero-shot performance with the various training strategies
+<div align="center">
+  <strong>Figure 13.</strong> Zero-shot performance with the various training strategies
+</div>
 </p>
 
 ### Linear Probing
 In the linear probing evaluation, vision encoders trained with CLIP + Data Aug consistently outperformed the other strategies, particularly on OOD datasets. CLIP and CLIP + Data Aug also showed better robustness than SLIP with similar ImageNet accuracy. Combining CLIP with data augmentation offers a more effective feature extractor, balancing performance, and computation cost. The training results on linear probing performance are shown in Figure 4.
 
 <p align="center">
-    <img src="./Figure 15.png" width="300"> 
+    <img src="./Figure 15.png" width="800"> 
 </p>
-<p style="text-align:center; font-style: italic;">
-Figure 14: : Linear probing performance with the various training strategies
+<div align="center">
+  <strong>Figure 14.</strong> Linear probing performance with the various training strategies
+</div>
 </p>
 
 ### Retrieval
 In retrieval tasks, SLIP consistently outperformed CLIP, CLIP + Data Aug, and FLIP on both image and text retrieval across all dataset sizes. Unlike its zero-shot performance, SLIP showed the best results for retrieval tasks as presented in Figure 5, suggesting it is a superior strategy for these tasks despite being less effective for classification.
 
 <p align="center">
-    <img src="./Figure 16.png" width="300"> 
+    <img src="./Figure 16.png" width="800"> 
 </p>
-<p style="text-align:center; font-style: italic;">
-Figure 15: : Retrieval performances with the various training strategies
+<div align="center">
+  <strong>Figure 15.</strong> Retrieval performances with the various training strategies
+</div>
 </p>
 
 ## Conclusion
