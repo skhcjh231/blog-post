@@ -41,7 +41,7 @@ In this paper, they adopted the identical training approach as [CLIP](https://ar
 To evaluate the effect of data quantity on CLIP's performance, we conducted experiments with datasets of different sizes: 10M, 25M, 100M, 200M, and 400M. Using ViT-B/32 as the vision encoder, models were trained for 2 to 32 epochs.
 
 <p align="center">
-    <img src="./Figure 2.png" width="300"> 
+    <img src="./Figure 2.png" width="800"> 
 </p>
 <p style="text-align:center; font-style: italic;">
 Figure 1: Zero-Shot performances with the same dataset size across varied training epochs
@@ -50,7 +50,7 @@ Figure 1: Zero-Shot performances with the same dataset size across varied traini
 Results showed that for smaller datasets (e.g., 25M), increasing epochs did not significantly improve ImageNet performance. In contrast, larger datasets (e.g., 400M) benefited from more epochs. Additionally, zero-shot performance on ImageNet variants followed a similar pattern: larger datasets and longer training improved performance. However, the correlation between performance on ImageNet and its variants was inconsistent, with some datasets showing improved results in specific variants but not others.
 
 <p align="center">
-    <img src="./Figure 3.png" width="300"> 
+    <img src="./Figure 3.png" width="800"> 
 </p>
 <p style="text-align:center; font-style: italic;">
 Figure 2: Data Quantity: Few-Shot Performances on ImageNet
@@ -59,7 +59,7 @@ Figure 2: Data Quantity: Few-Shot Performances on ImageNet
 We also observed that the few-shot performance also showed a similar trend to the zero-shot performance.
 
 <p align="center">
-    <img src="./Figure 4.png" width="300"> 
+    <img src="./Figure 4.png" width="800"> 
 </p>
 <p style="text-align:center; font-style: italic;">
 Figure 3: Retrieval Performances on MSCOCO
