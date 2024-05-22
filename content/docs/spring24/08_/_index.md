@@ -18,7 +18,7 @@ So, we can ask following question:
 _How can multiple trained LoRAs be composed dynamically and efficiently, preserving all their individual characteristics, without the need for retraining?_
 </p>
 
-To address this question, Mixture of LoRA Experts (MoLE) presents a new method for achieving the optimal combination of LoRAs for specific tasks. MoLE considers each LoRA as an expert and determines the weights applied to each LoRA at each layer through a gate function.
+To address this question, Mixture of LoRA Experts (MoLE) presents a new method for achieving the optimal combination of LoRAs for specific tasks. MoLE considers indivisual LoRA as an expert and determines the weights applied to LoRAs at each layer through a gate function.
 
 
 <p align="center">
