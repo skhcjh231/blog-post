@@ -4,16 +4,14 @@ bookToc: True
 weight: 1
 ---
 
-# Scaling (Down) CLIP: A Comprehensive
+# Scaling (Down) CLIP: A Comprehensive Analysis of Data, Architecture, and Training Strategies
 *Posted by: Harit Keawmuang, Junkyeong Park*
 
 *Authors: Zichao Li (University of California, Santa Cruz), Cihang Xie (University of California, Santa Cruz), Ekin Dogus Cubuk (Google Deepmind)*
 
-introduction
+In recent years, there has been a growing interest in image-and-language representation learning, which aims to capture the complex interactions between visual and textual information. The Contrastive Language-Image Pre-Training (CLIP) framework has emerged as a leading approach in this field, utilizing large-scale text and image data to create a unified representation space. CLIP has achieved remarkable performance across various tasks and has demonstrated robust generalization to out-of-distribution data. While prior studies on scaling CLIP have focused on scenarios with substantial computational resources, this paper investigates the performance of CLIP under resource constraints, specifically examining the effects of data size, architecture, and training strategies.
 
-## Data
-### Data Quantity
-
+The study explores the impact of different training data sizes, showing that smaller, high-quality datasets can outperform larger, lower-quality ones. This is critical for practical applications where data quality and computational limits are significant considerations. The research also compares various architectures, highlighting that larger vision transformers (ViTs) do not always guarantee better performance and that CNNs may be more effective when data is limited. Additionally, the paper evaluates different training strategies, including SLIP, FLIP, CLIP, and CLIP+Data Augmentation, revealing that data augmentation can enhance performance without significant computational costs. These findings provide valuable insights for efficiently training and deploying CLIP models, making advanced image-and-language learning more accessible and affordable.
 
 # What is CLIP?
 [CLIP](https://arxiv.org/abs/2103.00020) effectively merges the capabilities of natural language processing (NLP) and computer vision. By learning from images and their textual descriptions, CLIP unifies text and image understanding, allowing it to perform various tasks without task-specific training.
@@ -37,6 +35,95 @@ In this paper, they adopted the identical training approach as [CLIP](https://ar
 - [**Zero-shot transfer evaluation**](https://en.wikipedia.org/wiki/Zero-shot_learning): Assesses the model's ability to generalize to new tasks without fine-tuning.
 - [**Linear probe evaluations**](https://en.wikipedia.org/wiki/Linear_probing): Freezes the vision encoder and optimizes the fully connected layer's learning rate.
 - [**Retrieval performance on MSCOCO captions**](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)): Ranks text captions based on cosine similarity with image embeddings, reporting Recall@1 for image-to-text retrieval and average results for text-to-image retrieval.
+
+## Data
+### Data Quantity
+To evaluate the effect of data quantity on CLIP's performance, we conducted experiments with datasets of different sizes: 10M, 25M, 100M, 200M, and 400M. Using ViT-B/32 as the vision encoder, models were trained for 2 to 32 epochs.
+
+<p align="center">
+    <img src="./figure 2.png" width="300"> 
+</p>
+<p style="text-align:center; font-style: italic;">
+Figure 1: Zero-Shot performances with the same dataset size across varied training epochs
+</p>
+
+Results showed that for smaller datasets (e.g., 25M), increasing epochs did not significantly improve ImageNet performance. In contrast, larger datasets (e.g., 400M) benefited from more epochs. Additionally, zero-shot performance on ImageNet variants followed a similar pattern: larger datasets and longer training improved performance. However, the correlation between performance on ImageNet and its variants was inconsistent, with some datasets showing improved results in specific variants but not others.
+
+<p align="center">
+    <img src="./figure 3.png" width="300"> 
+</p>
+<p style="text-align:center; font-style: italic;">
+Figure 2: Data Quantity: Few-Shot Performances on ImageNet
+</p>
+
+We also observed that the few-shot performance also showed a similar trend to the zero-shot performance.
+
+<p align="center">
+    <img src="./figure 4.png" width="300"> 
+</p>
+<p style="text-align:center; font-style: italic;">
+Figure 3: Retrieval Performances on MSCOCO
+</p>
+
+In Retrieval Performances, a slightly different trend emerged. Specifically, we found that there was little to no improvement in both image retrieval and text retrieval performance when the number of epochs exceeded eight.
+
+### Data Quality
+We also examined the impact of data quality by creating subsets of the 3.4B dataset based on image-text similarity, selecting the top 20%, 40%, 60%, and 80% highest-quality data.
+
+<p align="center">
+    <img src="./figure 5.png" width="300"> 
+</p>
+<p style="text-align:center; font-style: italic;">
+Figure 4: Data Quality: Zero-Shot Performances on ImageNet. (a) trained for one epoch. (b) trained for the same number of sampled data.
+</p>
+
+Models trained on these subsets for a single epoch demonstrated that higher quality data subsets yielded superior zero-shot performance on ImageNet. Specifically, the Top40% subset outperformed the entire dataset despite fewer iterations. When comparing datasets with an equal number of samples, the Top40% dataset achieved the best performance, highlighting the importance of data quality in training CLIP models.
+
+<p align="center">
+    <img src="./figure 6.png" width="300"> 
+</p>
+<p style="text-align:center; font-style: italic;">
+Figure 5: Data Quality: Few-Shot Performances on ImageNet. (a) one epoch. (b) the same number of sampled data.
+</p>
+
+Additionally, when the number of sample data points is the same, higher quality datasets have superior 5-shot and 10-shot performance.
+
+<p align="center">
+    <img src="./figure 7.png" width="300"> 
+</p>
+<p style="text-align:center; font-style: italic;">
+Figure 6: Data Quality: Retrieval Performances on MSCOCO. (a) one epoch. (b) the same number of sampled data.
+</p>
+
+When it comes to search performance, the top 80% datasets in particular show the most impressive retrieval performance.
+
+## Variants of Vision Transformers
+This study examines how the performance of various CLIP models, differentiated by the size of their vision encoders, is influenced by dataset size and the number of sampled data points. We used different vision encoders (ViT-Ti/16, S/16, B/32, B/16, L/16) while keeping text transformers fixed at vit-base. We sampled ten subsets from the full dataset, ranging from 10M to 3.4B samples, maintaining consistent data distribution and quality. Models were trained for one epoch to assess the effect of data quantity, ensuring fair comparison by training all subsets for the same number of iterations.
+
+<p align="center">
+    <img src="./figure 8.png" width="300"> 
+</p>
+<p style="text-align:center; font-style: italic;">
+Figure 7: Data Quality: Retrieval Performances on MSCOCO. (a) one epoch. (b) the same number of sampled data.
+</p>
+
+Zero-shot performance on ImageNet revealed that larger vision encoders (e.g., ViT-L/16) did not consistently outperform smaller ones when the sample size was under 100M. As data size increased, larger encoders showed better performance.
+
+<p align="center">
+    <img src="./figure 9.png" width="300"> 
+</p>
+<p style="text-align:center; font-style: italic;">
+Figure 8: Data Quality: Retrieval Performances on MSCOCO. (a) one epoch. (b) the same number of sampled data.
+</p>
+
+As the dataset size grows, the performance difference between larger ViTs and their smaller counterparts becomes more pronounced. Additiallay, accuracy trends across various datasets (ImageNet-R, ImageNet-Sketch, ImageNet-V2, ObjectNet) were nearly linear, except for ImageNet-A, which had a non-linear improvement, highlighting its challenging nature. [(appendix)](https://arxiv.org/abs/2404.08197)
+
+<p align="center">
+    <img src="./figure 10.png" width="300"> 
+</p>
+<p style="text-align:center; font-style: italic;">
+Figure 9: Data Quality: Retrieval Performances on MSCOCO. (a) one epoch. (b) the same number of sampled data.
+</p>
 
 ## Comparison of Network Architectures
 To effectively choose the best network architectures, they performed a comparison among the various architectures. Previous studies have explored various vision encoders for CLIP, such as ResNet, MLP-Mixer, and ViT, but some architectures like Swin-Transformer and ConvNext haven't been investigated. Here, they compared CNN and vision transformer architectures with similar computational costs, including ViT-B/32, ResNet-50, ConvNext-T, Swin-T, and Mixer-B/32. In Zero-shot, when considering limited data samples, ResNet-50 performs better initially, but ViT-B/32 achieves superior performance with more samples due to its stronger ability to capture global information (see Figure 1(a)). In linear probing, MLP-Mixer outperforms others with fewer samples, but ViT-B/32 excels with larger datasets. ViT and MLP-Mixer show better robustness, likely due to their lower inductive bias, leading to improved generalization (Figure 1(b)). For retrieval tasks, ResNet-50 is better with smaller sample sizes, but ViT-B/32 surpasses it as sample sizes increase. Mixer-B/32 performs poorly in retrieval tasks, making ViT the preferred choice for CLIP's vision encoder across various tasks. 
