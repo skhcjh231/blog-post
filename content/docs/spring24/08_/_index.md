@@ -41,6 +41,8 @@ $$\hat{\mathbf{W}} = \mathbf{W} + \sum_{i=1}^{N} w_i \cdot \Delta \mathbf{W}_i$$
 
 <p align="center">
     <img src=./lora_comp.png> 
+    <br>
+    <em>Figure 2: (Left) Linear arithmetic composition. (Right) Reference tuning-based composition</em>
 </p>
 
 
