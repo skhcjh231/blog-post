@@ -16,14 +16,28 @@ The significant advances in deep learning over the past decade have largely reli
 
   Traditionally, floating-point numbers are defined by the IEEE 754 standard, which specifies the number of exponent bits (E) and mantissa bits (M). Common floating-point formats used in machine learning include FP32, TF32, BFLOAT16, and FP16. Recently, two types of FP8 formats (E4 and E5) have been proposed.
 
-  **Suggested Image:** "Table A.1. Common floating point formats for deep learning."
+  <p align="center">
+    <img src='./TableA.PNG' width="400">
+  </p>
+  
+  <p align="center">
+    Table A.1. Common floating point formats for deep learning
+  </p>
+
 
 - #### **Advantages and Disadvantages of Low-Precision Training**
 
   - **Disadvantages:** FP16 and BFLOAT16 offer different trade-offs. FP16 has higher precision, but BFLOAT16 has a wider range. FP8 formats reduce both range and precision. The use of low-precision formats can introduce quantization noise and other issues.
   - **Advantages:** Using low-precision formats can significantly improve efficiency in terms of memory usage, bandwidth usage, compute performance, and cross-device communication costs.
 
-  **Suggested Image:** "Figure 2. The signal to noise ratio (SNR) of samples from a normal distribution, quantised in FP16 and FP8, as a function of the distribution’s scale." 【3†source】
+  <p align="center">
+    <img src='./Figure2.png' width="800">
+  </p>
+  
+  <p align="center">
+    Figure 2. The signal to noise ratio (SNR) of samples from a normal distribution, quantised in FP16 and FP8, as a function of the distribution’s scale
+  </p>
+
 
 - #### **Techniques for Low-Precision Training**
 
@@ -42,7 +56,13 @@ The significant advances in deep learning over the past decade have largely reli
   - **Automatic Loss Scaling:** This dynamically adjusts the loss scale during training, removing the need to sweep for an initial loss scale.
   - **Per-Tensor Scaling:** This system locally rescales based on runtime statistics to address scaling difficulties in FP8 training.
 
-  **Suggested Image:** "Table 1. A comparison of techniques for low precision training."
+  <p align="center">
+    <img src='./Table1.png' width="900">
+  </p>
+    
+  <p align="center">
+      Table 1. A comparison of techniques for low precision training
+  </p>
 
 ---
 
@@ -60,7 +80,14 @@ The significant advances in deep learning over the past decade have largely reli
 
   where {{< katex >}}b_{\text{sign}}{{< /katex >}}, {{< katex >}}b_{\text{exponent}}{{< /katex >}}, and {{< katex >}}b_{\text{mantissa}}{{< /katex >}} represent the sign, exponent, and mantissa bits, respectively.
 
-**Suggested Image:** "Figure 1. Above: Unit scaling of an FFN layer. We multiply each tensor by a fixed scalar to achieve consistent scale, no longer requiring a loss scale to control the scale of gradients. Below: A histogram of exponent values at initialisation for the above FFN."
+  <p align="center">
+      <img src='./Figure1.png' width="800">
+  </p>
+    
+  <p align="center">
+      Figure 1. Above: Unit scaling of an FFN layer. We multiply each tensor by a fixed scalar to achieve consistent scale, no longer requiring a loss scale to control the scale of gradients. Below: A histogram of exponent values at initialisation for the above FFN
+  </p>
+
 
 - #### **Predictable Scaling**
 
