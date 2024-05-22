@@ -31,8 +31,8 @@ These days, most language models are based on Transformers, and we stack these b
 ## **Conditional computation for Transformers**
 - Early exiting
   <p align="center">
-    <img src=./Early_Exiting.png> 
-</p>
+    <img src=./Early_Exiting.png width = "80%" height = "80%"> 
+  </p>
   Instead of passing through all layers, the model can stop early if it is confident enough about its prediction. This saves computation time and resources. Large pre-trained models like BERT can use early exiting ot maintain performance while reducing computational load.
   
 - CoLT5
@@ -44,7 +44,7 @@ These days, most language models are based on Transformers, and we stack these b
 ## **Overview to Mixture-of-Depths (MoD)**
 Our goal is to reduce the overall FLOPs by focusing on essential tokens and relatively fewer on non-essential tokens. The router is responsible for determining the path each token should take. A trained router evaluates whether a token is necessary. If the token is deemed essential, it passes through self-attention and the subsequent MLP (requiring FLOPs). Otherwise, it bypasses these stages via a residual connection (saving FLOPs).
 <p align="center">
-    <img src=./Mixture-of-Depths.png> 
+    <img src=./Mixture-of-Depths.png width = "80%" height = "80%"> 
 </p>
  Above image depicts the path of a MoD (Model of Decoding) with an input sequence length of 64. The purple color shows the computation performed by that layer and the orange color shows the path taken by the residual connection.
 
@@ -57,7 +57,7 @@ Difference between MoD is, MoD chooses path to transformer or to residual connec
 Routing implementation is the most crucial part of MoD. The authors compare three routing schemes, demonstrating that MoD is an efficient approach.
 
 <p align="center">
-    <img src=./Routing_Schemes.png> 
+    <img src=./Routing_Schemes.png width = "80%" height = "80%"> 
 </p>
 
 ### **Token-choice routing**
@@ -104,7 +104,7 @@ We're looking to implement expert-choice routing, but there is one distinct prob
 
 - Simple auxiliary loss
   <p align="center">
-    <img src=./Routing_Analysis.png> 
+    <img src=./Routing_Analysis.png width = "80%" height = "80%"> 
   </p>
   Designing an additional binary cross-entropy loss function at the router's output can resolve this issue. By incorporating this, the value of tokens in the top-k is guided to be greater than 0.5, while the value of tokens are not in the top-k is guided to be less than 0.5. As token passes through the router, they are categorized into top-k set if their value exceeds 0.5. Then it passes through the self-attention and subsequent MLP. Conversely, tokens with values below 0.5 passs through the residual connection. Integrating such a function impacts the primary language modeling objective approximately 0.2-0.3%. We believe this likely refers to the extent to which performance and inference time are affected.
     
@@ -149,22 +149,22 @@ The code operates in the following steps:
 
 ## **Results**
 <p align="center">
-    <img src=./result2.png>
+    <img src=./result2.png width = "80%" height = "80%">
 </p>
 The figure above shows the results of training all models with the same number of FLOPs(6e18), regardless of the parameter size. The compared models are the Baseline (isoFLOP optimal baseline, vanilla transformer) and models with MoD applied, set to have either 12.5% capacity or 50% capacity. In the case of random routing, it does not follow the top-k metric but simply randomly chooses whether a token will go to the residual path or the attention + MLP layer path. Additionally, in the case of every 2, it means that the MoD method is not applied to all layers, but only to one out of every two layers. Therefore, from the top-left graph, the 12.5% capacity MoE loss value is less than the baseline model's. The two top-middle graphs show the actual training loss graphs for the points plotted in the left graph, where MoD with 12.5% capacity generally results in lower loss values than baseline. In the case of the right graph, the plotted points #1 & #3 and  #2 & #4 pairs are models of the same parameter size, with MoD applied, it not only has a loss value lower, but it also has an approximately 66% faster performance than original one.
 
 <p align="center">
-    <img src=./result1.png>
+    <img src=./result1.png width = "80%" height = "80%">
 </p>
 In this figure, the Training FLOPs budget is limited to 6e18, 2e19, and 1e20, compared with the isoFLOP baseline and 12.5% capacity MoD. At a glance, the  top-left graph shows that the isoFLOP baseline has a slightly better loss when the number of parameters is small(There’s a crossing point!) However, when the x-axis is converted from Parameters to FLOPs per FFW (Forward Pass) as shown in the top-right graph, it confirms that MoD is better than the baseline in all cases.
 
 <p align="center">
-    <img src=./result3.png>
+    <img src=./result3.png width = "80%" height = "80%">
 </p>
 In this figure, the top-left graph shows the performance degradation in auto-regressive evaluation using predictions using the MLP layer not the top-k routing mechanism, which is non-causal and can’t be used in this case. The author argues that the reason for this performance drop in auto-regressive case is that the prediction performance through the MLP layer is only about 97%, as shown in the top-right graph, but they stress that only minimal degradation occurs.
 
 <p align="center">
-    <img src=./result4.png>
+    <img src=./result4.png width = "80%" height = "80%">
 </p>
 This figure shows the performance of MoDE and its two proposed structures. The top-left graph demonstrates that the performance of MoDE is better than both the Baseline and MoE. The right side explains the structures of Staged MoDE and Integrated MoDE. In Staged MoDE, two routers are deployed to first for determine the depth(MoD) and second for the expert(MoE). In Integrated MoDE, as the name implies, the MoD Router and MoE Router are integrated to one single Router that can simultaneously decide whether to select an expert or the residual path (depth). The paper mentions that the former is computationally efficient as it can skip self-attention operations through the MoD router, and the latter has better performance as the router mechanism is unified and self-attention operations are always performed.
 
