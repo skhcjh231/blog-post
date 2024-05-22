@@ -49,7 +49,7 @@ Where *W* represents the **weights** of the **feedforward layer** we want to edi
   {{< /katex >}} 
 </p>
 
-For MEMIT model editing. it optimizes same objectives with ROME, but performance memorization using a least-square constraint, which allows for a closed-form solution. It has similar form with ROME method, but it multiplies \lambda term, which is hyperparameter, to preservation term. Also, it combines memorization term for minimize target
+For MEMIT model editing. it optimizes same objectives with ROME, but performance memorization using a least-square constraint, which allows for a closed-form solution. It has similar form with ROME method, but it multiplies {{< katex >}}\lambda{{< /katex >}} term, which is hyperparameter, to preservation term. Also, it combines memorization term for minimize target
 
 <p align="center">
   {{< katex >}}
@@ -192,6 +192,8 @@ This work examines several model editing techniques in the context of the newly 
 - It seems necessary to investigate how many layers should be edited in multi-layer editing to achieve effective results beyond single-layer editing.
 
 ## References
+Implementation code: [Link](https://github.com/scalable-model-editing/unified-model-editing).
+
 Yunzhi Yao, Peng Wang, Bozhong Tian, Siyuan Cheng, Zhoubo Li, Shumin Deng, Huajun Chen, Ningyu Zhang. 2023. [Editing large language models: Problems, methods, and opportunities](https://arxiv.org/pdf/2305.13172). arXiv preprint arXiv:2305.13172.
 
 Anton Sinitsin, Vsevolod Plokhotnyuk, Dmitriy Pyrkin, Sergei Popov, Artem Babenko. 2020. [Editable neural networks](https://arxiv.org/pdf/2004.00345). arXiv preprint arXiv:2004.00345.
