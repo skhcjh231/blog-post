@@ -4,7 +4,7 @@ bookToc: True
 weight: 1
 ---
 
-# Boosting Efficiency in Deep Learning: Introducing Unit Scaling for Low-Precision Training
+## Boosting Efficiency in Deep Learning: Introducing Unit Scaling for Low-Precision Training
 Paper : Unit Scaling Out-of-the-Box Low-Precision Training<br/>
 Author : Charlie Blake, Douglas Orr, Carlo Luschi<br/>
 posted by Seongrok Moon, Changyoung Ju <br/>
