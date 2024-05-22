@@ -33,9 +33,22 @@ Speculative decoding is an apporach to accelerate LLM inference.
 <p align="center">
     <img src='./speculative decoding.png' width="700">
 </p>
+
 **Left model**: The target LLM generates K tokens in K forward steps, which is a "serial" process.
 
 **Right model**: The drafter generates tokens in parallel. Each generated token is then verified with a verification step.
+
+`Speculative decoding` can be implemented through methods such as independent drafting and self-drafting.
+
+**Independent Drafting**: This approach uses a small language model (LM) from the same series as the target LLM.
+
+- Requires additional training and increases computational complexity by integrating separate target and drafting models.
+
+**Self-Speculative Decoding**: This method utilizes the target LLM itself.
+
+- Employs techniques such as Blockwise Decoding, Medusa, and early exiting to reduce computational burden.
+- Computational efficiency can also be achieved through layer skipping.
+
 ## Layer Early Exiting
 
 The author has proposed a novel self-speculative decoding framework, named Kangaroo. Kangaroo utilizes double early exiting mechanisms, layer early exiting and draft early exiting. Layer early exiting suggests the equivalent self-draft small model exiting early from the fixed shallow layers of the large LLM and connecting to an adapter network to generate draft tokens. While this strategy is commonly used for self-speculative decoding frameworks, Kangaroo has further investigated suitable architectures of the adapter module and offered a low-cost approach to train a lightweight model. Draft early exiting uses early exiting at suitable points during the drafting phase to avoid unnecessary computational overhead on more challenging tokens.
