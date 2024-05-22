@@ -55,24 +55,20 @@ However, in MobileNetV2, the authors use the inverted residual blocks with linea
 Algorithm running on hardware is composed of two parts - memory access and computation. The computation time is determined by the computation requirement and hardware performance. 
 
 <p align="center">
-$\text{runtime_computation} = \frac{\text{Number of Operations}}{\text{FLOPS}}$
+$\text{runtime\_computation} = \frac{\text{Number of Operations}}{\text{FLOPS}}$
 </p>
-
-{{< katex display=true >}}
-\text{runtime\_computation} = \frac{\text{Number of Operations}}{\text{FLOPS}}
-{{< /katex >}}
 
 Algorithm runtime can be limited by the memory access bottleneck or communication overhead
 
-{{< katex display=true >}}
-\text{runtime\_communication} = \frac{\text{Number of IO Bytes}}{\text{Bandwidth}}
-{{< /katex >}}
+<p align="center">
+$\text{runtime\_communication} = \frac{\text{Number of IO Bytes}}{\text{Bandwidth}}$
+</p>
 
 Hardware performance is determined by the upper bound of the computation time or memory access latency
 
-{{< katex display=true >}}
-\text{performance} = \max(\text{runtime\_computation}, \text{runtime\_communication})
-{{< /katex >}}
+<p align="center">
+$\text{performance} = \max(\text{runtime\_computation}, \text{runtime\_communication})$
+</p>
 
 Below Fig. 1(a) and Fig. 1(b) illustrates the roofline model and its characteristics
 <p align="center">
