@@ -105,7 +105,7 @@ We're looking to implement expert-choice routing, but there is one distinct prob
 - Simple auxiliary loss
   <p align="center">
     <img src=./Routing_Analysis.png> 
-</p>
+  </p>
   Designing an additional binary cross-entropy loss function at the router's output can resolve this issue. By incorporating this, the value of tokens in the top-k is guided to be greater than 0.5, while the value of tokens are not in the top-k is guided to be less than 0.5. As token passes through the router, they are categorized into top-k set if their value exceeds 0.5. Then it passes through the self-attention and subsequent MLP. Conversely, tokens with values below 0.5 passs through the residual connection. Integrating such a function impacts the primary language modeling objective approximately 0.2-0.3%. We believe this likely refers to the extent to which performance and inference time are affected.
     
 - Small auxiliary MLP predictor
