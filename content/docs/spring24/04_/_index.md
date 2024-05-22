@@ -26,7 +26,7 @@ where $P_{\theta}$ represents our large language model under training. The objec
 
 ### Multi-Token Prediction Task 
 
-In this work, authors generalize this approach by implementing a multi-token prediction task. At each position of the training corpus, the model is instructed to predict $n$ future tokens at once. Thus, training objective can be expressed as follow:
+In this work, authors propose to learn language modeling from multi-token prediction rather than next-token prediction. At each position of the training corpus, the model is instructed to predict $n$ future tokens at once. Thus, training objective can be expressed as follow:
 
 $$
 L_n = - \sum_{t} \log P_{\theta}(x_{t+n:t+1} \mid x_{t:1}) = - \sum_{t}\sum_{i=1}^{n} \log P_{\theta}(x_{t+i} \mid x_{t:1}). 
