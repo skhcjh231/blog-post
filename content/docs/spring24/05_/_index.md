@@ -11,6 +11,15 @@ Written by Nayoung Kwon and Jiwoong Im
 
 ## Introduction
 
+The growing demand for rapid and efficient inference in large language models (LLMs) faces a significant bottleneck
+* decoding K tokens requires K sequential runs of the model. 
+
+⇒ LLM inference is slow
+
+<p align="center">
+    <img src='./speculative decoding.png' width="800">
+</p>
+
 ## Backgrounds
 
 ## Layer Early Exiting
