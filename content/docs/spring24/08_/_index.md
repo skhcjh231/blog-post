@@ -5,6 +5,13 @@ weight: 1
 ---
 
 # MIXTURE OF LORA EXPERTS
+
+<p align="center">
+    <img src="./mole.png">
+    <br>
+    <em>Workflow of MoLE</em>
+</p>
+
 <!--
 제목으로 바꾸기
 처음에 어그로 끌 수 있는 내용 먼저
@@ -19,7 +26,7 @@ Models such as OPT, LLaMA, and CLIP demonstrate remarkable performance when fine
 <p align="center">
     <img src="./LoRA2.png" width="40%">
     <br>
-    <em>Figure 1: LoRA Methodology</em>
+    <em>LoRA Methodology</em>
 </p>
 
 
@@ -42,7 +49,7 @@ $$\hat{\mathbf{W}} = \mathbf{W} + \sum_{i=1}^{N} w_i \cdot \Delta \mathbf{W}_i$$
 <p align="center">
     <img src=./lora_comp.png> 
     <br>
-    <em>Figure 2: (Left) Linear arithmetic composition. (Right) Reference tuning-based composition</em>
+    <em>(Left) Linear arithmetic composition. (Right) Reference tuning-based composition</em>
 </p>
 
 
@@ -67,7 +74,7 @@ O = h + \sum_{i=0}^{N} \alpha(E_i) \cdot E_i(h)
 <p align="center">
     <img src=./moe.png> 
     <br>
-    <em>Figure 3: Illustration of a Swith Transformer block.</em>
+    <em>Illustration of a Swith Transformer block.</em>
 </p>
 
 ## Mixture of LoRA experts
