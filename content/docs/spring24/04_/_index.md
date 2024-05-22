@@ -38,3 +38,14 @@ Directly training language models by minimizing the multi-token prediction loss 
 <p align="center">
     <img src='./Memory Efficient.png' width="450">
 </p>
+
+### Faster Inference with Self-speculative Decoding
+
+
+# Result
+
+# Why does it work?
+
+# Conclusion
+
+# Discussion
