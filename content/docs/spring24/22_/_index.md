@@ -145,7 +145,8 @@ First, given an initial set of encodings **Z**$_{0}$ and writing weights **W**$_
     <img src='initialize.png' width="300">
 </p>
 
-Next, memory **M**$_{'i-1'}$ is sequentially updated by adding a new set of encodings **Z**$_{i}$ or forgetting a previously written set of encodings **Z**$_{i}$. This process is conducted as below. 
+Next, memory **M**$_{i-1}$ is sequentially updated 
+by adding a new set of encodings **Z**$_{i}$ or forgetting a previously written set of encodings **Z**$_{i}$. This process is conducted as below. 
 
 <p align="center">
     <img src='update.png' width="300">
