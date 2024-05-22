@@ -1,9 +1,3 @@
----
-type: docs
-bookToc: True
-weight: 1
----
-
 # BinaryDM: Towards Accurate Binarization of Diffusion Model
 ## Preliminary
 ### Diffusion
@@ -29,5 +23,29 @@ This work tackles binarization of diffusion models by handling aformentioned two
 
 ## Methodology
 ### Learnable Multi-basis binarizer
+Typical binarization of the weight can be described as follows:  
+
+In this work, authors propose a learnable multi-basis binarizer(LMB) to maintain quality of representations. Instead of using single base, multiple bases are utilized for the binarization.  
+
+Gradient of learnable scalar values can be computed as follows:  
+
+During the inference, computation for each bases are indepedent to each other and can be parallely computed. Thus, diffusion model can be fully accelerated with LMB.  
+
+
+It is important to note that LMB is applied at only crucial parts of difusion model. Only modules where features cale is greater than or equal to 1/2 input scale. In other words, some of the first consecutive layers and last consecutive layers are binarized with LMB. The binarized modules close to input or output play important role, as they extract patterns from original data or directly influence the final result.  Figure below shows result of naive binarization and LMB applied to weights.  
+
+
 ### Low-rank representation mimicking
+Binarization of weights makes the training hard and hiders convergence. Since full precision model is available, it is natural to align intermediate representations of binarized diffusion model and original model as additional supervision. However, fine-grained alignment of high-dimensional representation leads to blurry optimization direction and binarization makes the model hard to mimic full precision model.   
+
+Authors propose Low-rank Representation Mimicking(LRM) to handle these problems. LRM utilize principal component analysis(PCA) to project representations to low-rank space. Then representaiton aligning is done in low-rank space by minimizing mean squared error (MSE)  
+
+First, covariance matrix of ith module C_i is computed with representation of full-precision diffusion model. Then eigenvector matrix E_i can be obtained and first c/k column eighenvectors are used to projeet representations.  
+
+LRM loss and total loss can be expressed as follows:  
+
+Since computation of transformation matrix E_i is expensive, it is computed with the first batch of input and fixed during entire traning. As shown in the figure below, LRM stabilize training process, accelerating convergence.  
+
+
 ### Progressive binarization
+Despite the enhanced methodology, training process remains slow and unstable. Authors additionally apply progressive binarization strategy to further stabilize convergence. M/2 th time stepping module is quantized in first iteration and m/2-i-th and m/2+i-th modules are quantized in next i-th iteration. As show in the figure, benefit coming from progressive binarization is significant compared to baseline traning process.
