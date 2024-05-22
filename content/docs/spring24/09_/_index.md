@@ -177,9 +177,13 @@ It is worth noting that many academic labs are currently designing mobile-level 
 
 Beyond MobileNetV4, many CNNs are integrating multi-head attention layers, while transformers are incorporating convolutions. Convolutions capture local feature relationships, whereas attention modules provide global features in computer vision. Combining these two characteristics enhances neural network performance across the board. In the future, it would be practical to design NPUs and domain-specific accelerators that enable fast and efficient computation for both convolutions and attention mechanisms simultaneously.
 
+## Similar Works - MobileFormer
+
 ## References
-MobileNetV4 Implementation: [[Link](https://github.com/scalable-model-editing/unified-model-editing).](https://github.com/jiaowoguanren0615/MobileNetV4/tree/main)
+[1] MobileNetV4 Implementation: [[Link](https://github.com/scalable-model-editing/unified-model-editing).](https://github.com/jiaowoguanren0615/MobileNetV4/tree/main)
 
-Qin, Danfeng and Leichner, Chas and Delakis, Manolis and Fornoni, Marco and Luo, Shixin and Yang, Fan and Wang, Weijun and Banbury, Colby and Ye, Chengxi and Akin, Berkin and others. 2024. [[Editing large language models: Problems, methods, and opportunities](https://arxiv.org/pdf/2305.13172)](https://arxiv.org/pdf/2404.10518). arXiv preprint arXiv:2404.10518.
+[2] Qin, Danfeng, et al. "MobileNetV4-Universal Models for the Mobile Ecosystem." arXiv preprint arXiv:2404.10518 (2024).
 
-Sandler, Mark and Howard, Andrew and Zhu, Menglong and Zhmoginov, Andrey and Chen, Liang-Chieh. 2018. https://arxiv.org/pdf/1801.04381, Proceedings of the IEEE conference on computer vision and pattern recognition. 
+[3] Sandler, Mark, et al. "Mobilenetv2: Inverted residuals and linear bottlenecks." Proceedings of the IEEE conference on computer vision and pattern recognition. 2018.
+
+[4] Chen, Yinpeng, et al. "Mobile-former: Bridging mobilenet and transformer." Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. 2022.
