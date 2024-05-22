@@ -87,9 +87,8 @@ O = h + \sum_{i=0}^{N} \alpha(E_i) \cdot E_i(h)
 <p align="center">
     <img src=./motiv1_1.png align="center" height=300">
     <img src=./motiv1_2.png align="center" height=300>
-    <figcaption align="center">
     <br>
-    <em>(Left) Result of linear arithmetic composision. (Right) </em>
+    <em>(Left) Result of linear arithmetic composision. (Right) Result of nomalized linear arithmetic composision.</em>
 </p>
         
 <p align="center">
