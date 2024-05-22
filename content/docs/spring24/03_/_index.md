@@ -4,11 +4,17 @@ bookToc: True
 weight: 1
 ---
 
+# Boosting Efficiency in Deep Learning: Introducing Unit Scaling for Low-Precision Training
+Paper : Unit Scaling Out-of-the-Box Low-Precision Training<br/>
+Author : Charlie Blake, Douglas Orr, Carlo Luschi<br/>
+posted by Seongrok Moon, Changyoung Ju <br/>
+<br/>
+
 ### **Introduction**
 
 The significant advances in deep learning over the past decade have largely relied on the development of algorithms that efficiently leverage available hardware. As the size of state-of-the-art models increases, hardware efficiency becomes crucial for reducing training costs, which have grown substantially in terms of money, time, and environmental impact. However, with the end of Moore's Law and Dennard scaling, increased transistor density alone cannot provide a straightforward path to greater efficiency. The use of low-precision number formats is a promising alternative. These formats offer substantial gains in compute, memory, and bandwidth efficiency, making them valuable in the context of modern deep learning.
 
----
+
 
 ### **Background**
 
@@ -64,7 +70,7 @@ The significant advances in deep learning over the past decade have largely reli
       Table 1. A comparison of techniques for low precision training
   </p>
 
----
+
 
 ### **Analysis**
 
@@ -101,7 +107,7 @@ The significant advances in deep learning over the past decade have largely reli
 
     where {{< katex >}}\alpha{{< /katex >}} is the scaling factor and {{< katex >}}f{{< /katex >}} represents the operation.
 
----
+
 
 ### Unit Scaling
 
