@@ -11,26 +11,39 @@ weight: 1
 
 ## What is Vision Transformer?
 
-Vision Transformers (ViTs) has recently emerged as a competitive alternative to Convolutional Neural Networks (CNNs) that are currently state-of-the-art in different image recognition computer vision tasks.
+Vision Transformer (ViT) is an innovative approach to computer vision that leverages the principles of the Transformer architecture, which was originally designed for natural language processing tasks. ViT has recently emerged as a competitive alternative to Convolutional Neural Networks (CNNs) that are currently state-of-the-art in different image recognition computer vision tasks.
 
 <p align="center">
   <img src="./ViT.png" alt="." width="700" height="400" > 
 </p>
 
-Vision Transformers (ViT) is an architecture that utilizes self-attention mechanisms to process images. The Vision Transformer Architecture consists of a series of transformer blocks. Each transformer block consists of two sub-layers: a multi-head self-attention layer and a feed-forward layer.
+Vision Transformer architecture consists of a series of Transformer blocks, each containing a multi-head self-attention layer and a feed-forward layer. This structure allows ViT to capture complex relationships within an image more effectively than traditional convolutional layers.
 
-The self-attention layer calculates attention weights for each pixel in the image based on its relationship with all other pixels, while the feed-forward layer applies a non-linear transformation to the output of the self-attention layer. The multi-head attention extends this mechanism by allowing the model to attend to different parts of the input sequence simultaneously.
+### Key Components of ViT
+The key coomponents of ViT are described below:
 
-ViT consists of the following steps.
-  1. Split an image into patches (fixed sizes)   
-  2. Flatten the image patches 
-  3. Create lower-dimensional linear embeddings from these flattened image patches   
-  4. Include positional embeddings   
-  5. Feed the sequence as an input to a state-of-the-art transformer encoder   
-  6. Pre-train the ViT model with image labels, which is then fully supervised on a big dataset.
-  7. Fine-tune the downstream dataset for image classification 
+#### A. Patch Embedding
+- Instead of processing the entire image as a whole, ViT divides the input image into fixed-size patches (e.g., 16x16 pixels).
+Each patch is then flattened into a single vector, essentially treating each patch as a "token" similar to how words are treated in text processing. These flattened patch vectors are linearly projected to a desired embedding dimension. This projection helps in transforming the patches into a suitable format for the Transformer model.
 
-The transformer's encoder has a structure in which L transformer blocks sequentially pass through the Feed Forward, which consists of the Normalization Layer, Multi-head Attention, Normalization Layer, and MLP, as shown on the right of Figure 1.
+#### B. Positional Encoding
+- Since Transformers are permutation-invariant and do not inherently understand the spatial relationships between patches, positional encodings are added to the patch embeddings. These encodings provide information about the position of each patch in the original image.
+
+#### C. Self Attention
+- The self-attention layer calculates attention weights for each pixel in the image based on its relationship with all other pixels.
+
+$$ Q = XW_Q, K=XW_K, V=XW_V $$
+
+$$ Attention Score = Q K^T $$
+
+$$ Attention Output = softmax(\frac{Q \dot K^T}{\sqrt{d_k}}V) $$
+
+#### C. Multi-Head Self Attention (MHSA)
+- The multi-head attention extends self-attention mechanism by allowing the model to attend to different parts of the input sequence simultaneously. Each "head" in the multi-head attention mechanism can capture different features, leading to a richer and more nuanced representation of the image.
+
+#### D. Feedforward Neural Networks:
+- Each self-attention layer is followed by a feedforward neural network that further processes the information.
+These networks consist of fully connected layers and typically include activation functions and normalization.
 
 ----------
 
