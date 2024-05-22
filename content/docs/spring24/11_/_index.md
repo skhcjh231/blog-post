@@ -33,7 +33,7 @@ We could calculate the MHA By parallely computing $H$ number of attention states
 ## Infini-attention
 
 <p align="center">
-    <img src=/Untitled.png>
+    <img src=../Untitled.png>
 </p>
 <p align="left" style="color:gray">
 Figure 1: Infini-attention has an additional compressive memory with linear attention for processing infinitely long contexts. $\{KV\}_{s−1}$ and $\{KV\}_s$ are attention key and values for current and previous input segments, respectively and $Q_s$ the attention queries. PE denotes position embeddings. 
@@ -92,7 +92,7 @@ where $W_O ∈ \mathbb R^{H×d_{value} ×d_{model}}$ is the projection weights.
 ## Comparsion with Other Transformers with Context Memory
 
 <p align="center">
-    <img src=/Untitled%201.png>
+    <img src=./Untitled%201.png>
 </p>
 
 <p align="left" style="color:gray">
@@ -107,7 +107,7 @@ Table 1 shows the analysis of transformer models combining with segment-level me
 
 - **Transformer-XL** [4] **uses KV components from the privious segment** with **current components** over each layer. Thus the context window of Transformer-XL is enlarged from $N$ to $N \times L$, and it requires  $(d_{key} + d_{value}) × H × N × l$ memory foot prints.
     <p align="center">
-    <img src=/Untitled%202.png>
+    <img src=./Untitled%202.png>
     </p>
     
     <p align="center" style="color:gray">
@@ -115,7 +115,7 @@ Table 1 shows the analysis of transformer models combining with segment-level me
     </p>
 - **Compressive Transformer** [5] append **additional cache** to Transformer-XL that **saves the past activations**. It broaden the Transformer-XL’s context window by $c × r × l$.
     <p align="center">
-    <img src=/Untitled%203.png>
+    <img src=./Untitled%203.png>
     </p>   
 
     <p align="center" style="color:gray">
@@ -126,7 +126,7 @@ Table 1 shows the analysis of transformer models combining with segment-level me
     
 - **Memorizing Transformers** [6] trys to **gather the every KV components** as the global context for the input segment. To reduce the overhead of storing every KV compoents, Memorizing Transformers adapts the context-weaving only on the last layer. The context window could explore entire input sequence $N \times S$ using KNN retriever.
     <p align="center">
-    <img src=/Untitled%204.png>
+    <img src=./Untitled%204.png>
     </p>
     
     <p align="center" style="color:gray">
@@ -136,7 +136,7 @@ Table 1 shows the analysis of transformer models combining with segment-level me
 - **RMT** [7] and **AutoCompressors** [8, 9] utilized **extra vectors** that **interact with current segment** and then **is delivered to next token** recursively (which is similar in hidden vector in Recurrent Neural Networks (RNN)). However, the google researchers argue that the size of the additional memory vectors is the main factor of the efficiency of the method, which means that the performance and the memory footprint is aligned each other.
     
     <p align="center">
-    <img src=/Untitled%205.png>
+    <img src=./Untitled%205.png>
     </p>
     
     <p align="left" style="color:gray">
@@ -144,14 +144,14 @@ Table 1 shows the analysis of transformer models combining with segment-level me
     </p>
 
     <p align="center">
-    <img src=/Untitled%206.png>
+    <img src=./Untitled%206.png>
     </p>
     <p align="left" style="color:gray">
     Figure from AutoCompressors [8]. AutoCompressors process long documents by recursively generating summary vectors which are passed as soft prompts to all subsequent segments.
     </p>
     
 <p align="center">
-    <img src=/Untitled%207.png>
+    <img src=./Untitled%207.png>
 </p>
 
 <p align="left" style="color:gray">
@@ -167,7 +167,7 @@ Infini attention was tested on three main benchmarks such as **long-context lang
 ### Long-context Language Modeling
 
 <p align="center">
-    <img src=/Untitled%208.png>
+    <img src=./Untitled%208.png>
 </p>
 
 <p align="center" style="color:gray">
@@ -178,7 +178,7 @@ The authors trained and evaluated small Infini-Transformer models on **PG19** [5
 **Arxiv-math** [6] **benchmarks**. They noted that the model with Infini Attention outperformed the baseline model. Additionally, extending the training sequence length further improved the perplexity score, a metric indicating language model performance, where lower scores signify better performance.
 
 <p align="center">
-    <img src=/Untitled%209.png>
+    <img src=./Untitled%209.png>
 </p>
 
 <p align="center" style="color:gray">
@@ -190,7 +190,7 @@ Figure 3 illlustrates the gating value ($sigmoid(\beta)$) of each heads and laye
 ### 1M passkey retrieval benchmark
 
 <p align="center">
-    <img src=/Untitled%2010.png>
+    <img src=./Untitled%2010.png>
 </p>
 
 <p align="left" style="color:gray">
@@ -206,7 +206,7 @@ While previous work [14] showed that the 8B LLaMA model can solve tasks up to 32
 ### 500K length book summarization (BookSum)
 
 <p style="text-align: center;">
-    <img src=/Untitled%2011.png>
+    <img src=./Untitled%2011.png>
 </p>
 
 <p align="center" style="color:gray">
@@ -214,7 +214,7 @@ Table 4: 500K length book summarization (BookSum) results. The BART, PRIMERA and
 </p>
 
 <p style="text-align: center;">
-    <img src="/Untitled%2012.png">
+    <img src="./Untitled%2012.png">
 </p>
 
 <p align="center" style="color:gray">
