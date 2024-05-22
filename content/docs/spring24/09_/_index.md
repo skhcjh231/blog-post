@@ -16,7 +16,7 @@ weight: 1
 
 ## Hardware-Independent Pareto Efficiency
 <p align="center">
-    <img src='./Fig2.PNG' width="900">
+    <img src='./Fig2.png' width="900">
 </p>
     
 <p align="center">
@@ -24,7 +24,7 @@ weight: 1
 </p>
 
 <p align="center">
-    <img src='./Fig3.PNG' width="900">
+    <img src='./Fig3.png' width="900">
 </p>
     
 <p align="center">
