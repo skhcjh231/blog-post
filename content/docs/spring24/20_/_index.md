@@ -182,6 +182,15 @@ The experiments in the paper focus on applying the proposed evolutionary model m
 
 ## Qualitative Results
 - ### Case Study of EvoLLM-JP-v1-7B
+<p align="center">
+  <img src="./figures/case study of evollm-jp.png" alt="." width="500" height="900" > 
+</p>
+
+
+- ### Case Study of EvoVLM-JP
+<p align="center">
+  <img src="./figures/case study of evovlm-jp.png" alt="." width="500" height="600" > 
+</p>
 
 
 ## Conclusion
