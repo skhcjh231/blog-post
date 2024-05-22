@@ -145,13 +145,13 @@ First, given an initial set of encodings **$Z_{0}$** and writing weights **$W_{0
     <img src='initialize.png' width="300">
 </p>
 
-Next, memory $M_{i-1}$ is sequentially updated by adding a new set of encodings **Z**$_{i}$ or forgetting a previously written set of encodings **Z**$_{i}$. This process is conducted as below. 
+Next, memory **$M_{i-1}$** is sequentially updated by adding a new set of encodings **$Z_{i}$** or forgetting a previously written set of encodings **$Z_{i}$**. This process is conducted as below. 
 
 <p align="center">
     <img src='update.png' width="300">
 </p>
 
-For instance, $\alpha $\alpha_{i}$ is 1 for writing, -1 for forgetting.
+For instance, $\alpha_{i} is 1 for writing, -1 for forgetting.
 
 
 ## 5. Results
