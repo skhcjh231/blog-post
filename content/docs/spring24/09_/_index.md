@@ -141,7 +141,7 @@ As shown above, the insitantiation of UIB blocks are in the neural architecture 
 ## Results - Comparisons with Other Works
 
 <p align="center">
-    <img src='./Table5.png' width="900">
+    <img src='./Table5.png' width="600">
 </p>
     
 <p align="center">
