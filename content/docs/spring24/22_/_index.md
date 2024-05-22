@@ -147,7 +147,7 @@ Next, memory **M**$_{i-1}$ is sequentially updated by adding a new set of encodi
 <p align="center">
     <img src='update.png' width="300">
 </p>
-For instance, \alpha $\alpha_{i}$ is 1 for writing, -1 for forgetting.
+For instance, $\alpha$ $\alpha_{i}$ is 1 for writing, -1 for forgetting.
 
 
 ## 5. Results
