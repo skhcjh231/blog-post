@@ -30,7 +30,7 @@ Among many compression methods, [Arithmetic coding (AC)](#ac) has been known to 
 2. A frozen "M1" is used to compress pretraining corpus text by applying a standard compression algorithm, like AC.
 4. The compressed bitstream is chunked into tokens, which are used to train a second language model “M2”, that directly reads and writes neural-compressed text.
 
-![method overview](https://hackmd.io/_uploads/r1euuRIQR.png "Method overview")
+![method overview](./fig1.png "Method overview")
 
 
 ### Challenges of LLMs over compressed text
@@ -55,7 +55,7 @@ Authors use a decoder-only Transformer model, where the final validation perform
 3. ### Compression
 Now, modeling compressed text can  be difficult because of language modeling model not able to track the state variables used in Arithmetic Coding.
 
-![equal information window](https://hackmd.io/_uploads/HyvXAAL7R.png "Example of equal information window.")
+![equal information window](./fig2.png "Example of equal information window.")
 
 To weaken the coding component of AC compression, the authors rest the AC encoder once it has output a set number of bits, creating windows of fixed size where each window is an independently AC-compressed sequence.
 
@@ -67,7 +67,7 @@ Training M2 directly over the bits from the compression method would be not idea
 
 Another critical point to consider it the token compression ratio $L_{iT}/L_{oT}$, the ratio between the input and output token sequence lengths. This metric measures the weakening of Arithmetic coding. Note that the meaning of “token” can differ between the input and output sequences.
 
-![weakening AC](https://hackmd.io/_uploads/H1ligJP7C.png "Weakening the coding component of Arithmetic coding")
+![weakening AC](./fig3.png "Weakening the coding component of Arithmetic coding")
 
 
 5. ### Training M2
@@ -99,7 +99,7 @@ Obviously, simply training over nerual-compressed fails in terms of both bits/by
 
 ### Equal-Info Windows make Arithmetic Coding(AC) learnable
 EqualInfoAC[b=16, v=256] outperforms byte-level baselines, improving bits/byte performance and reducing FLOPs/byte due to shorter sequence lengths. EqualInfoAC[b=16, v=65k] models achieve competitive bits/byte performance and require fewer autoregressive steps than SentencePiece models, which can reduce generation latency. Despite SentencePiece's slight edge in bits/byte when FLOPs/byte are constant, EqualInfoAC's shorter sequences offer a significant advantage in latency-sensitive applications.
-![Equal-Info Windows](https://hackmd.io/_uploads/ByjXXgtmA.png "Performance of EqualInfoAC across various window sizes")
+![Equal-Info Windows](./fig4.png "Performance of EqualInfoAC across various window sizes")
 
 ### Window size
 
@@ -109,7 +109,7 @@ Analyzing bits-per-token reveals a discernible pattern: longer window lengths po
 
 Using a larger 16-bit vocabulary (v=65k) for tokenizing compressed text leads to a doubling in token compression rate, evident from the leftward shift of each curve depicted in the figure below.
 
-![Size of M2 vocabulary](https://hackmd.io/_uploads/Hy7IUxKX0.png "Size of M2 vocabulary")
+![Size of M2 vocabulary](./fig5.png "Size of M2 vocabulary")
 
 
 ## Conclusion
