@@ -128,7 +128,7 @@ Once **M**$_{0}$ is trained via backpropagation, the posterior memory **M** is u
 
 
 ## 4. Memory Operations [1]
-In this paper, authors followed the ideas from [8] to combine pre-trained LLMs and memory component for knowledge edit. Fig8 illustrates the single training step of the memory. 
+In this paper, authors followed the ideas from [8] to combine pre-trained LLMs with memory component for knowledge edit. Fig8 illustrates the single training step of the memory. 
 
 <p align="center">
     <img src='basic memory operations.png' width="800">
