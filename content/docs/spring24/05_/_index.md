@@ -42,6 +42,7 @@ Speculative decoding is an apporach to accelerate LLM inference.
 
 **Independent Drafting**: This approach uses a small language model (LM) from the same series as the target LLM.
 - Requires additional training and increases computational complexity by integrating separate target and drafting models.
+  
 **Self-Speculative Decoding**: This method utilizes the target LLM itself.
 - Employs techniques such as Blockwise Decoding, Medusa, and early exiting to reduce computational burden.
 - Computational efficiency can also be achieved through layer skipping.
