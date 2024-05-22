@@ -115,7 +115,7 @@ Compare with others:
 
 Kangaroo's performance surpasses other speculative decoding methods, such as Medusa and Lookahead, particularly in terms of end-to-end speedup and token acceptance rates (see Fig.2 in introduction). The double early-exit mechanism plays a crucial role in maintaining this balance by efficiently handling easier tokens and exiting early when confidence is lower than predefined threshold, thus minimizing latency.
 
-###Limitations and future work:
+### Limitations and future work:
 1. **Enhanced Confidence Metrics**: 
     1. Although Kangaroo introduces a confidence-based mechanism, it retains the original issue of discarding generated tokens that do not meet the confidence threshold. 
     2. Currently, confidence is measured only on the top-1 prediction. Future work could explore alternative metrics such as entropy or other measures to provide a more robust assessment of token validity.
