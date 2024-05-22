@@ -188,6 +188,8 @@ Beyond MobileNetV4, many CNNs are integrating multi-head attention layers, while
     Fig. 5. MobileFormer Network
 </p>
 
+A similiar work that utilizes the MobileNet and trasnformer modules was introduced in CVPR 2022, the Mobile-Former. This structure capitalizes on MobileNet's strength in local processing and the transformer's capability for global interaction. The bridge facilitates bidirectional fusion of local and global features. Unlike recent vision transformer approaches, the transformer in Mobile-Former uses very few tokens (typically 6 or fewer), which are randomly initialized to learn global priors, thereby minimizing computational cost. Additionally, the proposed lightweight cross-attention mechanism used to model the bridge enhances both computational efficiency and representation power.
+
 <p align="center">
     <img src='./Table7.png' width="400">
 </p>
@@ -195,6 +197,8 @@ Beyond MobileNetV4, many CNNs are integrating multi-head attention layers, while
 <p align="center">
     Table. 7. Performance comparison of MobileFormer with other works
 </p>
+
+Mobile-Former demonstrates superior performance compared to MobileNetV3 in the low FLOP regime, ranging from 25M to 500M FLOPs on ImageNet classification. For example, Mobile-Former achieves 77.9% top-1 accuracy at 294M FLOPs, surpassing MobileNetV3 by 1.3% while reducing computations by 17%. In object detection tasks, Mobile-Former outperforms MobileNetV3 by 8.6 AP within the RetinaNet framework. Furthermore, when applied to the DETR model, replacing its backbone, encoder, and decoder with Mobile-Former results in a detector that not only surpasses DETR by 1.1 AP but also reduces computational cost by 52% and parameter count by 36%.
 
 ## References
 [1] MobileNetV4 Implementation: [[Link](https://github.com/scalable-model-editing/unified-model-editing).](https://github.com/jiaowoguanren0615/MobileNetV4/tree/main)
