@@ -75,10 +75,13 @@ This method applies expert-choice routing but uses only a single expert. Since o
 
 For the following reasons, the authors decided to use Expert-choice routing and utilize only single paths:
 - Efficiency of computation
+  
   Don't need for an auxiliary balancing loss
 - Simplicity of implementation
+  
   Simply can choose the tokens with the highest weight in order
 - Clear criteria
+  
   Can guarantee that the most important token is calculated since the top-{{< katex >}}k{{< /katex >}} tokens are independent on magnitude of router weights
 
   Top-{{< katex >}}k{{< /katex >}} can divide clearly tokens into two mutually sets
