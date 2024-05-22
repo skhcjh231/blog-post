@@ -51,6 +51,14 @@ The main advantage of UIB is its adaptability and flexibility, that mitigates se
 - FFN : Stack of two 1x1 pointwise convolutions. Accelerator-friendly operation
 
 ## Mobile MQA
+<p align="center">
+    <img src='./Table1.png' width="900">
+</p>
+    
+<p align="center">
+    Table 1. Efficiency Gains by MQA
+</p>
+
 
 ## Design of MobileNetV4 
 
@@ -64,6 +72,9 @@ The main advantage of UIB is its adaptability and flexibility, that mitigates se
     Table 5. Classification results on ImageNet-1k
 </p>
 
+## Enhanced Distillation Recipe
+
+## Conclusion
 
 
 This paper propose a compression framework that leverages text information mainly by text-adaptive encoding and training with joint image-text loss. By doing so, they avoid decoding based on text-guided generative models---known for high generative diversity---and effectively utilize the semantic information of text at a global level. 
