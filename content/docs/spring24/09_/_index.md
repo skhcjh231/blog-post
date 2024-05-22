@@ -4,6 +4,10 @@ bookToc: True
 weight: 1
 ---
 
+<p align="center">
+    <img src='./title.webp' width="900">
+</p>
+
 ## MobileNetV4 - Universal Models for the Mobile Ecosystem
 *Posted by JoonSeok Kim and DongGyu Kim*
 - Qin, Danfeng and Leichner, Chas and Delakis, Manolis and Fornoni, Marco and Luo, Shixin and Yang, Fan and Wang, Weijun and Banbury, Colby and Ye, Chengxi and Akin, Berkin and others
