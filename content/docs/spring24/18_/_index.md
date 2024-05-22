@@ -9,6 +9,8 @@ weight: 1
 
 *Posted by Jungwon Lee, Minsang Seok*
 
+----------
+
 ## What is Vision Transformer?
 
 Vision Transformer (ViT) is an innovative approach to computer vision that leverages the principles of the Transformer architecture, which was originally designed for natural language processing tasks. ViT has recently emerged as a competitive alternative to Convolutional Neural Networks (CNNs) that are currently state-of-the-art in different image recognition computer vision tasks.
@@ -88,10 +90,10 @@ If interested in more details about ViT, please refer to the following paper. "A
   <img src="./ViTAR_overall.png" alt="." width="600" height="200" > 
 </p>
 
-To address this issue, ViTAR introduce two key innovations. 
+To address this issue, ViTAR introduces two key innovations. 
 - 1. Adaptive Token Merger : A novel module for dynamic resolution adjustment, designed with a single Transformer block to achieve highly efficient incremental token integration.
 - 2. Fuzzy positional encoding : A novel positional encoding to ensure consistent positional awareness across multiple resolutions, thereby preventing overfitting to any specific training resolution.
-
+  
 ----------
 
 ### 1. Adaptive Token Merger (ATM Module)
@@ -173,8 +175,6 @@ For Ablation study, ViTAR-S Model is used to compare with AvgPool which is anoth
 ## ViTAR shows superior performance with any resolution
 
 
-
-
 ### Image Classification
 
 ViTAR is trained on ImageNet-1K form scratch and it demonstrates excellent classification accuracy across a considerable range of resolutions. Especially, when the resolution of the input image exceeds 2240, ViTAR is capable of inference at lower computational cost. In contrast, traditional ViT architectures (DeiT and ResFormer) cannot perform high resolution inference due to computational resource limitations.
@@ -196,6 +196,7 @@ For object detection, COCO dataset is used ATM iterates only once because it doe
   <img src="./result_object_detection.png" alt="." width="800" height="350" > 
 </p>
 
+----------
 
 ## Discussion
 
