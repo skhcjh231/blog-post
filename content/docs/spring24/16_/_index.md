@@ -131,6 +131,7 @@ The code operates in the following steps:
         weights = self.weight_predictor(x).squeeze(-1)  # [batch_size, seq_len]
         return weights
    '''
+   
    The **TokenRouter** module caculates weights for each token based on its embedding. This is done using a lnear layer appleid to the embeddingsm resulting in a weight value for each token.
 3. Selective Processing
    
