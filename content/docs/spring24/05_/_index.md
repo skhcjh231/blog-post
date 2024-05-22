@@ -52,6 +52,8 @@ Speculative decoding is an apporach to accelerate LLM inference.
 **Kangaroo** refers to the self-speculative decoding method, utilizing a fixed shallow sub-network of the original (target) large LLM.
 <p align="center">
     <img src='./compare.png' width="700">
+    <caption = >
+        <label = '1'>
 </p>
 
 In each decoding step, drafted tokens must be verified in parallel to ensure alignment with the target LLM, which determines the token acceptance rate. High token acceptance rates are crucial for the efficiency of this process. However, methods like Medusa have yet to achieve satisfactory token acceptance rates, as evidenced by performance metrics (see left graph). On the other hand, the Lookahead method achieves a high token acceptance rate but has a very low speedup ratio (see right graph).
