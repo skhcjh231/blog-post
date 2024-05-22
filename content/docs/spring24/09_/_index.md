@@ -31,7 +31,7 @@ This paper mainly focuses on lowering inference latency while maintining the tes
 
 ## Preliminaries - Inverted Residual Blocks and Linear Bottlenecks
 <p align="center">
-    <img src='./residual.webp' width="900">
+    <img src='./residual.webp' width="500">
 </p>
     
 <p align="center">
@@ -41,7 +41,7 @@ This paper mainly focuses on lowering inference latency while maintining the tes
 Previously, the residual bottleneck block was propsoed, which consists of the 1x1 pointwise convolution in the first layer, a depthwise convolution in the second layer, and the final pointwise convolution layer, where its output is residually connected with the module's input. The first layer acts as a projection layer to generate the narrow, and parameter-efficient convolution layer for depthwise convolution. This part acts as the bottleneck layer. The output of this layer is expanded again in the pointwise convolution. Here, the module forms a wide-narrow-widw approach considering the number of channels.
 
 <p align="center">
-    <img src='./inverted_residual.webp' width="900">
+    <img src='./inverted_residual.webp' width="500">
 </p>
     
 <p align="center">
