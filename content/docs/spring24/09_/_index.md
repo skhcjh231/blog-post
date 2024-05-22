@@ -72,7 +72,7 @@ MobileNetV4 is designed to achieve Pareto optimal and hence balances MAC operati
 </p>
     
 <p align="center">
-    Fig. 4. Univesal Inverted Bottleneck (UIB) blocks
+    Fig. 4. Universal Inverted Bottleneck (UIB) blocks
 </p>
 
 The main advantage of UIB is its adaptability and flexibility, that mitigates seach complexity. Optional Depthwise (DW) convolution blocks are inserted before the expansion layer, and between the expansion and projection layer. In the NAS procedure, common components such as the pointwise expansion and projection are shared and DWs are added as search options. UIB has four possible instantiations as follows.
@@ -94,8 +94,8 @@ This paper considers the Operational Intensity (OI), which is the ratio of arith
 
 The Spatial Reduction Attention (SRA) is applied, hence incorporating asymmetric spatial down-sampling, to downscale keys and values, and not queires. In hybrid models, there is a certain correlation between spatially adjacent tokens, hence necessitating spatial mixing convolution filters.
 
-## Design of MobileNetV4 
-
+## Refined NAS for Enhanced Architectures
+As shown above, the insitantiation of UIB blocks are in the neural architecture search process. TuNAS was adopted for the paper's search strategy. The paper uses a two-stage search operation, the coarse-grained search and fine-grained serach to address the variance in parameter counts between UIB's depthwise layers and other search options. The course-grained search process involves determining optimal filter sizes with fixed parameters. The fine-grained stage searches for the UIB's layer configuration. 
 
 ## Results
 
@@ -105,6 +105,14 @@ The Spatial Reduction Attention (SRA) is applied, hence incorporating asymmetric
     
 <p align="center">
     Table 5. Classification results on ImageNet-1k
+</p>
+
+<p align="center">
+    <img src='./Table6.png' width="900">
+</p>
+    
+<p align="center">
+    Table 6. Object Detection results on the COCO validation set
 </p>
 
 ## Enhanced Distillation Recipe
