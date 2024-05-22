@@ -76,9 +76,9 @@ One of the significant advantages of µ-Parameterization is the concept of µ-Tr
 
 ### Steps in µ-Transfer
 
-1. **Training a Small Proxy Model**: Begin by training a small proxy model, which is easier and less expensive to experiment with. Perform hyperparameter tuning on this model to find the optimal learning rate and other hyperparameters. For instance, let's denote the optimal learning rate found for this small model as {{< katex >}}\( \alpha \){{< /katex >}}.
+1. **Training a Small Proxy Model**: Begin by training a small proxy model, which is easier and less expensive to experiment with. Perform hyperparameter tuning on this model to find the optimal learning rate and other hyperparameters. For instance, let's denote the optimal learning rate found for this small model as α.
 
-2. **Scaling the Hyperparameters**: Use the scaling rules provided by µP to adapt the hyperparameters for a larger model. The key scaling rule here is that the learning rate should be adjusted based on the ratio of the widths of the large model to the small model. For example, if the small model has a width {{< katex >}}\( 128 \){{< /katex >}} and the large model has a width \( 2048 \), the scaled learning rate for the large model would be {{< katex >}}\( \frac{\alpha \cdot 2048}{128} \){{< /katex >}}.
+2. **Scaling the Hyperparameters**: Use the scaling rules provided by µP to adapt the hyperparameters for a larger model. The key scaling rule here is that the learning rate should be adjusted based on the ratio of the widths of the large model to the small model. For example, if the small model has a width 128 and the large model has a width 2048, the scaled learning rate for the large model would be {{< katex >}}\frac{α2048}{128}{{< /katex >}}.
 
 3. **Applying the Scaled Hyperparameters**: Implement these scaled hyperparameters in the larger model. This involves adjusting the initialization variance and learning rates according to the µP rules to ensure that the training dynamics remain stable and consistent.
 
