@@ -20,9 +20,12 @@ The **multi-head scaled dot-product attention** (a.k.a. self-attention or MHA) i
 
 To calculate the attention state {{< katex >}} A_{dot} ∈ \mathbb R^{N×d_{value}} {{< katex >}} of a single head in the MHA module with an input seqeunce $X ∈ \mathbb R^{N×d_{model}}$, three components, key, query and value are computed as 
 
-$$
+
+<p align="center">
+    {{< katex >}}
 K = XW_K, V = XW_V \ \text{and} \ Q = XW_Q,
-$$
+  {{< /katex >}} 
+</p>
 
 where $W_K ∈ \mathbb R^{d_{model} ×d_{key }}$, $W_V ∈ \mathbb R^{d_{model} ×d_{value}}$ and $W_Q ∈ \mathbb R^{d_{model} ×d_{key}}$ are trainable projection matrices. Then, we can get the attention state as
 
