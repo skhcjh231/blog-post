@@ -16,7 +16,7 @@ MobileNetV4 targets designing neural networks for mobile devices. Main objective
 - Low inference latency for utilization in mobile devices
 - Minimization of the number of parameters for low memory utilization on mobile platforms
 - Minimization in the number of MACs for high enegy efficiency
-- 
+
 This paper mainly focuses on lowering inference latency while maintining the test accuracy up to SOTA mobile neural net performance. Since it targets mobile platforms, it analyzes performance of various mobile hardwares, and designs a neural network to fit the harwares maximum performance. The designing process was done by the NAS technique, where the intantiation of UIB blocks were set as the search space. The main contributions of this work can be states as follows.
 
 1. Universal Inverted Bottleneck (UIB) seach block - Unifies the Inverted Bottleneck (IB), ConvNext, Feed Forward Netowork (FFN), and Extra Depthwise variant
