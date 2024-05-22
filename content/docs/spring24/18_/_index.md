@@ -50,7 +50,7 @@ The transformer's encoder has a structure in which L transformer blocks sequenti
 
 ## ViTAR: Vision Transformer with Any Resolution
 <p align="center">
-  <img src="./overview.png" alt="." width="600" height="200" > 
+  <img src="./ViTAR_overall.png" alt="." width="600" height="200" > 
 </p>
 In this section, we introduces two key innovations to address this issue. Firstly, we propose a novel module for dynamic resolution adjustment, designed with a single Transformer block, specifically to achieve highly efficient incremental token integration. Secondly, we introduce fuzzy positional encoding in the Vision Transformer to provide consistent positional awareness across multiple resolutions, thereby preventing overfitting to any single training resolution.
 
