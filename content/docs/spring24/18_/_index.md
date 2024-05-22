@@ -6,6 +6,7 @@ weight: 1
 
 # **ViTAR: Vision Transformer with Any Resolution**
 *Authors: Qihang Fan, Quanzeng You, Xiaotian Han, Yongfei Liu, Yunzhe Tao, Huaibo Huang, Ran He, Hongxia Yang*
+*Posted by Jungwon Lee, Minsang Seok"
 
 ## Vision Transformers (ViTs)
 
