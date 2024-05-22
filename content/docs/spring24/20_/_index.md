@@ -180,6 +180,10 @@ The experiments in the paper focus on applying the proposed evolutionary model m
 - **Qualitative Analysis**: 
   - The merged VLM demonstrated superior handling of Japanese cultural content, providing more detailed and accurate responses compared to baseline models.
 
+## Qualitative Results
+- ### Case Study of EvoLLM-JP-v1-7B
+
+
 ## Conclusion
 ### Discussion and limitation
 
