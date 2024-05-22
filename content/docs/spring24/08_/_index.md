@@ -6,11 +6,11 @@ weight: 1
 
 # MIXTURE OF LORA EXPERTS
 
-LoRA is a methodology for effective fine-tuning large-scale pretrained models. LoRA is characterized by its ease of applying tuned results to existing models. This property encouragees research into synthesizing multiple trained LoRAs to achieve enhanced performance across various tasks. However, combining these trained LoRAs poses significant two challenges:
+LoRA is a methodology for effective fine-tuning large-scale pretrained models. LoRA is characterized by its ease of applying tuned results to existing models. This property encouragees research into synthesizing multiple trained LoRAs to achieve enhanced performance across various tasks such as linear arithmetic composition and reference tuning-based composition. However, combining these trained LoRAs poses significant two challenges:
 
 1. _**Linear arithmetic composition can diminish the generative capabilities of the original pre-trained models and the unique characteristics of the individually trained LoRAs, potentially leading to suboptimal results.**_
 
-2. _**Composition based on reference tuning is limited in adaptability and incurs substantial computational costs, as it necessitates retraining a large model.**_
+2. _**Reference tuning-based composition is limited in adaptability and incurs substantial computational costs, as it necessitates retraining a large model.**_
 
 Mixture of LoRA Experts (MoLE) presents a new method for achieving the optimal combination of LoRAs for specific tasks. MoLE considers each LoRA as an expert and determines the weights applied to each LoRA at each layer through a gate function.
 
@@ -21,10 +21,6 @@ Mixture of LoRA Experts (MoLE) presents a new method for achieving the optimal c
     <em>Workflow of Mixture of LoRA Experts (MoLE)</em>
 </p>
 
-<!--
-제목으로 바꾸기
-처음에 어그로 끌 수 있는 내용 먼저
--->
 ## Background
 
 ### What is LoRA?
