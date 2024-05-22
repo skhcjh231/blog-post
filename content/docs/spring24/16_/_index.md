@@ -100,7 +100,8 @@ x^{l+1}_i=\begin{cases}r^{l}_i f_i(\tilde{X}^l)+x^{l}_i, &    \text{if } r^{l}_i
 ## **More details**
 ### **Capacity**
 ### **Autoregressively sampling**
-The issue with autoregressively sampling is that it lacks information about future tokens, which means it cannot determine whether a token will be in the top-{{< katex >}}k{{< /katex >}} when it passes through the router. Therefore, to solve this problem, the paper proposes two methods.
+We're looking to implement expert-choice routing, but there is one distinct problem: top-k operations rely on future tokens! Our goal is for each token to determine if it belongs to the top-k using routers. To do this, every token needs access to the router weights of future tokens. Unfortunately, we lack the ability to predict the future router weights and cannot employ autoregressive sampling. To solve this problem, the authors propose two methods.
+
 - Simple auxiliary loss
   <p align="center">
     <img src=./Routing_Analysis.png> 
