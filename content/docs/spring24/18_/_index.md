@@ -30,6 +30,7 @@ ViT consists of the following steps.
 
 The transformer's encoder has a structure in which L transformer blocks sequentially pass through the Feed Forward, which consists of the Normalization Layer, Multi-head Attention, Normalization Layer, and MLP, as shown on the right of Figure 1.
 
+----------
 
 ## Challenge: Multi-Resolution ViT Modeling
  Shortcoming of ViT is revealed when receiving multi-resolution images as input. There are limits to its application in actual use environments because ViT cannot process images of various resolutions well.
@@ -47,6 +48,7 @@ The transformer's encoder has a structure in which L transformer blocks sequenti
  - It cannot be used with self-supervised learning methods like masked auto-encoding (MAE).
  - Computation cost increases as input resolution increases, which has a negative impact on the training and inference process.
 
+----------
 
 ## ViTAR: Vision Transformer with Any Resolution
 <p align="center">
@@ -54,8 +56,7 @@ The transformer's encoder has a structure in which L transformer blocks sequenti
 </p>
 In this section, we introduces two key innovations to address this issue. Firstly, we propose a novel module for dynamic resolution adjustment, designed with a single Transformer block, specifically to achieve highly efficient incremental token integration. Secondly, we introduce fuzzy positional encoding in the Vision Transformer to provide consistent positional awareness across multiple resolutions, thereby preventing overfitting to any single training resolution.
 
-
-
+----------
 
 ### 1. Adaptive Token Merger (ATM Module)
 
@@ -97,6 +98,7 @@ GridAttn(\{x_{ij}\}) = x_{avg} + Attn(x_{avg}, \{x_{ij}\}, \{x_{ij}\})
 
  This iteration process effectively reduces the number of tokens even when the resolution of the image is large, and with enough iterations, this size can be reduced effectively. This has the advantage of being computationally efficient because when performing subsequent MHSA calculations, we always use the same size tokens as input, regardless of resolution.
 
+----------
 
 <p align="center">
   <img src="./result_ATM.png" alt="." width="500" height="200" > 
@@ -104,6 +106,7 @@ GridAttn(\{x_{ij}\}) = x_{avg} + Attn(x_{avg}, \{x_{ij}\}, \{x_{ij}\})
 
 For Ablation study, ViTAR-S Model is used to compare with AvgPool which is another token fusion method. The results of the comparison demonstrate that ATM significantly improves the model's performance and resolution adaptability. Specifically, at a resolution of 4032, our proposed ATM achieves a 7.6\% increase in accuracy compared with the baseline.
 
+----------
 
 ### 2. Fuzzy Positional Encoding (FPE)
  Existing ViT Models generally use learnable positional encoding or sin-cos positional encoding. However, they do not have the ability to handle various input resolutions because these methods are sensitive to input resolution. In response to this, ResFormer attempted to solve this problem through convolution-based positional embedding.
@@ -122,20 +125,23 @@ For Ablation study, ViTAR-S Model is used to compare with AvgPool which is anoth
 
  In case of inference, precise positional encoding is used instead of FPE. When there is a change in input resolution, interpolation is performed on learnable positional embedding. This has strong positional resilience because it was somehow seen and used in the FPE used in the training phase.
 
+----------
+
  To compare the impact of different positional encodings on the model’s resolution generalization ability, several positional encoding methods were used. This includes commonly used sin-cos absolute position encoding (APE), conditional position encoding (CPE), global-local positional encoding (GLPE) in ResFormer, Relative Positional Bias (RPB) in Swin, and FPE. Note that only APE and FPE are compatible with the MAE framework.ViTAR-S is used for experiments without MAE, and ViTAR-M is used for experiments with MAE. As a result, FPE exhibits a significantly pronounced advantage in resolution generalization capability. Additionally, under the MAE self-supervised learning framework, FPE also demonstrates superior performance relative to APE.
 <p align="center">
   <img src="./result_FPE.png" alt="." width="300" height="200" > 
 </p>
 
+----------
 
-## Experiments
+## ViTAR shows superior performance with any resolution
 
 
 <p align="center">
   <img src="./result1.png" alt="." width="500" height="300" > 
 </p>
 
-### Result of Image Classification Task
+### Image Classification
 
 ViTAR is trained on ImageNet-1K form scratch and it demonstrates excellent classification accuracy across a considerable range of resolutions. Especially, when the resolution of the input image exceeds 2240, ViTAR is capable of inference at lower computational cost. In contrast, traditional ViT architectures (DeiT and ResFormer) cannot perform high resolution inference due to computational resource limitations.
 
@@ -143,7 +149,7 @@ ViTAR is trained on ImageNet-1K form scratch and it demonstrates excellent class
   <img src="./result_image_classification.png" alt="." width="500" height="500" > 
 </p>
 
-### Result of Object Detection Task
+### Object Detection
 For object detection, COCO dataset is used ATM iterates only once because it does not utilize the multi-resolution training strategy in this experiment. If $\frac{H}{G_th}$ and $\frac{W}{G_tw}$ in ATM are fixed to 1, the results indicate that ViTAR achieves performance in both object detection and instance segmentation. And if setting $\frac{H}{G_th}$ and $\frac{W}{G_tw}$ to 2 in ATM, ATM module reduces approximately 50\% of the computational cost while maintaining high precision in dense predictions, demonstrating its effectiveness.
 
 <p align="center">
