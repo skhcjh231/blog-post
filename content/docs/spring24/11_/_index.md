@@ -108,49 +108,51 @@ Infini-Transformer
 Table 1 shows the analysis of transformer models combining with segment-level memory. 
 
 - **Transformer-XL** [4] **uses KV components from the privious segment** with **current components** over each layer. Thus the context window of Transformer-XL is enlarged from $N$ to $N \times L$, and it requires  $(d_{key} + d_{value}) × H × N × l$ memory foot prints.
-    <p align="center">
-    <img src=./Untitled%202.png>
-    </p>
+<p align="center">
+<img src=./Untitled%202.png>
+</p>
     
-    <p align="center" style="color:gray">
-    Figure from Transformer-XL [4]. Illustration of the vanilla model with a segment length 4.
-    </p>
+<p align="center" style="color:gray">
+Figure from Transformer-XL [4]. Illustration of the vanilla model with a segment length 4.
+</p>
+
 - **Compressive Transformer** [5] append **additional cache** to Transformer-XL that **saves the past activations**. It broaden the Transformer-XL’s context window by $c × r × l$.
-    <p align="center">
-    <img src=./Untitled%203.png>
-    </p>   
+<p align="center">
+<img src=./Untitled%203.png>
+</p>   
 
-    <p align="center" style="color:gray">
-    Figure from Compressive Transformer [5]. 
-    </p>
+<p align="center" style="color:gray">
+Figure from Compressive Transformer [5]. 
+</p>
 
-    The Compressive Transformer keeps a fine-grained memory of past activations, which are then compressed into coarser compressed memories. The above model has three layers, a  sequence length $n_s = 3$, memory size $n_m = 6$, compressed memory size $n_{cm} = 6$. The highlighted memories are compacted, with a compression function $f_c$ per layer, to a single compressed memory — instead of being discarded at the next sequence. In this example, the rate of compression $c = 3$.
+- The Compressive Transformer keeps a fine-grained memory of past activations, which are then compressed into coarser compressed memories. The above model has three layers, a  sequence length $n_s = 3$, memory size $n_m = 6$, compressed memory size $n_{cm} = 6$. The highlighted memories are compacted, with a compression function $f_c$ per layer, to a single compressed memory — instead of being discarded at the next sequence. In this example, the rate of compression $c = 3$.
     
 - **Memorizing Transformers** [6] trys to **gather the every KV components** as the global context for the input segment. To reduce the overhead of storing every KV compoents, Memorizing Transformers adapts the context-weaving only on the last layer. The context window could explore entire input sequence $N \times S$ using KNN retriever.
-    <p align="center">
-    <img src=./Untitled%204.png>
-    </p>
+<p align="center">
+<img src=./Untitled%204.png>
+</p>
     
-    <p align="center" style="color:gray">
-    Figure from Memorizing Transformers [6]. Memorizing Transformers extend Transformers with access to (key, value) pairs of previously seen subsequences.
-    </p>
+<p align="center" style="color:gray">
+Figure from Memorizing Transformers [6]. Memorizing Transformers extend Transformers with access to (key, value) pairs of previously seen subsequences.
+</p>
     
 - **RMT** [7] and **AutoCompressors** [8, 9] utilized **extra vectors** that **interact with current segment** and then **is delivered to next token** recursively (which is similar in hidden vector in Recurrent Neural Networks (RNN)). However, the google researchers argue that the size of the additional memory vectors is the main factor of the efficiency of the method, which means that the performance and the memory footprint is aligned each other.
     
-    <p align="center">
-    <img src=./Untitled%205.png>
-    </p>
+<p align="center">
+<img src=./Untitled%205.png>
+</p>
     
-    <p align="left" style="color:gray">
-    Figure from Recurrent Memory Transformer [7]. Memory is added as tokens to the input sequence and memory output is passed to the next segment. During training gradients flow from the current segment through memory to the previous segment.
-    </p>
+<p align="left" style="color:gray">
+Figure from Recurrent Memory Transformer [7]. Memory is added as tokens to the input sequence and memory output is passed to the next segment. During training gradients flow from the current segment through memory to the previous segment.
+</p>
 
-    <p align="center">
-    <img src=./Untitled%206.png>
-    </p>
-    <p align="left" style="color:gray">
-    Figure from AutoCompressors [8]. AutoCompressors process long documents by recursively generating summary vectors which are passed as soft prompts to all subsequent segments.
-    </p>
+<p align="center">
+<img src=./Untitled%206.png>
+</p>
+
+<p align="left" style="color:gray">
+Figure from AutoCompressors [8]. AutoCompressors process long documents by recursively generating summary vectors which are passed as soft prompts to all subsequent segments.
+</p>
     
 <p align="center">
     <img src=./Untitled%207.png>
