@@ -133,10 +133,13 @@ More detail explanations are HERE. 개인 페이지에 더 자세한 코드 분�
 ## **Results**
 실험결과
   <p align="center">
+    <img src=./result2.png> 
+</p>
+  <p align="center">
     <img src=./result1.png> 
 </p>
 ## **Conclusion and discussion**
-결론론 + 내 생각
+결론 + 내 생각
 
 ## **Some resources**
 참고문헌 정리
