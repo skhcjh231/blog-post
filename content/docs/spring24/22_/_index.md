@@ -120,7 +120,7 @@ Three main components - encoder(_e_), associative memory(**M**), and decoder(_d_
 </p>
 
 #### 3-2. Inference
-Once **M**$_{0}$ is trained via backpropagation, the posterior memory **M** is updated in one-shot by solving a minimization problem below. This problem can be efficiently done with the preudo-inverse of matrix. For more details, please refer to [8].
+Once **M**$_{0}$ is trained via backpropagation, the posterior memory **M** is updated in one-shot by solving a minimization problem below. This problem can be efficiently done with the pseudo-inverse of matrix. For more details, please refer to [8].
 <p align="center">
     <img src='minimization problem.png' width="200">
 </p>
