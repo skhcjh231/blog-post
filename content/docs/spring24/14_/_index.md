@@ -6,7 +6,7 @@ weight: 1
 
 # BinaryDM: Towards Accurate Binarization of Diffusion Model
 
-*Authors: Xingyu Zheng, Haotaong Qin, Xudong Ma, Mingyuan Zhang, Haojie Hao, Jiakai Wang, Zixiang Zhao, Jinyang Guo, XianglongLiu*
+*Authors: Xingyu Zheng, Haotaong Qin, Xudong Ma, Mingyuan Zhang, Haojie Hao, Jiakai Wang, Zixiang Zhao, Jinyang Guo, XianglongLiu*  
 *Posted by Junhyuk So, Juncheol Shin*
 
 ## **Preliminary**
