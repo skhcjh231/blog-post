@@ -18,7 +18,7 @@ Currently, **Large Language Models (LLM)** are based on **Transformer** architec
 
 The **multi-head scaled dot-product attention** (a.k.a. self-attention or MHA) is the main component in transformer architectures’ block. 
 
-To calculate the attention state $A_{dot} ∈ \mathbb R^{N×d_{value}}$ of a single head in the MHA module with an input seqeunce $X ∈ \mathbb R^{N×d_{model}}$, three components, key, query and value are computed as 
+To calculate the attention state {{< katex >}} A_{dot} ∈ \mathbb R^{N×d_{value}} {{< katex >}} of a single head in the MHA module with an input seqeunce $X ∈ \mathbb R^{N×d_{model}}$, three components, key, query and value are computed as 
 
 $$
 K = XW_K, V = XW_V \ \text{and} \ Q = XW_Q,
@@ -101,10 +101,6 @@ where $W_O ∈ \mathbb R^{H×d_{value} ×d_{model}}$ is the projection weights.
 Table 1: Transformer models with segment-level memory are compared. For each model, the memory size and effective context length are defined in terms of their model parameters ($N$: input segment length, $S$: the number of segments, $l$: the number of layers, $H$: the number of attention heads, $c$: Compressive Transformer memory size, $r$: compression ratio, $p$: the number of soft-prompt summary vectors and $m$: summary vector accumulation steps).
 </p>
 
-Table 1 shows the memory footprint and its context length 
-
-Infini-Transformer 
-
 Table 1 shows the analysis of transformer models combining with segment-level memory. 
 
 - **Transformer-XL** [4] **uses KV components from the privious segment** with **current components** over each layer. Thus the context window of Transformer-XL is enlarged from $N$ to $N \times L$, and it requires  $(d_{key} + d_{value}) × H × N × l$ memory foot prints.
@@ -116,7 +112,7 @@ Table 1 shows the analysis of transformer models combining with segment-level me
 Figure from Transformer-XL [4]. Illustration of the vanilla model with a segment length 4.
 </p>
 
-- **Compressive Transformer** [5] append **additional cache** to Transformer-XL that **saves the past activations**. It broaden the Transformer-XL’s context window by $c × r × l$.
+- **Compressive Transformer** [5] append **additional cache** to Transformer-XL that **saves the past activations**. It broaden the Transformer-XL’s context window by $c × r × l$. It keeps a fine-grained memory of past activations, which are then compressed into coarser compressed memories. The below model has three layers, a  sequence length $n_s = 3$, memory size $n_m = 6$, compressed memory size $n_{cm} = 6$. The highlighted memories are compacted, with a compression function $f_c$ per layer, to a single compressed memory — instead of being discarded at the next sequence. In this example, the rate of compression $c = 3$.
 <p align="center">
 <img src=./Untitled%203.png>
 </p>   
@@ -125,14 +121,13 @@ Figure from Transformer-XL [4]. Illustration of the vanilla model with a segment
 Figure from Compressive Transformer [5]. 
 </p>
 
-- The Compressive Transformer keeps a fine-grained memory of past activations, which are then compressed into coarser compressed memories. The above model has three layers, a  sequence length $n_s = 3$, memory size $n_m = 6$, compressed memory size $n_{cm} = 6$. The highlighted memories are compacted, with a compression function $f_c$ per layer, to a single compressed memory — instead of being discarded at the next sequence. In this example, the rate of compression $c = 3$.
     
 - **Memorizing Transformers** [6] trys to **gather the every KV components** as the global context for the input segment. To reduce the overhead of storing every KV compoents, Memorizing Transformers adapts the context-weaving only on the last layer. The context window could explore entire input sequence $N \times S$ using KNN retriever.
 <p align="center">
 <img src=./Untitled%204.png>
 </p>
     
-<p align="center" style="color:gray">
+<p align="left" style="color:gray">
 Figure from Memorizing Transformers [6]. Memorizing Transformers extend Transformers with access to (key, value) pairs of previously seen subsequences.
 </p>
     
@@ -237,7 +232,6 @@ This work presents a novel attention, Infini-Attention, which is a close **integ
 - It use the name Infini-Attention due to its incremental updates, but the authors only test it on 1M tokens. As mentioned earlier, **it is doubtful** that it can perform on **truly infinite data** with minimal information loss.
 - We can use memory-based not only for language tasks but for the other tasks. For example, In **transformer models** for **videos** [15], they compute over spatio-temporaly combined 3D input (multiple frames) with transformer model, but this requires huge computation overhead. Instead, we could only use a transformer models with **2D input** that only takes **one frame** with  **the compressive memory** that stores **global context** extracted from the previous frames.
 
-Despite these concerns, we believe this paper shows promise for achieving the ultimate goal of LLMs: accurate retrieval of infinite context lengths without tuning.  Although it requires some tuning, it is worthwhile because it uses much less memory and computational cost than existing methods. We believe it has significant potential, as the need to process long sequence data is inevitable for actively utilizing LLMs in real-life applications.
 
 # Reference
 
