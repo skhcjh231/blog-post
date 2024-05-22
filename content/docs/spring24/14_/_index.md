@@ -133,31 +133,49 @@ Unconditional Generation
 
 In this experiments, authors utilized two types of models: the Pixel Space Diffusion Model, which performs generation directly in the pixel space, and the Latent Diffusion Model, which conducts generation in the latent space of a VAE.  
 
-[fig1]
+<p align="center">
+  <img src="./tab1.PNG" alt="."> 
+</p>
+<p align="center">
 
 
 Table 1 shows the results of experiments conducted with the Pixel Space Model on the CIFAR-10 dataset, using a DDIM sampler with 100 steps. As can be seen in the table, the proposed method outperforms the baseline binarization method across all metrics. Additionally, it also yields better results than LSQ, which uses one more bit, across all metrics.  
 
-[fig2]
+<p align="center">
+  <img src="./tab2.PNG" alt="."> 
+</p>
+<p align="center">
 
 Table 2 presents the results of experiments conducted with the same sampling strategy (DDIM 100) in the Latent Diffusion Model (LDM). As shown in the table, BinaryDM also outperforms the baseline across all metrics. However, unlike in Table 1, there are a few cases where LSQ with 2 bits shows better performance.  
 
-[fig3]
+<p align="center">
+  <img src="./tab3.PNG" alt="."> 
+</p>
+<p align="center">
 
 Finally, Table 3 shows the experimental results for Conditional Generation. The dataset used was ImageNet 256. In this experiment, two unusual trends were observed: 1. The performance gap between the baseline and BinaryDM is very small, and 2. Lower FID scores than FP were observed in all quantization experiments. However, I personally believe that achieving better performance than FP in all situations, despite using 1-2 bit quantization, is not a reasonable result, suggesting that the experiment may have been conducted incorrectly.  
 
 ### Ablation Study
 Three ablation studies were conducted. The first ablation study focused on the various methods of Binary DM, measuring performance changes with the addition of LMB and LRM. The second study evaluated inference efficiency by measuring the FLOPs required during the inference of the binarized DM. The third study examined training efficiency, comparing the training time of the proposed method to that of another diffusion quantization method, Q-Diffusion.
 
-[fig4]
+<p align="center">
+  <img src="./tab4.PNG" alt="."> 
+</p>
+<p align="center">
 
 As seen in Table 4, when using the BinaryDM methods LMB and LRM independently, the performance improvement is not significant, but when used together, their effect is maximized.
 
-[fig5]
+<p align="center">
+  <img src="./tab5.PNG" alt="."> 
+</p>
+<p align="center">
 
 Secondly, when measuring FLOPs, it was found that despite having a lower FID compared to multi-bit quantization schemes like Q-Diffusion or LSQ, the FLOPs are 2 to 4 times lower.
 
-[fig6]
+<p align="center">
+  <img src="./tab6.PNG" alt="."> 
+</p>
+<p align="center">
 
 Lastly, when comparing the training time cost with Q-Diffusion, it was found that the training cost is approximately 1.2 times lower.
 
