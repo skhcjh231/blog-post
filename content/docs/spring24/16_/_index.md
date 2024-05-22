@@ -48,6 +48,7 @@ Our goal is to reduce the overall FLOPs by focusing on essential tokens and rela
 </p>
  Above image depicts the path of a MoD (Model of Decoding) with an input sequence length of 64. The purple color shows the computation performed by that layer and the orange color shows the path taken by the residual connection.
 
+(삭제예정)
 MoE is an model which consists of parallel expert models which is fitted to certain domains.
 Like MoD, token-level routing decisions are made across the network depth.
 Difference between MoD is, MoD chooses path to transformer or to residual connection, MoE chooses path to transformer(Expert) or to transformer(Expert) or both.
