@@ -122,11 +122,11 @@ as *ops*.
     +  Given an op {{< katex >}}f\left(x_1, \ldots, x_k\right){{< /katex >}}, we define the *scaled op* {{< katex >}} f^*\left(x_1, \ldots, x_k, \alpha, \beta_1, \ldots, \beta_k\right) {{< /katex >}} with *scaling factors* {{< katex >}} \alpha, \beta_1, \ldots, \beta_k \in \mathbb{R}^{+} {{< /katex >}}, such that
       
 <p align="center">
-{{< katex >}}f^* & \triangleq \alpha \cdot f\left(x_1, \ldots, x_k\right){{< /katex >}}
+{{< katex >}} f^{*} & \triangleq \alpha \cdot f(x_1, \ldots, x_k){{< /katex >}}
 </p>  
     
 <p align="center">  
-{{< katex >}} f_{\text {grad }}^*\left(x_1, \ldots x_k, g\right)_i & \triangleq \beta_i \cdot f_{\text {grad }}\left(x_1, \ldots x_k, g\right)_i, \forall i \in[1 . . k] {{< /katex >}}
+{{< katex >}} f_{\text {grad }}^{*}\left(x_1, \ldots x_k, g\right)_i & \triangleq \beta_i \cdot f_{\text {grad }}\left(x_1, \ldots x_k, g\right)_i, \forall i \in[1 . . k] {{< /katex >}}
 </p>  
     
 + Scaled computational graph
