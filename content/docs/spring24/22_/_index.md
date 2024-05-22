@@ -128,7 +128,7 @@ Once **M**$_{0}$ is trained via backpropagation, the posterior memory **M** is u
 
 
 ## 4. Memory Operations
-In this paper, authors followed the ideas from [8] to combine pre-trained LLMs and memory component for knowledge edit. On top of that, they suggest "a class of episodic and adaptable memory-conditioned LLM architecture." 
+In this paper, authors followed the ideas from [8] to combine pre-trained LLMs and memory component for knowledge edit. Fig8 illustrates the single training step of the memory. 
 
 <p align="center">
     <img src='basic memory operations.png' width="800">
@@ -136,6 +136,14 @@ In this paper, authors followed the ideas from [8] to combine pre-trained LLMs a
 <p align="center">
     Fig8. Basic memory operations [8]
 </p>
+
+On top of that, sequential writing and forgetting is conducted as follows.
+
+First, given an initial set of encodings **Z**$_{0}$ and writing weights **W**$_{0}$, memory matrix and key covariance matrix are initialized as below.
+<p align="center">
+    <img src='initialize.png' width="800">
+</p>
+Next, memory **M**$_{i-1}$ is sequentially updated by adding a new set of encodings **Z**$_{i}$
 
 
 ## 5. Results
