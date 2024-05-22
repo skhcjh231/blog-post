@@ -39,16 +39,16 @@ The author has proposed a novel self-speculative decoding framework, named Kanga
 
 ### Evaluation Metrics
 
-Speculative decoding is often evaluated using two primary metrics: walltime speedup ratio and compression rate. Given a speculative decoding algorithm, we assume that {{< katex >}}N{{< \katex >}} tokens should be generated via the drafting model. As the drafting model predicts multiple tokens in each decoding step and multiple tokens can be accepted by the large model in a step, we record the number of accepted tokens per step as a list {{< katex >}} S = \[s_1,\, s_2,\, \dots,\, s_{|S|}\] {{< \katex >}}, where {{< katex >}} \sum_k s_k = N {{< \katex >}} and {{< katex >}} |S| {{< \katex >}} denotes the number of steps. Then, the compression rate (CR) is defined as:
+Speculative decoding is often evaluated using two primary metrics: walltime speedup ratio and compression rate. Given a speculative decoding algorithm, we assume that {{< katex >}}N{{< /katex >}} tokens should be generated via the drafting model. As the drafting model predicts multiple tokens in each decoding step and multiple tokens can be accepted by the large model in a step, we record the number of accepted tokens per step as a list {{< katex >}} S = \[s_1,\, s_2,\, \dots,\, s_{|S|}\] {{< /katex >}}, where {{< katex >}} \sum_k s_k = N {{< /katex >}} and {{< katex >}} |S| {{< /katex >}} denotes the number of steps. Then, the compression rate (CR) is defined as:
 {{< katex display = true >}}
 \text{CR} = \frac{1}{|S|} \sum_k s_k.
-{{< \katex >}}
+{{< /katex >}}
 However, once a draft token is rejected during the verification, all subsequent tokens sampled from the drafting model will be discarded. Therefore, CR does not accurately reflect the acceptance levels for tokens at varying distances, and the author has proposed a new evaluation metric named _consistent token acceptance rate_.
 
-The consistent token acceptance rate {{< katex >}} \text{CTAR}(w) {{< \katex >}} is calculated as:
+The consistent token acceptance rate {{< katex >}} \text{CTAR}(w) {{< /katex >}} is calculated as:
 {{< katex display = true >}}
 \text{CTAR}(w) = \frac{1}{|S|} \sum_k \
-{{< \katex >}}
+{{< /katex >}}
 
 
 
