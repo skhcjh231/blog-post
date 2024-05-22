@@ -28,6 +28,22 @@ Hardware performance is determined by the upper bound of the computation time or
 {{< katex display=true >}}
 performance = max(runtime_computation, runtime_communication)
 {{< /katex >}}
+Below Fig. 1(a) and Fig. 1(b) illustrates the roofline model and its characteristics
+<p align="center">
+    <img src='./Fig0a.png' width="900">
+</p>
+    
+<p align="center">
+    Fig. 1 (a) Roofline Model
+</p>
+
+<p align="center">
+    <img src='./Fig0b.png' width="900">
+</p>
+    
+<p align="center">
+    Fig. 1 (b) Roofline Model with Ceiling
+</p>
 
 
 ## Hardware-Independent Pareto Efficiency
