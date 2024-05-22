@@ -36,11 +36,12 @@ The common solution to further improve the performance of LoRA is to compose mul
 </p>
 
 
-
-
-
-
 ### Mixture-of-Experts
+
+<p align="center">
+    <img src=./moe.png> 
+</p>
+
 
 ## Mixture of LoRA experts
 
