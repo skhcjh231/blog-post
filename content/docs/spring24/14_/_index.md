@@ -18,8 +18,8 @@ weight: 1
   Diffusion model
 </p>
 Diffusion models learn how to remove gaussian noise added to original image. 
-Equation below shows how forward process proceeds. During the forward process, Gaussian noise is gradually added to original image for T times. Strength of the noise is controlled by the term \beta x_t denotes corrupted image at time step t.  
-In the reverse process, diffusion model tries to restore original image by estimating conditional distribution (). Reparameterization trick is used to estimate mean and variance of gaussian the distribution  
+Equation below shows how forward process proceeds. During the forward process, Gaussian noise is gradually added to original image for {{< katex >}}T{{< katex >}} times. Strength of the noise is controlled by the term {{< katex >}}\beta{{< katex >}}. {{< katex >}}x_t{{< katex >}} denotes corrupted image at time step {{< katex >}}t{{< katex >}}.  
+In the reverse process, diffusion model tries to restore original image by estimating conditional distribution {{< katex >}}q(x_{t} | x_{t-1}){{< katex >}} with p_\theta(x_{t-1} | x_{t}). Reparameterization trick is used to estimate mean and variance of gaussian the distribution  
 <p align="center">
   {{< katex >}}
     q(x_{t} | x_{t-1}) = \mathcal{N}(x_t;\sqrt{1-\beta_t}x_{t-1}, \beta_{t}I) \\p_\theta(x_{t-1} | x_{t}) = \mathcal{N}(x_{t-1}; \tilde{\mu}_\theta(x_t, t) , \tilde{\beta}_{t}I )
