@@ -43,3 +43,17 @@ To effectively choose the best network architectures, they performed a compariso
 
 
 Figure
+
+## Training Strategies
+In this section, the various training strategies for CLIP are explored, including SLIP, FLIP, and a proposed method from this paper called CLIP+Data Augmentation. SLIP enhances the vision encoder through self-supervised learning but is computationally expensive compared to the original CLIP. FLIP masks patches in training images to reduce computation. 
+However, CLIP+Data Augmentation aimed to enhance CLIP's vision encoder while mitigating the computational demands associated with previous self-supervised learning approaches. By applying data augmentation directly to input images, they offered a cost-effective alternative, validated across four subsets with 30 epochs of training using techniques like crop&flip, RandAugment, and Stacked RandAugment. The results in Figure 2 demonstrated consistent performance improvements of all three methods over raw CLIP, with no additional computational burden incurred, even enabling comparable performance to larger datasets, exemplified by the Stacked RA model trained on a dataset half the size achieving similar results.
+
+Figure
+
+## Performance Evaluation
+
+### Zero-shot
+Their experiments on the ImageNet dataset show that SLIP outperforms CLIP and FLIP when training samples are under one billion, indicating the benefit of self-supervised learning for limited data. However, as sample size increases, CLIP and FLIP surpass SLIP, suggesting that enhancing vision encoders isn't necessary for large datasets. Additionally, SLIP is twice as computationally expensive as CLIP and performs worst in zero-shot tasks when costs are equal. Data augmentation, particularly CLIP + Data Aug, improves performance and generalization on ImageNet and its variants without extra computational costs, especially for larger datasets and multiple epochs of training as presented in Figure 3.
+
+
+
