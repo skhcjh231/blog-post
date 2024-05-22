@@ -51,12 +51,19 @@ Quantization is one reasonable choice for the optimization of diffusion models. 
 
 However binary models are hard to binarize in two aspects. One arises from perspective of representation, as binarization is extreme case of quantization which only uses 1bit to represent data. Naive binarization introduces severe degredation in quality of output. Another aspect arises from perspective of optimization. Training becomes unstable with binarized representation and hinders convergence of the model.
 
-This work tackles binarization of diffusion models by handling aformentioned two aspects. By introducing Learnable Multi-basis Binarizer(LMB) and Low-rank representation mimicking(LRM), BinaryDM is able to achieve 16.0× and 27.1× reductions on FLOPs and size.  
+This work tackles binarization of diffusion models by handling aformentioned two aspects. By introducing *Learnable Multi-basis Binarizer(LMB)* and *Low-rank representation mimicking(LRM)*, BinaryDM is able to achieve **16.0× and 27.1× reductions on FLOPs and size**.  
 
 ## **Methodology**
 ### **Learnable Multi-basis binarizer**
 Typical binarization of the weight can be described as follows:  
-
+<p align="center">
+  {{< katex >}}
+    w^{bi} = \sigma sign(w) = \left\{\begin{matrix}
+ \sigma, & if w\geq 0 \\ 
+ -\sigma, & otherwise 
+\end{matrix}\right.
+  {{< /katex >}} 
+</p>
 In this work, authors propose a learnable multi-basis binarizer(LMB) to maintain quality of representations. Instead of using single base, multiple bases are utilized for the binarization.  
 
 Gradient of learnable scalar values can be computed as follows:  
@@ -64,9 +71,12 @@ Gradient of learnable scalar values can be computed as follows:
 During the inference, computation for each bases are indepedent to each other and can be parallely computed. Thus, diffusion model can be fully accelerated with LMB.  
 
 
-It is important to note that LMB is applied at only crucial parts of difusion model. Only modules where features cale is greater than or equal to 1/2 input scale. In other words, some of the first consecutive layers and last consecutive layers are binarized with LMB. The binarized modules close to input or output play important role, as they extract patterns from original data or directly influence the final result.  Figure below shows result of naive binarization and LMB applied to weights.  
+It is important to note that LMB is applied at only crucial parts of difusion model. Only modules where features cale is greater than or equal to {{< katex >}}\frac{1} {2}{{< katex >}} input scale. In other words, some of the first consecutive layers and last consecutive layers are binarized with LMB. The binarized modules close to input or output play important role, as they extract patterns from original data or directly influence the final result.  Figure below shows result of naive binarization and LMB applied to weights.  
 <p align="center">
   <img src="./lmb.png" alt="." width="500" height="300" > 
+</p>
+<p align="center">
+  Weight quantizatio result of naive binarization and LMB
 </p>
 
 ### **Low-rank representation mimicking**
