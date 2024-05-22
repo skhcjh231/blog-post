@@ -108,6 +108,9 @@ x^{l+1}_i=\begin{cases}r^{l}_i f_i(\tilde{X}^l)+x^{l}_i, &    \text{if } r^{l}_i
 
 ## **More details**
 ### **Capacity**
+In this paper, capacity-based routing is employed. Token *capacity* is the total proportion of tokens composing the input for a given operation. For instance, if the input sequence length is 100 and the capacity is 20%, each layer operates on the top-20 tokens determined by router weights.
+
+By lowering the capacity of the computations, a smaller compute budget can be utilized per forward pass compared to the vanila Transformers. In MoD, capacity is utilized as a hyperparameter to determine the proportion of tokens processed per layer operation.
 ### **Autoregressively sampling**
 We're looking to implement expert-choice routing, but there is one distinct problem: top-k operations rely on future tokens! Our goal is for each token to determine if it belongs to the top-k using routers. To do this, every token needs access to the router weights of future tokens. Unfortunately, we lack the ability to predict the future router weights and cannot employ autoregressive sampling. To solve this problem, the authors propose two methods.
 
