@@ -116,9 +116,21 @@ The followuing is an implementation of MoD that supports various LM such as Mixt
 
 LINK: https://github.com/astramind-ai/Mixture-of-depths
 
+<details>
+<summary>Code Details</summary>
+
 The code operates in the following steps:
 1. Token Weight Calculation
    
+   '''class TokenRouter(nn.Module):
+    def __init__(self, embed_dim):
+        super().__init__()
+        self.weight_predictor = nn.Linear(embed_dim, 1)
+
+    def forward(self, x):
+        weights = self.weight_predictor(x).squeeze(-1)  # [batch_size, seq_len]
+        return weights
+   '''
    The **TokenRouter** module caculates weights for each token based on its embedding. This is done using a lnear layer appleid to the embeddingsm resulting in a weight value for each token.
 3. Selective Processing
    
@@ -129,7 +141,7 @@ The code operates in the following steps:
    
    **apply_mod_to_hf** function applies the MoD mechanism to an existing Hugging Face model.
 
-More detail explanations are HERE. 개인 페이지에 더 자세한 코드 분석 작성.
+</details>
 
 ## **Results**
 실험결과
