@@ -37,11 +37,11 @@ By employing these methods, the authors have created a transformer architecture 
 
 There have been several similar related studies:
 
-1. Efficient Attention: FlashAttention optimized the GPU computation of Attention, showing advantages in speed without changing the existing mechanism. Additionally, there have been attempts to increase the Context Length by converting the Attention Mechanism to a linear one or compressing the KV cache.
+1. Efficient Attention: FlashAttention optimized the GPU computation of the attention, showing advantages in speed without changing the existing mechanism. Additionally, there have been attempts to increase the context length by converting the attention mechanism to a linear one or compressing the KV cache.
 
-2. Structured State Space Model: A notable study in this area is Mamba, which added mechanisms like Selective Scan to a State Space model with linear time complexity, enabling it to process Long Context.
+2. Structured State Space Model: A notable study in this area is Mamba, which added mechanisms like Selective Scan to a State Space model with linear time complexity, enabling it to process long context.
 
-However, these studies have limitations. Even if we accept that Flash Attention did not change the Attention Mechanism itself, Linear Attention, KV cache compression, and State Space Models have shown significantly lower performance on general benchmarks, although they may perform better than standard Transformers in long contexts.
+However, these studies have limitations. Even if we accept that Flash Attention did not change the attention mechanism itself, Linear Attention, KV cache compression, and State Space Models have shown significantly lower performance on general benchmarks, although they may perform better than standard Transformers in long contexts.
 
 ## 6. Discussion
 In my opinion, there are a few potential limitations that are not extensively discussed in the paper:
