@@ -58,15 +58,32 @@ In this section, we introduces two key innovations to address this issue. Firstl
 
 
 ### 1. Adaptive Token Merger (ATM Module)
+
 <p align="center">
   <img src="./ATM.png" alt="." width="500" height="300" > 
-</p>
+</p>    
 
- The ATM Module separates input tokens in the form of a grid of $G_h \times G_w$. When the size of all tokens is $H \times W$, all tokens are separated in grid form to have tokens of $G_{th}\times G_{tW}$ size. Each Grid is processed through a special operation called Grid Attention. Grid Attention is carried out only between tokens within the Grid. Average Pooling of all Tokens is performed as a Query, and Attention operation is performed by setting each Token as Key and Value. When this is performed for the entire Grid, it is reduced to $G_h \times G_w$, which is equal to the number of Grids. Afterwards, it passes through the FeedForward network and repeats. Through this iterative process, even when the resolution of the image is large, the number of tokens can be effectively reduced, and through a sufficient process, this size can be reduced to the size of the grid of 1. This has the advantage of being computationally efficient because when performing the subsequent MHSA calculation, a token of the same size is always input as input, regardless of resolution.
+    
+Adaptive Token Merger (ATM) module is designed to efficiently process and merge tokens of different resolutions in a neural network using a simple structure that includes GridAttention and FeedForward network (FFN). ATM Module takes tokens $\(H\times W\)$ processed through patch embedding as input. ATM Module specially processes the inputs of different resolutions M times to reduce them to the same preset size $G_{h} \times G_{w}$ before fed into the MHSA.
 
 <p align="center">
-  <img src="./grid_attention.png" alt="." width="500" height="300" > 
+  <img src="./grid_attention.png" alt="." width="600" height="300" > 
 </p>
+
+     
+The detailed process for ATM is as follows: 
+ First, ATM divides the tokens of shape $H \times W $ into a grid of size $G_{th} \times G_{tw}$. 
+ 
+ For simplicity, we'll use above Figure as an example. 
+ In the figure, we can see $H=4$, $W=4$, $G_{th}=2$, and $G_{tw}=2$.(We assume that H is divisible by $G_{th}$ and W is divisible by $G_{tw})$. The number of tokens in each grid would then be $H/G_{th} × W/G_{tw}$, which is 2x2.
+
+ Within each grid, the module performs a special operation called Grid Attention.
+
+ #### GridAttention
+For a specific grid, we suppose its tokens are denoted as $\{x_{ij}\}$, where $0 ≤ i < H/G_{th}$ and $0 ≤ j < W/G_{tw}$. 
+
+Average Pooling: First, it averages the tokens within a grid to create a mean token.
+Cross-Attention: Using this mean token as the Query, and all the grid tokens as Key and Value, it applies cross-attention to merge all tokens in the grid into a single token.
 
 {{< katex display=true >}}
 x_{avg} = AvgPool(\{x_{ij}\}) \\
@@ -74,14 +91,18 @@ x_{avg} = AvgPool(\{x_{ij}\}) \\
 GridAttn(\{x_{ij}\}) = x_{avg} + Attn(x_{avg}, \{x_{ij}\}, \{x_{ij}\})
 {{< /katex >}}
 
+ After passing through GridAttention, the fused token is fed into a standard Feed-Forward Network to complete channel fusion, thereby completing one iteration of merging token. GridAttention and FFN undergo multiple iterations and all iterations share the same weights. 
+ 
+  During these iterations, we gradually decrease the value of $(G_{th} , G_{tw})$, until $G_{th} = G_{h}$ and $G_{tw} = G_{w}$. (typically set $Gh = Gw = 14$, in standard ViT)
 
-In our opinion, Grid Attention appears to add an inductive bias similar to Convolution. It appears that Tokens in adjacent locations in the actual image should be contained within the same Grid. The order of grid patching may have an effect.
+ This iteration process effectively reduces the number of tokens even when the resolution of the image is large, and with enough iterations, this size can be reduced effectively. This has the advantage of being computationally efficient because when performing subsequent MHSA calculations, we always use the same size tokens as input, regardless of resolution.
 
-For Ablation study, ViTAR-S Model is used to compare with AvgPool which is another token fusion method. The results of the comparison demonstrate that ATM significantly improves the model's performance and resolution adaptability. Specifically, at a resolution of 4032, our proposed ATM achieves a 7.6\% increase in accuracy compared with the baseline.
 
 <p align="center">
-  <img src="./result_ATM.png" alt="." width="300" height="100" > 
+  <img src="./result_ATM.png" alt="." width="500" height="200" > 
 </p>
+
+For Ablation study, ViTAR-S Model is used to compare with AvgPool which is another token fusion method. The results of the comparison demonstrate that ATM significantly improves the model's performance and resolution adaptability. Specifically, at a resolution of 4032, our proposed ATM achieves a 7.6\% increase in accuracy compared with the baseline.
 
 
 ### 2. Fuzzy Positional Encoding (FPE)
