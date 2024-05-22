@@ -162,7 +162,7 @@ In this section, the various training strategies for CLIP are explored, includin
 However, CLIP+Data Augmentation aimed to enhance CLIP's vision encoder while mitigating the computational demands associated with previous self-supervised learning approaches. By applying data augmentation directly to input images, they offered a cost-effective alternative, validated across four subsets with 30 epochs of training using techniques like crop&flip, RandAugment, and Stacked RandAugment. The results in Figure 12 demonstrated consistent performance improvements of all three methods over raw CLIP, with no additional computational burden incurred, even enabling comparable performance to larger datasets, exemplified by the Stacked RA model trained on a dataset half the size achieving similar results.
 
 <p align="center">
-    <img src="./Figure 13.png" width="400"> 
+    <img src="./Figure 13.png" width="300"> 
 </p>
 <div align="center">
   <strong>Figure 12.</strong> Comparison between various data augmentation for CLIP
