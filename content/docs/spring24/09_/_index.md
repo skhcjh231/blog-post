@@ -11,7 +11,7 @@ weight: 1
 
 
 ## Main Contributions
-MobileNetV4 targets designing neural networks for mobile devices. Main objectives of designing inference models for mobile devices are 
+MobileNetV4 targets designing neural networks for mobile devices. Since the mobile platform can only offer limited compuation ability and DRAM utilization, software engineers are trying to design small and efficient neural networks. To use AI at the industry level, the inference latency must also be small. Main objectives of designing inference models for mobile devices are 
 - Acceptable test performance on widely-used datasets such as ImageNet-1k
 - Low inference latency for utilization in mobile devices
 - Minimization of the number of parameters for low memory utilization on mobile platforms
@@ -112,7 +112,7 @@ The Spatial Reduction Attention (SRA) is applied, hence incorporating asymmetric
 ## Refined NAS for Enhanced Architectures
 As shown above, the insitantiation of UIB blocks are in the neural architecture search process. TuNAS was adopted for the paper's search strategy. The paper uses a two-stage search operation, the coarse-grained search and fine-grained serach to address the variance in parameter counts between UIB's depthwise layers and other search options. The course-grained search process involves determining optimal filter sizes with fixed parameters. The fine-grained stage searches for the UIB's layer configuration. 
 
-## Results
+## Results - Comparisons with Other Works
 
 <p align="center">
     <img src='./Table5.png' width="900">
