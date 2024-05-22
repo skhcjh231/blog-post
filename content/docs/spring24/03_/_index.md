@@ -30,9 +30,13 @@ Traditionally, floating-point numbers are defined by the IEEE 754 standard, whic
 - **Mixed Precision:** This technique uses multiple number formats with different bit-widths, placing most activations, weights, and gradients in FP16 without loss of accuracy.
 - **Loss Scaling:** To overcome the limited range of FP16 and FP8, the loss can be multiplied by a scalar to increase the scale of gradients. This method requires empirically finding a suitable loss scale:
 
-  $$ \text{scaled\_loss} = \text{loss} \times \text{scale\_factor} $$
+  Here is some inline example: {{< katex >}}\text{scaled\_loss} = \text{loss} \times \text{scale\_factor}{{< /katex >}}
 
-  $$ \text{scaled\_gradients} = \text{gradients} \times \text{scale\_factor} $$
+  And below is `display` example, having `display: block`
+
+  {{< katex display=true >}}
+  \text{scaled\_gradients} = \text{gradients} \times \text{scale\_factor}
+  {{< /katex >}}
 
 - **Automatic Loss Scaling:** This dynamically adjusts the loss scale during training, removing the need to sweep for an initial loss scale.
 - **Per-Tensor Scaling:** This system locally rescales based on runtime statistics to address scaling difficulties in FP8 training.
@@ -45,13 +49,15 @@ Traditionally, floating-point numbers are defined by the IEEE 754 standard, whic
 
 ##### Ideal Scaling
 
-The ability to predict the scale of tensors at the start of training is crucial. We argue that unit variance ($\sigma = 1$) is an optimal balance among various competing factors. This approach helps concentrate values within the representable range, reducing clipping errors during training.
+The ability to predict the scale of tensors at the start of training is crucial. We argue that unit variance ({{< katex >}}\sigma = 1{{< /katex >}}) is an optimal balance among various competing factors. This approach helps concentrate values within the representable range, reducing clipping errors during training.
 
 - In floating-point formats, values are represented as:
 
-  $$ \text{value} = (-1)^{b_{\text{sign}}} \times 2^{\text{exponent}} \times \left(1 + \frac{b_{\text{mantissa}}}{2^M}\right) $$
+  {{< katex display=true >}}
+  \text{value} = (-1)^{b_{\text{sign}}} \times 2^{\text{exponent}} \times \left(1 + \frac{b_{\text{mantissa}}}{2^M}\right)
+  {{< /katex >}}
 
-  where $b_{\text{sign}}$, $b_{\text{exponent}}$, and $b_{\text{mantissa}}$ represent the sign, exponent, and mantissa bits, respectively.
+  where {{< katex >}}b_{\text{sign}}{{< /katex >}}, {{< katex >}}b_{\text{exponent}}{{< /katex >}}, and {{< katex >}}b_{\text{mantissa}}{{< /katex >}} represent the sign, exponent, and mantissa bits, respectively.
 
 **Suggested Image:** "Figure 1. Above: Unit scaling of an FFN layer. We multiply each tensor by a fixed scalar to achieve consistent scale, no longer requiring a loss scale to control the scale of gradients. Below: A histogram of exponent values at initialisation for the above FFN."
 
@@ -61,11 +67,13 @@ If we can predict the scale of tensors in a deep learning model, we can effectiv
 
 - For example, by considering the scaling factors for each operation in the neural network, we can perform scaled operations:
 
-  $$ y = \alpha \cdot f(x) $$
+  {{< katex display=true >}}
+  y = \alpha \cdot f(x)
+  {{< /katex >}}
 
-  where $\alpha$ is the scaling factor and $f$ represents the operation.
+  where {{< katex >}}\alpha{{< /katex >}} is the scaling factor and {{< katex >}}f{{< /katex >}} represents the operation.
 
-**Suggested Image:** "Figure 3. PyTorch examples. Left: Scaled projection op, which implicitly constrains $\beta_X$. Center vs Right: Unscaled vs scaled Transformer FFN layers. Changes: a) initialise weights with unit scale, b) replace unscaled with scaled ops, c) replace residual add with interpolation according to $\tau$, moving the backward pass scale."
+**Suggested Image:** "Figure 3. PyTorch examples. Left: Scaled projection op, which implicitly constrains {{< katex >}}\beta_X{{< /katex >}}. Center vs Right: Unscaled vs scaled Transformer FFN layers. Changes: a) initialise weights with unit scale, b) replace unscaled with scaled ops, c) replace residual add with interpolation according to {{< katex >}}\tau{{< /katex >}}, moving the backward pass scale."
 
 ---
 
