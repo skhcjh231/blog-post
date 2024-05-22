@@ -89,7 +89,12 @@ Figure 1 represents the empirical CTARs for {{< katex >}}w = 1,2,\dots,6 {{< \ka
 
 ### Adapter Network as Self-Drafting Model
 
-We assume the target LLM has {{<katex>}} L {{<\katex>}} layers and the self-draft model {{<katex>}} \mathcal{M}^s {{<\katex>}} consists of shallow sub-network {{<katex>}} \mathcal{M}^b[:l] {{<\katex>}}, which is first {{<katex>}} l {{<\katex>}} layers of the target LLM {{<katex>}}\mathcal{M}^b{{<\katex>}}, and a adapter network {{<katex>}} \mathcal{A} {{<\katex>}}
+
+We assume the target LLM has {{<katex>}} L {{<\katex>}} layers and the self-draft model {{<katex>}} \mathcal{M}^s {{<\katex>}} consists of shallow sub-network {{<katex>}} \mathcal{M}^b[:l] {{<\katex>}}, which is first {{<katex>}} l {{<\katex>}} layers of the target LLM {{<katex>}}\mathcal{M}^b{{<\katex>}}, and a adapter network {{<katex>}} \mathcal{A} {{<\katex>}}. The drafting model reuses the LM head of the target LLM, and the overall parameters of the target LLM, such as shallow sub-network, remaining layers of LLM, and LM head, are frozen during the training of the adapter network. In Kangaroo, the adapter {{<katex>}} \mathcal{A} {{<\katex>}} only encompasses one multi-head attention and two normalization layers. The author emphasizes the feed-forward network (FFN) of the transformer block is too heavy in parameters but redundant, which is presented in the ablation study of the adapter architecture in the Experiments Section.
+
+{{< figure src="./Kangaroo.png" alt="." width="600" height="600" >}}
+
+Figure 2 illustrates the framework of Kangaroo. The lightweight drafting model {{<katex>}} \mathcal{M}^s {{<\katex>}}, including shallow sub-network and adapter network, predicts the draft tokens autoregressively until draft early exiting occurs. The strategy of draft early exiting will be explained later in the Draft Early Exiting Section. Then, the hidden states, computed in shallow sub-network, are processed in the remaining layers of LLM to generate prediction results. The draft tokens and the original prediction results are now compared for verification, and 
 
 
 ## Draft Early Exiting
