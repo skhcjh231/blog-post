@@ -173,9 +173,7 @@ For Ablation study, ViTAR-S Model is used to compare with AvgPool which is anoth
 ## ViTAR shows superior performance with any resolution
 
 
-<p align="center">
-  <img src="./result1.png" alt="." width="500" height="300" > 
-</p>
+
 
 ### Image Classification
 
@@ -183,6 +181,12 @@ ViTAR is trained on ImageNet-1K form scratch and it demonstrates excellent class
 
 <p align="center">
   <img src="./result_image_classification.png" alt="." width="600" height="600" > 
+</p>
+
+As can be seen in the pareto frontier figure, ViTAR has high performance for various resolution images and can also be used for high resolution images of 2240 or higher.
+
+<p align="center">
+  <img src="./result1.png" alt="." width="500" height="300" > 
 </p>
 
 ### Object Detection
