@@ -90,10 +90,10 @@ Selective Fact Forgetting and Information Leakage Prevention:
 Recursive Search-Based Solution for Long Context Generalization: A simple recursive search-based approach is provided to enable Larimar's memory to generalize to longer input contexts.
 
 
-## 3. Model architecture & Memory operations
+## 3. Model architecture [1]
 Inspired by human brain (neocortex-hippocampus interactions), authors suggest "a class of LLMs augmented with an external episodic memory controller." They utilize an episodic memory to mimic hippocampal fast-learning system, and use LLM as a neocortical slow learning system.
 
-Fig7 below shows the overall architecture of Larimar. Basic idea is to implement VAE with external memory. It consists of three main components: encoder, decoder, and adaptive memory. 
+Fig7 below shows the overall architecture of Larimar. Basic idea is to implement VAE with external memory. It consists of three main components: encoder, decoder, and adaptive memory. Comparing the architecture with Fig5 would be helpful. In Larimar, memory corresponds to a latent vector. 
 
 1) Encoder: Transforms the input into a latent vector
 2) Decoder: Generates an answer to the question conditioned on the memory
@@ -106,29 +106,29 @@ Fig7 below shows the overall architecture of Larimar. Basic idea is to implement
     Fig7. Larimar architecture
 </p>
 
-Let's see how it works with details_{Bold}. 
+Let's see how it works in two stages.
 
-First of all, Larimar trains the memory M in Fig7 so as to maximize the conditional log-likelihood of $lnp(X|M)$, where X is an exchangeable (order invariant) episode: $$X \equiv {x_{1}, ..., x_{N}}$$, a subset of the input data consisting of N samples.
+#### 3-1. Training
+##### (1) Writing
+The memory **M** in Fig7 has to be trained so as to approximate the distribution of **X** (**X** is an exchangeable-order invariant episode: **X** = { $x_{1}$, ..., $x_{N}$ }, a subset of the input data consisting of **N** samples). To do so, the model is trained to maximize the conditional log-likelihood of ln*p* (**X**|**M**). In this way, the model learns to compress **X** in a memory **M**, which then becomes a distributed associative memory. This process is similar to that of encoder in VAE. (Look at the green arrows in Fig7)
+##### (2) Reading
+The reading weight matrix, **W**, is a random variable for generative ability of the model. In this paper, authors set a standard Gaussian prior _p_(**W**) ~ _N_(0, $I_{N \times K}$ ) and posterior _q_(**W**) ~ _N_($\bar{W}$, $\sigma^2_{W} \cdot I_{N \times K}$), where the mean $\bar{W}$ is estimated from each episode and $\sigma_{W}$ is learnable. Memory readouts are obtained as **Z**$_{readout}$ = **WM**.
+##### (3) Summary
+Three main components - encoder(_e_), associative memory(**M**), and decoder(_d_) - are jointly trained and optimized for an episode **X**, using the following loss:
+<p align="center">
+    <img src='loss.png' width="350">
+</p>
+
+#### 3-2. Inference
+Once **M**$_{0}$ is trained via backpropagation, the posterior memory **M** is updated in one-shot by solving a minimization problem below. This problem can be efficiently done with the pseudo-inverse of matrix. For more details, please refer to [8].
+<p align="center">
+    <img src='minimization problem.png' width="200">
+</p>
 
 
-Our goal is to understand how to determine the writing weight and reading weight. 
 
-
-
-First of all, let's consider the write operation (green arrows in Fig7). Data episode of length N is transformed into a latent vector through an encoder. Then, the posterior memory M given the data Z and the writing weight W0 is calculated [8]. 
-
-
-First, overall flow shows that model architecture is based on that of VAE. 
-
-sparse distributed memory is used for stroing and retrieving large amounts of information without focusing on the accuracy but on similarity of information. - wiki
-
-$$A_{11} \equiv B(modC)$$
-
-
-
-## 4. Memory Operations
-
-In this paper, authors followed the basic structures from [8] to combine pre-trained LLMs and memory component for knowledge edit. On top of that, they suggest "a class of episodic and adaptable memory-conditioned LLM architecture." 
+## 4. Memory Operations [1]
+In this paper, authors followed the ideas from [8] to combine pre-trained LLMs with memory component for knowledge edit. Fig8 illustrates the single training step of the memory. 
 
 <p align="center">
     <img src='basic memory operations.png' width="800">
@@ -136,6 +136,22 @@ In this paper, authors followed the basic structures from [8] to combine pre-tra
 <p align="center">
     Fig8. Basic memory operations [8]
 </p>
+
+On top of that, sequential writing and forgetting is conducted as follows.
+
+First, given an initial set of encodings **$Z_{0}$** and writing weights **$W_{0}$**, memory matrix and key covariance matrix are initialized as below.
+
+<p align="center">
+    <img src='initialize.png' width="300">
+</p>
+
+Next, memory **$M_{i-1}$** is sequentially updated by adding a new set of encodings **$Z_{i}$** or forgetting a previously written set of encodings **$Z_{i}$**. This process is conducted as below. 
+
+<p align="center">
+    <img src='update.png' width="300">
+</p>
+
+For instance, $\alpha_{i}$ is 1 for writing, -1 for forgetting.
 
 
 ## 5. Results
@@ -204,7 +220,12 @@ Fig 12 shows Larimar’s recall performance does not degrade much with increasin
 compared to some of most competitive baseline LLMs trained with longer training context. We also compare with Supersizing Transformer, which is a memory-augmented model, however it did not show competitive recall performance because it was not trained to perform memory-conditioned generation. Due to memory
 processing in the latent space, Larimar is also efficient is terms of number of KV cache token computation compared to baseline methods. 
 
-## 6. Conclusion
+## 6. Conclusion and further improvements
+This paper propose enhancing Large Language Models (LLMs) with a dynamically updatable and distributed episodic memory. By leveraging a one-shot memory update mechanism and combining it with memory-conditioned decoding, this framework demonstrates precise, robust, and significantly faster editing performance compared to baselines in both single-fact and challenging sequential editing experiments. Using the same memory update mechanism enable fast and selective fact deletion operations, as well as effective information deletion mechanisms. Additionally, provide a simple approach for handling long input contexts, demonstrating better fact recall from longer input contexts in Larimar's memory space compared to state-of-the-art LLMs trained with much larger training context windows. When compared to cutting-edge LLMs trained with much larger training context windows, Larimar showcases its advantages.
+
+Just as the interaction between the Neocortex and Hippocampus inspired the design of the memory module in this paper, drawing inspiration from the Corpus Callosum to conceptualize hardware could also be a viable approach. The Corpus Callosum, as a part of the brain, serves as a major connecting structure of the cerebral nervous system responsible for communication between the hemispheres. It spans across the entire brain, situated between the left and right hemispheres, facilitating the exchange and coordination of information between them to harmonize various brain functions. Adjusting all parameters of the model during the process of learning new knowledge in LLMs incurs significant costs. I propose a method to divide the model's parameters into parts and update only the relevant parameters corresponding to the data being trained, thereby reducing costs. Introducing a module performing the role of the Corpus Callosum separately allows for the exchange and adjustment of data between parts, enabling more efficient learning with reduced costs and facilitating the processing of various types of data individually and complex information collectively within the model.
+
+Another improvement could be to add a memory module specifically for image processing. The memory module used in this paper accepts natural language as input and produces natural language as output. I propose introducing a separate memory module for processing images, so that when both natural language and images are input simultaneously, the information can be processed and reflected in the output. This would enable more effective processing by LLMs when both images and natural language are provided as input. For example, it could be used to provide a photo of a crime scene and information as input, and obtain clues about the suspect as output.
 
 ## 7. References
 

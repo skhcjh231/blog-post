@@ -9,7 +9,7 @@ weight: 1
 *Posted by Jin Hyun, Gyuhyun Jung*
 
 ## Background
-### What is __model editing__?
+### What is model editing?
 
 <p align="center">
   <img src="./model_editing.PNG" alt="." width="500" height="300" > 
@@ -49,7 +49,7 @@ Where *W* represents the **weights** of the **feedforward layer** we want to edi
   {{< /katex >}} 
 </p>
 
-For MEMIT model editing. it optimizes same objectives with ROME, but performance memorization using a least-square constraint, which allows for a closed-form solution. It has similar form with ROME method, but it multiplies \lambda term, which is hyperparameter, to preservation term. Also, it combines memorization term for minimize target
+For MEMIT model editing. it optimizes same objectives with ROME, but performance memorization using a least-square constraint, which allows for a closed-form solution. It has similar form with ROME method, but it multiplies {{< katex >}}\lambda{{< /katex >}} term, which is hyperparameter, to preservation term. Also, it combines memorization term for minimize target
 
 <p align="center">
   {{< katex >}}
@@ -92,9 +92,9 @@ __S__ represents the overall performance. It combines aspect of edit success, ge
 
 ## Experiments & Results
 
-### What's the Optimal Layer for Model Editing?
+### What is the Optimal Layer for Model Editing?
 
-Investigating the effectiveness of hidden states in LLMS for recalling facts using causal tracing showed thjat subject’s last token within the feed-forward networks at intermediate layer plays a significant role. [(Meng et al., 2022b)](https://arxiv.org/pdf/2210.07229)
+Investigating the effectiveness of hidden states in LLMS for recalling facts using causal tracing showed that subject’s last token within the feed-forward networks at intermediate layer plays a significant role. [(Meng et al., 2022b)](https://arxiv.org/pdf/2210.07229)
 
 **Motivation** : Later work showed that layers deemed important during causal tracing did not always translate to model editing performance. Therefore, this work focused on finding the optimal layer for model editing layer empirically.
 
@@ -107,42 +107,51 @@ Investigating the effectiveness of hidden states in LLMS for recalling facts usi
 <p align="center">
   <img src="BlogPost/Untitled.png" alt="." width=\textwidth > 
 </p>
+
 <p align="center">
-  <img src="BlogPost/Untitled1.png" alt="." width=\textwidth > 
+  Fig 3. Post-edit performance of various metrics for Llama3-8b model using MEMIT and ROME on various layers. Eqch layer is edited with 1000 facts, one at a time and non-sequentially.
+</p>
+
+<p align="center">
+  <img src="BlogPost/Untitled 1.png" alt="." width=\textwidth > 
+</p>
+
+<p align="center">
+  Fig 4. Post-edit performance of various metrics on Llama2-7b for MEMIT on various layers.
 </p>
 
 Evaluation results showed that layer 1 for Llama-3 outperformed on numerous metrics. Furthermore this trend was also shown in previous version, Llama-2, as seen in Figure 6. Here, MEMIT and ROME have very similar performance for model editing across layer of a model.
 
 → Why? : Both algorithms optimize for the **same objective** with difference in the memorization constraints. This shows that memorization constraints plays minor effect on editing performance.
 
-### **Optimal way of Scaling Up model editing?**
+### Optimal way of Scaling Up model editing?
 
-After finding the optimal layer, scaling of model editing on the same model can happen in two ways : **batch editing** & **sequential editing**.
+After finding the optimal layer, scaling of model editing on the same model can happen in two ways : **batch editing** & **sequential-batched editing**.
 
-**Batch Editing :**
+**1. Batch Editing :**
 
 A large number(batch size) of knowledge edits are performed on the model with the same update. This work stick to editing a single layer of the model.
 
-Experiment setting
+Experimental settings
 - Targeting layer1 in Llama-3 with  batch size 16, 64, 256, 1024, and 4096 for Batched editing.
 
-<p align="center">
-    <img src="BlogPost/Untitled2.png" alt="." > 
-</p>
+
 
 **Evaluation Results of Batch Editing**
-
 <p align="center">
-    <img src="BlogPost/Untitled3.png" alt="." >
-    <img src="BlogPost/Untitled4.png" alt="." > 
+    <img src="BlogPost/Untitled 2.png" alt="." >
+    <img src="BlogPost/Untitled 3.png" alt="." > 
 </p>
 
+<p align="center">
+  Fig 5. Various metric results (PS, NS, ES, S) after a batch edit (16, 64, 256, 1024, 4096) on MEMIT and EMMET respectively.
+</p>
 
 For both MEMIT & EMMET editing, metrics are seen to consistently fall with larger batches, with **NS** being the most pronounced to fall. **ES** is most resilient metric to edits. **PS**, only metric to do so, seen to increase dramatically between batch sizes of 16 and 64.
 The similar trend between two editing techniques reflect the similarity in their optimization objectives.
 
 
-**Sequential Batch Editing :** 
+**2. Sequential-batched Editing :** 
 
 **Sequential Editing** is an alternate way to scale up model editing where facts are added sequentially to a model.
 
@@ -151,12 +160,17 @@ This work proposes optimal way to scale model editing that strikes a balance bet
 **Sequential-batched editing** sequentially edit many batch of facts at a time. And the experiment was conducted going from batch size of 1 up to 4096. (1, 64, 256, 1024, 4096)
 
 <p align="center">
-    <img src="BlogPost/Untitled5.png" alt="." > 
+    <img src="BlogPost/Untitled 4.png" alt="." > 
+    <img src="BlogPost/Untitled 5.png" alt="." > 
+</p>
+
+<p align="center">
+  Fig 6.  Single layer sequential editing performance for various batch sizes on MEMIT and EMMET respectively.
 </p>
 
 Experimental results according to figures above showed that **larger batch sizes are actually worse for model performance than sequential edits with smaller batches**. In contrast, larger batch sizes seem to be better for metrics in NS : while batch edits are less successful in general, it is better in preserving locality of edits. This results were concluded to optimal batch size of 1024 for both MEMIT and EMMET. Increasing batch-size beyond that lead to larger model degradation and better editing results can be achieved by sequential-batched editing with smaller batch sizes. 
 
-### Conclusion
+## Conclusion
 
 This work examines several model editing techniques in the context of the newly released Llama-3 model and there are some conclusion as follows:
 
@@ -167,9 +181,10 @@ This work examines several model editing techniques in the context of the newly 
 
  The authors argue that the current trend of pushing towards bigger edit batch sizes for scaling model editing may have limitations. Instead, they propose that future research should focus on methods that combine both batched and sequential editing to optimize performance while minimizing model degradation. Also, future work was proposed for experiments on multi-layer intervention for edits, as well as experiments against other popular models and algorithms, including methods that are hyper-network based.
 
-**Provide your own perspectives and discussions, and propose a future research direction**.
+### Discussions, and research direction proposal from post writers
 
 - The paper empirically analyzes the performance of model editing based on batch size. It would be more beneficial for model editing research if the theoretical reasons behind the overall metrics decreasing as batch size increases are elucidated, rather than just empirically.
+  
 - While the work presents a hybrid format combining sequential editing and batch editing, it lacks in-depth analysis of the strengths and weaknesses of both approaches. Additionally, it is important to ensure that the individual characteristics of techniques such as ROME, MEMIT, and EMMET are appropriately integrated into editing optimization.
 
 - Analyzing the reasons behind the improvement in performance when layers are edited later in the network (NS) and the improvement when batch size is increased (PS) could help in identifying the optimal point for multi-layer editing
@@ -177,6 +192,8 @@ This work examines several model editing techniques in the context of the newly 
 - It seems necessary to investigate how many layers should be edited in multi-layer editing to achieve effective results beyond single-layer editing.
 
 ## References
+Implementation code: [Link](https://github.com/scalable-model-editing/unified-model-editing).
+
 Yunzhi Yao, Peng Wang, Bozhong Tian, Siyuan Cheng, Zhoubo Li, Shumin Deng, Huajun Chen, Ningyu Zhang. 2023. [Editing large language models: Problems, methods, and opportunities](https://arxiv.org/pdf/2305.13172). arXiv preprint arXiv:2305.13172.
 
 Anton Sinitsin, Vsevolod Plokhotnyuk, Dmitriy Pyrkin, Sergei Popov, Artem Babenko. 2020. [Editable neural networks](https://arxiv.org/pdf/2004.00345). arXiv preprint arXiv:2004.00345.
