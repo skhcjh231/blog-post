@@ -188,7 +188,7 @@ Beyond MobileNetV4, many CNNs are integrating multi-head attention layers, while
 </p>
 
 <p align="center">
-    <img src='./Table7.png' width="900">
+    <img src='./Table7.png' width="400">
 </p>
     
 <p align="center">
