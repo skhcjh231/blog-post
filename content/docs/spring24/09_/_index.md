@@ -139,4 +139,10 @@ The effectiveness of MobileNetV4 as backbone networks are tested on the COCO obj
 - This paper proposes the MobileNet V4 series, a universal high-efficiency model that operates efficiently across a wide range of mobile environments.
 - By introducing a new Universal Inverted Bottleneck and Mobile MQA layer and applying an enhanced NAS recipe, MobileNet V4 achieves near Pareto-optimal performance on various hardware, including mobile CPUs, GPUs, DSPs, and dedicated accelerators.
 - Additionally, using the latest distillation techniques, it demonstrates cutting-edge performance in mobile computer vision by achieving 87% ImageNet-1K accuracy with a latency of 3.8ms on the Pixel 8 EdgeTPU.
-- The paper also presents a theoretical framework and analysis for understanding the model's universality across heterogeneous devices, providing guidance for future design. 
+- The paper also presents a theoretical framework and analysis for understanding the model's universality across heterogeneous devices, providing guidance for future design.
+
+  ## References
+MobileNetV4 Implementation: [[Link](https://github.com/scalable-model-editing/unified-model-editing).](https://github.com/jiaowoguanren0615/MobileNetV4/tree/main)
+
+{Qin, Danfeng and Leichner, Chas and Delakis, Manolis and Fornoni, Marco and Luo, Shixin and Yang, Fan and Wang, Weijun and Banbury, Colby and Ye, Chengxi and Akin, Berkin and others. 2024. [[Editing large language models: Problems, methods, and opportunities](https://arxiv.org/pdf/2305.13172)](https://arxiv.org/pdf/2404.10518). arXiv preprint arXiv:2404.10518.
+
