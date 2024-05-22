@@ -57,7 +57,7 @@ The significant advances in deep learning over the past decade have largely reli
   - **Per-Tensor Scaling:** This system locally rescales based on runtime statistics to address scaling difficulties in FP8 training.
 
   <p align="center">
-    <img src='./Table1.png' width="900">
+    <img src='./Table1.png' width="800">
   </p>
     
   <p align="center">
@@ -81,7 +81,7 @@ The significant advances in deep learning over the past decade have largely reli
   where {{< katex >}}b_{\text{sign}}{{< /katex >}}, {{< katex >}}b_{\text{exponent}}{{< /katex >}}, and {{< katex >}}b_{\text{mantissa}}{{< /katex >}} represent the sign, exponent, and mantissa bits, respectively.
 
   <p align="center">
-      <img src='./Figure1.png' width="800">
+      <img src='./Figure1.png' width="700">
   </p>
     
   <p align="center">
