@@ -155,7 +155,7 @@ The gating balancing loss helps prevent bias by ensuring that the loss value dec
 </p>
 <details>
     <summary>See related Symbols</summary>
-    M: the nu of blocks where gating functions are placed <br/>
+    M: The num of blocks where gating functions are placed <br/>
     N: num of LoRAs
 </details>     
 <br/>
