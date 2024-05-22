@@ -44,26 +44,29 @@ To evaluate the effect of data quantity on CLIP's performance, we conducted expe
     <img src="./Figure 2.png" width="800"> 
 </p>
 <div align="center">
-  <strong>Figure 3:</strong> Zero-shot performance with the various training strategies
+  <strong>Figure 1.</strong> Zero-shot performance with the various training strategies
 </div>
+
 
 Results showed that for smaller datasets (e.g., 25M), increasing epochs did not significantly improve ImageNet performance. In contrast, larger datasets (e.g., 400M) benefited from more epochs. Additionally, zero-shot performance on ImageNet variants followed a similar pattern: larger datasets and longer training improved performance. However, the correlation between performance on ImageNet and its variants was inconsistent, with some datasets showing improved results in specific variants but not others.
 
 <p align="center">
     <img src="./Figure 3.png" width="800"> 
 </p>
-<p style="text-align:center; font-style: italic;">
-Figure 2: Data Quantity: Few-Shot Performances on ImageNet
-</p>
+<div align="center">
+  <strong>Figure 2.</strong> Data Quantity: Few-Shot Performances on ImageNet
+</div>
+
 
 We also observed that the few-shot performance also showed a similar trend to the zero-shot performance.
 
 <p align="center">
     <img src="./Figure 4.png" width="800"> 
 </p>
-<p style="text-align:center; font-style: italic;">
-Figure 3: Retrieval Performances on MSCOCO
-</p>
+<div align="center">
+  <strong>Figure 3.</strong> Retrieval Performances on MSCOCO
+</div>
+
 
 In Retrieval Performances, a slightly different trend emerged. Specifically, we found that there was little to no improvement in both image retrieval and text retrieval performance when the number of epochs exceeded eight.
 
