@@ -12,7 +12,7 @@ LoRA is a methodology for effective fine-tuning large-scale pretrained models. L
 <p align="center">
     <img src="./mole.png">
     <br>
-    <em>Workflow of MoLE</em>
+    <em>Workflow of Mixture of LoRA Experts (MoLE)</em>
 </p>
 
 <!--
