@@ -169,9 +169,9 @@ However, CLIP+Data Augmentation aimed to enhance CLIP's vision encoder while mit
 </div>
 </p>
 
-## Performance Evaluation
+%## Performance Evaluation
 
-### Zero-shot
+%### Zero-shot
 Their experiments on the ImageNet dataset show that SLIP outperforms CLIP and FLIP when training samples are under one billion, indicating the benefit of self-supervised learning for limited data. However, as sample size increases, CLIP and FLIP surpass SLIP, suggesting that enhancing vision encoders isn't necessary for large datasets. Additionally, SLIP is twice as computationally expensive as CLIP and performs worst in zero-shot tasks when costs are equal. Data augmentation, particularly CLIP + Data Aug, improves performance and generalization on ImageNet and its variants without extra computational costs, especially for larger datasets and multiple epochs of training as presented in Figure 13.
 
 <p align="center">
@@ -182,7 +182,7 @@ Their experiments on the ImageNet dataset show that SLIP outperforms CLIP and FL
 </div>
 </p>
 
-### Linear Probing
+%### Linear Probing
 In the linear probing evaluation, vision encoders trained with CLIP + Data Aug consistently outperformed the other strategies, particularly on OOD datasets. CLIP and CLIP + Data Aug also showed better robustness than SLIP with similar ImageNet accuracy. Combining CLIP with data augmentation offers a more effective feature extractor, balancing performance, and computation cost. The training results on linear probing performance are shown in Figure 14.
 
 <p align="center">
@@ -193,7 +193,7 @@ In the linear probing evaluation, vision encoders trained with CLIP + Data Aug c
 </div>
 </p>
 
-### Retrieval
+%### Retrieval
 In retrieval tasks, SLIP consistently outperformed CLIP, CLIP + Data Aug, and FLIP on both image and text retrieval across all dataset sizes. Unlike its zero-shot performance, SLIP showed the best results for retrieval tasks as presented in Figure 15, suggesting it is a superior strategy for these tasks despite being less effective for classification.
 
 <p align="center">
