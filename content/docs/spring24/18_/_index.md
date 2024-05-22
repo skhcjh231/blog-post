@@ -32,17 +32,25 @@ Each patch is then flattened into a single vector, essentially treating each pat
 #### C. Self Attention
 - The self-attention layer calculates attention weights for each pixel in the image based on its relationship with all other pixels.
 
-- For each input vector X, three new vectors are created through learned linear transformations: Query (Q), Key (K), and Value (V), where $W_{Q}$, $W_{K}$, $W_{V}$ are learnd weight matrices.
+- For each input vector X, three new vectors are created through learned linear transformations: Query (Q), Key (K), and Value (V), where {{< katex >}}W_{Q}, W_{K}, W_{V}{{< /katex >}} are learnd weight matrices.
 
-$$ Q = XW_Q, K=XW_K, V=XW_V $$
+{{< katex display=true >}}
+Q = XW_Q, K=XW_K, V=XW_V
+{{< /katex >}}
 
 - The attention score for each pair of input vectors is calculated using the dot product of their Query and Key vectors:
-  
-$$ Attention Score = Q K^T $$
+
+{{< katex display=true >}}
+Attention Score = Q K^T
+{{< /katex >}}
 
 - These scores indicate how much focus the model should place on one part of the input when considering another part.
- 
-$$ Attention Output = softmax(\frac{Q \dot K^T}{\sqrt{d_k}}V) $$
+
+{{< katex display=true >}}
+Attention Output = softmax(\frac{Q \dot K^T}{\sqrt{d_k}}V)
+{{< /katex >}}
+
+
 
 - The attention scores are scaled by the square root of the dimensionality of the Key vectors to prevent excessively large values that could destabilize training. The scaled attention scores are passed through a softmax function to obtain the attention weights. This ensures that the weights are normalized (summing to one) and highlight the relative importance of each input vector. Each input vector is then updated by computing a weighted sum of the Value vectors, using the attention weights.
 
@@ -79,7 +87,7 @@ These networks consist of fully connected layers and typically include activatio
 </p>
 
 To address this issue, ViTAR introduce two key innovations. 
-- 1. Adaptive Token Merge : A novel module for dynamic resolution adjustment, designed with a single Transformer block to achieve highly efficient incremental token integration.
+- 1. Adaptive Token Merger : A novel module for dynamic resolution adjustment, designed with a single Transformer block to achieve highly efficient incremental token integration.
 - 2. Fuzzy positional encoding : A novel positional encoding to ensure consistent positional awareness across multiple resolutions, thereby preventing overfitting to any specific training resolution.
 
 ----------
@@ -91,7 +99,7 @@ To address this issue, ViTAR introduce two key innovations.
 </p>    
 
     
-Adaptive Token Merger (ATM) module is designed to efficiently process and merge tokens of different resolutions in a neural network using a simple structure that includes GridAttention and FeedForward network (FFN). ATM Module takes tokens processed through patch embedding as input. ATM Module specially processes the inputs of different resolutions M times to reduce them to the same preset size $G_{h} \times G_{w}$ before fed into the MHSA.
+Adaptive Token Merger (ATM) module is designed to efficiently process and merge tokens of different resolutions in a neural network using a simple structure that includes GridAttention and FeedForward network (FFN). ATM Module takes tokens processed through patch embedding as input. ATM Module specially processes the inputs of different resolutions M times to reduce them to the same preset size {{< katex >}}G_{h} \times G_{w}{{< /katex >}} before fed into the MHSA.
 
 <p align="center">
   <img src="./grid_attention.png" alt="." width="600" height="300" > 
