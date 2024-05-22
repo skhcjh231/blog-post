@@ -14,10 +14,12 @@ weight: 1
 
 ### Language Modeling and Next-Token Prediction Task
 
-Learning through a next-token prediction task has been a mainstream for language modeling. The goal of a next-token prediction task is to maximize the probability of the next token $x_{t+1}$, given the history of previous tokens $x_{t:1} = x_1, \ldots, x_t$. This can be formulated as follow: 
+Learning through a next-token prediction task has been a mainstream for language modeling. The goal of a next-token prediction task is to maximize the probability of the next token $x_{t+1}$, given the history of previous tokens $x_{t:1} = x_1, \ldots, x_t$. This can be formulated as follow:
+
 $$ 
 L_1 = - \sum_{t} \log P_{\theta}(x_{t+1} \mid x_{t:1}), 
 $$
+
 where $P_{\theta}$ represents large language model under training. 
 
 # Core Idea
