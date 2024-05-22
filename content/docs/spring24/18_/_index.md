@@ -12,7 +12,7 @@ weight: 1
 Vision Transformers (ViT) has recently emerged as a competitive alternative to Convolutional Neural Networks (CNNs) that are currently state-of-the-art in different image recognition computer vision tasks.
 
 <p align="center">
-  <img src="./ViT.png" alt="." width="500" height="300" > 
+  <img src="./ViT.png" alt="." width="700" height="400" > 
 </p>
 
 Vision Transformers (ViT) is an architecture that utilizes self-attention mechanisms to process images. The Vision Transformer Architecture consists of a series of transformer blocks. Each transformer block consists of two sub-layers: a multi-head self-attention layer and a feed-forward layer.
@@ -39,7 +39,7 @@ The transformer's encoder has a structure in which L transformer blocks sequenti
  Recently, ResFormer proposed adding depth-wise convolution to the existing positional encoding method when performing global-local positional embedding, enabling it to work well even with unseen resolutions. (Chu et al., 2023; Tian et al., 2023).
 
 <p align="center">
-  <img src="./ResFormer_pe.png" alt="." width="400" height="200" > 
+  <img src="./ResFormer_pe.png" alt="." width="500" height="300" > 
 </p>
 
  However, ResFormer has three drawbacks.
@@ -49,19 +49,34 @@ The transformer's encoder has a structure in which L transformer blocks sequenti
 
 
 ## ViTAR: Vision Transformer with Any Resolution
+<p align="center">
+  <img src="./overview.png" alt="." width="600" height="200" > 
+</p>
 In this section, we introduces two key innovations to address this issue. Firstly, we propose a novel module for dynamic resolution adjustment, designed with a single Transformer block, specifically to achieve highly efficient incremental token integration. Secondly, we introduce fuzzy positional encoding in the Vision Transformer to provide consistent positional awareness across multiple resolutions, thereby preventing overfitting to any single training resolution.
 
-<p align="center">
-  <img src="./ResFormer_pe.png" alt="." width="500" height="300" > 
-</p>
+
 
 
 ### 1. Adaptive Token Merger (ATM Module)
- The ATM Module separates input tokens in the form of a grid of $G_h \times G_w$. When the size of all tokens is $H \times W$, all tokens are separated in grid form to have tokens of $G_{th}\times G_{tW}$ size. Each Grid is processed through a special operation called Grid Attention. Grid Attention is carried out only between tokens within the Grid. Average Pooling of all Tokens is performed as a Query, and Attention operation is performed by setting each Token as Key and Value. When this is performed for the entire Grid, it is reduced to $G_h \times G_w$, which is equal to the number of Grids. Afterwards, it passes through the FeedForward network and repeats. Through this iterative process, even when the resolution of the image is large, the number of tokens can be effectively reduced, and through a sufficient process, this size can be reduced to the size of the grid of 1. This has the advantage of being computationally efficient because when performing the subsequent MHSA calculation, a token of the same size is always input as input, regardless of resolution.
-
 <p align="center">
   <img src="./ATM.png" alt="." width="500" height="300" > 
 </p>
+
+ The ATM Module separates input tokens in the form of a grid of $G_h \times G_w$. When the size of all tokens is $H \times W$, all tokens are separated in grid form to have tokens of $G_{th}\times G_{tW}$ size. Each Grid is processed through a special operation called Grid Attention. Grid Attention is carried out only between tokens within the Grid. Average Pooling of all Tokens is performed as a Query, and Attention operation is performed by setting each Token as Key and Value. When this is performed for the entire Grid, it is reduced to $G_h \times G_w$, which is equal to the number of Grids. Afterwards, it passes through the FeedForward network and repeats. Through this iterative process, even when the resolution of the image is large, the number of tokens can be effectively reduced, and through a sufficient process, this size can be reduced to the size of the grid of 1. This has the advantage of being computationally efficient because when performing the subsequent MHSA calculation, a token of the same size is always input as input, regardless of resolution.
+
+
+
+
+<p align="center">
+  <img src="./grid_attention.png" alt="." width="500" height="300" > 
+</p>
+
+{{< katex display=true >}}
+x_{avg} = AvgPool(\{x_{ij}\}) \\
+
+GridAttn(\{x_{ij}\}) = x_{avg} + Attn(x_{avg}, \{x_{ij}\}, \{x_{ij}\})
+{{< /katex >}}
+
 
 In our opinion, Grid Attention appears to add an inductive bias similar to Convolution. It appears that Tokens in adjacent locations in the actual image should be contained within the same Grid. The order of grid patching may have an effect.
 
