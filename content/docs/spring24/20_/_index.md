@@ -9,8 +9,7 @@ weight: 1
 *Posted by Jaehyeon Park, Youngkil Song*
 
 ## Background
-### Evaluationary Neural Architecture Search
-#### Evolutionary Algorithm
+### Evolutionary Algorithm
 The evolutionary algorithm is a type of black box optimization that can achieve the desired optimization without directly computing the gradient ▽f(x) or the Hessian ▽²f(x) of the function.
 Evolutionary algorithms are typically composed of the following elements:
 - **Population**: A set of possible solutions to the problem, where each individual represents a candidate solution.
@@ -18,15 +17,20 @@ Evolutionary algorithms are typically composed of the following elements:
 - **Selection**: The process of selecting individuals to be passed on to the next generation. Individuals with higher fitness are more likely to be selected.
 - **Termination Condition**: The criteria for ending the algorithm. This is usually based on a maximum number of generations, achieving a target fitness level, time limits, or other benchmarks.
 
-##### Simple Evolutionary Strategy (Simple ES)
+#### Simple Evolutionary Strategy (Simple ES)
 1. Sample a set of solutions from a Normal distribution with mean 𝜇 and a fixed standard deviation 𝜎.
 2. Evaluate the fitness of each solution using the fitness function.
 3. Set 𝜇 to the best solution in the population, and sample the next generation of solutions around this new mean.
 4. Repeat the above processes.
 
-##### Covariance-Matrix Adaptation Evolution Strategy (CMA-ES)
+#### Covariance-Matrix Adaptation Evolution Strategy (CMA-ES)
 CMA-ES is an evolutionary strategy that can dynamically adjust the search range for solutions.
-CMA-ES finds the global optimum effectively even in high-dimensional problems by adaptively updating the covariance matrix of the multivariate normal distribution used for sampling a set of solutions, thereby adjusting the search direction and range.
+CMA-ES finds the global optimum effectively even in high-dimensional problems by adaptively updating the covariance matrix of the multivariate normal distribution used for sampling a set of solutions, thereby adjusting the search direction and range. Fig. 1 from this [article](https://blog.otoro.net/2017/10/29/visual-evolution-strategies) shows a simple CMA-ES simulation in a 2D space.
+
+<p align="center">
+  <img src="./figures/CMA-ES.gif" alt="." width="500" height="300"></br>
+  Figure 1. A 2D Simulation of CMA-ES Algorithm.
+</p>
 
 ### How to leverage the strengths of multiple pre-trained models?
 #### Fine-Tuning
@@ -103,15 +107,32 @@ __Mergekit__ is a toolkit that provides various popular recipes for merging lang
 The goal of this paper is to develop a unified framework that can automatically generate a merged model from a set of foundation models, ensuring that the merged model outperforms an any single model in the collection. In this paper, an evolutionary algorithm was applied to reduce the complexity of the model merge process. The model merge was applied independently and also sequentially in both parameter space and the data flow space.
  
 ### Merging in the Parameter Space (PS)
-The model merge in the parameter space can be summarized as a weighted average of the model parameters. In this paper, the fitness of each foundation model for a specific task is determined using the task vector of each foundation model, and then merging configuration parameters for combining the parameters of the candidate models are estimated based on those fitness values. Specifically, this paper enhances TIES-Merging with DARE, allowing for more granular, layer-wise (input/output embedding layers or transformer blocks) merging.
+The model merge in the parameter space can be summarized as a weighted average of the model parameters. In this paper, the fitness of each foundation model for a specific task is determined using the task vector of each foundation model, and then merging configuration parameters for combining the parameters of the candidate models are estimated based on those fitness values. Specifically, this paper enhances TIES-Merging with DARE, allowing for more granular, layer-wise (input/output embedding layers or transformer blocks) merging. Fig. from the [official Sakai.ai website](https://sakana.ai/evolutionary-model-merge/) shows an overview of the PS merging.
+
+<p align="center">
+  <img src="./figures/PS.gif" alt="." width="500" height="300"></br>
+  Figure . Model Merging in the Parameter Space.  
+</p>
 
 ### Merging in the Data Flow Space (DFS)
-In DFS, the proposed framework discovers the best combinations of the layers of different models to form a new model, without changing the model parameters. In other words, the goal of merging in the DFS is to find the optimal inference path across the multiple models. For example, after the i-th layer in model A, a token may be directed to the j-th layer in model B. Please note that the search space in the data flow space (DFS) is very large. Assuming the total number of layers across all models is $M$ and the lengh of the inference path is $T$, then the size of the search space is $M^T$. This astronomically large search space leads to a challenge for a evolutionary search algorithm, even with a modest configuration of $M=64$ and $T=60$.
-To address this issue, this paper exploits the result of preliminary studies that certain layer arrangements, particularly repetitive or permuted sequences from earlier in the model, can adversely affect performance. Specifically, this paper layout all the layers only in sequential order (i.e., all layers in the $i$-th model followed by those in the $i+1$-th model) and repeat them $r$ times, therefore the size of the search space can be reduced to $2^{M \times r}$. The authors use indicator array $\mathcal{I} \in \mathbb{R}^{M \times r}$ to represent which layers are included and excluded.
+In DFS, the proposed framework discovers the best combinations of the layers of different models to form a new model, without changing the model parameters. In other words, the goal of merging in the DFS is to find the optimal inference path across the multiple models. For example, after the i-th layer in model A, a token may be directed to the j-th layer in model B. Fig. from the [official Sakai.ai website](https://sakana.ai/evolutionary-model-merge/) shows an overview of the DFS merging.
+
+<p align="center">
+  <img src="./figures/DFS.gif" alt="." width="500" height="300"></br>
+  Figure . Model Merging in the Data Flow Space.  
+</p>
+
+Please note that the search space in the data flow space (DFS) is very large. Assuming the total number of layers across all models is $M$ and the lengh of the inference path is $T$, then the size of the search space is $M^T$. This astronomically large search space leads to a challenge for a evolutionary search algorithm, even with a modest configuration of $M=64$ and $T=60$. </br>
+To address this issue, this paper exploits the result of preliminary studies that certain layer arrangements, particularly repetitive or permuted sequences from earlier in the model, can adversely affect performance. Specifically, this paper layout all the layers only in sequential order (i.e., all layers in the $i$-th model followed by those in the $i+1$-th model) and repeat them $r$ times, therefore the size of the search space can be reduced to $2^{M \times r}$. The authors use indicator array $\mathcal{I} \in \mathbb{R}^{M \times r}$ to represent which layers are included and excluded. </br>
 However, in the above setting, a layer may face an input whose distribution is different from what it is used to (from its original model), leading to unexpected outputs. They just apply scaling the input based on the scaling matrix $W \in \mathbb{R}^{M \times M}$, which is also optimized by the evolutionary search together with the indicator array $\mathcal{I}$.
 
 ### Merging in Both Spaces
-Model merging in the parameter space (PS) and data flow space (DFS) can be applied orthogonally to boost the performance of the merged model. Specifically, in this paper, model merging is first applied in the PS to generate several merged models, which are then put back to the collection of models. The expanded collection is subsequently used for merging in the DFS.
+Model merging in the parameter space (PS) and data flow space (DFS) can be applied orthogonally to boost the performance of the merged model. Specifically, in this paper, model merging is first applied in the PS to generate several merged models, which are then put back to the collection of models. The expanded collection is subsequently used for merging in the DFS. Fig. from the [official Sakai.ai website](https://sakana.ai/evolutionary-model-merge/) shows an overview of the overall method.
+
+<p align="center">
+  <img src="./figures/Overall.gif" alt="." width="500" height="300"></br>
+  Figure . Overall Method.  
+</p>
 
 ## Experiments
 The experiments in the paper focus on applying the proposed evolutionary model merging approach to create advanced models in two primary areas: Japanese LLMs with Math reasoning capabilities and culturally-aware Japanese Vision-Language Models (VLMs).
