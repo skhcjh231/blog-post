@@ -17,7 +17,7 @@ The growing demand for rapid and efficient inference in large language models (L
 ⇒ LLM inference is slow
 
 To address this issue, speculative decoding has been introduced as a promising approach to accelerate LLM inference without altering the output quality. This method leverages two key observations about LLM inference: 
-* many tokens can be predicted with minimal computational overhead. 
+* Many tokens can be predicted with minimal computational overhead. 
 * LLM inference is predominantly constrained by memory bandwidth rather than arithmetic computations. 
 
 However, existing speculative decoding still face limitations, such as high inference latency and suboptimal token acceptance rates. 
@@ -25,7 +25,10 @@ This papaer proposed Kangaroo to address this challenge.
 
 
 ## Backgrounds
-
+#What is speculative decoding?
+Speculative decoding is an apporach to accelerate LLM inference. 
+*Draft model: Additional model to accelerate inference (also known drafter) 
+*Verifier or target model: Original large LLM
 <p align="center">
     <img src='./speculative decoding.png' width="700">
 </p>
