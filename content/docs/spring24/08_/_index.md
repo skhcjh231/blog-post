@@ -39,14 +39,14 @@ In the above figure, only the matrices A and B are trained, with dimensions (d x
 
 The common solution to further improve the performance of LoRA across various tasks is to compose multiple trained LoRAs. Research on LoRA composition can be broadly categorized into the following two methodologies.
 
-_**Linear arithmetic composition.** _It is a method of directly adding multiple LoRAs. This approach is simple and has been effective in the NLP and Vision-Language domain, but it can result in the loss of pre-trained model's generative capabilities or the individual characteristics of each LoRA.
+* _**Linear arithmetic composition.**_ It is a method of directly adding multiple LoRAs. This approach is simple and has been effective in the NLP and Vision-Language domain, but it can result in the loss of pre-trained model's generative capabilities or the individual characteristics of each LoRA.
 
 {{< katex display=true >}}
 $$\hat{\mathbf{W}} = \mathbf{W} + \sum_{i=1}^{N} w_i \cdot \Delta \mathbf{W}_i$$
 {{< /katex >}}
 
 
-_**Reference tuning-based composition**_ tackles the above limitations of linear arithmetic method by introducing gradient fusion and controllable sampling, but is requires retaining when incorporating different LoRAs or creating new masks, which results non-trivial computational costs.
+* _**Reference tuning-based composition**_ tackles the above limitations of linear arithmetic method by introducing gradient fusion and controllable sampling, but is requires retaining when incorporating different LoRAs or creating new masks, which results non-trivial computational costs.
 
 
 <p align="center">
