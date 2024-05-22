@@ -96,12 +96,21 @@ Binarization of weights makes the training hard and hiders convergence. Since fu
 
 Authors propose Low-rank Representation Mimicking(LRM) to handle these problems. LRM utilize principal component analysis(PCA) to project representations to low-rank space. Then representaiton aligning is done in low-rank space by minimizing mean squared error (MSE)  
 
-First, covariance matrix of ith module C_i is computed with representation of full-precision diffusion model. Then eigenvector matrix E_i can be obtained and first c/k column eighenvectors are used to projeet representations.  
-
+First, covariance matrix of ith module {{< /katex >}}C_i{{< /katex >}} is computed with representation of full-precision diffusion model,{{< /katex >}}\hat{\epsilon}_{\theta_{i}}^{FP}(x_t, t) \in \mathbb{R}^{h\times w\times c}{{< /katex >}} . Then eigenvector matrix {{< /katex >}}E_i{{< /katex >}} can be obtained and first {{< /katex >}}\lfloor\frac{c}{k}\rceil{{< /katex >}} column eighenvectors are used to compute projected representations, {{< katex >}}{{< katex >}} and {{< katex >}}{{< katex >}}.  
+<p align="center">
+  {{< katex >}}
+    C_{i} = \frac{1}{{(h \times w)}^2}\hat{\epsilon}_{\theta_{i}}^{FP}(x_t, t) \hat{\epsilon}_{\theta_{i}}^{FP^T}(x_t, t), \\
+    E_{i}^{T}C_{i}E_{i} = \Lambda_{i}, \\
+    \mathcal{R}_i^{FP}(x_t, t) = E_{i}^{\lfloor \frac{c}{K}\rceil}\hat{\epsilon}_{\theta_{i}}^{FP}(x_t, t), \\
+    \mathcal{R}_i^{bi}(x_t, t) = E_{i}^{\lfloor \frac{c}{K}\rceil}\hat{\epsilon}_{\theta_{i}^{bi}}^{bi}(x_t, t)
+  {{< /katex >}} 
+</p>  
 LRM loss and total loss can be expressed as follows:  
 
-Since computation of transformation matrix E_i is expensive, it is computed with the first batch of input and fixed during entire traning. As shown in the figure below, LRM stabilize training process, accelerating convergence.  
-
+Since computation of transformation matrix {{< katex >}}E_i{{< katex >}} is expensive, it is computed with the first batch of input and fixed during entire traning. As shown in the figure below, LRM stabilize training process, accelerating convergence.  
+<p align="center">
+  <img src="./lrm.png" alt="." width="500" height="300" > 
+</p>
 
 ### **Progressive binarization**
 Despite the enhanced methodology, training process remains slow and unstable. Authors additionally apply progressive binarization strategy to further stabilize convergence. M/2 th time stepping module is quantized in first iteration and m/2-i-th and m/2+i-th modules are quantized in next i-th iteration. As show in the figure, benefit coming from progressive binarization is significant compared to baseline traning process.  
