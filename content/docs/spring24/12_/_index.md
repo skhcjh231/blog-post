@@ -38,7 +38,7 @@ In this paper, they adopted the identical training approach as [CLIP](https://ar
 
 ## Data
 ### Data Quantity
-To evaluate the effect of data quantity on CLIP's performance, we conducted experiments with datasets of different sizes: 10M, 25M, 100M, 200M, and 400M. Using ViT-B/32 as the vision encoder, models were trained for 2 to 32 epochs.
+To evaluate the effect of data quantity on CLIP's performance, they conducted experiments with datasets of different sizes: 10M, 25M, 100M, 200M, and 400M. Using ViT-B/32 as the vision encoder, models were trained for 2 to 32 epochs.
 
 <p align="center">
     <img src="./Figure 2.png" width="800"> 
@@ -58,7 +58,7 @@ Results showed that for smaller datasets (e.g., 25M), increasing epochs did not 
 </div>
 </p>
 
-We also observed that the few-shot performance also showed a similar trend to the zero-shot performance.
+They also observed that the few-shot performance also showed a similar trend to the zero-shot performance.
 
 <p align="center">
     <img src="./Figure 4.png" width="800"> 
@@ -68,10 +68,10 @@ We also observed that the few-shot performance also showed a similar trend to th
 </div>
 </p>
 
-In Retrieval Performances, a slightly different trend emerged. Specifically, we found that there was little to no improvement in both image retrieval and text retrieval performance when the number of epochs exceeded eight.
+In Retrieval Performances, a slightly different trend emerged. Specifically, they found that there was little to no improvement in both image retrieval and text retrieval performance when the number of epochs exceeded eight.
 
 ### Data Quality
-We also examined the impact of data quality by creating subsets of the 3.4B dataset based on image-text similarity, selecting the top 20%, 40%, 60%, and 80% highest-quality data.
+They also examined the impact of data quality by creating subsets of the 3.4B dataset based on image-text similarity, selecting the top 20%, 40%, 60%, and 80% highest-quality data.
 
 <p align="center">
     <img src="./Figure 5.png" width="800"> 
@@ -96,39 +96,55 @@ Additionally, when the number of sample data points is the same, higher quality 
 <p align="center">
     <img src="./Figure 7.png" width="1100"> 
 </p>
-<p style="text-align:center; font-style: italic;">
-Figure 6: Data Quality: Retrieval Performances on MSCOCO. (a) one epoch. (b) the same number of sampled data.
+<div align="center">
+  <strong>Figure 6.</strong> Data Quality: Retrieval Performances on MSCOCO. (a) one epoch. (b) the same number of sampled data.
+</div>
 </p>
 
 When it comes to search performance, the top 80% datasets in particular show the most impressive retrieval performance.
 
 ## Variants of Vision Transformers
-This study examines how the performance of various CLIP models, differentiated by the size of their vision encoders, is influenced by dataset size and the number of sampled data points. We used different vision encoders (ViT-Ti/16, S/16, B/32, B/16, L/16) while keeping text transformers fixed at vit-base. We sampled ten subsets from the full dataset, ranging from 10M to 3.4B samples, maintaining consistent data distribution and quality. Models were trained for one epoch to assess the effect of data quantity, ensuring fair comparison by training all subsets for the same number of iterations.
+This study examines how the performance of various CLIP models, differentiated by the size of their vision encoders, is influenced by dataset size and the number of sampled data points. They used different vision encoders (ViT-Ti/16, S/16, B/32, B/16, L/16) while keeping text transformers fixed at vit-base. They sampled ten subsets from the full dataset, ranging from 10M to 3.4B samples, maintaining consistent data distribution and quality. Models were trained for one epoch to assess the effect of data quantity, ensuring fair comparison by training all subsets for the same number of iterations.
 
 <p align="center">
-    <img src="./Figure 8.png" width="300"> 
+    <img src="./Figure 8.png" width="800"> 
 </p>
-<p style="text-align:center; font-style: italic;">
-Figure 7: Data Quality: Retrieval Performances on MSCOCO. (a) one epoch. (b) the same number of sampled data.
+<div align="center">
+  <strong>Figure 7.</strong> Various ViTs: Zero-Shot performances with various numbers of sample data
+</div>
 </p>
 
 Zero-shot performance on ImageNet revealed that larger vision encoders (e.g., ViT-L/16) did not consistently outperform smaller ones when the sample size was under 100M. As data size increased, larger encoders showed better performance.
 
 <p align="center">
-    <img src="./Figure 9.png" width="300"> 
+    <img src="./Figure 9.png" width="800"> 
 </p>
-<p style="text-align:center; font-style: italic;">
-Figure 8: Data Quality: Retrieval Performances on MSCOCO. (a) one epoch. (b) the same number of sampled data.
+<div align="center">
+  <strong>Figure 8.</strong> Various ViTs: Zero-Shot performances with the same number of sampled data: 3.4B
+</div>
 </p>
 
 As the dataset size grows, the performance difference between larger ViTs and their smaller counterparts becomes more pronounced. Additiallay, accuracy trends across various datasets (ImageNet-R, ImageNet-Sketch, ImageNet-V2, ObjectNet) were nearly linear, except for ImageNet-A, which had a non-linear improvement, highlighting its challenging nature. [(appendix)](https://arxiv.org/abs/2404.08197)
 
 <p align="center">
-    <img src="./Figure 10.png" width="300"> 
+    <img src="./Figure 10.png" width="800"> 
 </p>
-<p style="text-align:center; font-style: italic;">
-Figure 9: Data Quality: Retrieval Performances on MSCOCO. (a) one epoch. (b) the same number of sampled data.
+<div align="center">
+  <strong>Figure 9.</strong> Various ViTs: Linear probing performances with various sizes of vision encoders with the same number of sampled data: 3.4B
+</div>
 </p>
+
+Linear probing results indicated that for smaller datasets, ViT-L/16 underperformed compared to smaller models, but excelled with more data. Larger ViTs demonstrated better robustness on out-of-distribution datasets.
+
+<p align="center">
+    <img src="./Figure 10.png" width="800"> 
+</p>
+<div align="center">
+  <strong>Figure 10.</strong> Various ViTs: Retrieval Performances on MSCOCO
+</div>
+</p>
+
+Retrieval tasks showed ViT-L/16 performed poorly with less than 100M samples but improved with more data, aligning with zero-shot trends and benefiting more from larger datasets compared to smaller models.
 
 ## Comparison of Network Architectures
 To effectively choose the best network architectures, they performed a comparison among the various architectures. Previous studies have explored various vision encoders for CLIP, such as ResNet, MLP-Mixer, and ViT, but some architectures like Swin-Transformer and ConvNext haven't been investigated. Here, they compared CNN and vision transformer architectures with similar computational costs, including ViT-B/32, ResNet-50, ConvNext-T, Swin-T, and Mixer-B/32. In Zero-shot, when considering limited data samples, ResNet-50 performs better initially, but ViT-B/32 achieves superior performance with more samples due to its stronger ability to capture global information (see Figure 1(a)). In linear probing, MLP-Mixer outperforms others with fewer samples, but ViT-B/32 excels with larger datasets. ViT and MLP-Mixer show better robustness, likely due to their lower inductive bias, leading to improved generalization (Figure 1(b)). For retrieval tasks, ResNet-50 is better with smaller sample sizes, but ViT-B/32 surpasses it as sample sizes increase. Mixer-B/32 performs poorly in retrieval tasks, making ViT the preferred choice for CLIP's vision encoder across various tasks. 
@@ -183,3 +199,6 @@ In retrieval tasks, SLIP consistently outperformed CLIP, CLIP + Data Aug, and FL
 Figure 15: : Retrieval performances with the various training strategies
 </p>
 
+## Conclusion
+This study examines how data size, network architecture, and training methods affect CLIP's performance. Our experiments highlight the critical roles of data quantity and quality. They also demonstrate that data augmentation can improve CLIP's performance with minimal additional computational cost. Furthermore, they investigate various network architectures and training strategies, finding that some outperform others depending on the computational budget, emphasizing the need for careful selection.
+From my perspective, the balance between computational efficiency and model accuracy is crucial, and exploring adaptive methods could yield significant benefits. Future research could focus on integrating transfer learning with CLIP to enhance domain-specific performance and investigating AutoML techniques for optimal architecture and strategy selection.
