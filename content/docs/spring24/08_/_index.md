@@ -52,7 +52,15 @@ MoE is an effective method that allows scaling up the number of parameters while
 
 * Gating functions (Router): A function that determines the weights over the experts outputs. For the hidden representation h of input token, and the trainable embedding e of each a expert, the gate value a is obtained as follow:
 
+{{< katex display=true >}}
+\alpha(E_i) = \frac{\exp(h \cdot e_i)}{\sum_{j=0}^{N} \exp(h \cdot e_j)}
+{{< /katex >}}
+
 The output is a weighted sum of the outputs from the top-k experts, determined by the gated values.
+
+{{< katex display=true >}}
+O = h + \sum_{i=0}^{N} \alpha(E_i) \cdot E_i(h)
+{{< /katex >}}
 
 <p align="center">
     <img src=./moe.png> 
