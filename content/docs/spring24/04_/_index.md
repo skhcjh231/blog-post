@@ -36,14 +36,14 @@ $$
 Directly training language models by minimizing the multi-token prediction loss could result in high GPU memory usage, severly limiting the allowable batch-size. Thus, authors propose to carefully adapt the sequence of forward and backward operations for each prediction head rather than operating forward and backword operations simultaneusly for all heads. This could result in reducing peak GPU memory usage $O(nV+d)$ into $O(V+d)$. Here, the $n$ and $V$ denote the number of head and vocabulary size, respectively. Note that $d$ is the vector dimension of shared transformer trunk. 
 
 <p align="center">
-    <img src='./Memory Efficient.png' width="450">
+    <img src='./Memory Efficient.png' width="800">
 </p>
 
 ### Faster Inference with Self-Speculative Decoding
 For speed up in inference time, authors utilize self-speculative decoding (Stern et al., 2018) scheme. Specifically, instead of iteratively predicting a next single token for the given token sequence, authors directly generate n-token using n independent output heads in a single step. This significantly speed up the decoding stage.
 
 <p align="center">
-    <img src='./Faster Inference.png' width="450">
+    <img src='./Faster Inference.png' width="800">
 </p>
 
 # Result
