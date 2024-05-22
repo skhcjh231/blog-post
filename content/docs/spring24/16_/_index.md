@@ -149,7 +149,7 @@ The code operates in the following steps:
 
 ## **Results**
 <p align="center">
-    <img src=./result2.png">
+    <img src=./result2.png>
 </p>
 The figure above shows the results of training all models with the same number of FLOPs(6e18), regardless of the parameter size. The compared models are the Baseline (isoFLOP optimal baseline, vanilla transformer) and models with MoD applied, set to have either 12.5% capacity or 50% capacity. In the case of random routing, it does not follow the top-k metric but simply randomly chooses whether a token will go to the residual path or the attention + MLP layer path. Additionally, in the case of every 2, it means that the MoD method is not applied to all layers, but only to one out of every two layers. Therefore, from the top-left graph, the 12.5% capacity MoE loss value is less than the baseline model's. The two top-middle graphs show the actual training loss graphs for the points plotted in the left graph, where MoD with 12.5% capacity generally results in lower loss values than baseline. In the case of the right graph, the plotted points #1 & #3 and  #2 & #4 pairs are models of the same parameter size, with MoD applied, it not only has a loss value lower, but it also has an approximately 66% faster performance than original one.
 
