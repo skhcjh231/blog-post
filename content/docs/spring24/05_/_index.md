@@ -15,9 +15,13 @@ The growing demand for rapid and efficient inference in large language models (L
 * decoding K tokens requires K sequential runs of the model. 
 
 ⇒ LLM inference is slow
+To address this issue, speculative decoding has been introduced as a promising approach to accelerate LLM inference without altering the output quality. This method leverages two key observations about LLM inference: 
+1) many tokens can be predicted with minimal computational overhead. 
+2) LLM inference is predominantly constrained by memory bandwidth rather than arithmetic computations. 
 
+Consequently, speculative decoding can tolerate additional computational costs without significant penalties.
 <p align="center">
-    <img src='./speculative decoding.png' width="800">
+    <img src='./speculative decoding.png' width="700">
 </p>
 
 ## Backgrounds
