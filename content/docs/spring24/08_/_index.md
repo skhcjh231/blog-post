@@ -38,6 +38,12 @@ The common solution to further improve the performance of LoRA is to compose mul
 
 ### Mixture-of-Experts
 
+MoE is an effective method that allows scaling up the number of parameters while maintaining the computational cost of the model.
+
+* Experts FFN Layers: MoE layer is composed of N separate feed-forward networks as the experts. This concept involves dividing the FFN layer of traditional transformers into N experts. These experts can be thought of as being responsible for specific tokens.
+
+* Gating functions (Router): A function that determines which expert each token belongs to. For the hidden representation h of input token, and the trainable embedding e of each a expert, the gate value a is obtained as follow:
+
 <p align="center">
     <img src=./moe.png> 
 </p>
