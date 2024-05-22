@@ -90,7 +90,7 @@ Selective Fact Forgetting and Information Leakage Prevention:
 Recursive Search-Based Solution for Long Context Generalization: A simple recursive search-based approach is provided to enable Larimar's memory to generalize to longer input contexts.
 
 
-## 3. Model architecture
+## 3. Model architecture [1]
 Inspired by human brain (neocortex-hippocampus interactions), authors suggest "a class of LLMs augmented with an external episodic memory controller." They utilize an episodic memory to mimic hippocampal fast-learning system, and use LLM as a neocortical slow learning system.
 
 Fig7 below shows the overall architecture of Larimar. Basic idea is to implement VAE with external memory. It consists of three main components: encoder, decoder, and adaptive memory. Comparing the architecture with Fig5 would be helpful. In Larimar, memory corresponds to a latent vector. 
@@ -127,7 +127,7 @@ Once **M**$_{0}$ is trained via backpropagation, the posterior memory **M** is u
 
 
 
-## 4. Memory Operations
+## 4. Memory Operations [1]
 In this paper, authors followed the ideas from [8] to combine pre-trained LLMs and memory component for knowledge edit. Fig8 illustrates the single training step of the memory. 
 
 <p align="center">
