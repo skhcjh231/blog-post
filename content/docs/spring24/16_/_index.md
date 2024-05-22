@@ -45,7 +45,9 @@ These days, most language models are based on Transformers, and we stack these b
   </p>
   The figure above is the attention map in COLT5. Light colored ones are for light attention(local attention) and bold ones are for heavy attention. In COLT5, they choose 1/16 of query tokens and 1/8 of key value tokens for heavy attention calculation.
 - Mixture of Experts (MoE)
-
+  <p align="center">
+    <img src=./moe1.png>
+  </p>
   MoE is an model which consists of parallel expert models which is fitted to certain domains. Like MoD, token-level routing decisions are made across the network depth. Difference between MoD is, MoD chooses path to transformer or to residual connection, MoE chooses path to transformer(Expert) or to transformer(Expert) or both.
   
 ## **Overview to Mixture-of-Depths (MoD)**
