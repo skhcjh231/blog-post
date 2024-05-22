@@ -83,7 +83,7 @@ The main advantage of UIB is its adaptability and flexibility, that mitigates se
 
 ## Mobile MQA
 <p align="center">
-    <img src='./Table1.png' width="900">
+    <img src='./Table1.png' width="500">
 </p>
     
 <p align="center">
@@ -108,7 +108,7 @@ As shown above, the insitantiation of UIB blocks are in the neural architecture 
 </p>
 
 <p align="center">
-    <img src='./Table6.png' width="900">
+    <img src='./Table6.png' width="500">
 </p>
     
 <p align="center">
