@@ -37,11 +37,11 @@ These days, most language models are based on Transformers, and we stack these b
   
 - CoLT5
   <p align="center">
-    <img src=./colt1.png>
+    <img src=./colt1.png width = "50%" height = "50%">
   </p>
   COLT5’s architecture is almost same as MoD’s with difference is that using Light Attention & Light MLP in COLT5 than residual path in MoD. Light Attention refers to a local attention layer which just calculates attention value between just few nearby tokens. Heavy Attention refers to a global attention layer which calculates some chosen token(chosen by router) calculates attention values with all input tokens. Same as MoD, router mechanism is top-k routing mechanism which performs well (will be discuss in later section). MoD’s policy is to reduce Router into single one and avoid attention & MLP calculation.
   <p align="center">
-    <img src=./colt2.png>
+    <img src=./colt2.png width = "50%" height = "50%">
   </p>
   The figure above is the attention map in COLT5. Light colored ones are for light attention(local attention) and bold ones are for heavy attention. In COLT5, they choose 1/16 of query tokens and 1/8 of key value tokens for heavy attention calculation.
 - Mixture of Experts (MoE)
