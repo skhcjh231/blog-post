@@ -207,7 +207,7 @@ While previous work [14] showed that the 8B LLaMA model can solve tasks up to 32
 
 ### 500K length book summarization (BookSum)
 
-<p style="text-align: center;">
+<p align=center>
     <img src=./Untitled%2011.png>
 </p>
 
@@ -215,7 +215,7 @@ While previous work [14] showed that the 8B LLaMA model can solve tasks up to 32
 Table 4: 500K length book summarization (BookSum) results. The BART, PRIMERA and Unlimiformer results are from Bertsch et al. (2024).
 </p>
 
-<p style="text-align: center;">
+<p align=center>
     <img src="./Untitled%2012.png">
 </p>
 
