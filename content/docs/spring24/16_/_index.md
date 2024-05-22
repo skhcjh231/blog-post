@@ -78,17 +78,12 @@ Using this method ensures that each paths receives k tokens, maintauing balance 
 This method applies expert-choice routing but uses only a single expert. Since only a single path is utilized, if {{< katex >}}k{{< /katex >}} is less than the sequence length, not all tokens need to undergo self-attention and MLP computation.
 
 For the following reasons, the authors decided to use Expert-choice routing and utilize only single paths:
-- Efficiency of computation
-  
-  Don't need for an auxiliary balancing loss
-- Simplicity of implementation
-  
-  Simply can choose the tokens with the highest weight in order
-- Clear criteria
-  
-  Can guarantee that the most important token is calculated since the top-{{< katex >}}k{{< /katex >}} tokens are independent on magnitude of router weights
-
-  Top-{{< katex >}}k{{< /katex >}} can divide clearly tokens into two mutually sets
+- **Efficiency of computation**
+  Don't need for an auxiliary balancing loss.
+- **Simplicity of implementation**
+  Simply can choose the tokens with the highest weight in order.
+- **Clear criteria**
+  Can guarantee that the most important token is calculated since the top-{{< katex >}}k{{< /katex >}} tokens are independent on magnitude of router weights. Top-{{< katex >}}k{{< /katex >}} can divide clearly tokens into two mutually sets.
 
 ## **Implementation**
 MoD Transformers는 다음과 같은 방식으로 작동한다.
