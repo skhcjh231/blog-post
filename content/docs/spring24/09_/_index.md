@@ -38,13 +38,17 @@ This paper mainly focuses on lowering inference latency while maintining the tes
     Fig. 0 (a) Original Residual Block
 </p>
 
+Previously, the residual bottleneck block was propsoed, which consists of the 1x1 pointwise convolution in the first layer, a depthwise convolution in the second layer, and the final pointwise convolution layer, where its output is residually connected with the module's input. The first layer acts as a projection layer to generate the narrow, and parameter-efficient convolution layer for depthwise convolution. This part acts as the bottleneck layer. The output of this layer is expanded again in the pointwise convolution. Here, the module forms a wide-narrow-widw approach considering the number of channels.
+
 <p align="center">
     <img src='./inverted_residual.webp' width="900">
 </p>
     
 <p align="center">
-    Fig. 0 (b) Invrted Residual Blocks 
+    Fig. 0 (b) Inverted Residual Blocks 
 </p>
+
+However, in MobileNetV2, the authors use the inverted residual blocks with linear bottlenecks. In opposed to the original residual block where the first pointwise convolution acts as the projection layer and the final pointwise convolution acts as the expansion layer, the inverted residual block applied this in the opposite way to create the narrow-widw-narrow block. This assumes that the low-dimensional feature data is stored in the "narrow" layers, and these need to be expanded and extracted through the depthwise convolution. The required information in the narrow layers are passed onto the deeper layers through residual connections. Also, one has to take note that the final pointwise convolution layer in each inverted residual blocks do not have activations, in order to compensate the performnace degradation due to squeezing the layers where the skip connections are linked. 
 
 
 ## Preliminaries - Roofline Model and Hardware Efficiency
