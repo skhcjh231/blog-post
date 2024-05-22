@@ -31,13 +31,13 @@ This papaer proposed Kangaroo to address this challenge.
 Speculative decoding is an apporach to accelerate LLM inference. 
 *Draft model: Additional model to accelerate inference (also known drafter) 
 *Verifier or target model: Original large LLM
-<p align="center">
-    Fig. 1 Contrast to autoregressive decoding and speculative decoding
-</p>
+
 <p align="center">
     <img src='./speculative decoding.png' width="700">
 </p>
-
+<p align="center">
+    Fig. 1 Contrast to autoregressive decoding and speculative decoding
+</p>
 **Left model**: The target LLM generates K tokens in K forward steps, which is a "serial" process.
 
 **Right model**: The drafter generates tokens in parallel. Each generated token is then verified with a verification step.
@@ -53,14 +53,13 @@ Speculative decoding is an apporach to accelerate LLM inference.
 
 ### Kangaroo: Self-speculative decoding
 **Kangaroo** refers to the self-speculative decoding method, utilizing a fixed shallow sub-network of the original (target) large LLM.
+
+<p align="center">
+    <img src='./compare.png' width="700">
+</p>
 <p align="center">
     Fig. 2 Comparison of variouus self-drafting speculative docding methods
 </p>
-<p align="center">
-    <img src='./compare.png' width="700">
-    
-</p>
-
 In each decoding step, drafted tokens must be verified in parallel to ensure alignment with the target LLM, which determines the token acceptance rate. High token acceptance rates are crucial for the efficiency of this process. However, methods like Medusa have yet to achieve satisfactory token acceptance rates, as evidenced by performance metrics (see left graph). On the other hand, the Lookahead method achieves a high token acceptance rate but has a very low speedup ratio (see right graph).
 Addressing these trade-off, **Kangaroo** offers a solution by training a lightweight and efficient adapter module integrated with a fixed subnetwork of the target LLM, enhancing both the acceptance rate and overall speedup.
 
@@ -110,3 +109,6 @@ Several advantages:
 Compare with others:
 
 Kangaroo's performance surpasses other speculative decoding methods, such as Medusa and Lookahead, particularly in terms of end-to-end speedup and token acceptance rates (see Fig.2 in introduction). The double early-exit mechanism plays a crucial role in maintaining this balance by efficiently handling easier tokens and exiting early when confidence is lower than predefined threshold, thus minimizing latency.
+
+Further existing work can be exist:
+
