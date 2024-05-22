@@ -55,7 +55,7 @@ However, in MobileNetV2, the authors use the inverted residual blocks with linea
 Algorithm running on hardware is composed of two parts - memory access and computation. The computation time is determined by the computation requirement and hardware performance. 
 
 <p align="center">
-$\text{runtime\_computation} = \frac{\text{Number of Operations}}{\text{FLOPS}})$
+$\text{runtime_computation} = \frac{\text{Number of Operations}}{\text{FLOPS}}$
 </p>
 
 {{< katex display=true >}}
