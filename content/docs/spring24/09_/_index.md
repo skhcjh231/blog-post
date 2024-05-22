@@ -6,9 +6,17 @@ weight: 1
 
 ## MobileNetV4 - Universal Models for the Mobile Ecosystem
 *Posted by JoonSeok Kim and DongGyu Kim*
+- Qin, Danfeng and Leichner, Chas and Delakis, Manolis and Fornoni, Marco and Luo, Shixin and Yang, Fan and Wang, Weijun and Banbury, Colby and Ye, Chengxi and Akin, Berkin and others
+- arXiv preprint arXiv:2404.1051
 
 
 ## Main Contributions
+MobileNetV4 targets designing neural networks for mobile devices. Main objectives of designing inference models for mobile devices are 
+- Acceptable test performance on widely-used datasets such as ImageNet-1k
+- Low inference latency for utilization in mobile devices
+- Minimization of the number of parameters for low memory utilization on mobile platforms
+- Minimization in the number of MACs for high enegy efficiency
+This paper mainly focuses on lowering inference latency while maintining the test accuracy up to SOTA mobile neural net performance. Since it targets mobile platforms, it analyzes performance of various mobile hardwares, and designs a neural network to fit the harwares maximum performance. The designing process was done by the NAS technique, where the intantiation of UIB blocks were set as the search space. The main contributions of this work can be states as follows. 
 1. Universal Inverted Bottleneck (UIB) seach block - Unifies the Inverted Bottleneck (IB), ConvNext, Feed Forward Netowork (FFN), and Extra Depthwise variant
 2. Mobile MQA - Attention block tailored for mobile accelerators
 3. NAS technique to improve performance
@@ -18,16 +26,21 @@ weight: 1
 ## Preliminaries - Roofline Model and Hardware Efficiency
 Algorithm running on hardware is composed of two parts - memory access and computation. The computation time is determined by the computation requirement and hardware performance. 
 {{< katex display=true >}}
-runtime_computation = {Number of Operatins}/{FLOPS}
+\text{runtime\_computation} = \frac{\text{Number of Operations}}{\text{FLOPS}}
 {{< /katex >}}
+
 Algorithm runtime can be limited by the memory access bottleneck or communication overhead
+
 {{< katex display=true >}}
-runtime_communication = {Number of IO Bytes}/{Bandwidth}
+\text{runtime\_communication} = \frac{\text{Number of IO Bytes}}{\text{Bandwidth}}
 {{< /katex >}}
+
 Hardware performance is determined by the upper bound of the computation time or memory access latency
+
 {{< katex display=true >}}
-performance = max(runtime_computation, runtime_communication)
+\text{performance} = \max(\text{runtime\_computation}, \text{runtime\_communication})
 {{< /katex >}}
+
 Below Fig. 1(a) and Fig. 1(b) illustrates the roofline model and its characteristics
 <p align="center">
     <img src='./Fig0a.png' width="900">
