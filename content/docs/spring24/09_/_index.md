@@ -30,6 +30,22 @@ This paper mainly focuses on lowering inference latency while maintining the tes
 5. Novel distillation technique to boost accuracy. Achieves 87% accuracy on ImageNet-1k and 39x smaller model size
 
 ## Preliminaries - Inverted Residual Blocks and Linear Bottlenecks
+<p align="center">
+    <img src='./residual.webp' width="900">
+</p>
+    
+<p align="center">
+    Fig. 0 (a) Original Residual Block
+</p>
+
+<p align="center">
+    <img src='./inverted_residual.webp' width="900">
+</p>
+    
+<p align="center">
+    Fig. 0 (b) Invrted Residual Blocks 
+</p>
+
 
 ## Preliminaries - Roofline Model and Hardware Efficiency
 Algorithm running on hardware is composed of two parts - memory access and computation. The computation time is determined by the computation requirement and hardware performance. 
