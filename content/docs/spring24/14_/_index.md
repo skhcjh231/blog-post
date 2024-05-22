@@ -12,7 +12,7 @@ weight: 1
 ## **Preliminary**
 ### **Diffusion**
 <p align="center">
-  <img src="./diffusion.png" alt="." width="500" height="300" > 
+  <img src="./diffusion.png" alt="."> 
 </p>
 Diffusion models learn how to remove gaussian noise added to original image. 
 Equation below shows how forward process proceeds. In the forward process, Gaussian noise is gradually added to original image for T times. Strength of the noise is controlled by the term \beta x_t denotes corrupted image at time step t.  
@@ -63,9 +63,10 @@ First, covariance matrix of ith module C_i is computed with representation of fu
 LRM loss and total loss can be expressed as follows:  
 
 Since computation of transformation matrix E_i is expensive, it is computed with the first batch of input and fixed during entire traning. As shown in the figure below, LRM stabilize training process, accelerating convergence.  
-<p align="center">
-  <img src="./lrm.png" alt="." width="500" height="300" > 
-</p>
+
 
 ### **Progressive binarization**
-Despite the enhanced methodology, training process remains slow and unstable. Authors additionally apply progressive binarization strategy to further stabilize convergence. M/2 th time stepping module is quantized in first iteration and m/2-i-th and m/2+i-th modules are quantized in next i-th iteration. As show in the figure, benefit coming from progressive binarization is significant compared to baseline traning process.
+Despite the enhanced methodology, training process remains slow and unstable. Authors additionally apply progressive binarization strategy to further stabilize convergence. M/2 th time stepping module is quantized in first iteration and m/2-i-th and m/2+i-th modules are quantized in next i-th iteration. As show in the figure, benefit coming from progressive binarization is significant compared to baseline traning process.  
+<p align="center">
+  <img src="./progressive.png" alt="." width="500" height="300" > 
+</p>
