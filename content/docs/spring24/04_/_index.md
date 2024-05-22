@@ -40,8 +40,11 @@ Directly training language models by minimizing the multi-token prediction loss 
 </p>
 
 ### Faster Inference with Self-Speculative Decoding
-They utilize 
+For speed up in inference time, authors utilize self-speculative decoding (Stern et al., 2018) scheme. Specifically, instead of iteratively predicting a next single token for the given token sequence, authors directly generate n-token using n independent output heads in a single step. This significantly speed up the decoding stage.
 
+<p align="center">
+    <img src='./Faster Inference.png' width="450">
+</p>
 
 # Result
 
