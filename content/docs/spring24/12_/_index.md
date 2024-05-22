@@ -41,7 +41,7 @@ In this paper, they adopted the identical training approach as [CLIP](https://ar
 To evaluate the effect of data quantity on CLIP's performance, they conducted experiments with datasets of different sizes: 10M, 25M, 100M, 200M, and 400M. Using ViT-B/32 as the vision encoder, models were trained for 2 to 32 epochs.
 
 <p align="center">
-    <img src="./Figure 2.png" width="800"> 
+    <img src="./Figure 2.png" width="600"> 
 </p>
 <div align="center">
   <strong>Figure 1.</strong> Zero-shot performance with the various training strategies
