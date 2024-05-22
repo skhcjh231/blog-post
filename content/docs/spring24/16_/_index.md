@@ -181,7 +181,10 @@ In this figure, the top-left graph shows the performance degradation in auto-reg
 This figure shows the performance of MoDE and its two proposed structures. The top-left graph demonstrates that the performance of MoDE is better than both the Baseline and MoE. The right side explains the structures of Staged MoDE and Integrated MoDE. In Staged MoDE, two routers are deployed to first for determine the depth(MoD) and second for the expert(MoE). In Integrated MoDE, as the name implies, the MoD Router and MoE Router are integrated to one single Router that can simultaneously decide whether to select an expert or the residual path (depth). The paper mentions that the former is computationally efficient as it can skip self-attention operations through the MoD router, and the latter has better performance as the router mechanism is unified and self-attention operations are always performed.
 
 ## **Conclusion and discussion**
-결론 + 내 생각
+
+This paper insists that using MoD with Capacity 12.5% is better than baseline transformer model. But this paper only provides the loss value comparison. We insist that using loss value only leads to whether the parameters converge to train dataset, not the performance of model. We think that another evaluation methods like perplexity(WikiText-2, lambada) and certain tasks(BoolQ, Hellaswag, etc) must be provided to ensure that MoD is better than baseline model. Furthermore additional experiment should be provided. In paper they just compare loss value between 12.5% capacity and 50% capacity. Results about varying capacity ratio should be provided. In results section they applied MoD in one of two layers, but there are no comments of why applying this method. Further studies about using one of three or four should be done.  
+
+In short, Further studies should provide validation of MoD method by differentiating evaluation methods or compare other methods like COLT5 or MoE and proof of optimized hyperparameters.(e.g. Capacity ratio)
 
 ## **References**
 Arian et.al.,"<U><a href="https://arxiv.org/abs/2105.09121" target="_blank"> Single-Layer Vision Transformers for More Accurate Early Exits with Less Overhead </a></U>," arXiv, 2021  
