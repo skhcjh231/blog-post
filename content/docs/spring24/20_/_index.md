@@ -246,4 +246,4 @@ Ha, David., [A Visual Guide to Evolution Strategies](https://blog.otoro.net/2017
 
 Zhengqi Xu, Ke Yuan, Huiqiong Wang, Yong Wang, Mingli Song, Jie Song., [Training-Free Pretrained Model Merging](https://arxiv.org/abs/2403.01753). CVPR., 2024.
 
-Figure 5: Sakai.ai., [Evolving New Foundation Models: Unleashing the Power of Automating Model Development](https://sakana.ai/evolutionary-model-merge/)., 2024.
+Sakai.ai., [Evolving New Foundation Models: Unleashing the Power of Automating Model Development](https://sakana.ai/evolutionary-model-merge/)., 2024.
