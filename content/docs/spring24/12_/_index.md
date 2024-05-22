@@ -44,7 +44,7 @@ To evaluate the effect of data quantity on CLIP's performance, they conducted ex
     <img src="./Figure 2.png" width="800"> 
 </p>
 <div align="center">
-  <strong>Figure 1.</strong> Zero-shot performance with the various training strategies
+  <strong>Figure 1.</strong> Data Quantity: Zero-Shot performances with the same dataset size across varied training epochs
 </div>
 </p>
 
@@ -64,7 +64,7 @@ They also observed that the few-shot performance also showed a similar trend to 
     <img src="./Figure 4.png" width="800"> 
 </p>
 <div align="center">
-  <strong>Figure 3.</strong> Retrieval Performances on MSCOCO
+  <strong>Figure 3.</strong> Data Quantity: Retrieval Performances on MSCOCO
 </div>
 </p>
 
@@ -87,7 +87,7 @@ Models trained on these subsets for a single epoch demonstrated that higher qual
     <img src="./Figure 6.png" width="1100"> 
 </p>
 <div align="center">
-  <strong>Figure 5.</strong> Data Quality: Few-Shot Performances on ImageNet. (a) one epoch. (b) the same number of sampled data.
+  <strong>Figure 5.</strong> Data Quality: Few-Shot Performances on ImageNet. (a) and (b) one epoch. (c) and (d) the same number of sampled data.
 </div>
 </p>
 
@@ -97,7 +97,7 @@ Additionally, when the number of sample data points is the same, higher quality 
     <img src="./Figure 7.png" width="1100"> 
 </p>
 <div align="center">
-  <strong>Figure 6.</strong> Data Quality: Retrieval Performances on MSCOCO. (a) one epoch. (b) the same number of sampled data.
+  <strong>Figure 6.</strong> Data Quality: Retrieval Performances on MSCOCO. (a) and (b) one epoch. (c) and (d) the same number of sampled data.
 </div>
 </p>
 
@@ -206,4 +206,4 @@ In retrieval tasks, SLIP consistently outperformed CLIP, CLIP + Data Aug, and FL
 
 ## Conclusion
 This study examines how data size, network architecture, and training methods affect CLIP's performance. Their experiments highlight the critical roles of data quantity and quality. They also demonstrate that data augmentation can improve CLIP's performance with minimal additional computational cost. Furthermore, they investigate various network architectures and training strategies, finding that some outperform others depending on the computational budget, emphasizing the need for careful selection.
-From my perspective, the balance between computational efficiency and model accuracy is crucial, and exploring adaptive methods could yield significant benefits. Future research could focus on integrating transfer learning with CLIP to enhance domain-specific performance and investigating AutoML techniques for optimal architecture and strategy selection.
+From our perspective, the balance between computational efficiency and model accuracy is crucial, and exploring adaptive methods could yield significant benefits. Future research could focus on integrating transfer learning with CLIP to enhance domain-specific performance and investigating AutoML techniques for optimal architecture and strategy selection.
