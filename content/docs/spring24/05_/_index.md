@@ -95,7 +95,8 @@ Kangaroo with a double early-exit mechanism ensures both efficiency and high per
 
 Several advantages:
 
-- **Low-Cost Training**: The shared KV cache and computation between the self-speculative draft model and the large LLM → only the adapter network requires additional deployment.
+- **Low-Cost Training**: The shared KV cache and computation between the self-speculative draft model and the large LLM
+                         → only the adapter network requires additional deployment.
 - **Efficiency**: Experiments on Spec-Bench demonstrate that Kangaroo achieves up to 1.7× speedup, outperforming existing methods with significantly fewer additional parameters (67M compared to 591M for Medusa).
 - **Flexibility**: By focusing on reducing inference latency and optimizing token acceptance rates, Kangaroo ensures that performance remains robust across various tasks without incurring substantial overhead.
 
