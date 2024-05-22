@@ -35,8 +35,6 @@ By employing these methods, the authors have created a transformer architecture 
 
 ## 5. Comparison with related works
 
-Here is the cleaned-up English translation:
-
 There have been several similar related studies:
 
 1. Efficient Attention: FlashAttention optimized the GPU computation of Attention, showing advantages in speed without changing the existing mechanism. Additionally, there have been attempts to increase the Context Length by converting the Attention Mechanism to a linear one or compressing the KV cache.
