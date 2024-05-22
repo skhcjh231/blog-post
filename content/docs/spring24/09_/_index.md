@@ -146,4 +146,4 @@ MobileNetV4 Implementation: [[Link](https://github.com/scalable-model-editing/un
 
 Qin, Danfeng and Leichner, Chas and Delakis, Manolis and Fornoni, Marco and Luo, Shixin and Yang, Fan and Wang, Weijun and Banbury, Colby and Ye, Chengxi and Akin, Berkin and others. 2024. [[Editing large language models: Problems, methods, and opportunities](https://arxiv.org/pdf/2305.13172)](https://arxiv.org/pdf/2404.10518). arXiv preprint arXiv:2404.10518.
 
-Sandler, Mark and Howard, Andrew and Zhu, Menglong and Zhmoginov, Andrey and Chen, Liang-Chieh. 2018. https://arxiv.org/pdf/1801.04381 Proceedings of the IEEE conference on computer vision and pattern recognition. 
+Sandler, Mark and Howard, Andrew and Zhu, Menglong and Zhmoginov, Andrey and Chen, Liang-Chieh. 2018. https://arxiv.org/pdf/1801.04381, Proceedings of the IEEE conference on computer vision and pattern recognition. 
