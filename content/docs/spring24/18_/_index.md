@@ -32,11 +32,19 @@ Each patch is then flattened into a single vector, essentially treating each pat
 #### C. Self Attention
 - The self-attention layer calculates attention weights for each pixel in the image based on its relationship with all other pixels.
 
+- For each input vector X, three new vectors are created through learned linear transformations: Query (Q), Key (K), and Value (V), where $W_{Q}$, $W_{K}$, $W_{V}$ are learnd weight matrices.
+
 $$ Q = XW_Q, K=XW_K, V=XW_V $$
 
+- The attention score for each pair of input vectors is calculated using the dot product of their Query and Key vectors:
+  
 $$ Attention Score = Q K^T $$
 
+- These scores indicate how much focus the model should place on one part of the input when considering another part.
+ 
 $$ Attention Output = softmax(\frac{Q \dot K^T}{\sqrt{d_k}}V) $$
+
+- The attention scores are scaled by the square root of the dimensionality of the Key vectors to prevent excessively large values that could destabilize training. The scaled attention scores are passed through a softmax function to obtain the attention weights. This ensures that the weights are normalized (summing to one) and highlight the relative importance of each input vector. Each input vector is then updated by computing a weighted sum of the Value vectors, using the attention weights.
 
 #### C. Multi-Head Self Attention (MHSA)
 - The multi-head attention extends self-attention mechanism by allowing the model to attend to different parts of the input sequence simultaneously. Each "head" in the multi-head attention mechanism can capture different features, leading to a richer and more nuanced representation of the image.
@@ -69,7 +77,10 @@ These networks consist of fully connected layers and typically include activatio
 <p align="center">
   <img src="./ViTAR_overall.png" alt="." width="600" height="200" > 
 </p>
-In this section, we introduces two key innovations to address this issue. Firstly, we propose a novel module for dynamic resolution adjustment, designed with a single Transformer block, specifically to achieve highly efficient incremental token integration. Secondly, we introduce fuzzy positional encoding in the Vision Transformer to provide consistent positional awareness across multiple resolutions, thereby preventing overfitting to any single training resolution.
+
+To address this issue, ViTAR introduce two key innovations. 
+- 1. Adaptive Token Merge : A novel module for dynamic resolution adjustment, designed with a single Transformer block to achieve highly efficient incremental token integration.
+- 2. Fuzzy positional encoding : A novel positional encoding to ensure consistent positional awareness across multiple resolutions, thereby preventing overfitting to any specific training resolution.
 
 ----------
 
@@ -80,7 +91,7 @@ In this section, we introduces two key innovations to address this issue. Firstl
 </p>    
 
     
-Adaptive Token Merger (ATM) module is designed to efficiently process and merge tokens of different resolutions in a neural network using a simple structure that includes GridAttention and FeedForward network (FFN). ATM Module takes tokens $$ processed through patch embedding as input. ATM Module specially processes the inputs of different resolutions M times to reduce them to the same preset size $G_{h} \times G_{w}$ before fed into the MHSA.
+Adaptive Token Merger (ATM) module is designed to efficiently process and merge tokens of different resolutions in a neural network using a simple structure that includes GridAttention and FeedForward network (FFN). ATM Module takes tokens processed through patch embedding as input. ATM Module specially processes the inputs of different resolutions M times to reduce them to the same preset size $G_{h} \times G_{w}$ before fed into the MHSA.
 
 <p align="center">
   <img src="./grid_attention.png" alt="." width="600" height="300" > 
@@ -174,11 +185,11 @@ For object detection, COCO dataset is used ATM iterates only once because it doe
 ## Discussion
 
 ### Applicability to Diffusion Models
- It is currently challenging to generate images of various resolutions with generative models like Diffusion Models. Additionally, many diffusion models with ViT structures have been proposed recently (e.g. DiT, PixArt-α, Sora). Can the proposed method be applied to Diffusion Models as well? However, one consideration for applying it to diffusion models is how to effectively upscale the reduced size obtained through Grid Attention to ensure that the input and output sizes are the same.
+- It is currently challenging to generate images of various resolutions with generative models like Diffusion Models. Additionally, many diffusion models with ViT structures have been proposed recently (e.g. DiT, PixArt-α, Sora). Can the proposed method be applied to Diffusion Models as well? However, one consideration for applying it to diffusion models is how to effectively upscale the reduced size obtained through Grid Attention to ensure that the input and output sizes are the same.
 
 ### Applicability to Large Language Models (LLMs)
-In LLMs, when receiving long context as input, positional embeddings are sometimes added using interpolation like this case. Would applying Fuzzy Positional Embedding (FPE) help handle long context inputs better? Or, just like training a network on low-resolution images to perform well on high-resolution images, can a network trained on short context in LLM maintain good performance on long context input?
+- In LLMs, when receiving long context as input, positional embeddings are sometimes added using interpolation like this case. Would applying Fuzzy Positional Embedding (FPE) help handle long context inputs better? Or, just like training a network on low-resolution images to perform well on high-resolution images, can a network trained on short context in LLM maintain good performance on long context input?
 
 ### Can Grid Attention Replace Convolution?
-The operation of Grid Attention is quite similar to the process performed by kernels in Convolution when calculating each grid. However, ATM maintains parameter efficiency by sharing weights. Would applying Grid Attention to existing CNN structures (e.g., VGG, ResNet) be more efficient?
+- The operation of GridAttention is quite similar to the process performed by kernels in Convolution when calculating each grid. However, ATM maintains parameter efficiency by sharing weights. We expect that applying GridAttention to existing CNN structures (e.g., VGG, ResNet) will allow us to design more efficient architectures.
 
