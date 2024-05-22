@@ -160,24 +160,28 @@ The code operates in the following steps:
 </p>
 The figure above shows the results of training all models with the same number of FLOPs (6e18), regardless of the parameter size. The isoFLOP-optimal baseline was compared with MoD models which has different capacities, 12.5%, 50%. In the case of random routing, it does not follow the top-k routing mechanism but randomly chooses whether a token will go to the residual path or the layer. Additionally, in the case of every 2, it means that the MoD method is not applied to all layers, but only to one out of every two layers. Therefore, from the top-left graph, the 12.5% capacity MoE loss value is less than the baseline model's. The two top-middle graphs show the actual training loss graphs for the points plotted in the left graph. Among them, MoD with 12.5% capacity generally results in lower loss values than the baseline. In the right graph, the points #1, #3 and  #2, #4 pairs are MoD models of the same parameter size. Not only does it have a lower loss value, but it also runs approximately 66% faster than the baseline.
 
+
 <p align="center">
     <img src=./result1.png>
 </p>
 In this figure, the Training FLOPs budget is limited to 6e18, 2e19, and 1e20, compared with the isoFLOP baseline and 12.5% capacity MoD. At a glance, the  top-left graph shows that the isoFLOP baseline has a slightly better loss when the number of parameters is small(There’s a crossing point!) However, when the x-axis is converted from Parameters to FLOPs per FFW (Forward Pass) as shown in the top-right graph, it confirms that MoD is better than the baseline in all cases.
+
 
 <p align="center">
     <img src=./result3.png>
 </p>
 In this figure, the top-left graph shows the performance degradation in auto-regressive evaluation using predictions using the MLP layer not the top-k routing mechanism, which is non-causal and can’t be used in this case. The author argues that the reason for this performance drop in autoregressive case is that the prediction performance through the MLP layer is only about 97%, as shown in the top-right graph, but they stress that only minimal degradation occurs.
 
+
 <p align="center">
     <img src=./result4.png>
 </p>
 This figure shows the performance of MoDE and its two proposed structures. The top-left graph demonstrates that the performance of MoDE is better than both the Baseline and MoE. The right side explains the structures of Staged MoDE and Integrated MoDE. In Staged MoDE, two routers are deployed to first for determine the depth(MoD) and second for the expert(MoE). In Integrated MoDE, as the name implies, the MoD Router and MoE Router are integrated into one single Router that can simultaneously decide whether to select an expert or the residual path (depth). The paper mentions that the former is computationally efficient as it can skip self-attention operations through the MoD router, and the latter has better performance as the router mechanism is unified and self-attention operations are always performed.
 
+
 ## **Conclusion and discussion**
 
-This paper insists that using MoD with a capacity 12.5% is better than the baseline transformer model. However this paper only provides the loss value comparison. We insist that using loss value only leads to whether the parameters converge to the train dataset, not the performance of the model. We think that other evaluation methods like perplexity(WikiText-2, lambada) and certain tasks(BoolQ, Hellaswag, etc) must be provided to ensure that MoD is better than the baseline model. Furthermore, additional experiments should be provided. In the paper, they just compare loss value between 12.5% capacity and 50% capacity. Results about varying capacity ratios should be provided. In the result section, they applied MoD in one of two layers, but there are no comments on why applying this method. Further studies about using one of three or four should be done.  
+This paper insists that using MoD with a capacity 12.5% is better than the baseline transformer model. However this paper only provides the loss value comparison. We insist that using loss value only leads to whether the parameters converge to the train dataset, not the performance of the model. We think that other evaluation methods like perplexity(WikiText-2, lambada) and certain tasks(BoolQ, Hellaswag, etc) must be provided to ensure that MoD is better than the baseline model. Furthermore, additional experiments should be provided. In the paper, they just compare loss value between 12.5% capacity and 50% capacity. Results about varying capacity ratios should be provided. In the results section, they applied MoD in one of two layers, but there are no comments on why applying this method. Further studies about using one of three or four should be done.  
 
 In short, Further studies should provide validation of MoD method by differentiating evaluation methods or comparing other methods like COLT5 or MoE and proof of optimized hyperparameters. (e.g. Capacity ratio)
 
