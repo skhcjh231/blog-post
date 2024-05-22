@@ -176,7 +176,7 @@ The experiments in the paper focus on applying the proposed evolutionary model m
 
 ### Results
 - **Performance**: 
-  - As shown in Table 3,The merged VLM outperformed baselines on both benchmarks, scoring 19.7 on JA-VG-VQA-500 and 51.2 on JA-VLM-Bench-In-the-Wild.
+  - As shown in Table 3, the merged VLM outperformed baselines on both benchmarks, scoring 19.7 on JA-VG-VQA-500 and 51.2 on JA-VLM-Bench-In-the-Wild.
 - **Qualitative Analysis**: 
   - The merged VLM demonstrated superior handling of Japanese cultural content, providing more detailed and accurate responses compared to baseline models.
 
