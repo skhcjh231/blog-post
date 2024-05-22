@@ -6,6 +6,8 @@ weight: 1
 
 # Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention
 
+*Team: Younghyun Cho, Sangjun Lee
+
 # Large Language Models with Inifinite Input Sequence
 
 Currently, **Large Language Models (LLM)** are based on **Transformer** architecture [1], which utilize interactions over the segments of an input sequence. However, this architecture has a limitation, requiring **huge computations** and **memory** in proportion to the **length** of input sequences. Thereby, current LLM are **struggled** to **infinite input sequence tasks** like summarizing books.  To overcome this problem, google researchers suggests combining transformer architecture with a **compressive memory**, which **stores previous informations** in a **constant size**. They dubbed this method as *Infini-attention*.
