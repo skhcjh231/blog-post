@@ -13,6 +13,7 @@ weight: 1
 ### **Diffusion**
 <p align="center">
   <img src="./diffusion.png" alt="."> 
+  Diffusion model
 </p>
 Diffusion models learn how to remove gaussian noise added to original image. 
 Equation below shows how forward process proceeds. During the forward process, Gaussian noise is gradually added to original image for T times. Strength of the noise is controlled by the term \beta x_t denotes corrupted image at time step t.  
@@ -21,6 +22,7 @@ In the reverse process, diffusion model tries to restore original image by estim
 ### **Quantization**  
 <p align="center">
   <img src="./quantization.png" alt="." width="500" height="300" > 
+  Quantization example
 </p>
 Quantization is an optimization technique which restricts data(weights, activations) in low precision. Not only does it reduce the memory footprint, but it also enables accelerated computations given hardware support to low-precision arithmetic.  
 
