@@ -35,7 +35,7 @@ We could calculate the MHA By parallely computing $H$ number of attention states
 ## Infini-attention
 
 <p align="center">
-    <img src=../Untitled.png>
+    <img src=./Untitled.png>
 </p>
 <p align="left" style="color:gray">
 Figure 1: Infini-attention has an additional compressive memory with linear attention for processing infinitely long contexts. $\{KV\}_{s−1}$ and $\{KV\}_s$ are attention key and values for current and previous input segments, respectively and $Q_s$ the attention queries. PE denotes position embeddings. 
