@@ -91,3 +91,14 @@ We assume the target LLM has {{<katex>}} L {{<\katex>}} layers and the self-draf
 ## Experiments
 
 ## Discussion and Conclusion
+Kangaroo with a double early-exit mechanism ensures both efficiency and high performance.
+
+Several advantages:
+
+- **Low-Cost Training**: The shared KV cache and computation between the self-speculative draft model and the large LLM → only the adapter network requires additional deployment.
+- **Efficiency**: Experiments on Spec-Bench demonstrate that Kangaroo achieves up to 1.7× speedup, outperforming existing methods with significantly fewer additional parameters (67M compared to 591M for Medusa).
+- **Flexibility**: By focusing on reducing inference latency and optimizing token acceptance rates, Kangaroo ensures that performance remains robust across various tasks without incurring substantial overhead.
+
+Compare with others:
+
+Kangaroo's performance surpasses other speculative decoding methods, such as Medusa and Lookahead, particularly in terms of end-to-end speedup and token acceptance rates (see Figure 1 in introduction). The double early-exit mechanism plays a crucial role in maintaining this balance by efficiently handling easier tokens and exiting early when confidence is lower than predefined threshold, thus minimizing latency.
