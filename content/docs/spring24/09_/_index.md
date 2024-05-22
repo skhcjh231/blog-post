@@ -5,6 +5,7 @@ weight: 1
 ---
 
 ## MobileNetV4 - Universal Models for the Mobile Ecosystem
+*Posted by JoonSeok Kim and DongGyu Kim*
 
 
 ## Main Contributions
@@ -42,6 +43,11 @@ MobileNetV4 is designed to achieve Pareto optimal and hence balances MAC operati
 <p align="center">
     Fig. 4. Univesal Inverted Bottleneck (UIB) blocks
 </p>
+
+The main advantage of UIB is its adaptability and flexibility, that mitigates seach complexity. Optional Depthwise (DW) convolution blocks are inserted before the expansion layer, and between the expansion and projection layer. In the NAS procedure, common components such as the pointwise expansion and projection are shared and DWs are added as search options. UIB has four possible instantiations as follows.
+- Inverted Bottleneck (IB) 
+
+
 
 This paper propose a compression framework that leverages text information mainly by text-adaptive encoding and training with joint image-text loss. By doing so, they avoid decoding based on text-guided generative models---known for high generative diversity---and effectively utilize the semantic information of text at a global level. 
 
