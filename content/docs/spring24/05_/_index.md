@@ -29,8 +29,10 @@ This papaer proposed Kangaroo to address this challenge.
 ### What is speculative decoding?
 
 Speculative decoding is an apporach to accelerate LLM inference. 
-*Draft model: Additional model to accelerate inference (also known drafter) 
-*Verifier or target model: Original large LLM
+
+***Draft model:** Additional model to accelerate inference (also known drafter)
+
+***Verifier** or target model: Original large LLM
 
 <p align="center">
     <img src='./speculative decoding.png' width="700">
