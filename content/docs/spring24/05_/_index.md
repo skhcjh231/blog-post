@@ -21,11 +21,13 @@ To address this issue, speculative decoding has been introduced as a promising a
 2) LLM inference is predominantly constrained by memory bandwidth rather than arithmetic computations. 
 
 Consequently, speculative decoding can tolerate additional computational costs without significant penalties.
+
+
+## Backgrounds
+
 <p align="center">
     <img src='./speculative decoding.png' width="700">
 </p>
-
-## Backgrounds
 
 ## Layer Early Exiting
 
