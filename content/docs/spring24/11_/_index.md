@@ -1,3 +1,9 @@
+---
+type: docs
+bookToc: True
+weight: 1
+---
+
 # Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention
 
 # Large Language Models with Inifinite Input Sequence
