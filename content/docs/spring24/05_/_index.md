@@ -18,9 +18,10 @@ The growing demand for rapid and efficient inference in large language models (L
 
 To address this issue, speculative decoding has been introduced as a promising approach to accelerate LLM inference without altering the output quality. This method leverages two key observations about LLM inference: 
 * Many tokens can be predicted with minimal computational overhead. 
-* LLM inference is predominantly constrained by memory bandwidth rather than arithmetic computations. 
+* LLM inference is predominantly constrained by memory bandwidth rather than arithmetic computations.
+`Speculative decoding` reduce the need for frequent memory operations on their parameters by focusing computational efforts on validating pre-drafted tokens, thus enhancing inference efficiency.
 
-However, existing speculative decoding still face limitations, such as high inference latency and suboptimal token acceptance rates. 
+However, existing speculative decoding such as **Medusa** and **Lookahead** still face limitations, such as high inference latency and suboptimal token acceptance rates. 
 This papaer proposed Kangaroo to address this challenge.
 
 
@@ -35,19 +36,22 @@ Speculative decoding is an apporach to accelerate LLM inference.
 </p>
 
 **Left model**: The target LLM generates K tokens in K forward steps, which is a "serial" process.
-
 **Right model**: The drafter generates tokens in parallel. Each generated token is then verified with a verification step.
 
 `Speculative decoding` can be implemented through methods such as independent drafting and self-drafting.
 
 **Independent Drafting**: This approach uses a small language model (LM) from the same series as the target LLM.
-
 - Requires additional training and increases computational complexity by integrating separate target and drafting models.
-
 **Self-Speculative Decoding**: This method utilizes the target LLM itself.
-
 - Employs techniques such as Blockwise Decoding, Medusa, and early exiting to reduce computational burden.
 - Computational efficiency can also be achieved through layer skipping.
+
+Kangaroo refers to the self-speculative decoding method, utilizing a fixed shallow sub-network of the original (target) large LLM.
+<p align="center">
+    <img src='./compare.png' width="700">
+</p>
+
+In each decoding step, drafted tokens must be verified in parallel to ensure alignment with the target LLM, which determines the token acceptance rate. High token acceptance rates are crucial for the efficiency of this process. However, methods like Medusa have yet to achieve satisfactory token acceptance rates, as evidenced by performance metrics (see left graph). On the other hand, the Lookahead method achieves a high token acceptance rate but has a very low speedup ratio (see right graph).
 
 ## Layer Early Exiting
 
