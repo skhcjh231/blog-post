@@ -31,7 +31,7 @@ The significant advances in deep learning over the past decade have largely reli
   - **Advantages:** Using low-precision formats can significantly improve efficiency in terms of memory usage, bandwidth usage, compute performance, and cross-device communication costs.
 
   <p align="center">
-    <img src='./Figure2.png' width="800">
+    <img src='./Figure2.png' width="600">
   </p>
   
   <p align="center">
