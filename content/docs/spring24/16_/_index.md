@@ -181,5 +181,6 @@ This figure shows the performance of MoDE and its two proposed structures. The t
 결론 + 내 생각
 
 ## **References**
+Arian et.al.,"<U><a href="https://arxiv.org/abs/2105.09121" target="_blank"> Single-Layer Vision Transformers for More Accurate Early Exits with Less Overhead </a></U>," arXiv, 2021
 Joshua et.al.,"<U><a href="https://arxiv.org/abs/2303.09752" target="_blank"> COLT5: Faster Long-Range Transformers with Conditional Computation </a></U>," EMNLP, 2023   
 Noam et.al.,"<U><a href="https://arxiv.org/abs/1701.06538" target="_blank"> OUTRAGEOUSLY LARGE NEURAL NETWORKS: THE SPARSELY-GATED MIXTURE-OF-EXPERTS LAYER </a></U>," ICLR, 2017 
