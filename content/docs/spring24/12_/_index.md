@@ -44,6 +44,9 @@ To evaluate the effect of data quantity on CLIP's performance, we conducted expe
     <img src="./Figure 2.png" width="800"> 
 </p>
 <p style="text-align:center; font-style: italic;">
+<div align="center">
+  <strong>Figure 3:</strong> Zero-shot performance with the various training strategies
+</div>
 Figure 1: Zero-Shot performances with the same dataset size across varied training epochs
 </p>
 
