@@ -97,7 +97,7 @@ Below Fig. 1(a) and Fig. 1(b) illustrates the roofline model and its characteris
 </p>
 
 <p align="center">
-    <img src='./Fig3.png' width="900">
+    <img src='./Fig3.png' width="600">
 </p>
     
 <p align="center">
