@@ -139,7 +139,7 @@ In this paper, authors followed the ideas from [8] to combine pre-trained LLMs a
 
 On top of that, sequential writing and forgetting is conducted as follows.
 
-First, given an initial set of encodings **Z**$_{0}$ and writing weights $**W**_{0}$, memory matrix and key covariance matrix are initialized as below.
+First, given an initial set of encodings **$Z_{0}$** and writing weights **$W_{0}$**, memory matrix and key covariance matrix are initialized as below.
 
 <p align="center">
     <img src='initialize.png' width="300">
