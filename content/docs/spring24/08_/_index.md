@@ -22,7 +22,7 @@ LoRA is a methodology for effective fine-tuning large-scale pretrained models. L
 ## Background
 
 ### What is LoRA?
-_LoRA is a parameter-efficient and effective methodology for fine-tuning large-scale pretrained models._
+_Low-Rank Adaptation (LoRA) offers a parameter-efficient and effective approach for fine-tuning large-scale pretrained models._
 
 Models such as OPT, LLaMA, and CLIP demonstrate remarkable performance when fine-tuned for various downstream tasks. However, full fine-tuning of these massive models requires substantial computational resources. LoRA enables parameter-efficient fine-tuning by keeping the pretrained model's weights frozen and adding trainable low-rank decomposition matrices.
 
