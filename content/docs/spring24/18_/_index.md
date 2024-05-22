@@ -119,11 +119,11 @@ The detailed process for ATM is as follows:
  #### GridAttention 
 For a specific grid, we suppose its tokens are denoted as {{< katex >}}{x_{ij}}{{< /katex >}}, where {{< katex >}}0 \geq i < H/G_{th}{{< /katex >}} and {{< katex >}}0 \geq j < W/G_{tw}{{< /katex >}}. 
 
-Average Pooling: First, it averages the tokens within a grid to create a mean token.
-Cross-Attention: Using this mean token as the Query, and all the grid tokens as Key and Value, it applies cross-attention to merge all tokens in the grid into a single token.
+- Average Pooling: First, it averages the tokens within a grid to create a mean token.
+- Cross-Attention: Using this mean token as the Query, and all the grid tokens as Key and Value, it applies cross-attention to merge all tokens in the grid into a single token.
 
 {{< katex display=true >}}
-x_{avg} = AvgPool(\{x_{ij}\}) \\
+x_{avg} = AvgPool(\{x_{ij}\})
 
 GridAttn(\{x_{ij}\}) = x_{avg} + Attn(x_{avg}, \{x_{ij}\}, \{x_{ij}\})
 {{< /katex >}}
