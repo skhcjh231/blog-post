@@ -12,7 +12,7 @@ produced by Jeonghyun Choi, Minhye Choo<br/>
 
 ## Introduction
 
-In the field of artificial intelligence, especially in natural language processing and computer vision, large neural network models have become a cornerstone. **<span style="color:red">However, the initialization and learning rates of these models are often determined through heuristic methods, varying significantly between different studies and model sizes.</span>** *This inconsistency can lead to suboptimal performance, particularly when scaling up models, resulting in inefficient training processes and less effective models.* As models grow larger, the tuning process becomes increasingly costly and time-consuming.
+In the field of artificial intelligence, especially in natural language processing and computer vision, large neural network models have become a cornerstone. **However, the initialization and learning rates of these models are often determined through heuristic methods, varying significantly between different studies and model sizes.** *This inconsistency can lead to suboptimal performance, particularly when scaling up models, resulting in inefficient training processes and less effective models.* As models grow larger, the tuning process becomes increasingly costly and time-consuming.
 
 The concept of **µ-Parameterization (µP)** provides a potential solution to this problem. µP offers scaling rules for model initialization and learning rates, enabling zero-shot hyperparameter transfer from small models to larger ones. This technique promises stable training and optimal hyperparameters at scale with minimal cost. Despite its potential, µP has not been widely adopted due to its complexity and the need for further empirical validation.
 
@@ -30,7 +30,7 @@ The concept of **µ-Parameterization (µP)** provides a potential solution to th
 
 ### Concept and Principles
 
-**µ-Parameterization (µP)** is a set of rules for initializing neural networks and setting learning rates that <span style="color:red"> allows for the seamless transfer of hyperparameters from small proxy models to larger target models.</span> This approach is grounded in a Gaussian Process interpretation of deep neural networks, where the width of the network (number of neurons per layer) is a critical factor.
+**µ-Parameterization (µP)** is a set of rules for initializing neural networks and setting learning rates that allows for the seamless transfer of hyperparameters from small proxy models to larger target models. This approach is grounded in a Gaussian Process interpretation of deep neural networks, where the width of the network (number of neurons per layer) is a critical factor.
 
 The core idea is to scale the initialization and learning rates based on the width of the network. The general formulation of µP when training with the Adam optimizer and using an i.i.d. Gaussian initialization is as follows:
 
@@ -72,10 +72,7 @@ In this table, `M` represents the model width, `H` the number of heads, `D` the 
 *<a href="https://ar5iv.labs.arxiv.org/html/2203.03466">Figure 2</a> : Illustration of µ-Transfer*
 </div>
 
-One of the significant advantages of µ-Parameterization is the concept of µ-Transfer. <span style="color:red">This method allows hyperparameters, such as learning rates, found optimal in small models to be transferred directly to larger models without the need for extensive re-tuning.</span>
- This process is particularly beneficial for scaling models efficiently and maintaining consistent performance across different model sizes.
-
-
+One of the significant advantages of µ-Parameterization is the concept of µ-Transfer. This method allows hyperparameters, such as learning rates, found optimal in small models to be transferred directly to larger models without the need for extensive re-tuning. This process is particularly beneficial for scaling models efficiently and maintaining consistent performance across different model sizes.
 
 ### Steps in µ-Transfer
 
@@ -102,7 +99,7 @@ The experiments were implemented using Jax/Flax on TPU V3, and the optimal learn
 
 ### Baseline & Summary
 ![baseline](https://github.com/simct/test/assets/127532891/5c0e4f35-043c-4e1f-abbf-9b166b457fbb)
-The baseline represents the experimental results used as a reference for performance improvement or degradation across various experimental settings. <span style="color:red"> In the baseline using µP, it is confirmed that the optimal learning rate for the smallest model is also the optimal learning rate for larger models that are 4x wider (16x larger).</span><br/>
+The baseline represents the experimental results used as a reference for performance improvement or degradation across various experimental settings. In the baseline using µP, it is confirmed that the optimal learning rate for the smallest model is also the optimal learning rate for larger models that are 4x wider (16x larger).<br/>
 The experimental results can be categorized into three main groups:
 1.  **Transfer O, Performance Improvement O**
 -   Cases where both learning rate transfer and performance improvement is observed.
@@ -203,7 +200,7 @@ Contribution of the main paper : The performance of µ-Transfer, which has been 
 ## Conclusion 
 
 
-The paper demonstrates that the transfer properties observed with µ-Parameterization (µP) can be maintained across most scenarios.<span style="color:red"> µP outperforms standard parameterization (SP) and confirms the efficacy of part-by-part transfer for elements like attention scale and unembedding initialization, validating µP's superiority.</span> Additionally, it shows that transfer is feasible for models ranging from 2M to 10B parameters (5000x), suggesting applicability to larger models.<br/>
+The paper demonstrates that the transfer properties observed with µ-Parameterization (µP) can be maintained across most scenarios. **<span style="color:red"> µP outperforms standard parameterization (SP) and confirms the efficacy of part-by-part transfer for elements like attention scale and unembedding initialization, validating µP's superiority.</span>** Additionally, it shows that transfer is feasible for models ranging from 2M to 10B parameters (5000x), suggesting applicability to larger models.<br/>
 However, some issues are identified where optimal learning rate transfer does not occur, or there is a performance decline in large models. For instance, trainable RMSNorm gain and decoupled weight decay do not function properly for learning rate transfer. Although transfer is observed with projection biases and cosine scheduling, there is no performance improvement or even a decline.<br/>
 The impressive performance of µ-Transfer demonstrated in this paper is expected to be highly beneficial in the current AI landscape, where model sizes are continually increasing. However, tuning hyperparameters for large models is not always feasible, indicating a need for further research.
 <br/><br/>
