@@ -45,7 +45,24 @@ MobileNetV4 is designed to achieve Pareto optimal and hence balances MAC operati
 </p>
 
 The main advantage of UIB is its adaptability and flexibility, that mitigates seach complexity. Optional Depthwise (DW) convolution blocks are inserted before the expansion layer, and between the expansion and projection layer. In the NAS procedure, common components such as the pointwise expansion and projection are shared and DWs are added as search options. UIB has four possible instantiations as follows.
-- Inverted Bottleneck (IB) 
+- Inverted Bottleneck (IB) : Spatial mixing on the expanded features activations, and provides higher model capacity
+- ConvNext : Cheaper spatial mixing before the expansion with larger kernel size
+- ExtraDW : Inexpensive increase of the network depth and the receptive field. Combined benefits of ConvNext and IB
+- FFN : Stack of two 1x1 pointwise convolutions. Accelerator-friendly operation
+
+## Mobile MQA
+
+## Design of MobileNetV4 
+
+## Results
+
+<p align="center">
+    <img src='./Table5.png' width="900">
+</p>
+    
+<p align="center">
+    Table 5. Classification results on ImageNet-1k
+</p>
 
 
 
