@@ -42,7 +42,9 @@ MoE is an effective method that allows scaling up the number of parameters while
 
 * Experts FFN Layers: MoE layer is composed of N separate feed-forward networks as the experts. This concept involves dividing the FFN layer of traditional transformers into N experts. These experts can be thought of as being responsible for specific tokens.
 
-* Gating functions (Router): A function that determines which expert each token belongs to. For the hidden representation h of input token, and the trainable embedding e of each a expert, the gate value a is obtained as follow:
+* Gating functions (Router): A function that determines the weights over the experts outputs. For the hidden representation h of input token, and the trainable embedding e of each a expert, the gate value a is obtained as follow:
+
+The output is a weighted sum of the outputs from the top-k experts, determined by the gated values.
 
 <p align="center">
     <img src=./moe.png> 
