@@ -180,5 +180,6 @@ This figure shows the performance of MoDE and its two proposed structures. The t
 ## **Conclusion and discussion**
 결론 + 내 생각
 
-## **Some resources**
-참고문헌 정리
+## **References**
+Joshua et.al.,"<U><a href="https://arxiv.org/abs/2303.09752" target="_blank"> COLT5: Faster Long-Range Transformers with Conditional Computation </a></U>," EMNLP, 2023, 
+Noam et.al.,"<U><a href="https://arxiv.org/abs/1701.06538" target="_blank"> OUTRAGEOUSLY LARGE NEURAL NETWORKS: THE SPARSELY-GATED MIXTURE-OF-EXPERTS LAYER </a></U>," ICLR, 2017 
