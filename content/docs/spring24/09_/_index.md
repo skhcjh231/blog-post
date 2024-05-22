@@ -15,6 +15,13 @@ weight: 1
 4. Achieves Pareto optimal acorss various devices such as CPUs, DSPs, GPUs, and TPUs
 5. Novel distillation technique to boost accuracy. Achieves 87% accuracy on ImageNet-1k and 39x smaller model size
 
+## Preliminaries - Roofline Model and Hardware Efficiency
+Algorithm running on hardware is composed of two parts - memory access and computation. The computation time is determined by the computation requirement and hardware performance. 
+{{< katex display=true >}}
+runtime_computation = {Number of Operatins}/{FLOPS}
+{{< /katex >}}
+
+
 ## Hardware-Independent Pareto Efficiency
 <p align="center">
     <img src='./Fig2.png' width="900">
@@ -59,8 +66,12 @@ The main advantage of UIB is its adaptability and flexibility, that mitigates se
     Table 1. Efficiency Gains by MQA
 </p>
 
+This paper considers the Operational Intensity (OI), which is the ratio of arithmetic operations to memory access, to enhance efficiency of vision models on mobile accelerators. Here, Multi-Query Attention (MQA) is proposed instead od Multi-Head Self Attention (MHSA), which is simplified by utilization of shared keys and values across all heads. This sharing of keys and values reduces memory access hence improving OI, especially when the batch size is small. Large language models does not have significant accuracy drop in this MQA case. Table 1 shows that by adding MHSA and MQA, the performace accuracy has increased whereas the inference latency for MQA is approximately x39 lower than that of MHSA. Hence, MQA can accelerate better in the mobile environment, with negligible performance degradation. 
+
+The Spatial Reduction Attention (SRA) is applied, hence incorporating asymmetric spatial down-sampling, to downscale keys and values, and not queires. In hybrid models, there is a certain correlation between spatially adjacent tokens, hence necessitating spatial mixing convolution filters.
 
 ## Design of MobileNetV4 
+
 
 ## Results
 
