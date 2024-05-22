@@ -46,7 +46,7 @@ To evaluate the effect of data quantity on CLIP's performance, we conducted expe
 <div align="center">
   <strong>Figure 1.</strong> Zero-shot performance with the various training strategies
 </div>
-
+</p>
 
 Results showed that for smaller datasets (e.g., 25M), increasing epochs did not significantly improve ImageNet performance. In contrast, larger datasets (e.g., 400M) benefited from more epochs. Additionally, zero-shot performance on ImageNet variants followed a similar pattern: larger datasets and longer training improved performance. However, the correlation between performance on ImageNet and its variants was inconsistent, with some datasets showing improved results in specific variants but not others.
 
