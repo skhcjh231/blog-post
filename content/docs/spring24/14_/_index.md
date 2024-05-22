@@ -13,6 +13,8 @@ weight: 1
 ### **Diffusion**
 <p align="center">
   <img src="./diffusion.png" alt="."> 
+</p>
+<p align="center">
   Diffusion model
 </p>
 Diffusion models learn how to remove gaussian noise added to original image. 
@@ -22,6 +24,8 @@ In the reverse process, diffusion model tries to restore original image by estim
 ### **Quantization**  
 <p align="center">
   <img src="./quantization.png" alt="." width="500" height="300" > 
+</p>
+<p align="center">
   Quantization example
 </p>
 Quantization is an optimization technique which restricts data(weights, activations) in low precision. Not only does it reduce the memory footprint, but it also enables accelerated computations given hardware support to low-precision arithmetic.  
