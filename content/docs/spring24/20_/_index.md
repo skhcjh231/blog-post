@@ -166,9 +166,17 @@ The experiments in the paper focus on applying the proposed evolutionary model m
   - Baselines: LLaVA-1.6-Mistral-7B and Japanese Stable VLM.
   - ROUGE-L score used for evaluation, with non-Japanese responses replaced by empty texts.
 
+<p align="center">
+  <img src="./figures/4_2 experiment table1.png" alt="." width="500" height="250" > 
+</p>
+
+<p align="center">
+  Table 3. Performance Comparison of the VLMs.
+</p>
+
 ### Results
 - **Performance**: 
-  - The merged VLM outperformed baselines on both benchmarks, scoring 19.7 on JA-VG-VQA-500 and 51.2 on JA-VLM-Bench-In-the-Wild.
+  - As shown in Table 3,The merged VLM outperformed baselines on both benchmarks, scoring 19.7 on JA-VG-VQA-500 and 51.2 on JA-VLM-Bench-In-the-Wild.
 - **Qualitative Analysis**: 
   - The merged VLM demonstrated superior handling of Japanese cultural content, providing more detailed and accurate responses compared to baseline models.
 
